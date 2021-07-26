@@ -10,11 +10,9 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-  MsalBroadcastService,
   MsalGuard,
   MsalInterceptor,
   MsalModule,
-  MsalService,
   ProtectedResourceScopes,
 } from '@azure/msal-angular';
 import {
@@ -75,9 +73,7 @@ const isIE =
       useClass: MsalInterceptor,
       multi: true,
     },
-    MsalService,
     MsalGuard,
-    MsalBroadcastService,
   ],
   bootstrap: [AppComponent],
 })
