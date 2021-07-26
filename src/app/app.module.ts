@@ -18,13 +18,19 @@ import {
 import {
   BrowserCacheLocation,
   InteractionType,
+  LogLevel,
   PublicClientApplication,
 } from '@azure/msal-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
   window.navigator.userAgent.indexOf('Trident/') > -1;
+
+  export function loggerCallback(logLevel: LogLevel, message: string) {
+    console.log(message);
+  }
 
 @NgModule({
   declarations: [
@@ -43,14 +49,21 @@ const isIE =
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
-          clientId: 'ce50bd0d-4018-4d43-98e1-bcb373e994ab', // This is your client ID
-          authority: '7a567291-3704-4d96-8e5f-9c93f6e4bc2b', // This is your tenant ID
-          redirectUri: 'http://localhost:8080', // This is your redirect URI
+          clientId: 'ce50bd0d-4018-4d43-98e1-bcb373e994ab',
+          authority: `https://login.microsoftonline.com/7a567291-3704-4d96-8e5f-9c93f6e4bc2b`,
+          redirectUri: 'http://localhost:8080/',
+          navigateToLoginRequestUrl: true
         },
         cache: {
           cacheLocation: BrowserCacheLocation.LocalStorage,
           storeAuthStateInCookie: isIE, // Set to true for Internet Explorer 11
         },
+        system: {
+          loggerOptions: {
+            loggerCallback: environment.production ? loggerCallback : () => {},
+            piiLoggingEnabled: false
+          }
+        }
       }),
       {
         interactionType: InteractionType.Redirect,
@@ -73,7 +86,7 @@ const isIE =
       useClass: MsalInterceptor,
       multi: true,
     },
-    MsalGuard,
+    MsalGuard
   ],
   bootstrap: [AppComponent],
 })
