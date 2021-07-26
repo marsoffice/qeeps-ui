@@ -16,9 +16,15 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
+        
+      - name: setup nodejs
+        uses: actions/setup-node@v2.3.0
+        with:
+          node-version: '16.x'
 
-      - name: cache node modules
+      - name: cache node_modules
         uses: actions/cache@v2
+        id: cache-nodemodules
         env:
           cache-name: cache-node-modules
         with:
@@ -30,7 +36,8 @@ jobs:
             ${{ runner.os }}-
 
       - name: npm install
-        run: npm install
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: npm build
         run: npm run build
