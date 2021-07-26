@@ -1,4 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
 
-  constructor() {
+  constructor(private authService: MsalService) {
 
   }
 

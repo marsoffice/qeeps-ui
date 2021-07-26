@@ -3,11 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [MsalGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [MsalGuard],
   },
   {
