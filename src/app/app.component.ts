@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'qeeps-ui';
+export class AppComponent implements OnInit {
+  isIframe = false;
+
+  constructor() {
+
+  }
+
+  ngOnInit(): void {
+    this.isIframe = window !== window.parent && !window.opener;
+  }
 }
