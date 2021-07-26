@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-      
+
       - name: cache node modules
         uses: actions/cache@v2
         env:
@@ -31,9 +31,9 @@ jobs:
 
       - name: npm install
         run: npm install
-        
+
       - name: npm build
-        run: npm build
+        run: npm run build
 
       - name: upload artifact
         uses: actions/upload-artifact@v2.2.4
