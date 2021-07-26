@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-        
+
       - name: setup nodejs
         uses: actions/setup-node@v2.3.0
         with:
@@ -37,7 +37,7 @@ jobs:
 
       - name: npm install
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm i
 
       - name: npm build
         run: npm run build
