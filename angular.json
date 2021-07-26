@@ -95,7 +95,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "hmr": true,
-            "proxyConfig": "proxy.json"
+            "proxyConfig": "proxy.json",
+            "port": 8080
           },
           "configurations": {
             "production": {
