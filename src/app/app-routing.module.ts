@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
+import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { HomeComponent } from './home/home.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'logged-out',
     component: LoggedOutComponent,
+  },
+  {
+    path: 'auth-error',
+    component: AuthErrorComponent,
   },
   {
     path: '**',

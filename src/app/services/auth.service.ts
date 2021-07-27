@@ -8,6 +8,7 @@ import { Inject, Injectable } from '@angular/core';
       providedIn: 'root'
     })
     export class AuthService {
+      public static logStore: string[] = [];
       loggedIn = false;
       private readonly _destroying$ = new Subject<void>();
 

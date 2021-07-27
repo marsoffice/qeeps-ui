@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.authService.destroy();
     this._destroy.forEach(x => x.unsubscribe());
   }
 }

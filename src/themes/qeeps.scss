@@ -5,6 +5,7 @@
 */
 
 @use '~@angular/material' as mat;
+@use 'sass:map';
 
 @import './fonts.scss';
 
@@ -230,6 +231,29 @@ $altTheme: (
 .theme-alternate {
   @include mat.all-component-themes($altTheme);
 }
+
+
+
+.text-warn {
+  color: mat.get-color-from-palette($theme-warn, main);
+}
+.text-accent {
+  color: mat.get-color-from-palette($theme-accent, main);
+}
+.text-primary {
+  color: mat.get-color-from-palette($theme-primary, main);
+}
+
+.bg-warn {
+  background-color: mat.get-color-from-palette($theme-warn, main);
+}
+.bg-accent {
+  background-color: mat.get-color-from-palette($theme-accent, main);
+}
+.bg-primary {
+  background-color: mat.get-color-from-palette($theme-primary, main);
+}
+
 
 // Specific component overrides, pieces that are not in line with the general theming
 

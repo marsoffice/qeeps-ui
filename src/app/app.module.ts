@@ -31,13 +31,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { AuthErrorComponent } from './auth-error/auth-error.component';
+import { AuthService } from './services/auth.service';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
   window.navigator.userAgent.indexOf('Trident/') > -1;
 
   export function loggerCallback(logLevel: LogLevel, message: string) {
-    console.log(message);
+    if (!environment.production) {
+      console.log(message);
+    }
+    if (logLevel !== LogLevel.Error) {
+      return;
+    }
+    if (AuthService.logStore.length === 10) {
+      AuthService.logStore.splice(0, 1);
+    }
+    AuthService.logStore.push(message);
   }
 
 @NgModule({
@@ -49,6 +60,7 @@ const isIE =
     FooterComponent,
     LoggedOutComponent,
     SidenavComponent,
+    AuthErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +82,7 @@ const isIE =
           authority: `https://login.microsoftonline.com/${environment.adtenantid}`,
           redirectUri: window.location.origin,
           navigateToLoginRequestUrl: true,
-          postLogoutRedirectUri: '/logged-out'
+          postLogoutRedirectUri: '/logged-out',
         },
         cache: {
           cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -78,13 +90,15 @@ const isIE =
         },
         system: {
           loggerOptions: {
-            loggerCallback: environment.production ? loggerCallback : () => {},
-            piiLoggingEnabled: false
-          }
+            loggerCallback: loggerCallback,
+            logLevel: environment.production ? LogLevel.Info : LogLevel.Error,
+            piiLoggingEnabled: !environment.production
+          },
         }
       }),
       {
         interactionType: InteractionType.Redirect,
+        loginFailedRoute: '/auth-error',
         authRequest: {
           scopes: [environment.adclientid + '/.default'],
         },
