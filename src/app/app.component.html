@@ -1,5 +1,5 @@
 <div fxFlexFill fxLayout="column">
-  <app-header [sidenav]="sidenav" [isMobile]="isMobile"></app-header>
+  <app-header [sidenav]="sidenav" [isMobile]="isMobile" [user]="authService.user"></app-header>
   <mat-drawer-container fxFlex="1 1 100%">
     <mat-drawer class="p-0 m-0 mat-elevation-z8" #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile && authService.user != null">
       <app-sidenav *ngIf="authService.user"></app-sidenav>

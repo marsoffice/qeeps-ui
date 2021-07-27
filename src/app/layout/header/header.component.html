@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <button *ngIf="isMobile" mat-icon-button (click)="toggleSidenav()">
+  <button *ngIf="isMobile && user != null" mat-icon-button (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
   <img routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />

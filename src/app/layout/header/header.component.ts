@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
+import { AccountInfo } from '@azure/msal-browser';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
   @Input() sidenav: MatDrawer | undefined;
+  @Input() user: (AccountInfo | null) | undefined;
   private _destroy: Subscription[] = [];
 
   constructor(public authService: AuthService, private router: Router) { }
