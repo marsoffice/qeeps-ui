@@ -1,0 +1,10 @@
+:host {
+  mat-drawer-container {
+
+    #content {
+      overflow: auto;
+      padding: 1rem;
+      min-height: 0;
+    }
+  }
+}

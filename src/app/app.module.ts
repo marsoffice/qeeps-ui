@@ -13,6 +13,7 @@ import {
   MsalGuard,
   MsalInterceptor,
   MsalModule,
+  MsalRedirectComponent,
   ProtectedResourceScopes,
 } from '@azure/msal-angular';
 import {
@@ -24,6 +25,12 @@ import {
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { SidenavComponent } from './layout/sidenav/sidenav.component';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -41,6 +48,7 @@ const isIE =
     HeaderComponent,
     FooterComponent,
     LoggedOutComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +56,13 @@ const isIE =
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
+
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSidenavModule,
+
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
@@ -71,7 +86,7 @@ const isIE =
       {
         interactionType: InteractionType.Redirect,
         authRequest: {
-          scopes: ['.default'],
+          scopes: [environment.adclientid + '/.default'],
         },
       },
       {
@@ -91,6 +106,6 @@ const isIE =
     },
     MsalGuard
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule {}

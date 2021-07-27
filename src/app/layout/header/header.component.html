@@ -1,1 +1,16 @@
-<p>header works!</p>
+<mat-toolbar>
+  <button *ngIf="isMobile" mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
+  <span fxFlex></span>
+  <button [matMenuTriggerFor]="userMenu" mat-icon-button>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item *ngIf="authService.user">Hi, {{authService.user?.name}}</button>
+  <button routerLink="/" *ngIf="!authService.user" mat-menu-item>Login</button>
+  <button *ngIf="authService.user" mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>
