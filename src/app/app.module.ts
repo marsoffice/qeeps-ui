@@ -68,7 +68,7 @@ const isIE =
       {
         interactionType: InteractionType.Redirect,
         authRequest: {
-          scopes: [],
+          scopes: ['.default'],
         },
       },
       {
