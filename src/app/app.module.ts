@@ -23,6 +23,7 @@ import {
 } from '@azure/msal-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { LoggedOutComponent } from './logged-out/logged-out.component';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -39,6 +40,7 @@ const isIE =
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    LoggedOutComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ const isIE =
           clientId: 'ce50bd0d-4018-4d43-98e1-bcb373e994ab',
           authority: `https://login.microsoftonline.com/7a567291-3704-4d96-8e5f-9c93f6e4bc2b`,
           redirectUri: window.location.origin,
-          navigateToLoginRequestUrl: true
+          navigateToLoginRequestUrl: true,
+          postLogoutRedirectUri: '/logged-out'
         },
         cache: {
           cacheLocation: BrowserCacheLocation.LocalStorage,
