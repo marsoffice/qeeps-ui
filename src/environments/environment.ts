@@ -1,13 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+import { localenv } from 'localenv';
 export const environment = {
   production: false,
-  auth: {
-    tenantId: '7a567291-3704-4d96-8e5f-9c93f6e4bc2b',
-    clientId: 'ce50bd0d-4018-4d43-98e1-bcb373e994ab'
-  }
+  adTenantId: localenv.adTenantId,
+  adClientId: localenv.adClientId,
 };
 
 /*

@@ -51,8 +51,8 @@ const isIE =
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
-          clientId: environment.auth.clientId,
-          authority: `https://login.microsoftonline.com/${environment.auth.tenantId}`,
+          clientId: environment.adClientId,
+          authority: `https://login.microsoftonline.com/${environment.adTenantId}`,
           redirectUri: window.location.origin,
           navigateToLoginRequestUrl: true,
           postLogoutRedirectUri: '/logged-out'
