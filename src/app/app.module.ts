@@ -45,10 +45,7 @@ const isIE =
     if (logLevel !== LogLevel.Error) {
       return;
     }
-    if (AuthService.logStore.length === 10) {
-      AuthService.logStore.splice(0, 1);
-    }
-    AuthService.logStore.push(message);
+    AuthService.logStore = message;
   }
 
 @NgModule({
@@ -92,7 +89,7 @@ const isIE =
           loggerOptions: {
             loggerCallback: loggerCallback,
             logLevel: environment.production ? LogLevel.Info : LogLevel.Error,
-            piiLoggingEnabled: !environment.production
+            piiLoggingEnabled: true
           },
         }
       }),

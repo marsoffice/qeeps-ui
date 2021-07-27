@@ -7,11 +7,11 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./auth-error.component.scss']
 })
 export class AuthErrorComponent implements OnInit {
-  errors: string[] | null = null;
+  error: string | null = null;
   constructor() { }
 
   ngOnInit(): void {
-    this.errors = AuthService.logStore;
+    this.error = AuthService.logStore;
   }
 
 }

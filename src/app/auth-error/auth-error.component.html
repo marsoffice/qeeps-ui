@@ -1,5 +1,5 @@
 <div class="mat-display-1 text-warn">An error occured while authenticating.</div>
-<p *ngFor="let error of errors">{{error}}</p>
+<p *ngIf="error != null">{{error}}</p>
 <div fxLayout="row" fxLayoutAlign="center center">
   <button routerLink="/" color="accent" mat-raised-button>
     <mat-icon>refresh</mat-icon>
