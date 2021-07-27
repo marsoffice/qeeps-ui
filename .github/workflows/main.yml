@@ -36,11 +36,19 @@ jobs:
             ${{ runner.os }}-
 
       - name: npm install
-        # if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: npm build
-        run: npm run build
+      - name: npm build staging
+        run: npm run build -- --configuration=staging
+        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop') }}
+
+      - name: npm build production
+        run: npm run build -- --configuration=production
+        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/master') }}
+
+      - name: npm build other branches
+        run: npm run build -- --configuration=production
+        if: ${{ success() && github.event_name != 'pull_request' && github.ref != 'refs/heads/develop' && github.ref != 'refs/heads/master' }}
 
       - name: upload artifact
         uses: actions/upload-artifact@v2.2.4
