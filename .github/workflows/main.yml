@@ -38,17 +38,8 @@ jobs:
       - name: npm install
         run: npm ci
 
-      - name: npm build staging
-        run: npm run build -- --configuration=staging
-        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop') }}
-
-      - name: npm build production
-        run: npm run build -- --configuration=production
-        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/master') }}
-
-      - name: npm build other branches
-        run: npm run build -- --configuration=production
-        if: ${{ success() && github.event_name != 'pull_request' && github.ref != 'refs/heads/develop' && github.ref != 'refs/heads/master' }}
+      - name: npm build
+        run: npm run build
 
       - name: upload artifact
         uses: actions/upload-artifact@v2.2.4
@@ -62,6 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     environment: stg
+    env:
+      adClientId: '${{ secrets.adClientId }}'
+      adCTenantId: '${{ secrets.adTenantId }}'
     name: deploy stg
     steps:
       - name: Download a Build Artifact
@@ -69,6 +63,12 @@ jobs:
         with:
           name: 'dist'
           path: ./dist
+
+      - name: replace secrets
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["./dist/index.html"]'
+
       - name: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -85,6 +85,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     environment: prod
+    env:
+      adClientId: '${{ secrets.adClientId }}'
+      adCTenantId: '${{ secrets.adTenantId }}'
     name: deploy prod
     steps:
       - name: Download a Build Artifact
@@ -92,6 +95,13 @@ jobs:
         with:
           name: 'dist'
           path: ./dist
+
+
+      - name: replace secrets
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["./dist/index.html"]'
+
       - name: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:

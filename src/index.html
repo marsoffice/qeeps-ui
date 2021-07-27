@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>QeepsUi</title>
+  <title>qeeps</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -12,5 +12,13 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+  <script>
+    window.envConfig = {
+      auth: {
+        adClientId: '#{AD_CLIENT_ID}#',
+        adTenantId: '#{AD_TENANT_ID}#'
+      }
+    };
+  </script>
 </body>
 </html>
