@@ -10,7 +10,11 @@
 </mat-toolbar>
 
 <mat-menu #userMenu="matMenu">
-  <button mat-menu-item *ngIf="authService.user">Hi, {{authService.user?.name}}</button>
+  <button mat-menu-item routerLink="/profile" *ngIf="authService.user">{{authService.user?.name}}</button>
+  <button mat-menu-item [matMenuTriggerFor]="langMenu">{{'ui.header.language' | translate}}</button>
   <button routerLink="/" *ngIf="!authService.user" mat-menu-item>Login</button>
-  <button *ngIf="authService.user" mat-menu-item (click)="logout()">Logout</button>
+  <button *ngIf="authService.user" mat-menu-item (click)="logout()">{{'ui.header.logout' | translate}}</button>
+</mat-menu>
+<mat-menu #langMenu="matMenu">
+  <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>
 </mat-menu>

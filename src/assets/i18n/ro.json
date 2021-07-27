@@ -1,0 +1,18 @@
+{
+  "ui": {
+    "auth": {
+      "errorOccurred": "A apărut o eroare la autentificare",
+      "tryAgain": "Încercați din nou",
+      "loggedOut": "Ați fost deconectat cu succes",
+      "loginAgain": "Reautentificare"
+    },
+    "header": {
+      "logout": "Deconectare",
+      "language": "Limbă",
+      "languages": {
+        "en": "English",
+        "ro": "Română"
+      }
+    }
+  }
+}

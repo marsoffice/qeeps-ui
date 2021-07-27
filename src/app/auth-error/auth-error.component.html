@@ -1,8 +1,8 @@
-<div class="mat-display-1 text-warn">An error occured while authenticating.</div>
+<div class="mat-display-1 text-warn">{{'ui.auth.errorOccurred' | translate}}</div>
 <p *ngIf="error != null">{{error}}</p>
 <div fxLayout="row" fxLayoutAlign="center center">
   <button routerLink="/" color="accent" mat-raised-button>
     <mat-icon>refresh</mat-icon>
-    Try again
+    {{'ui.auth.tryAgain' | translate}}
   </button>
 </div>

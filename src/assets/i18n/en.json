@@ -1,0 +1,18 @@
+{
+  "ui": {
+    "auth": {
+      "errorOccurred": "An authentication error has occurred",
+      "tryAgain": "Try again",
+      "loggedOut": "You have been logged out successfully",
+      "loginAgain": "Login again"
+    },
+    "header": {
+      "logout": "Logout",
+      "language": "Language",
+      "languages": {
+        "en": "English",
+        "ro": "Română"
+      }
+    }
+  }
+}

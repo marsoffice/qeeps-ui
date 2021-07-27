@@ -22,31 +22,38 @@ import {
   LogLevel,
   PublicClientApplication,
 } from '@azure/msal-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { AuthService } from './services/auth.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
   window.navigator.userAgent.indexOf('Trident/') > -1;
 
-  export function loggerCallback(logLevel: LogLevel, message: string) {
-    if (!environment.production) {
-      console.log(message);
-    }
-    if (logLevel !== LogLevel.Error) {
-      return;
-    }
-    AuthService.logStore = message;
+export function loggerCallback(logLevel: LogLevel, message: string) {
+  if (!environment.production) {
+    console.log(message);
   }
+  if (logLevel !== LogLevel.Error) {
+    return;
+  }
+  AuthService.logStore = message;
+}
 
 @NgModule({
   declarations: [
@@ -71,6 +78,15 @@ const isIE =
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
+
+    TranslateModule.forRoot({
+      defaultLanguage: 'ro',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      }
+    }),
 
     MsalModule.forRoot(
       new PublicClientApplication({
@@ -119,4 +135,4 @@ const isIE =
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
-export class AppModule {}
+export class AppModule { }

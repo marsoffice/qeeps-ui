@@ -1,2 +1,7 @@
-<p>logged-out works!</p>
-<a routerLink="/">Log in again</a>
+<div class="mat-display-1 text-warn">{{'ui.auth.loggedOut' | translate}}</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <button routerLink="/" color="accent" mat-raised-button>
+    <mat-icon>refresh</mat-icon>
+    {{'ui.auth.loginAgain' | translate}}
+  </button>
+</div>
