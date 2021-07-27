@@ -54,8 +54,8 @@ jobs:
     needs: [build]
     environment: stg
     env:
-      adClientId: '${{ secrets.adClientId }}'
-      adCTenantId: '${{ secrets.adTenantId }}'
+      adclientid: '${{ secrets.adclientid }}'
+      adtenantid: '${{ secrets.adtenantid }}'
     name: deploy stg
     steps:
       - name: Download a Build Artifact
@@ -86,8 +86,8 @@ jobs:
     needs: [build]
     environment: prod
     env:
-      adClientId: '${{ secrets.adClientId }}'
-      adCTenantId: '${{ secrets.adTenantId }}'
+      adclientid: '${{ secrets.adclientid }}'
+      adtenantid: '${{ secrets.adtenantid }}'
     name: deploy prod
     steps:
       - name: Download a Build Artifact

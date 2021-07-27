@@ -4,8 +4,8 @@
 import { localenv } from 'localenv';
 export const environment = {
   production: false,
-  adTenantId: localenv.adTenantId,
-  adClientId: localenv.adClientId,
+  adtenantid: localenv.adtenantid,
+  adclientid: localenv.adclientid,
 };
 
 /*

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  adTenantId: (window as any)?.envConfig?.adTenantId,
-  adClientId: (window as any)?.envConfig?.adClientId
+  adtenantid: (window as any)?.envConfig?.adtenantid,
+  adclientid: (window as any)?.envConfig?.adclientid
 };
