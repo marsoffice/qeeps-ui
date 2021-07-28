@@ -123,8 +123,8 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
           (string | ProtectedResourceScopes)[] | null
         >(
           [
-            ["https://graph.microsoft.com/v1.0/me/photos/48x48/$value", ["user.read"]],
             ["https://graph.microsoft.com/v1.0/me", ["user.read"]],
+            ["/api", [environment.adclientid + '/.default']]
           ]
         ),
       }

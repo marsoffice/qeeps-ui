@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private testService: TestService) { }
 
   ngOnInit(): void {
   }
 
+  test() {
+    this.testService.test().subscribe(x => {
+      console.log(x);
+    });
+  }
 }

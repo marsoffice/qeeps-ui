@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this._destroy.forEach(x => x.unsubscribe());
   }
 
 }
