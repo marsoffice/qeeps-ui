@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { MsalService } from '@azure/msal-angular';
+import { AccountInfo } from '@azure/msal-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
@@ -15,8 +16,9 @@ export class AppComponent implements OnInit, OnDestroy {
   loginDisplay = false;
   isMobile = false;
   private _destroy: Subscription[] = [];
+  user: AccountInfo | null = null;
 
-  constructor(private msalService: MsalService, private mediaObserver: MediaObserver, public authService: AuthService, translate: TranslateService) {
+  constructor(private msalService: MsalService, private mediaObserver: MediaObserver, private authService: AuthService, translate: TranslateService) {
     translate.setDefaultLang('ro');
     const localStorageLanguage = localStorage.getItem('lang');
     translate.use(localStorageLanguage == null ? translate.getBrowserLang() : localStorageLanguage);
@@ -30,6 +32,11 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isMobile = this.mediaObserver.isActive('xs');
       })
     );
+    this._destroy.push(
+      this.authService.user.subscribe(u => {
+        this.user = u;
+      })
+      );
   }
 
   ngOnDestroy(): void {

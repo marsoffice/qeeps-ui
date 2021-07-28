@@ -2,18 +2,20 @@
   <button *ngIf="isMobile && user != null" mat-icon-button (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
-  <img routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
+  <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
   <span fxFlex></span>
   <button [matMenuTriggerFor]="userMenu" mat-icon-button>
-    <mat-icon>more_vert</mat-icon>
+    <mat-icon *ngIf="user == null">more_vert</mat-icon>
+    <img id="avatar" *ngIf="user != null && photo != null" [src]="photo" />
+    <mat-icon *ngIf="user != null && photo == null">account_circle</mat-icon>
   </button>
 </mat-toolbar>
 
 <mat-menu #userMenu="matMenu">
-  <button mat-menu-item routerLink="/profile" *ngIf="authService.user">{{authService.user?.name}}</button>
+  <button mat-menu-item routerLink="/profile" *ngIf="user">{{user.name}}</button>
   <button mat-menu-item [matMenuTriggerFor]="langMenu">{{'ui.header.language' | translate}}</button>
-  <button routerLink="/" *ngIf="!authService.user" mat-menu-item>Login</button>
-  <button *ngIf="authService.user" mat-menu-item (click)="logout()">{{'ui.header.logout' | translate}}</button>
+  <button routerLink="/" *ngIf="!user" mat-menu-item>Login</button>
+  <button *ngIf="user" mat-menu-item (click)="logout()">{{'ui.header.logout' | translate}}</button>
 </mat-menu>
 <mat-menu #langMenu="matMenu">
   <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>

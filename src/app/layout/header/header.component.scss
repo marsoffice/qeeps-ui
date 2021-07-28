@@ -2,11 +2,16 @@
   mat-toolbar {
     padding: 0;
     height: 50px;
-    img {
+    #logo {
       cursor: pointer;
       height: 100%;
       object-fit: cover;
       object-position: top left;
+    }
+
+    #avatar {
+      width: 48px;
+      height: 48px;
     }
   }
 }
