@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,7 @@ import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { AuthService } from './services/auth.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,6 +54,16 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
     return;
   }
   AuthService.logStore = message;
+}
+
+const additionalProviders: Provider[] = [];
+
+if (!environment.production) {
+  additionalProviders.push({
+    provide: HTTP_INTERCEPTORS,
+    useClass: EasyAuthInterceptor,
+    multi: true,
+  });
 }
 
 @NgModule({
@@ -136,6 +147,7 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
       useClass: MsalInterceptor,
       multi: true,
     },
+    ...additionalProviders,
     MsalGuard
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
