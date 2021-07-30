@@ -19,7 +19,6 @@ export class EasyAuthInterceptor implements HttpInterceptor {
     return this.authService.user.pipe(
       switchMap(user => {
         if (user != null) {
-          console.log(user);
           const userClaims = user.idTokenClaims as any;
           const claims = {
             auth_typ: 'aad',
