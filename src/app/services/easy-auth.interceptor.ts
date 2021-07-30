@@ -22,7 +22,7 @@ export class EasyAuthInterceptor implements HttpInterceptor {
         if (user != null && jwt != null) {
           let headers = request.headers;
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-IDP', 'aad');
-          headers = headers.append( 'X-MS-CLIENT-PRINCIPAL', jwt as string);
+          headers = headers.append( 'X-MS-CLIENT-PRINCIPAL', (jwt as string).substring(6));
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-ID', user.localAccountId);
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-NAME', user.name as string);
           const newRequest = request.clone({headers: headers});
