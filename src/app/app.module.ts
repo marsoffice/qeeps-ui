@@ -36,6 +36,7 @@ import { AuthService } from './services/auth.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
+import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,6 +77,7 @@ if (!environment.production) {
     LoggedOutComponent,
     SidenavComponent,
     AuthErrorComponent,
+    HealthcheckComponent,
   ],
   imports: [
     BrowserModule,
