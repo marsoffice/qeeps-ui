@@ -126,7 +126,7 @@ if (!environment.production) {
         interactionType: InteractionType.Redirect,
         loginFailedRoute: '/auth-error',
         authRequest: {
-          scopes: [environment.adclientid + '/.default'],
+          scopes: [],
         },
       },
       {
