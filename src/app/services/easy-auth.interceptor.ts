@@ -28,7 +28,7 @@ export class EasyAuthInterceptor implements HttpInterceptor {
                 val: userClaims.name
               },
               {
-                typ: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
+                typ: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
                 val: user.username
               },
               {
