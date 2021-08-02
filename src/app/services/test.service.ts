@@ -9,6 +9,6 @@ export class TestService {
   constructor(private http: HttpClient) { }
 
   test() {
-    return this.http.get<any>('/api/access/test');
+    return this.http.get<any>('/api/access/getAllGroups');
   }
 }
