@@ -7,6 +7,7 @@ import { TestService } from '../services/test.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  r = '';
 
   constructor(private testService: TestService) { }
 
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   test() {
     this.testService.test().subscribe(x => {
-      console.log(x);
+      this.r = JSON.stringify(x)
     });
   }
 }
