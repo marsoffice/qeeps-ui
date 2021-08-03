@@ -136,7 +136,7 @@ if (!environment.production) {
           (string | ProtectedResourceScopes)[] | null
         >(
           [
-            ["https://graph.microsoft.com/v1.0/me", ["user.read"]],
+            ["https://graph.microsoft.com", ["user.read"]],
             ["/api", [environment.adclientid + '/.default']]
           ]
         ),

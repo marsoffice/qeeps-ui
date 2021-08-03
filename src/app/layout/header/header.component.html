@@ -4,9 +4,9 @@
   </button>
   <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
   <span fxFlex></span>
-  <button [matMenuTriggerFor]="userMenu" mat-icon-button>
+  <img id="avatar" *ngIf="photo != null" [src]="photo" [matMenuTriggerFor]="userMenu"/>
+  <button *ngIf="photo == null" [matMenuTriggerFor]="userMenu" mat-icon-button>
     <mat-icon *ngIf="user == null">more_vert</mat-icon>
-    <img id="avatar" *ngIf="user != null && photo != null" [src]="photo" />
     <mat-icon *ngIf="user != null && photo == null">account_circle</mat-icon>
   </button>
 </mat-toolbar>
