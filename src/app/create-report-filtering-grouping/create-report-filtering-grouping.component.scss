@@ -1,0 +1,24 @@
+::ng-deep #cards{
+  mat-card{
+    margin-bottom:  5px;
+
+    .mat-form-field-wrapper {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+::ng-deep {
+  .orange {
+    background-color: orangered;
+  }
+
+  .green {
+    background-color: lightgreen;
+  }
+
+  .gray {
+    background-color: darkgray;
+  }
+}

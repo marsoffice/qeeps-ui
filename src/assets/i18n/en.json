@@ -9,9 +9,28 @@
     "header": {
       "logout": "Logout",
       "language": "Language",
+      "reportHistory": "Report History",
+      "createReport": "Create Report",
       "languages": {
         "en": "English",
         "ro": "Română"
+      }
+    },
+
+    "sidenav": {
+      "reportHistory": "Report History",
+      "createReport": "Create Report"
+
+    },
+
+    "createReport": {
+      "reportGeneral": "Report General",
+      "dataSources": "Data Sources",
+      "filteringGrouping": "Filtering and Grouping",
+      "editExport": "Edit and Export",
+      "general": {
+        "name": "Name",
+        "next": "Next"
       }
     }
   }

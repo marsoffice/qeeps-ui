@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
+import { CreateReportComponent } from './create-report/create-report.component';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HomeComponent } from './home/home.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ReportHistoryComponent } from './report-history/report-history.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,15 @@ const routes: Routes = [
   {
     path: 'healthcheck',
     component: HealthcheckComponent,
+  },
+  {
+    path:'create-report',
+    component: CreateReportComponent
+  },
+
+  {
+    path:'report-history',
+    component:ReportHistoryComponent
   },
   {
     path: '**',

@@ -9,9 +9,28 @@
     "header": {
       "logout": "Deconectare",
       "language": "Limbă",
+      "reportHistory": "Istoric Rapoarte",
+      "createReport": "Creare Raport",
       "languages": {
         "en": "English",
         "ro": "Română"
+      }
+    },
+
+    "sidenav": {
+      "reportHistory": "Istoric Rapoarte",
+      "createReport": "Creare Raport"
+
+    },
+
+    "createReport": {
+      "reportGeneral": "General",
+      "dataSources": "Surse date",
+      "filteringGrouping": "Filtrare și grupare",
+      "editExport": "Editare și exportare",
+      "general": {
+        "name": "Nume",
+        "next": "Înainte"
       }
     }
   }

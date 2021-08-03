@@ -1,0 +1,43 @@
+<button color="warn" class="close" mat-icon-button [mat-dialog-close]="true" ><mat-icon>close</mat-icon></button>
+<div class="p-1 p-sm-5" >
+  <h2 mat-dialog-title>Adăugare sursă date</h2>
+<mat-dialog-content class="mat-typography d-flex flex-column">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tip sursă date</mat-label>
+    <mat-select [(ngModel)]="sursaDate" required>
+      <mat-option [value]="1">Formular</mat-option>
+      <mat-option [value]="2">Excel</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+    <mat-form-field *ngIf="sursaDate == 1" class="example-full-width" appearance="outline">
+      <mat-label>Nume Formular</mat-label>
+      <input type="text"
+             matInput
+
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option value="1">Formular 12344</mat-option>
+      <mat-option value="2">Formular 34455</mat-option>
+
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <input #inp accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" class="d-none">
+    <button (click)="inp.click()" mat-raised-button *ngIf="sursaDate == 2" color="accent" class="w-100" ><mat-icon>file_upload</mat-icon><span>Upload</span></button>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>Adăugare</button>
+</mat-dialog-actions>
+
+
+
+
+
+</div>

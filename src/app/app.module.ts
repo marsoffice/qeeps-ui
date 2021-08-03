@@ -37,6 +37,22 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
+import { CreateReportComponent } from './create-report/create-report.component';
+import { ReportHistoryComponent } from './report-history/report-history.component';
+import { CreateReportGeneralComponent } from './create-report-general/create-report-general.component';
+import { CreateReportFilteringGroupingComponent } from './create-report-filtering-grouping/create-report-filtering-grouping.component';
+import { CreateReportEditExportComponent } from './create-report-edit-export/create-report-edit-export.component';
+import { CreateReportDataSourcesComponent } from './create-report-data-sources/create-report-data-sources.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import { CreateReportDataSourceAddComponent } from './create-report-data-source-add/create-report-data-source-add.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -78,6 +94,14 @@ if (!environment.production) {
     SidenavComponent,
     AuthErrorComponent,
     HealthcheckComponent,
+    CreateReportComponent,
+    ReportHistoryComponent,
+    CreateReportGeneralComponent,
+    CreateReportFilteringGroupingComponent,
+    CreateReportEditExportComponent,
+    CreateReportDataSourcesComponent,
+    CreateReportDataSourceAddComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -85,7 +109,16 @@ if (!environment.production) {
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
-
+    MatStepperModule,
+    MatInputModule,
+    MatCardModule,
+    MatSelectModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatTooltipModule,
+    DragDropModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

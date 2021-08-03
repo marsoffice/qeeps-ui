@@ -3,6 +3,15 @@
     <mat-icon>menu</mat-icon>
   </button>
   <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
+  <div class="h-100" fxHide.xs>
+    <button routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>history</mat-icon>{{'ui.header.reportHistory' | translate}}
+    </button>
+
+    <button routerLink="/create-report" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>add_circle_outline</mat-icon>{{'ui.header.createReport' | translate}}
+    </button>
+  </div>
   <span fxFlex></span>
   <button [matMenuTriggerFor]="userMenu" mat-icon-button>
     <mat-icon *ngIf="user == null">more_vert</mat-icon>
@@ -18,5 +27,6 @@
   <button *ngIf="user" mat-menu-item (click)="logout()">{{'ui.header.logout' | translate}}</button>
 </mat-menu>
 <mat-menu #langMenu="matMenu">
-  <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>
+  <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item
+    *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>
 </mat-menu>

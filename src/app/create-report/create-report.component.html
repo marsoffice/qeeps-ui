@@ -1,0 +1,26 @@
+
+<div class="mat-headline">{{'ui.header.createReport' | translate}}</div>
+
+
+<hr>
+<br>
+
+
+<mat-stepper  #stepper>
+  <mat-step>
+    <ng-template matStepLabel><span fxHide.xs>{{'ui.createReport.reportGeneral' | translate}}</span></ng-template>
+    <app-create-report-general></app-create-report-general>
+  </mat-step>
+  <mat-step >
+    <ng-template matStepLabel><span fxHide.xs>{{'ui.createReport.dataSources' | translate}}</span></ng-template>
+    <app-create-report-data-sources></app-create-report-data-sources>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel><span fxHide.xs>{{'ui.createReport.filteringGrouping' | translate}}</span></ng-template>
+    <app-create-report-filtering-grouping></app-create-report-filtering-grouping>
+    </mat-step>
+  <mat-step >
+    <ng-template matStepLabel><span fxHide.xs>{{'ui.createReport.editExport' | translate}}</span></ng-template>
+    <app-create-report-edit-export></app-create-report-edit-export>
+  </mat-step>
+</mat-stepper>

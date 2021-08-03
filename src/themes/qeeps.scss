@@ -174,10 +174,10 @@ body {
   --text-accent-darker-color: #{$light-primary-text};
 }
 $mat-accent: (
-  main: #1d3461,
-  lighter: #bbc2d0,
-  darker: #112145,
-  200: #1d3461, // For slide toggle,
+  main: #1d3b77,
+  lighter: #c5cddb,
+  darker: #162957,
+  200: #213a6d, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
