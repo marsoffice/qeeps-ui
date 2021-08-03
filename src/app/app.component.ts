@@ -4,6 +4,7 @@ import { MsalService } from '@azure/msal-angular';
 import { AccountInfo } from '@azure/msal-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
   user: AccountInfo | null = null;
 
-  constructor(private msalService: MsalService, private mediaObserver: MediaObserver, private authService: AuthService, translate: TranslateService) {
+  constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
+    private authService: AuthService, translate: TranslateService, private accessService: AccessService) {
     translate.setDefaultLang('ro');
     const localStorageLanguage = localStorage.getItem('lang');
     translate.use(localStorageLanguage == null ? translate.getBrowserLang() : localStorageLanguage);
@@ -35,8 +37,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
+        if (this.user != null) {
+          this.accessService.loadOrganisationsTree();
+        } else {
+          this.accessService.clearOrganisationsTree();
+        }
       })
-      );
+    );
   }
 
   ngOnDestroy(): void {

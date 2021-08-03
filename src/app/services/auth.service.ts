@@ -63,8 +63,8 @@ export class AuthService {
     });
   }
 
-  getProfilePhoto() {
-    return this.httpClient.get('https://graph.microsoft.com/beta/me/photos/48x48/$value', {
+  getProfilePhoto(size = 48) {
+    return this.httpClient.get(`https://graph.microsoft.com/beta/me/photos/${size}x${size}/$value`, {
       headers: { 'Content-Type': 'image/*' },
       responseType: 'arraybuffer'
     }).pipe(

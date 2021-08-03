@@ -27,8 +27,10 @@ import { environment } from 'src/environments/environment';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
@@ -37,6 +39,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
+import { ProfileComponent } from './profile/profile.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -78,6 +81,7 @@ if (!environment.production) {
     SidenavComponent,
     AuthErrorComponent,
     HealthcheckComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +94,9 @@ if (!environment.production) {
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTreeModule,
     MatSidenavModule,
+    MatCardModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'ro',
