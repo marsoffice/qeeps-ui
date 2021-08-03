@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from '../services/test.service';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +8,12 @@ import { TestService } from '../services/test.service';
 export class HomeComponent implements OnInit {
   r = '';
 
-  constructor(private testService: TestService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   test() {
-    this.testService.test().subscribe(x => {
-      this.r = JSON.stringify(x)
-    });
+
   }
 }
