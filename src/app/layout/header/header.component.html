@@ -12,11 +12,11 @@
 </mat-toolbar>
 
 <mat-menu #userMenu="matMenu">
-  <button mat-menu-item routerLink="/profile" *ngIf="user">{{user.name}}</button>
-  <button mat-menu-item [matMenuTriggerFor]="langMenu">{{'ui.header.language' | translate}}</button>
-  <button routerLink="/" *ngIf="!user" mat-menu-item>Login</button>
-  <button *ngIf="user" mat-menu-item (click)="logout()">{{'ui.header.logout' | translate}}</button>
+  <button mat-menu-item routerLink="/profile" *ngIf="user"><mat-icon>person</mat-icon>{{user.name}}</button>
+  <button mat-menu-item [matMenuTriggerFor]="langMenu"><mat-icon>language</mat-icon>{{'ui.header.language' | translate}}</button>
+  <button routerLink="/" *ngIf="!user" mat-menu-item><mat-icon>login</mat-icon>{{'ui.header.login' | translate}}</button>
+  <button *ngIf="user" mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon>{{'ui.header.logout' | translate}}</button>
 </mat-menu>
 <mat-menu #langMenu="matMenu">
-  <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>
+  <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item *ngFor="let lang of languages"><mat-icon>translate</mat-icon>{{'ui.header.languages.' + lang | translate}}</button>
 </mat-menu>

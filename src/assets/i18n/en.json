@@ -9,6 +9,7 @@
     "header": {
       "logout": "Logout",
       "language": "Language",
+      "login": "Login",
       "languages": {
         "en": "English",
         "ro": "Română"
