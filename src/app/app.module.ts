@@ -53,6 +53,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -124,6 +126,9 @@ if (!environment.production) {
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
+    MatCheckboxModule,
+    MatListModule,
+
 
     TranslateModule.forRoot({
       defaultLanguage: 'ro',
