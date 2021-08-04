@@ -1,11 +1,11 @@
 <mat-card *ngIf="user != null">
   <mat-card-header>
-    <img id="small-photo" mat-card-avatar [src]="photo" >
+    <img *ngIf="photo != null" id="small-photo" mat-card-avatar [src]="photo" >
     <mat-card-title>{{user.name}}</mat-card-title>
     <mat-card-subtitle>{{user.username}}</mat-card-subtitle>
     <mat-card-subtitle>{{userRole}}</mat-card-subtitle>
   </mat-card-header>
-  <img id="big-photo" mat-card-image [src]="photo">
+  <img *ngIf="photo != null" id="big-photo" mat-card-image [src]="photo">
   <mat-card-content>
     <mat-tree *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
