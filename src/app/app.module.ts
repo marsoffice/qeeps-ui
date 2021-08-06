@@ -55,6 +55,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { QuillModule } from 'ngx-quill'
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -128,6 +130,8 @@ if (!environment.production) {
     MatSidenavModule,
     MatCheckboxModule,
     MatListModule,
+    MatPaginatorModule,
+    QuillModule.forRoot(),
 
 
     TranslateModule.forRoot({

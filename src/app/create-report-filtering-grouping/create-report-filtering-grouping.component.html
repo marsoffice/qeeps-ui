@@ -1,7 +1,7 @@
 <div class="w-100">
 
   <mat-form-field class="w-100 mb-2" appearance="outline">
-    <mat-label>Grupare după</mat-label>
+    <mat-label>{{'ui.createReport.filtering.grupBy' | translate}}</mat-label>
     <mat-select multiple>
       <mat-option value="1">Option szxkjmin fvcidsxzklo cfvsdxz vc oldsxzcv szxdjlkioz 1</mat-option>
       <mat-option value="2">Option 2</mat-option>
@@ -22,22 +22,22 @@
 
       <div>
 
-        <button cdkDragHandle mat-icon-button matTooltip="Sortare">
+        <button cdkDragHandle mat-icon-button matTooltip="{{'ui.createReport.filtering.sort' | translate}}">
           <mat-icon>open_with</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Ordonare">
+        <button mat-icon-button matTooltip="{{'ui.createReport.filtering.order' | translate}}">
           <mat-icon>import_export</mat-icon>
         </button>
-        <button [matMenuTriggerFor]="menuft" mat-icon-button matTooltip="Functii Transformare">
+        <button [matMenuTriggerFor]="menuft" mat-icon-button matTooltip="{{'ui.createReport.filtering.transformationFunctions' | translate}}">
           <mat-icon>auto_fix_high</mat-icon>
         </button>
-        <button [matMenuTriggerFor]="menufa" mat-icon-button matTooltip="Functii agregare">
+        <button [matMenuTriggerFor]="menufa" mat-icon-button matTooltip="{{'ui.createReport.filtering.aggregationFunctions' | translate}}">
           <mat-icon>functions</mat-icon>
         </button>
-        <button [matMenuTriggerFor]="menufi" mat-icon-button matTooltip="Filtrare">
+        <button [matMenuTriggerFor]="menufi" mat-icon-button matTooltip="{{'ui.createReport.filtering.filter' | translate}}">
           <mat-icon>filter_alt</mat-icon>
         </button>
-        <button (click)="card.vizibil = !card.vizibil" mat-icon-button matTooltip="Vizibilitate">
+        <button (click)="card.vizibil = !card.vizibil" mat-icon-button matTooltip="{{'ui.createReport.filtering.visibility' | translate}}">
           <mat-icon>{{card.vizibil == true ? 'visibility' : 'visibility_off'}}</mat-icon>
 
         </button>
@@ -71,14 +71,14 @@
 <mat-menu #menuft="matMenu" class="p-2">
   <div (click)="$event.stopPropagation()">
     <mat-form-field class="w-100 mb-2" appearance="outline">
-      <mat-label>Alegeți</mat-label>
+      <mat-label>{{'ui.createReport.filtering.choose' | translate}}</mat-label>
       <mat-select multiple>
-        <mat-option value="1">Tăiere </mat-option>
-        <mat-option value="1">Tăiere stânga</mat-option>
-        <mat-option value="2">Tăiere dreapta</mat-option>
-        <mat-option value="3">Litere mari</mat-option>
-        <mat-option value="3">Litere mici</mat-option>
-        <mat-option value="3">Capitalizare</mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.cut' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.leftCut' | translate}}</mat-option>
+        <mat-option value="2">{{'ui.createReport.filtering.rightCut' | translate}}</mat-option>
+        <mat-option value="3">{{'ui.createReport.filtering.uppercaseLetter' | translate}}</mat-option>
+        <mat-option value="3">{{'ui.createReport.filtering.lowercaseLetter' | translate}}</mat-option>
+        <mat-option value="3">{{'ui.createReport.filtering.capitalization' | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -91,14 +91,14 @@
 <mat-menu #menufa="matMenu" class="p-2">
   <div (click)="$event.stopPropagation()">
     <mat-form-field class="w-100 mb-2" appearance="outline">
-      <mat-label>Alegeți</mat-label>
+      <mat-label>{{'ui.createReport.filtering.choose' | translate}}</mat-label>
       <mat-select>
-        <mat-option value="1">Numărare </mat-option>
-        <mat-option value="1">Concatenare</mat-option>
-        <mat-option value="1">Suma </mat-option>
-        <mat-option value="1">Medie</mat-option>
-        <mat-option value="1">Minim </mat-option>
-        <mat-option value="1">Maxim</mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.counting' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.concatenation' | translate}}</mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.sum' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.average' | translate}}</mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.minimum' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.maximum' | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -110,15 +110,15 @@
 <mat-menu #menufi="matMenu" class="p-2">
   <div (click)="$event.stopPropagation()">
     <mat-form-field class="w-100 mb-2" appearance="outline">
-      <mat-label>Alegeți</mat-label>
+      <mat-label>{{'ui.createReport.filtering.grupBy' | translate}}</mat-label>
       <mat-select>
-        <mat-option value="1">Conține </mat-option>
-        <mat-option value="1">Diferit de </mat-option>
-        <mat-option value="1">Egal cu</mat-option>
-        <mat-option value="1">Începe cu </mat-option>
-        <mat-option value="1">Se termină cu</mat-option>
-        <mat-option value="1">Nenul </mat-option>
-        <mat-option value="1">Nul </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.contain' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.differentFrom' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.equalWhit' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.startWhit' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.endWhit' | translate}}</mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.notNull' | translate}} </mat-option>
+        <mat-option value="1">{{'ui.createReport.filtering.null' | translate}} </mat-option>
       </mat-select>
     </mat-form-field>
 

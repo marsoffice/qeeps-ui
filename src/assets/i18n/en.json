@@ -31,7 +31,107 @@
       "general": {
         "name": "Name",
         "next": "Next"
+      },
+      "data": {
+        "add": "Add",
+        "addCondition": "Add Condition (logical and)",
+        "select": "Select an option",
+        "operator": "Operator",
+        "logicalAnd": "Logical and"
+
+
+      },
+
+      "filtering": {
+        "grupBy": "Grup By",
+        "sort": "Sort",
+        "order": "Order",
+        "transformationFunctions": "Transform Function",
+        "aggregationFunctions": "Aggregate Function",
+        "filter": "Filter",
+        "visibility": "Visibility ",
+        "choose": "Choose",
+        "cut": "Cut",
+        "leftCut": "Left Cut",
+        "rightCut": "Right Cut",
+        "uppercaseLetter": "Uppercase Letter",
+        "lowercaseLetter": "Lowercase Letter",
+        "capitalization": "Capitalization",
+        "counting": "Count",
+        "concatenation": "Concatenation",
+        "sum": "Sum",
+        "average": "Average",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "contain": "Contain",
+        "differentFrom": "Different From ",
+        "equalWhit": "Equal Whit",
+        "startWhit": "Start Whit",
+        "endWhit": "End Whit",
+        "notNull": "Not Null",
+        "null": "Null"
+
+
+
+      },
+
+      "edit": {
+        "generatePdf": "Generate PDF",
+        "prints": "Prints all data in one PDF",
+        "printsAccord": "Prints accord to",
+        "select": "Select an option",
+        "columns": "Columns",
+        "variables": "Variables calculated by grouping",
+        "name": "Name ",
+        "column": "Column",
+        "variableLabel": "Variable Label",
+        "aggregateFunction": "Aggregate Function",
+        "add": "Add ",
+        "count": "Count ",
+        "concatenation": "Concatenation ",
+        "html": " HTML structure for PDF generation ",
+        "landscapeMode": "Landscape Mode ",
+        "saveresult": "Save results as external data source ",
+        "save": "Save ",
+        "saveRun": "Save and run "
+
+
+
+
+
       }
+
+
+
+
+
+    },
+
+    "reportHistory":{
+      "reportHistory": "Report History",
+      "search": "Search",
+      "id": "ID",
+      "reportName": "Report Name",
+      "createDate": "Create Date",
+      "status": "Status",
+      "messages": "Messages",
+      "result": "Result",
+      "rerun": "Rerun",
+      "delete": "Delete",
+      "draftReports": "Draft Reports",
+      "author": "Author",
+      "run": "Run",
+      "edit": "Edit",
+      "add": "Add",
+      "refresh": "Refresh",
+      "pdf": "PDF",
+      "excel": "EXCEL"
+
+
     }
+
+
+
+
   }
 }

@@ -31,7 +31,101 @@
       "general": {
         "name": "Nume",
         "next": "Înainte"
+      },
+      "data": {
+        "add": "Adăugare",
+        "addCondition": "Adăugare Condiție (și logic)",
+        "select": "Selectați o obțiune",
+        "operator": "Operator",
+        "logicalAnd": "Și Logic"
+
+
+      },
+
+      "filtering": {
+        "grupBy": "Grupare după",
+        "sort": "Sortare",
+        "order": "Ordonare",
+        "transformationFunctions": "Funcții Transformare",
+        "aggregationFunctions": "Funcții Agregare",
+        "filter": "Filtrare",
+        "visibility": "Vizibilitate ",
+        "choose": "Alegeți",
+        "cut": "Tăiere",
+        "leftCut": "Tăiere strânga",
+        "rightCut": "Tăiere dreapta",
+        "uppercaseLetter": "Litere mari",
+        "lowercaseLetter": "Litere mici",
+        "capitalization": "Capitalizare",
+        "counting": "Numărare",
+        "concatenation": "Concatenare",
+        "sum": "Sumă",
+        "average": "Medie",
+        "minimum": "Minim",
+        "maximum": "Maxim",
+        "contain": "Conține",
+        "differentFrom": "Diferit de ",
+        "equalWhit": "Egal cu",
+        "startWhit": "Începe cu",
+        "endWhit": "Se termină cu",
+        "notNull": "Nenul",
+        "null": "Nul"
+
+
+
+
+
+      },
+
+      "edit": {
+        "generatePdf": "Generare PDF",
+        "prints": "Printează toate datele într-un singur PDF",
+        "printsAccord": "Printează în funcție de",
+        "select": "Selectați o obțiune",
+        "columns": "Coloane",
+        "variables": "Variabile calculate după grupare",
+        "name": "Nume ",
+        "variableLabel": "Eticheta variabilei ",
+        "column": "Coloană",
+        "aggregateFunction": "Funcția agregat",
+        "add": "Adăugare ",
+        "count": "Numărare ",
+        "concatenation": "Concatenare ",
+        "html": "Structura HTML pentru generare PDF ",
+        "landscapeMode": "Mod peisaj ",
+        "saveresult": "Salvare rezultate ca sursă de date externă ",
+        "save": "Doar Salvare ",
+        "saveRun": "Salvare si rulare "
+
+
       }
+
+
+    },
+
+
+
+    "reportHistory":{
+      "reportHistory": "Istoric Rapoarte",
+      "search": "Căutare",
+      "id": "ID",
+      "reportName": "Nume raport",
+      "createDate": "Dată creare",
+      "status": "Stare",
+      "messages": "Mesaje",
+      "result": "Rezultate",
+      "rerun": "Rerulare",
+      "delete": "Ștergere",
+      "draftReports": "Schițe Rapoarte",
+      "author": "Autor",
+      "run": "Executare",
+      "edit": "Editare",
+      "add": "Adăugare",
+      "refresh": "Reîmprospătare",
+      "pdf": "PDF",
+      "excel": "EXCEL"
+
+
     }
   }
 }

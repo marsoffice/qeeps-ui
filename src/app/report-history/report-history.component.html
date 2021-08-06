@@ -1,1 +1,121 @@
-<p>report-history works!</p>
+
+
+<div class="mat-headline">{{'ui.reportHistory.reportHistory' | translate}}</div>
+
+<hr>
+
+
+
+
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{'ui.reportHistory.search' | translate}}</mat-label>
+  <input type="tel" matInput placeholder="">
+  <button matTooltip="Cautare" color="accent" matSuffix mat-icon-button ><mat-icon >search</mat-icon></button>
+</mat-form-field>
+<div class="table table-responsive" >
+<table class="table table-striped table-hover">
+
+  <thead>
+    <tr>
+      <th>{{'ui.reportHistory.id' | translate}}</th>
+      <th>{{'ui.reportHistory.reportName' | translate}}</th>
+      <th>{{'ui.reportHistory.createDate' | translate}}</th>
+      <th>{{'ui.reportHistory.status' | translate}}</th>
+      <th>{{'ui.reportHistory.messages' | translate}}</th>
+      <th>{{'ui.reportHistory.result' | translate}}</th>
+      <th>{{'ui.reportHistory.rerun' | translate}}</th>
+      <th>{{'ui.reportHistory.delete' | translate}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td><button color="accent" matTooltip="{{'ui.reportHistory.pdf' | translate}}" mat-icon-button><mat-icon >picture_as_pdf</mat-icon></button><button color="accent" matTooltip="{{'ui.reportHistory.excel' | translate}}" mat-icon-button><mat-icon>description</mat-icon></button></td>
+      <td> <button color="accent" matTooltip="{{'ui.reportHistory.rerun' | translate}}" mat-icon-button><mat-icon>autorenew</mat-icon></button></td>
+      <td> <button color="accent" matTooltip="{{'ui.reportHistory.delete' | translate}}" mat-icon-button><mat-icon>delete</mat-icon></button></td>
+    </tr>
+
+
+
+  </tbody>
+
+</table>
+</div>
+<div>
+  <button class="me-3" mat-raised-button color="accent"> <mat-icon>add</mat-icon> {{'ui.reportHistory.add' | translate}}</button>
+    <button mat-raised-button color="accent"> <mat-icon>autorenew</mat-icon> {{'ui.reportHistory.refresh' | translate}}</button>
+</div>
+<br>
+
+
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator>
+<br>
+<br>
+<br>
+
+
+
+<div class="mat-headline">{{'ui.reportHistory.draftReports' | translate}}</div>
+
+<hr>
+
+
+
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{'ui.reportHistory.search' | translate}}</mat-label>
+  <input type="tel" matInput placeholder="">
+  <button  matTooltip="Cautare"  color="accent" matSuffix mat-icon-button ><mat-icon >search</mat-icon></button>
+</mat-form-field>
+
+<div class="table table-responsive" >
+  <table class="table table-striped table-hover">
+
+    <thead>
+      <tr>
+        <th>{{'ui.reportHistory.id' | translate}}</th>
+        <th>{{'ui.reportHistory.reportName' | translate}} </th>
+        <th>{{'ui.reportHistory.author' | translate}}</th>
+        <th>{{'ui.reportHistory.createDate' | translate}}</th>
+        <th>{{'ui.reportHistory.run' | translate}}</th>
+        <th>{{'ui.reportHistory.edit' | translate}}</th>
+        <th>{{'ui.reportHistory.delete' | translate}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td> <button color="accent" matTooltip="{{'ui.reportHistory.run' | translate}}" mat-icon-button><mat-icon>play_arrow</mat-icon></button></td>
+        <td> <button color="accent" matTooltip="{{'ui.reportHistory.edit' | translate}}" mat-icon-button><mat-icon>edit</mat-icon></button></td>
+        <td> <button color="accent" matTooltip="{{'ui.reportHistory.delete' | translate}}" mat-icon-button><mat-icon>delete</mat-icon></button></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+<div>
+  <button class="me-3" mat-raised-button color="accent"> <mat-icon>add</mat-icon> {{'ui.reportHistory.add' | translate}}</button>
+    <button mat-raised-button color="accent"> <mat-icon>autorenew</mat-icon> {{'ui.reportHistory.refresh' | translate}}</button>
+</div>
+<br>
+
+
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator>
+

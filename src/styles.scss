@@ -1,4 +1,6 @@
 
+
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
@@ -7,6 +9,10 @@
 @include mat.core();
 
 @import './themes/qeeps.scss';
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
 
 
 /* You can add global styles to this file, and also import other style files */
