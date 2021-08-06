@@ -37,11 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
-        if (this.user != null) {
-          this.accessService.loadOrganisationsTree();
-        } else {
-          this.accessService.clearOrganisationsTree();
-        }
       })
     );
   }

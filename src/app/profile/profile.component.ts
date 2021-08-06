@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       })
     );
     this._destroy.push(
-      this.accessService.organisationTree().subscribe(o => {
+      this.accessService.organisationsTree().subscribe(o => {
         this.organisationsTree = o;
         if (o != null) {
           this.dataSource.data = [o];
