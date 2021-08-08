@@ -55,12 +55,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.authService.logoutRedirect({
-      onRedirectNavigate: (url) => {
-        this.userSubject.next(null);
-        return false;
-      }
-    });
+    return this.authService.logoutRedirect();
   }
 
   getProfilePhoto(size = 48) {
