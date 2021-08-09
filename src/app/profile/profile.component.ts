@@ -16,7 +16,7 @@ import { AuthService } from '../services/auth.service';
 export class ProfileComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
   user: AccountInfo | null = null;
-  userRole: string | null = null;
+  userRoles: string[] | null = null;
   organisationsTree: OrganisationDto | null = null;
   photo: SafeUrl | null = null;
   treeControl = new NestedTreeControl<OrganisationDto>(node => node.children);
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.authService.user.subscribe(u => {
         this.user = u;
         if (this.user != null) {
-          this.userRole = (this.user.idTokenClaims as any)['roles'].join();
+          this.userRoles = (this.user.idTokenClaims as any)['roles'];
           this.authService.getProfilePhoto(240).subscribe(s => {
             this.photo = s;
           });
