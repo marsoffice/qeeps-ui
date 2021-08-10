@@ -55,27 +55,18 @@ export class AuthService {
   }
 
   logout() {
-    return this.authService.logoutRedirect({
-      onRedirectNavigate: (url) => {
-        this.userSubject.next(null);
-        return false;
-      }
-    });
+    return this.authService.logoutRedirect();
   }
 
-  getProfilePhoto() {
-    return this.httpClient.get('https://graph.microsoft.com/v1.0/me/photos/48x48/$value', {
+  getProfilePhoto(size = 48) {
+    return this.httpClient.get(`https://graph.microsoft.com/beta/me/photos/${size}x${size}/$value`, {
       headers: { 'Content-Type': 'image/*' },
       responseType: 'arraybuffer'
     }).pipe(
       map(data => {
         const TYPED_ARRAY: any = new Uint8Array(data);
-        // converts the typed array to string of characters
         const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
-
-        //converts string of characters to base64String
         let base64String = btoa(STRING_CHAR);
-
         return this.sanitizer.bypassSecurityTrustUrl(
           'data:image/*;base64, ' + base64String
         );

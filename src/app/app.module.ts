@@ -27,8 +27,10 @@ import { environment } from 'src/environments/environment';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
@@ -45,7 +47,6 @@ import { CreateReportEditExportComponent } from './create-report-edit-export/cre
 import { CreateReportDataSourcesComponent } from './create-report-data-sources/create-report-data-sources.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { CreateReportDataSourceAddComponent } from './create-report-data-source-add/create-report-data-source-add.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -70,7 +71,7 @@ import { FormsListComponent } from './forms-list/forms-list.component';
 import { FormsAdminComponent } from './forms-admin/forms-admin.component';
 import { FormsAddComponent } from './forms-add/forms-add.component';
 import { AdminPcComponent } from './admin-pc/admin-pc.component';
-
+import { ProfileComponent } from './profile/profile.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -130,7 +131,7 @@ if (!environment.production) {
     FormsAdminComponent,
     FormsAddComponent,
     AdminPcComponent,
-
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -152,13 +153,14 @@ if (!environment.production) {
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTreeModule,
     MatSidenavModule,
     MatCheckboxModule,
     MatListModule,
     MatPaginatorModule,
     QuillModule.forRoot(),
     MatExpansionModule,
-
+    MatCardModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'ro',
@@ -204,7 +206,7 @@ if (!environment.production) {
           (string | ProtectedResourceScopes)[] | null
         >(
           [
-            ["https://graph.microsoft.com/v1.0/me", ["user.read"]],
+            ["https://graph.microsoft.com", ["user.read"]],
             ["/api", [environment.adclientid + '/.default']]
           ]
         ),

@@ -238,10 +238,14 @@
       "save": "Salvare"
     }
 
-
-
-
-
-
+  },
+  "profile": {
+    "organisations": "Organizații"
+  },
+  "roles": {
+    "owner": "Proprietar aplicație",
+    "admin": "Administrator",
+    "moderator": "Moderator",
+    "regular": "Utilizator standard"
   }
 }

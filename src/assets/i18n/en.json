@@ -246,5 +246,14 @@
 
 
 
+  },
+  "profile": {
+    "organisations": "Organisations"
+  },
+  "roles": {
+    "owner": "Application Owner",
+    "admin": "Administrator",
+    "moderator": "Moderator",
+    "regular": "Regular User"
   }
 }
