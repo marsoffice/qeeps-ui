@@ -12,35 +12,29 @@
       "report": "Reports",
       "reportHistory": "Report History",
       "createReport": "Create Report",
-      "payments":"Payments ",
-      "myInvoices":"My Invoices",
-      "adminPrices":"Admin Prices ",
-      "adminInvoices":"Admin Invoices ",
-      "settings":"Settings ",
-      "forms":"Forms",
-      "formsCalendar":"Calendar",
-      "formsAdd":"Forms Add",
-      "formsList":"Forms List",
-      "formsAdmin":"Forms Admin",
-      "ownerAdmin":"Owner Admin",
-      "adminPc":"Admin Pc",
-
-
+      "payments": "Payments ",
+      "myInvoices": "My Invoices",
+      "adminPrices": "Admin Prices ",
+      "adminInvoices": "Admin Invoices ",
+      "settings": "Settings ",
+      "forms": "Forms",
+      "formsCalendar": "Calendar",
+      "formsAdd": "Forms Add",
+      "formsList": "Forms List",
+      "formsAdmin": "Forms Admin",
+      "ownerAdmin": "Owner Admin",
+      "adminPc": "Admin Pc",
       "languages": {
         "en": "English",
         "ro": "Română"
       }
     },
-
     "sidenav": {
       "reportHistory": "Report History",
       "createReport": "Create Report",
-      "forms":"Forms"
-
+      "forms": "Forms"
     },
-
     "createReport": {
-
       "reportGeneral": "Report General",
       "dataSources": "Data Sources",
       "filteringGrouping": "Filtering and Grouping",
@@ -55,17 +49,13 @@
         "select": "Select an option",
         "operator": "Operator",
         "logicalAnd": "Logical and",
-        "AddDataSource":"Add Data Source",
-        "form":"Form",
-        "excel":"Excel",
-        "dataSourceTipe":"Data Source Tipe",
-        "formName":"Form Name",
-        "upload":"Upload"
-
-
-
+        "AddDataSource": "Add Data Source",
+        "form": "Form",
+        "excel": "Excel",
+        "dataSourceTipe": "Data Source Tipe",
+        "formName": "Form Name",
+        "upload": "Upload"
       },
-
       "filtering": {
         "grupBy": "Grup By",
         "sort": "Sort",
@@ -94,44 +84,29 @@
         "endWhit": "End Whit",
         "notNull": "Not Null",
         "null": "Null"
-
-
-
       },
-
       "edit": {
         "generatePdf": "Generate PDF",
         "prints": "Prints all data in one PDF",
         "printsAccord": "Prints accord to",
-        "select":"Select an option",
-        "columns":"Columns",
-        "variables":"Variables calculated by grouping",
-        "name":"Name ",
-        "column":"Column",
-        "variableLabel":"Variable Label",
-        "aggregateFunction":"Aggregate Function",
-        "add":"Add",
-        "count":"Count",
-        "concatenation":"Concatenation",
-        "html":"HTML structure for PDF generation",
+        "select": "Select an option",
+        "columns": "Columns",
+        "variables": "Variables calculated by grouping",
+        "name": "Name ",
+        "column": "Column",
+        "variableLabel": "Variable Label",
+        "aggregateFunction": "Aggregate Function",
+        "add": "Add",
+        "count": "Count",
+        "concatenation": "Concatenation",
+        "html": "HTML structure for PDF generation",
         "landscapeMode": "Landscape Mode ",
         "saveresult": "Save results as external data source",
-        "save":"Save",
-        "saveRun":"Save and run"
-
-
-
-
-
+        "save": "Save",
+        "saveRun": "Save and run"
       }
-
-
-
-
-
     },
-
-    "reportHistory":{
+    "reportHistory": {
       "reportHistory": "Report History",
       "search": "Search",
       "id": "ID",
@@ -150,11 +125,8 @@
       "refresh": "Refresh",
       "pdf": "PDF",
       "excel": "EXCEL"
-
-
     },
-
-    "paymentsMyInvoices":{
+    "paymentsMyInvoices": {
       "myInvoices": "My Invoices",
       "search": "Search",
       "id": "ID",
@@ -169,8 +141,7 @@
       "theListIsEmpty": "The list is empty",
       "refresh": "Refresh"
     },
-
-    "paymentsAdminPrice":{
+    "paymentsAdminPrice": {
       "adminPrice": "Admin Price",
       "search": "Search",
       "id": "ID",
@@ -185,8 +156,7 @@
       "save": "Save",
       "refresh": "Refresh"
     },
-
-    "paymentsAdminInvoices":{
+    "paymentsAdminInvoices": {
       "adminInvoice": "Admin Invoice",
       "search": "Search",
       "organisation": "Organisation",
@@ -218,11 +188,8 @@
       "procePerUnit": "Proce Per Unit",
       "quantity": "Quantity",
       "chooceAction": "Chooce Action"
-
-
     },
-
-    "paymentSettings":{
+    "paymentSettings": {
       "prefix": "Prefix",
       "invoiceStartNo": "InvoiceStartNo",
       "dueDuration": "Due Duration(days)",
@@ -237,23 +204,15 @@
       "currencySymbol": "Currency Symbol",
       "setting": "Settings",
       "save": "Save"
-
+    },
+    "profile": {
+      "organisations": "Organisations"
+    },
+    "roles": {
+      "owner": "Application Owner",
+      "admin": "Administrator",
+      "moderator": "Moderator",
+      "regular": "Regular User"
     }
-
-
-
-
-
-
-
-  },
-  "profile": {
-    "organisations": "Organisations"
-  },
-  "roles": {
-    "owner": "Application Owner",
-    "admin": "Administrator",
-    "moderator": "Moderator",
-    "regular": "Regular User"
   }
 }

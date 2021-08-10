@@ -12,36 +12,29 @@
       "report": "Rapoarte",
       "reportHistory": "Istoric Rapoarte",
       "createReport": "Creare Raport",
-      "payments":"Plăți ",
-      "myInvoices":"Facturile mele ",
-      "adminPrices":"Administrare prețuri ",
-      "adminInvoices":"Administrare facturi ",
-      "settings":"Setări",
-      "forms":"Formulare",
-      "formsCalendar":"Calendar",
-      "formsAdd":"Creare formular",
-      "formsList":"Listă formulare",
-      "formsAdmin":"Administrare formulare",
-      "ownerAdmin":"Admin proprietar",
-      "adminPc":"Administrare Pc",
-
-
+      "payments": "Plăți ",
+      "myInvoices": "Facturile mele ",
+      "adminPrices": "Administrare prețuri ",
+      "adminInvoices": "Administrare facturi ",
+      "settings": "Setări",
+      "forms": "Formulare",
+      "formsCalendar": "Calendar",
+      "formsAdd": "Creare formular",
+      "formsList": "Listă formulare",
+      "formsAdmin": "Administrare formulare",
+      "ownerAdmin": "Admin proprietar",
+      "adminPc": "Administrare Pc",
       "languages": {
         "en": "English",
         "ro": "Română"
       }
     },
-
     "sidenav": {
-
       "reportHistory": "Istoric Rapoarte",
       "createReport": "Creare Raport",
-      "forms":"Formulare"
-
+      "forms": "Formulare"
     },
-
     "createReport": {
-
       "reportGeneral": "General",
       "dataSources": "Surse date",
       "filteringGrouping": "Filtrare și grupare",
@@ -56,14 +49,13 @@
         "select": "Selectați o obțiune",
         "operator": "Operator",
         "logicalAnd": "Și Logic",
-        "AddDataSource":"Adăugare sursă date",
-        "form":"Formular",
-        "excel":"Excel",
-        "DataSourceTipe":"Tip sursă date",
-        "formName":"Nume Formular",
-        "upload":"Incărcare"
+        "AddDataSource": "Adăugare sursă date",
+        "form": "Formular",
+        "excel": "Excel",
+        "DataSourceTipe": "Tip sursă date",
+        "formName": "Nume Formular",
+        "upload": "Incărcare"
       },
-
       "filtering": {
         "grupBy": "Grupare după",
         "sort": "Sortare",
@@ -92,13 +84,7 @@
         "endWhit": "Se termină cu",
         "notNull": "Nenul",
         "null": "Nul"
-
-
-
-
-
       },
-
       "edit": {
         "generatePdf": "Generare PDF",
         "prints": "Printează toate datele într-un singur PDF",
@@ -118,16 +104,9 @@
         "saveresult": "Salvare rezultate ca sursă de date externă ",
         "save": "Doar Salvare ",
         "saveRun": "Salvare si rulare "
-
-
       }
-
-
     },
-
-
-
-    "reportHistory":{
+    "reportHistory": {
       "reportHistory": "Istoric Rapoarte",
       "search": "Căutare",
       "id": "ID",
@@ -146,29 +125,23 @@
       "refresh": "Reîmprospătare",
       "pdf": "PDF",
       "excel": "EXCEL"
-
-
     },
-
-
-
-    "paymentsMyInvoices":{
-      "myInvoices":"Facturile mele",
+    "paymentsMyInvoices": {
+      "myInvoices": "Facturile mele",
       "search": "Căutare",
       "id": "ID",
-      "identified":"Identificator",
-      "emissionDate":"Dată emitere",
-      "clientName":"Nume client",
-      "organisation":" Organizație",
-      "dueDate":"Dată scadență",
-      "cancelled":"Este anulată",
-      "total":"Total",
-      "download":"Descărcare",
-      "theListIsEmpty":"Lista este goală",
+      "identified": "Identificator",
+      "emissionDate": "Dată emitere",
+      "clientName": "Nume client",
+      "organisation": " Organizație",
+      "dueDate": "Dată scadență",
+      "cancelled": "Este anulată",
+      "total": "Total",
+      "download": "Descărcare",
+      "theListIsEmpty": "Lista este goală",
       "refresh": "Reîmprospătare"
     },
-
-    "paymentsAdminPrice":{
+    "paymentsAdminPrice": {
       "adminPrice": "Administrare prețuri",
       "search": "Căutare",
       "id": "ID",
@@ -183,8 +156,7 @@
       "save": "Salvare",
       "refresh": "Reîmprospătare"
     },
-
-    "paymentsAdminInvoices":{
+    "paymentsAdminInvoices": {
       "adminInvoice": "Administrare facturi",
       "search": "Căutare",
       "organisation": "Organizație",
@@ -216,12 +188,8 @@
       "procePerUnit": "Preț unitar",
       "quantity": "Cantitate",
       "chooceAction": "Alege acțiune"
-
-
-
     },
-
-    "paymentSettings":{
+    "paymentSettings": {
       "prefix": "Prefix",
       "invoiceStartNo": "Nr. start facuri",
       "dueDuration": "Scadent(zile)",
@@ -236,16 +204,15 @@
       "currencySymbol": "Simbol monetă",
       "settings": "Setări",
       "save": "Salvare"
+    },
+    "profile": {
+      "organisations": "Organizații"
+    },
+    "roles": {
+      "owner": "Proprietar aplicație",
+      "admin": "Administrator",
+      "moderator": "Moderator",
+      "regular": "Utilizator standard"
     }
-
-  },
-  "profile": {
-    "organisations": "Organizații"
-  },
-  "roles": {
-    "owner": "Proprietar aplicație",
-    "admin": "Administrator",
-    "moderator": "Moderator",
-    "regular": "Utilizator standard"
   }
 }

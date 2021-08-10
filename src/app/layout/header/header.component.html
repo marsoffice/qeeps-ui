@@ -4,20 +4,20 @@
   </button>
   <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
   <div class="h-100" fxHide.xs>
-    <button [matMenuTriggerFor]="reportMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+    <button [matMenuTriggerFor]="reportMenu" mat-button routerLinkActive="mat-accent" color="" class="h-100">
       <mat-icon>insert_drive_file</mat-icon>{{'ui.header.report' | translate}}
     </button>
 
-    <button [matMenuTriggerFor]="payMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+    <button [matMenuTriggerFor]="payMenu"  mat-button routerLinkActive="mat-accent" color="" class="h-100">
       <mat-icon>credit_score</mat-icon>{{'ui.header.payments' | translate}}
     </button>
 
 
-    <button [matMenuTriggerFor]="formsMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+    <button [matMenuTriggerFor]="formsMenu"  mat-button routerLinkActive="mat-accent" color="" class="h-100">
       <mat-icon>calendar_view_month</mat-icon>{{'ui.header.forms' | translate}}
     </button>
 
-    <button [matMenuTriggerFor]="adminMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+    <button [matMenuTriggerFor]="adminMenu"  mat-button routerLinkActive="mat-accent" color="" class="h-100">
       <mat-icon>admin_panel_settings</mat-icon>{{'ui.header.ownerAdmin' | translate}}
     </button>
 
