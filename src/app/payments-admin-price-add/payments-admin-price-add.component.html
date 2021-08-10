@@ -1,0 +1,46 @@
+
+
+<button color="warn" class="close" mat-icon-button [mat-dialog-close]="true" ><mat-icon>close</mat-icon></button>
+<div class="p-1 p-sm-5" >
+  <h2 mat-dialog-title>{{'ui.paymentsAdminPrice.pricePerRole' | translate}}</h2>
+<mat-dialog-content class="mat-typography d-flex flex-column">
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'ui.paymentsAdminPrice.role' | translate}}</mat-label>
+    <mat-select  required>
+      <mat-option [value]="1">-</mat-option>
+      <mat-option [value]="2">-</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'ui.paymentsAdminPrice.organisation' | translate}}</mat-label>
+    <mat-select required>
+      <mat-option [value]="1">-</mat-option>
+      <mat-option [value]="2">-</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="example-full-width" appearance="outline">
+    <mat-label>{{'ui.paymentsAdminPrice.price' | translate}}</mat-label>
+    <input required matInput type="number" >
+  </mat-form-field>
+
+
+
+
+
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>{{'ui.paymentsAdminPrice.save' | translate}}</button>
+</mat-dialog-actions>
+
+
+
+
+
+</div>

@@ -9,8 +9,23 @@
     "header": {
       "logout": "Logout",
       "language": "Language",
+      "report": "Reports",
       "reportHistory": "Report History",
       "createReport": "Create Report",
+      "payments":"Payments ",
+      "myInvoices":"My Invoices",
+      "adminPrices":"Admin Prices ",
+      "adminInvoices":"Admin Invoices ",
+      "settings":"Settings ",
+      "forms":"Forms",
+      "formsCalendar":"Calendar",
+      "formsAdd":"Forms Add",
+      "formsList":"Forms List",
+      "formsAdmin":"Forms Admin",
+      "ownerAdmin":"Owner Admin",
+      "adminPc":"Admin Pc",
+
+
       "languages": {
         "en": "English",
         "ro": "Română"
@@ -19,11 +34,13 @@
 
     "sidenav": {
       "reportHistory": "Report History",
-      "createReport": "Create Report"
+      "createReport": "Create Report",
+      "forms":"Forms"
 
     },
 
     "createReport": {
+
       "reportGeneral": "Report General",
       "dataSources": "Data Sources",
       "filteringGrouping": "Filtering and Grouping",
@@ -37,7 +54,14 @@
         "addCondition": "Add Condition (logical and)",
         "select": "Select an option",
         "operator": "Operator",
-        "logicalAnd": "Logical and"
+        "logicalAnd": "Logical and",
+        "AddDataSource":"Add Data Source",
+        "form":"Form",
+        "excel":"Excel",
+        "dataSourceTipe":"Data Source Tipe",
+        "formName":"Form Name",
+        "upload":"Upload"
+
 
 
       },
@@ -49,7 +73,7 @@
         "transformationFunctions": "Transform Function",
         "aggregationFunctions": "Aggregate Function",
         "filter": "Filter",
-        "visibility": "Visibility ",
+        "visibility": "Visibility",
         "choose": "Choose",
         "cut": "Cut",
         "leftCut": "Left Cut",
@@ -79,21 +103,21 @@
         "generatePdf": "Generate PDF",
         "prints": "Prints all data in one PDF",
         "printsAccord": "Prints accord to",
-        "select": "Select an option",
-        "columns": "Columns",
-        "variables": "Variables calculated by grouping",
-        "name": "Name ",
-        "column": "Column",
-        "variableLabel": "Variable Label",
-        "aggregateFunction": "Aggregate Function",
-        "add": "Add ",
-        "count": "Count ",
-        "concatenation": "Concatenation ",
-        "html": " HTML structure for PDF generation ",
+        "select":"Select an option",
+        "columns":"Columns",
+        "variables":"Variables calculated by grouping",
+        "name":"Name ",
+        "column":"Column",
+        "variableLabel":"Variable Label",
+        "aggregateFunction":"Aggregate Function",
+        "add":"Add",
+        "count":"Count",
+        "concatenation":"Concatenation",
+        "html":"HTML structure for PDF generation",
         "landscapeMode": "Landscape Mode ",
-        "saveresult": "Save results as external data source ",
-        "save": "Save ",
-        "saveRun": "Save and run "
+        "saveresult": "Save results as external data source",
+        "save":"Save",
+        "saveRun":"Save and run"
 
 
 
@@ -128,7 +152,96 @@
       "excel": "EXCEL"
 
 
+    },
+
+    "paymentsMyInvoices":{
+      "myInvoices": "My Invoices",
+      "search": "Search",
+      "id": "ID",
+      "identifier": "Identifier",
+      "emissionDate": "Emission Date",
+      "clientName": "Client Name",
+      "organisation": "Organisation",
+      "dueDate": "Due Date",
+      "cancelled": "Cancelled",
+      "total": "Total",
+      "download": "Download",
+      "theListIsEmpty": "The list is empty",
+      "refresh": "Refresh"
+    },
+
+    "paymentsAdminPrice":{
+      "adminPrice": "Admin Price",
+      "search": "Search",
+      "id": "ID",
+      "organisation": "Organisation",
+      "module": "Module",
+      "role": "Role",
+      "price": "Price",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add": "Add",
+      "pricePerRole": "Price per role",
+      "save": "Save",
+      "refresh": "Refresh"
+    },
+
+    "paymentsAdminInvoices":{
+      "adminInvoice": "Admin Invoice",
+      "search": "Search",
+      "organisation": "Organisation",
+      "send": "Send",
+      "download": "Download",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "setVisible": "Set Visible",
+      "setInvisible": "Set Invisible",
+      "generate": "Generate",
+      "manualInvoice": "Manual Invoice",
+      "refresh": "Refresh",
+      "execute": "Execute",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "id": "ID",
+      "identifier": "Identifier",
+      "emissionDate": "Emission Date",
+      "clientName": "Client Name",
+      "dueDate": "Due Date",
+      "isVisible": "Is Visible",
+      "isSent": "Is Sent",
+      "iscancelled": "Is Cancelled",
+      "total": "Total",
+      "details": "Details",
+      "upload": "Upload",
+      "productName": "Product Name",
+      "productDescription": "Product Description",
+      "procePerUnit": "Proce Per Unit",
+      "quantity": "Quantity",
+      "chooceAction": "Chooce Action"
+
+
+    },
+
+    "paymentSettings":{
+      "prefix": "Prefix",
+      "invoiceStartNo": "InvoiceStartNo",
+      "dueDuration": "Due Duration(days)",
+      "companyName": "CompanyName",
+      "cui": "CUI",
+      "j": "J",
+      "address": "Address",
+      "account": "Account",
+      "delegateName": "Delegate Name",
+      "phone": "Phone",
+      "email": "Email",
+      "currencySymbol": "Currency Symbol",
+      "setting": "Settings",
+      "save": "Save"
+
     }
+
+
+
 
 
 

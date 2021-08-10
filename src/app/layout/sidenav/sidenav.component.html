@@ -1,16 +1,99 @@
 <div fxFlexFill class="mat-app-background">
   <div fxFlex fxLayout="column" id="sidenav">
 
-    <button routerLinkActive="mat-accent" routerLink="/report-history" mat-button color="">
-      <mat-icon>history</mat-icon>
-      <span>{{'ui.sidenav.reportHistory' | translate}}</span>
-    </button>
+    <mat-accordion [multi]="true">
+      <mat-expansion-panel [expanded]="true" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.report' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      <div class="d-flex flex-column w-100" >
+        <button routerLinkActive="mat-accent" routerLink="/report-history" mat-button color="" class="w-100 text-start" >
+          <mat-icon>history</mat-icon>
+          <span>{{'ui.sidenav.reportHistory' | translate}}</span>
+        </button>
+        <button routerLinkActive="mat-accent" routerLink="/create-report" mat-button color="" class="w-100 text-start">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span>{{'ui.sidenav.createReport' | translate}}</span>
+        </button>
+      </div>
+      </mat-expansion-panel>
 
 
-    <button routerLinkActive="mat-accent" routerLink="/create-report" mat-button color="">
-      <mat-icon>add_circle_outline</mat-icon>
-      <span>{{'ui.sidenav.createReport' | translate}}</span>
-    </button>
+
+
+      <mat-expansion-panel [expanded]="true"  >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.payments' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/my-invoices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>account_balance</mat-icon> {{'ui.header.myInvoices' | translate}}
+          </button>
+          <button routerLink="/admin-prices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>money</mat-icon> {{'ui.header.adminPrices' | translate}}
+          </button>
+          <button routerLink="/admin-invoices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>receipt</mat-icon> {{'ui.header.adminInvoices' | translate}}
+          </button>
+          <button routerLink="/payment-settings" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>settings_suggest</mat-icon> {{'ui.header.settings' | translate}}
+          </button>
+        </div>
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel [expanded]="true"  >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.payments' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/forms-calendar" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>calendar_today</mat-icon> {{'ui.header.formsCalendar' | translate}}
+          </button>
+          <button routerLink="/forms-list" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>format_list_bulleted</mat-icon> {{'ui.header.formsList' | translate}}
+          </button>
+          <button routerLink="/forms-admin" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>reorder</mat-icon> {{'ui.header.formsAdmin' | translate}}
+          </button>
+          <button routerLink="/forms-add" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>add</mat-icon> {{'ui.header.formsAdd' | translate}}
+          </button>
+        </div>
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel [expanded]="true"  >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.payments' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/admin-pc" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>gavel</mat-icon> {{'ui.header.adminPc' | translate}}
+          </button>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
 </div>

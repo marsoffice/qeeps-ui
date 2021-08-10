@@ -1,0 +1,140 @@
+<div class="mat-headline">{{'ui.paymentsAdminInvoices.adminInvoice' | translate}}</div>
+
+<hr>
+
+
+
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{'ui.paymentsAdminInvoices.search' | translate}}</mat-label>
+  <input type="text" matInput placeholder="">
+  <button  matTooltip="{{'ui.paymentsAdminInvoices.search' | translate}}"  color="accent" matSuffix mat-icon-button ><mat-icon >search</mat-icon></button>
+</mat-form-field>
+
+
+<mat-card style="position: relative;" class="mb-2" >
+
+  <mat-card-content class="d-flex mt-3 flex-column flex-sm-row align-items-center"  >
+
+    <mat-form-field appearance="outline" class="flex-fill me-4" >
+      <mat-label>{{'ui.paymentsAdminInvoices.organisation' | translate}}</mat-label>
+      <mat-select multiple >
+        <mat-option value="1">Option 1</mat-option>
+        <mat-option value="2">Option 2</mat-option>
+        <mat-option value="3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <mat-form-field class="example-full-width me-4" appearance="outline">
+    <mat-label>{{'ui.paymentsAdminInvoices.startDate' | translate}}</mat-label>
+    <input matInput type="date" placeholder="" value="">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width me-4" appearance="outline">
+    <mat-label>{{'ui.paymentsAdminInvoices.endDate' | translate}}</mat-label>
+    <input matInput type="date" placeholder="" value="">
+  </mat-form-field>
+
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+
+
+
+<div class="table table-responsive" >
+  <table class="table table-striped table-hover">
+
+    <thead>
+      <tr>
+        <th><mat-checkbox class="example-margin"></mat-checkbox></th>
+        <th>{{'ui.paymentsAdminInvoices.id' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.identifier' | translate}} </th>
+        <th>{{'ui.paymentsAdminInvoices.emissionDate' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.clientName' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.organisation' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.dueDate' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.isVisible' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.isSent' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.iscancelled' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.total' | translate}}</th>
+        <th>{{'ui.paymentsAdminInvoices.details' | translate}}</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><mat-checkbox class="example-margin"></mat-checkbox></td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td>gbfgdfhbfd</td>
+        <td> <button (click)="clickdetalis()" color="accent" matTooltip="{{'ui.paymentsAdminInvoices.details' | translate}}" mat-icon-button><mat-icon>visibility</mat-icon></button></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+<div>
+  <button (click)="clickgenerate()" class="me-3" mat-raised-button color="accent"> <mat-icon>add</mat-icon>{{'ui.paymentsAdminInvoices.generate' | translate}}</button>
+    <button (click)="clickmanualInvoice()" class="me-3" mat-raised-button color="accent"> <mat-icon>upload</mat-icon>{{'ui.paymentsAdminInvoices.manualInvoice' | translate}}</button>
+    <button  mat-raised-button color="accent"> <mat-icon>autorenew</mat-icon>{{'ui.paymentsAdminInvoices.refresh' | translate}}</button>
+</div>
+<br>
+
+<br>
+
+
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator>
+<br>
+
+
+<mat-card  class="mb-2" >
+
+  <mat-card-content class="d-flex mt-3 flex-column flex-sm-row align-items-center"  >
+
+    <mat-form-field appearance="outline" class="flex-fill me-4" >
+      <mat-label>{{'ui.paymentsAdminInvoices.chooceAction' | translate}}</mat-label>
+      <mat-select  >
+        <mat-option value="1">{{'ui.paymentsAdminInvoices.send' | translate}}</mat-option>
+        <mat-option value="2">{{'ui.paymentsAdminInvoices.download' | translate}}</mat-option>
+        <mat-option value="3">{{'ui.paymentsAdminInvoices.cancel' | translate}}</mat-option>
+        <mat-option value="1">{{'ui.paymentsAdminInvoices.delete' | translate}}</mat-option>
+        <mat-option value="3">{{'ui.paymentsAdminInvoices.setVisible' | translate}}</mat-option>
+        <mat-option value="1">{{'ui.paymentsAdminInvoices.setInvisible' | translate}}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    <button  mat-raised-button color="accent"> <mat-icon>done</mat-icon>{{'ui.paymentsAdminInvoices.execute' | translate}}</button>
+
+
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+
+
+

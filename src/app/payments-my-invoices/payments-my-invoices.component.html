@@ -1,0 +1,68 @@
+
+
+<div class="mat-headline">{{'ui.paymentsMyInvoices.myInvoices' | translate}}</div>
+
+<hr>
+
+
+
+
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{'ui.paymentsMyInvoices.search' | translate}}</mat-label>
+  <input type="text" matInput placeholder="">
+  <button matTooltip="{{'ui.paymentsMyInvoices.search' | translate}}" color="accent" matSuffix mat-icon-button ><mat-icon >search</mat-icon></button>
+</mat-form-field>
+<div class="table table-responsive" >
+<table class="table table-striped table-hover">
+
+  <thead>
+    <tr>
+      <th>{{'ui.paymentsMyInvoices.id' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.identifier' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.emissionDate' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.clientName' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.organisation' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.dueDate' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.cancelled' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.total' | translate}}</th>
+      <th>{{'ui.paymentsMyInvoices.download' | translate}}</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td>1111111111111</td>
+      <td>111111111111111</td>
+      <td>111111111111111</td>
+      <td> <button color="accent" matTooltip="{{'ui.paymentsMyInvoices.download' | translate}}" mat-icon-button><mat-icon>download</mat-icon></button></td>
+
+    </tr>
+
+
+
+  </tbody>
+
+</table>
+</div>
+<div>
+
+    <button mat-raised-button color="accent"> <mat-icon>autorenew</mat-icon> {{'ui.paymentsMyInvoices.refresh' | translate}}</button>
+
+</div>
+<br>
+<br>
+
+
+
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator>

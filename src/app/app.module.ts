@@ -57,6 +57,19 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { QuillModule } from 'ngx-quill'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { PaymentsMyInvoicesComponent } from './payments-my-invoices/payments-my-invoices.component';
+import { PaymentsAdminPricesComponent } from './payments-admin-prices/payments-admin-prices.component';
+import { PaymentsAdminInvoicesComponent } from './payments-admin-invoices/payments-admin-invoices.component';
+import { PaymentsSettingsComponent } from './payments-settings/payments-settings.component';
+import { PaymentsAdminPriceAddComponent } from './payments-admin-price-add/payments-admin-price-add.component';
+import { PaymentsAdminInvoiceDetalisComponent } from './payments-admin-invoice-detalis/payments-admin-invoice-detalis.component';
+import { PaymentsAdminInvoiceAddComponent } from './payments-admin-invoice-add/payments-admin-invoice-add.component';
+import { FormsCalendarComponent } from './forms-calendar/forms-calendar.component';
+import { FormsListComponent } from './forms-list/forms-list.component';
+import { FormsAdminComponent } from './forms-admin/forms-admin.component';
+import { FormsAddComponent } from './forms-add/forms-add.component';
+import { AdminPcComponent } from './admin-pc/admin-pc.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -105,6 +118,18 @@ if (!environment.production) {
     CreateReportEditExportComponent,
     CreateReportDataSourcesComponent,
     CreateReportDataSourceAddComponent,
+    PaymentsMyInvoicesComponent,
+    PaymentsAdminPricesComponent,
+    PaymentsAdminInvoicesComponent,
+    PaymentsSettingsComponent,
+    PaymentsAdminPriceAddComponent,
+    PaymentsAdminInvoiceDetalisComponent,
+    PaymentsAdminInvoiceAddComponent,
+    FormsCalendarComponent,
+    FormsListComponent,
+    FormsAdminComponent,
+    FormsAddComponent,
+    AdminPcComponent,
 
   ],
   imports: [
@@ -132,6 +157,7 @@ if (!environment.production) {
     MatListModule,
     MatPaginatorModule,
     QuillModule.forRoot(),
+    MatExpansionModule,
 
 
     TranslateModule.forRoot({

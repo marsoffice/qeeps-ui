@@ -9,8 +9,23 @@
     "header": {
       "logout": "Deconectare",
       "language": "Limbă",
+      "report": "Rapoarte",
       "reportHistory": "Istoric Rapoarte",
       "createReport": "Creare Raport",
+      "payments":"Plăți ",
+      "myInvoices":"Facturile mele ",
+      "adminPrices":"Administrare prețuri ",
+      "adminInvoices":"Administrare facturi ",
+      "settings":"Setări",
+      "forms":"Formulare",
+      "formsCalendar":"Calendar",
+      "formsAdd":"Creare formular",
+      "formsList":"Listă formulare",
+      "formsAdmin":"Administrare formulare",
+      "ownerAdmin":"Admin proprietar",
+      "adminPc":"Administrare Pc",
+
+
       "languages": {
         "en": "English",
         "ro": "Română"
@@ -18,12 +33,15 @@
     },
 
     "sidenav": {
+
       "reportHistory": "Istoric Rapoarte",
-      "createReport": "Creare Raport"
+      "createReport": "Creare Raport",
+      "forms":"Formulare"
 
     },
 
     "createReport": {
+
       "reportGeneral": "General",
       "dataSources": "Surse date",
       "filteringGrouping": "Filtrare și grupare",
@@ -37,9 +55,13 @@
         "addCondition": "Adăugare Condiție (și logic)",
         "select": "Selectați o obțiune",
         "operator": "Operator",
-        "logicalAnd": "Și Logic"
-
-
+        "logicalAnd": "Și Logic",
+        "AddDataSource":"Adăugare sursă date",
+        "form":"Formular",
+        "excel":"Excel",
+        "DataSourceTipe":"Tip sursă date",
+        "formName":"Nume Formular",
+        "upload":"Incărcare"
       },
 
       "filtering": {
@@ -126,6 +148,100 @@
       "excel": "EXCEL"
 
 
+    },
+
+
+
+    "paymentsMyInvoices":{
+      "myInvoices":"Facturile mele",
+      "search": "Căutare",
+      "id": "ID",
+      "identified":"Identificator",
+      "emissionDate":"Dată emitere",
+      "clientName":"Nume client",
+      "organisation":" Organizație",
+      "dueDate":"Dată scadență",
+      "cancelled":"Este anulată",
+      "total":"Total",
+      "download":"Descărcare",
+      "theListIsEmpty":"Lista este goală",
+      "refresh": "Reîmprospătare"
+    },
+
+    "paymentsAdminPrice":{
+      "adminPrice": "Administrare prețuri",
+      "search": "Căutare",
+      "id": "ID",
+      "organisation": "Organizație",
+      "module": "Modul",
+      "role": "Rol",
+      "price": "Preț",
+      "edit": "Editare",
+      "delete": "Ștergere",
+      "add": "Adăugare",
+      "pricePerRole": "Preț per rol",
+      "save": "Salvare",
+      "refresh": "Reîmprospătare"
+    },
+
+    "paymentsAdminInvoices":{
+      "adminInvoice": "Administrare facturi",
+      "search": "Căutare",
+      "organisation": "Organizație",
+      "send": "Trimitere",
+      "download": "Descărcare",
+      "cancel": "Anulare",
+      "delete": "Ștergere",
+      "setVisible": "Setează vizibil",
+      "setInvisible": "Setează invisibil",
+      "generate": "Generare",
+      "manualInvoice": "Factură manuală",
+      "refresh": "Reîmprospătare",
+      "execute": "Executare",
+      "startDate": "Dată  început",
+      "endDate": "Dată  sfârșit",
+      "id": "ID",
+      "identifier": "Identificator",
+      "emissionDate": "Dată emitere",
+      "clientName": "Nume client",
+      "dueDate": "Dată scadență",
+      "isVisible": "Este vizibil",
+      "isSent": "Este trimisă",
+      "iscancelled": "Este anulată",
+      "total": "Total",
+      "details": "Detalii",
+      "upload": "Încarcare fișiere",
+      "productName": "Nume produs",
+      "productDescription": "Descriere produs",
+      "procePerUnit": "Preț unitar",
+      "quantity": "Cantitate",
+      "chooceAction": "Alege acțiune"
+
+
+
+    },
+
+    "paymentSettings":{
+      "prefix": "Prefix",
+      "invoiceStartNo": "Nr. start facuri",
+      "dueDuration": "Scadent(zile)",
+      "companyName": "Nume firmă",
+      "cui": "CUI",
+      "j": "J",
+      "address": "Adresă",
+      "account": "Cont",
+      "delegateName": "Nume delegat",
+      "phone": "Telefon",
+      "email": "Email",
+      "currencySymbol": "Simbol monetă",
+      "settings": "Setări",
+      "save": "Salvare"
     }
+
+
+
+
+
+
   }
 }

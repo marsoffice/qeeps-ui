@@ -4,13 +4,26 @@
   </button>
   <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
   <div class="h-100" fxHide.xs>
-    <button routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
-      <mat-icon>history</mat-icon>{{'ui.header.reportHistory' | translate}}
+    <button [matMenuTriggerFor]="reportMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>insert_drive_file</mat-icon>{{'ui.header.report' | translate}}
     </button>
 
-    <button routerLink="/create-report" mat-button routerLinkActive="mat-accent" color="" class="h-100">
-      <mat-icon>add_circle_outline</mat-icon>{{'ui.header.createReport' | translate}}
+    <button [matMenuTriggerFor]="payMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>credit_score</mat-icon>{{'ui.header.payments' | translate}}
     </button>
+
+
+    <button [matMenuTriggerFor]="formsMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>calendar_view_month</mat-icon>{{'ui.header.forms' | translate}}
+    </button>
+
+    <button [matMenuTriggerFor]="adminMenu" routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>admin_panel_settings</mat-icon>{{'ui.header.ownerAdmin' | translate}}
+    </button>
+
+
+
+
   </div>
   <span fxFlex></span>
   <button [matMenuTriggerFor]="userMenu" mat-icon-button>
@@ -30,3 +43,59 @@
   <button (click)="changeLanguage(lang)" [class.bold]="lang === translateService.currentLang" mat-menu-item
     *ngFor="let lang of languages">{{'ui.header.languages.' + lang | translate}}</button>
 </mat-menu>
+
+
+<mat-menu #reportMenu="matMenu">
+  <div class="d-flex flex-column align-items-start" >
+  <button routerLink="/create-report" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>add_circle_outline</mat-icon> {{'ui.header.createReport' | translate}}
+  </button>
+  <button routerLink="/report-history" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>history</mat-icon> {{'ui.header.reportHistory' | translate}}
+  </button>
+</div>
+</mat-menu>
+
+<mat-menu #payMenu="matMenu">
+<div class="d-flex flex-column align-items-start" >
+  <button routerLink="/my-invoices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>account_balance</mat-icon> {{'ui.header.myInvoices' | translate}}
+  </button>
+  <button routerLink="/admin-prices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>money</mat-icon> {{'ui.header.adminPrices' | translate}}
+  </button>
+  <button routerLink="/admin-invoices" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>receipt</mat-icon> {{'ui.header.adminInvoices' | translate}}
+  </button>
+  <button routerLink="/payment-settings" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+    <mat-icon>settings_suggest</mat-icon> {{'ui.header.settings' | translate}}
+  </button>
+</div>
+</mat-menu>
+
+
+<mat-menu #formsMenu="matMenu">
+  <div class="d-flex flex-column align-items-start" >
+    <button routerLink="/forms-calendar" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+      <mat-icon>calendar_today</mat-icon> {{'ui.header.formsCalendar' | translate}}
+    </button>
+    <button routerLink="/forms-list" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+      <mat-icon>format_list_bulleted</mat-icon> {{'ui.header.formsList' | translate}}
+    </button>
+    <button routerLink="/forms-admin" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+      <mat-icon>reorder</mat-icon> {{'ui.header.formsAdmin' | translate}}
+    </button>
+    <button routerLink="/forms-add" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+      <mat-icon>add</mat-icon> {{'ui.header.formsAdd' | translate}}
+    </button>
+  </div>
+  </mat-menu>
+
+  <mat-menu #adminMenu="matMenu">
+    <div class="d-flex flex-column align-items-start" >
+      <button routerLink="/admin-pc" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+        <mat-icon>gavel</mat-icon> {{'ui.header.adminPc' | translate}}
+      </button>
+    </div>
+    </mat-menu>
+
