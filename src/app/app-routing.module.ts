@@ -31,6 +31,7 @@ const routes: Routes = [
     path: 'healthcheck',
     component: HealthcheckComponent,
   },
+  { path: 'forms', loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule), canActivate: [MsalGuard], },
   {
     path: '**',
     pathMatch: 'full',
@@ -48,4 +49,4 @@ const isIframe = window !== window.parent && !window.opener;
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
