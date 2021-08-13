@@ -72,7 +72,18 @@ import { FormsAdminComponent } from './forms-admin/forms-admin.component';
 import { FormsAddComponent } from './forms-add/forms-add.component';
 import { AdminPcComponent } from './admin-pc/admin-pc.component';
 import { ProfileComponent } from './profile/profile.component';
-// AoT requires an exported function for factories
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { FormsAdminResultsComponent } from './forms-admin-results/forms-admin-results.component'; // a plugin!
+
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -132,6 +143,7 @@ if (!environment.production) {
     FormsAddComponent,
     AdminPcComponent,
     ProfileComponent,
+    FormsAdminResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -161,6 +173,8 @@ if (!environment.production) {
     QuillModule.forRoot(),
     MatExpansionModule,
     MatCardModule,
+    FullCalendarModule,
+
 
     TranslateModule.forRoot({
       defaultLanguage: 'ro',

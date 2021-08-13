@@ -5,6 +5,7 @@ import { AdminPcComponent } from './admin-pc/admin-pc.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { CreateReportComponent } from './create-report/create-report.component';
 import { FormsAddComponent } from './forms-add/forms-add.component';
+import { FormsAdminResultsComponent } from './forms-admin-results/forms-admin-results.component';
 import { FormsAdminComponent } from './forms-admin/forms-admin.component';
 import { FormsCalendarComponent } from './forms-calendar/forms-calendar.component';
 import { FormsListComponent } from './forms-list/forms-list.component';
@@ -96,6 +97,12 @@ const routes: Routes = [
   {
     path:'forms-admin',
     component: FormsAdminComponent,
+    canActivate: [MsalGuard],
+
+  },
+  {
+    path:'forms-admin-results',
+    component: FormsAdminResultsComponent,
     canActivate: [MsalGuard],
 
   },

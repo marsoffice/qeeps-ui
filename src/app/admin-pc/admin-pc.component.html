@@ -1,1 +1,15 @@
-<p>admin-pc works!</p>
+
+<div class="mat-headline">{{'ui.adminPc.adminPc' | translate}}</div>
+
+<hr>
+<br>
+
+
+<div class="d-flex flex-column" >
+  <quill-editor placeholder="{{'ui.adminPc.content' | translate}}" [styles]="{height: '250px'}"></quill-editor>
+</div>
+<br>
+
+<div class="d-flex justify-content-center align-items-center w-100" >
+  <button mat-raised-button color="accent">{{'ui.adminPc.save' | translate}}</button>
+</div>

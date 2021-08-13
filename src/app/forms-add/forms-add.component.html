@@ -1,1 +1,204 @@
-<p>forms-add works!</p>
+
+
+<div class="mat-headline">{{'ui.formsAdd.general' | translate}}</div>
+<hr>
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>{{'ui.formsAdd.title' | translate}}</mat-label>
+  <input  required matInput placeholder="" value="">
+</mat-form-field>
+<br>
+<mat-form-field appearance="outline" class="flex-fill" >
+  <mat-label>{{'ui.formsAdd.tags' | translate}}</mat-label>
+  <mat-select  >
+    <mat-option value="1">Option 1</mat-option>
+    <mat-option value="2">Option 2</mat-option>
+    <mat-option value="3">Option 3</mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="d-flex flex-column" >
+  <quill-editor placeholder="{{'ui.formsAdd.content' | translate}}" [styles]="{height: '250px'}"></quill-editor>
+</div>
+<br>
+<div class="d-flex flex-column justify-content-start align-content-start" >
+ <div>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>{{'ui.formsAdd.dueDate' | translate}}</mat-label>
+    <input type="date" required matInput placeholder="" value="">
+  </mat-form-field>
+ </div>
+  <mat-checkbox class="example-margin">{{'ui.formsAdd.isRecurent' | translate}}</mat-checkbox>
+  <br>
+  <mat-checkbox class="example-margin">{{'ui.formsAdd.keepDataFromPreviousYears' | translate}}</mat-checkbox>
+  <br>
+  <mat-checkbox class="example-margin">{{'ui.formsAdd.fileUploadActive' | translate}}</mat-checkbox>
+  <br>
+  <mat-checkbox class="example-margin">{{'ui.formsAdd.locked' | translate}}</mat-checkbox>
+  <br>
+  <mat-checkbox class="example-margin">{{'ui.formsAdd.isVisibleToLowerAccessLevels' | translate}}</mat-checkbox>
+</div>
+<br>
+<br>
+
+
+
+
+<div class="mat-headline">{{'ui.formsAdd.column' | translate}}</div>
+<hr>
+  <div class="d-flex align-items-center justify-content-start" >
+<div class="mat-subheading-2 me-4">{{'ui.formsAdd.pressTheArrowToStart' | translate}}</div>
+<button (click)="clickArrow()" mat-raised-button  color=""  ><mat-icon>arrow_forward</mat-icon><p>{{'ui.formsAdd.start' | translate}}</p></button>
+</div>
+<div>
+  <br>
+
+  <div class="w-100" style="overflow: auto;">
+
+  <div style="background: transparent; overflow: visible;" cdkDropList cdkDropListOrientation="horizontal" class="example-list w-100" (cdkDropListDropped)="drop($event)">
+
+    <div style="overflow: visible;" *ngFor="let c of columns" class="example-box" cdkDrag>
+      <mat-card style="position: relative;" class="p-4 w-100" >
+        <mat-icon color="warn" style="position: absolute; right: 4px; top:4px; cursor: pointer; " >clear</mat-icon>
+        <mat-card-content class="d-flex flex-column"  >
+
+          <mat-form-field class="example-full-width" >
+            <mat-label>{{'ui.formsAdd.title' | translate}}</mat-label>
+            <input  required matInput placeholder="" value="">
+          </mat-form-field>
+
+
+          <mat-form-field  class="flex-fill" >
+            <mat-label>{{'ui.createReport.data.select' | translate}}</mat-label>
+            <mat-select >
+              <mat-option value="1">Option 1</mat-option>
+              <mat-option value="2">Option 2</mat-option>
+              <mat-option value="3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+  <table class="w-100 table table-striped">
+    <tbody>
+      <tr *ngFor="let r of rows">
+        <td *ngFor="let c of columns; let i = index">
+          <div *ngIf="i === 0">
+            <mat-form-field class="example-full-width" >
+              <mat-label>{{'ui.formsAdd.title' | translate}}</mat-label>
+              <input  required matInput placeholder="" value="">
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+</div>
+
+
+<button (click)="clickArrow2()" mat-raised-button  color=""  ><mat-icon>arrow_downward</mat-icon><p>{{'ui.formsAdd.start' | translate}}</p></button>
+
+</div>
+
+
+
+
+
+<br>
+<br>
+  <div class="mat-headline">{{'ui.formsAdd.files' | translate}}</div>
+<hr>
+  <input #inp multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" class="d-none">
+ <div class="d-flex align-items-center justify-content-start" >
+  <div class="mat-subheading-2 me-4"><span>{{'ui.formsAdd.attachments' | translate}}</span></div>
+  <button (click)="inp.click()" mat-raised-button  color=""  ><mat-icon>file_upload</mat-icon><p>{{'ui.formsAdd.upload' | translate}}</p></button>
+ </div>
+  <mat-selection-list  [multiple]="false">
+    <mat-list-option  >
+     <div class="w-100 d-flex align-items-center justify-content-between" >
+      <p>zadcsxfcdsxgvdcfg</p>
+      <button color="warn" mat-icon-button ><mat-icon  >clear</mat-icon></button>
+     </div>
+    </mat-list-option>
+    <mat-list-option  >
+      <div class="w-100 d-flex align-items-center justify-content-between" >
+       <p>sfadsfdfcgfdhg</p>
+       <button color="warn" mat-icon-button ><mat-icon  >clear</mat-icon></button>
+      </div>
+     </mat-list-option>
+  </mat-selection-list>
+  <br>
+  <br>
+
+
+
+
+
+
+
+
+
+
+  <div class="mat-headline">{{'ui.formsAdd.access' | translate}}</div>
+  <hr>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+      <!-- This is the tree node template for leaf nodes -->
+      <!-- There is inline padding applied to this node using styles.
+        This padding value depends on the mat-icon-button width. -->
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <mat-checkbox class="example-margin"></mat-checkbox> {{node.name}}
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+      <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <div class="mat-tree-node">
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'Toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            <mat-checkbox class="example-margin"></mat-checkbox> {{node.name}}
+          </div>
+          <!-- There is inline padding applied to this div using styles.
+              This padding value depends on the mat-icon-button width.  -->
+          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+              role="group">
+            <ng-container matTreeNodeOutlet></ng-container>
+        </div>
+      </mat-nested-tree-node>
+    </mat-tree>
+    <br>
+
+
+
+
+
+
+  <div class="d-flex justify-content-center align-items-center w-100" >
+    <button mat-raised-button color="accent">{{'ui.formsAdd.save' | translate}}</button>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

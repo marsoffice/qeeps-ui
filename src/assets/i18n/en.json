@@ -213,6 +213,72 @@
       "admin": "Administrator",
       "moderator": "Moderator",
       "regular": "Regular User"
+    },
+
+    "formsList": {
+      "formsList": "Forms List",
+      "search": "Search",
+      "tags": "Tags",
+      "id": "ID",
+      "createDate": "Create Date",
+      "dueDate": "Due Date",
+      "title": "Title",
+      "author": "Author",
+      "refresh": "Refresh"
+
+    },
+    "formsAdmin": {
+      "formsAdmin": "Forms Admin",
+      "search": "Search",
+      "tags": "Tags",
+      "id": "ID",
+      "createDate": "Create Date",
+      "dueDate": "Due Date",
+      "author": "Author",
+      "title": "Title",
+      "views": "Views",
+      "results": "Results",
+      "uploadedFiles": "Uploaded Files",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add": "Add",
+      "refresh": "Refresh",
+      "downloadAllResult": "Download results",
+      "viewers": "Viewers",
+      "name": "Name",
+      "organizations":"Organizations",
+      "lastVisit":"Last Visit"
+
+    },
+    "formsAdd": {
+      "formsAdd": "Forms Add",
+      "general": "General",
+      "title": "Title",
+      "tags": "Tags",
+      "content": "Content",
+      "dueDate": "Due date",
+      "isRecurent": "Is recurent",
+      "keepDataFromPreviousYears": "Keep data from previous years",
+      "fileUploadActive": "File upload active",
+      "locked": "Locked",
+      "isVisibleToLowerAccessLevels": "Is visible to lower access levels",
+      "column": "Column",
+      "pressTheArrowToStart": "Press the arrow to Start",
+      "press": "Press",
+      "files": "Files",
+      "attachments": "Attachments",
+      "access": "Access",
+      "save": "Save",
+      "start": "Start",
+      "upload": "Upload"
+
+
+    },
+
+    "adminPc": {
+      "adminPc": "Admin Pc",
+      "content": "Content",
+      "save": "Save"
     }
   }
 }

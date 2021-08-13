@@ -213,6 +213,74 @@
       "admin": "Administrator",
       "moderator": "Moderator",
       "regular": "Utilizator standard"
+    },
+
+    "formsList": {
+      "formsList": "Listă Formulare",
+      "search": "Căutare",
+      "tags": "Etichete",
+      "id": "ID",
+      "createDate": "Data postării",
+      "dueDate": "Termen Limită",
+      "title": "Titlu",
+      "author": "Autor",
+      "refresh": "Reîmprospătare"
+
+    },
+    "formsAdmin": {
+      "formsAdmin": "Administrare Formulare",
+      "search": "Căutare",
+      "tags": "Etichete",
+      "id": "ID",
+      "createDate": "Data postării",
+      "dueDate": "Termen limită",
+      "author": "Autor",
+      "title": "Titlu",
+      "views": "Completări",
+      "results": "Rezultate",
+      "uploadedFiles": "Fișiere încarcate",
+      "edit": "Editare",
+      "delete": "Ștergere",
+      "add": "Adăugare",
+      "refresh": "Reîmprospătare",
+      "downloadAllResult": "Descarcă toate rezultatele",
+      "viewers": "Vizitatori",
+      "name": "Nume",
+      "organizations":"Organizare",
+      "lastVisit":"Ultima completare"
+
+    },
+
+    "formsAdd": {
+      "formsAdd": "Creare Formular",
+      "general": "General",
+      "title": "Titlu",
+      "tags": "Categorie",
+      "content": "Conținut",
+      "dueDate": "Termen limită",
+      "isRecurent": "Este recurent",
+      "keepDataFromPreviousYears": "Păstrează datele din anii precedenți",
+      "fileUploadActive": "Încărcare de fișiere activată",
+      "locked": "Blocat la editare",
+      "isVisibleToLowerAccessLevels": "Este vizibil și nivelelor unferioare de acces(ex: moderatori)",
+      "column": "Coloane",
+      "pressTheArrowToStart": "Apăsați pe săgeată pentru a începe",
+      "press": "Apăsați",
+      "files": "Fișiere",
+      "attachments": "Atașamente",
+      "access": "Acces",
+      "save": "Salvare",
+      "start": "Începe",
+      "upload": "Încarcare fișiere"
+
+
+    },
+
+    "adminPc": {
+      "adminPc": "Administrare Pc",
+      "content": "Conținut",
+      "save": "Salvare"
     }
+
   }
 }
