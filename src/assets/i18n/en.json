@@ -23,6 +23,12 @@
       "admin": "Administrator",
       "moderator": "Moderator",
       "regular": "Regular User"
+    },
+    "sidenav": {
+      "profile": "Profile",
+      "extra": "Extra",
+      "forms": "Forms",
+      "myForms": "My Forms"
     }
   }
 }

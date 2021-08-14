@@ -1,5 +1,37 @@
 <div fxFlexFill class="mat-app-background">
-  <div fxFlex id="sidenav">
-    asd asd asd
+  <div fxFlex id="sidenav" fxLayout="column" fxLayoutGap="5px">
+    <mat-expansion-panel class="transparent" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{'ui.sidenav.forms' | translate}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+        <button color="primary" class="w-100" mat-raised-button routerLink="/forms" routerLinkActive="mat-accent"
+          [routerLinkActiveOptions]="{exact: true}">
+          <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
+            <mat-icon>list</mat-icon>
+            <span>{{'ui.sidenav.myForms' | translate}}</span>
+          </div>
+        </button>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="transparent" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{'ui.sidenav.extra' | translate}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+        <button class="w-100" color="primary" mat-raised-button routerLink="/profile" routerLinkActive="mat-accent"
+          [routerLinkActiveOptions]="{exact: true}">
+          <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
+            <mat-icon>badge</mat-icon>
+            <span>{{'ui.sidenav.profile' | translate}}</span>
+          </div>
+        </button>
+      </div>
+    </mat-expansion-panel>
   </div>
 </div>

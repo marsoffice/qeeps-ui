@@ -2,6 +2,22 @@
   #sidenav {
     height: 100%;
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 8px 6px;
+  }
+
+  ::ng-deep .mat-expansion-panel-header {
+    padding: 0 8px;
+  }
+
+  ::ng-deep .mat-expansion-panel-header {
+    height: 32px;
+
+    &.mat-expanded {
+      height: 40px;
+    }
   }
 }

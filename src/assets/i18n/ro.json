@@ -23,6 +23,12 @@
       "admin": "Administrator",
       "moderator": "Moderator",
       "regular": "Utilizator standard"
+    },
+    "sidenav": {
+      "profile": "Profil",
+      "extra": "Extra",
+      "forms": "Formulare",
+      "myForms": "Formularele mele"
     }
   }
 }
