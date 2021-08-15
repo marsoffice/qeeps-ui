@@ -31,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
@@ -96,6 +97,7 @@ if (!environment.production) {
     MatIconModule,
     MatMenuModule,
     MatTreeModule,
+    MatSlideToggleModule,
     MatSidenavModule,
     MatCardModule,
     MatExpansionModule,

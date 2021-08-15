@@ -10,6 +10,7 @@
       "logout": "Deconectare",
       "language": "Limbă",
       "login": "Conectare",
+      "darkMode": "Mod întunecat",
       "languages": {
         "en": "English",
         "ro": "Română"

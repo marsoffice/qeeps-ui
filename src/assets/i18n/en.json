@@ -10,6 +10,7 @@
       "logout": "Logout",
       "language": "Language",
       "login": "Login",
+      "darkMode": "Dark mode",
       "languages": {
         "en": "English",
         "ro": "Română"

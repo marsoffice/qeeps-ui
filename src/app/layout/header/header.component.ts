@@ -1,11 +1,14 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AccountInfo } from '@azure/msal-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { UserPreferencesDto } from 'src/app/models/user-preferences.dto';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserPreferencesService } from 'src/app/services/user-preferences.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,10 +23,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
   languages = environment.languages;
   photo: SafeUrl | null = null;
+  userPreferences: UserPreferencesDto | null = null;
 
-  constructor(private authService: AuthService, private router: Router, public translateService: TranslateService) { }
+  constructor(private authService: AuthService, private router: Router, public translateService: TranslateService,
+    private userPreferencesService: UserPreferencesService) { }
 
   ngOnInit(): void {
+    this._destroy.push(
+      this.userPreferencesService.userPreferences.subscribe(x => {
+        this.userPreferences = x;
+      })
+    );
+
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
@@ -57,5 +68,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeLanguage(lang: string): void {
     this.translateService.use(lang);
     localStorage.setItem('lang', lang);
+  }
+
+  onDarkModeChange(event: MatSlideToggleChange) {
+    if (event.checked) {
+      document.body.classList.add('theme-alternate');
+    } else {
+      document.body.classList.remove('theme-alternate');
+    }
+    this.userPreferencesService.saveUserPreferences(
+      {...this.userPreferences, useDarkTheme: event.checked}
+    ).subscribe();
   }
 }

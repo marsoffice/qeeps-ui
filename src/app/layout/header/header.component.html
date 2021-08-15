@@ -14,6 +14,12 @@
 <mat-menu #userMenu="matMenu">
   <button mat-menu-item routerLink="/profile" *ngIf="user"><mat-icon>person</mat-icon>{{user.name}}</button>
   <button mat-menu-item [matMenuTriggerFor]="langMenu"><mat-icon>language</mat-icon>{{'ui.header.language' | translate}}</button>
+  <button mat-menu-item>
+    <mat-slide-toggle
+      [checked]="userPreferences?.useDarkTheme"
+      (change)="onDarkModeChange($event)"
+      (click)="$event.stopPropagation()">{{'ui.header.darkMode' | translate}}</mat-slide-toggle>
+  </button>
   <button routerLink="/" *ngIf="!user" mat-menu-item><mat-icon>login</mat-icon>{{'ui.header.login' | translate}}</button>
   <button *ngIf="user" mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon>{{'ui.header.logout' | translate}}</button>
 </mat-menu>
