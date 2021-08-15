@@ -22,10 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
-    private authService: AuthService, translate: TranslateService, private accessService: AccessService) {
-    translate.setDefaultLang('ro');
-    const localStorageLanguage = localStorage.getItem('lang');
-    translate.use(localStorageLanguage == null ? translate.getBrowserLang() : localStorageLanguage);
+    private authService: AuthService, private translate: TranslateService, private accessService: AccessService) {
+
   }
 
   ngOnInit(): void {
@@ -47,6 +45,15 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         document.body.classList.remove('theme-alternate');
       }
+
+      let lang = localStorage.getItem('lang');
+      if (lang == null) {
+        lang = up.preferredLanguage as (string | null);
+      }
+      this.translate.use(lang == null ? this.translate.getBrowserLang() : lang);
+    }, () => {
+      const localStorageLanguage = localStorage.getItem('lang');
+      this.translate.use(localStorageLanguage == null ? this.translate.getBrowserLang() : localStorageLanguage);
     }));
   }
 

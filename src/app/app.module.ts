@@ -103,7 +103,6 @@ if (!environment.production) {
     MatExpansionModule,
 
     TranslateModule.forRoot({
-      defaultLanguage: 'ro',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
