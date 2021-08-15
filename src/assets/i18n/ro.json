@@ -29,7 +29,8 @@
       "profile": "Profil",
       "extra": "Extra",
       "forms": "Formulare",
-      "myForms": "Formularele mele"
+      "myForms": "Formularele mele",
+      "createForm": "Creare formular"
     }
   }
 }

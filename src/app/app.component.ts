@@ -1,9 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { MsalService } from '@azure/msal-angular';
-import { AccountInfo } from '@azure/msal-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { UserPreferencesService } from './services/user-preferences.service';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loginDisplay = false;
   isMobile = false;
   private _destroy: Subscription[] = [];
-  user: AccountInfo | null = null;
+  user: Claims | null = null;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,

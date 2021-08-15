@@ -3,9 +3,9 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AccountInfo } from '@azure/msal-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Claims } from 'src/app/models/claims';
 import { UserPreferencesDto } from 'src/app/models/user-preferences.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserPreferencesService } from 'src/app/services/user-preferences.service';
@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
   @Input() sidenav: MatDrawer | undefined;
-  user: AccountInfo | null = null;
+  user: Claims | null = null;
   private _destroy: Subscription[] = [];
   languages = environment.languages;
   photo: SafeUrl | null = null;
@@ -68,6 +68,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeLanguage(lang: string): void {
     this.translateService.use(lang);
     localStorage.setItem('lang', lang);
+    this.userPreferencesService.saveUserPreferences(
+      {...this.userPreferences, preferredLanguage: lang}
+    ).subscribe();
   }
 
   onDarkModeChange(event: MatSlideToggleChange) {

@@ -5,6 +5,7 @@ import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfigur
 import { AccountInfo, InteractionStatus } from '@azure/msal-browser';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { Claims } from '../models/claims';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,20 @@ export class AuthService {
   }
 
   get user() {
-    return this.userSubject.asObservable();
+    return this.userSubject.asObservable().pipe(
+      map(x => {
+        if (x == null) {
+          return null;
+        }
+        return {
+          id: x.localAccountId,
+          email: x.username,
+          name: x.name,
+          groups: (x.idTokenClaims as any).groups,
+          roles: (x.idTokenClaims as any).roles
+        } as Claims;
+      })
+    );
   }
 
   logout() {

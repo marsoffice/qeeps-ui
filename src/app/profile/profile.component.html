@@ -3,7 +3,7 @@
     <mat-card-header>
       <img *ngIf="photo != null" id="small-photo" mat-card-avatar [src]="photo">
       <mat-card-title>{{user.name}}</mat-card-title>
-      <mat-card-subtitle>{{user.username}}</mat-card-subtitle>
+      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       <mat-card-subtitle *ngFor="let role of userRoles">{{'ui.roles.' + role.toLowerCase() | translate}}</mat-card-subtitle>
     </mat-card-header>
     <img *ngIf="photo != null" id="big-photo" mat-card-image [src]="photo">

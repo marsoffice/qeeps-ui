@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Claims } from 'src/app/models/claims';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,6 +9,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class SidenavComponent implements OnInit {
   @Input() sidenav: MatDrawer | null = null;
+  @Input() user: Claims | null = null;
   constructor() { }
 
   ngOnInit(): void {

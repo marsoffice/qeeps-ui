@@ -29,7 +29,8 @@
       "profile": "Profile",
       "extra": "Extra",
       "forms": "Forms",
-      "myForms": "My Forms"
+      "myForms": "My Forms",
+      "createForm": "Create Form"
     }
   }
 }

@@ -2,7 +2,7 @@
   <app-header [sidenav]="sidenav" [isMobile]="isMobile"></app-header>
   <mat-drawer-container fxFlex="1 1 100%" autosize>
     <mat-drawer class="p-0 m-0" #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile && user != null">
-      <app-sidenav [sidenav]="sidenav" *ngIf="user"></app-sidenav>
+      <app-sidenav [sidenav]="sidenav" [user]="user" *ngIf="user"></app-sidenav>
     </mat-drawer>
     <div id="content">
       <router-outlet *ngIf="!isIframe"></router-outlet>

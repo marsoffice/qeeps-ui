@@ -19,34 +19,33 @@ export class EasyAuthInterceptor implements HttpInterceptor {
     return this.authService.user.pipe(
       switchMap(user => {
         if (user != null) {
-          const userClaims = user.idTokenClaims as any;
           const claims = {
             auth_typ: 'aad',
             claims: [
               {
                 typ: 'name',
-                val: userClaims.name
+                val: user.name
               },
               {
                 typ: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
-                val: user.username
+                val: user.email
               },
               {
                 typ: 'http://schemas.microsoft.com/identity/claims/objectidentifier',
-                val: user.localAccountId
+                val: user.id
               }
             ]
           };
-          if (userClaims.roles != null) {
-            for (let role of userClaims.roles) {
+          if (user.roles != null) {
+            for (let role of user.roles) {
               claims.claims.push({
                 typ: 'roles',
                 val: role
               });
             }
           }
-          if (userClaims.groups != null) {
-            for (let group of userClaims.groups) {
+          if (user.groups != null) {
+            for (let group of user.groups) {
               claims.claims.push({
                 typ: 'groups',
                 val: group
@@ -58,7 +57,7 @@ export class EasyAuthInterceptor implements HttpInterceptor {
           let headers = request.headers;
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-IDP', 'aad');
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL', b64Principal);
-          headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-ID', user.localAccountId);
+          headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-ID', user.id);
           headers = headers.append( 'X-MS-CLIENT-PRINCIPAL-NAME', user.name as string);
           const newRequest = request.clone({headers: headers});
           return next.handle(newRequest);
