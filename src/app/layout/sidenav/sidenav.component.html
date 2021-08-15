@@ -14,7 +14,7 @@
             <span>{{'ui.sidenav.myForms' | translate}}</span>
           </div>
         </button>
-        <button *ngIf="user!.roles!.indexOf('Admin') > -1"
+        <button *ngIf="user!.roles!.indexOf('Admin') > -1 || user!.roles!.indexOf('Owner') > -1"
         (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/create" routerLinkActive="mat-accent"
           [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
