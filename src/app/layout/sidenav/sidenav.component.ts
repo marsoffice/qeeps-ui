@@ -13,4 +13,10 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  closeSidenavIfMobile() {
+    if (this.sidenav?.mode === 'side') {
+      return;
+    }
+    this.sidenav?.close();
+  }
 }
