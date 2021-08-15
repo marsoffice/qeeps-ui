@@ -24,6 +24,8 @@
       "formsAdmin": "Forms Admin",
       "ownerAdmin": "Owner Admin",
       "adminPc": "Admin Pc",
+      "downloads": "Downloads",
+      "notifications": "Notifications",
       "languages": {
         "en": "English",
         "ro": "Română"
@@ -32,6 +34,7 @@
     "sidenav": {
       "reportHistory": "Report History",
       "createReport": "Create Report",
+      "downloads": "Downloads",
       "forms": "Forms"
     },
     "createReport": {
@@ -202,7 +205,7 @@
       "phone": "Phone",
       "email": "Email",
       "currencySymbol": "Currency Symbol",
-      "setting": "Settings",
+      "settings": "Settings",
       "save": "Save"
     },
     "profile": {
@@ -224,9 +227,33 @@
       "dueDate": "Due Date",
       "title": "Title",
       "author": "Author",
-      "refresh": "Refresh"
+      "refresh": "Refresh",
+      "complete": "Complete"
 
     },
+
+
+    "formsComplete": {
+      "postedAt": "Posted at ",
+      "by": "by",
+      "tags": "Tags",
+      "content": "Content",
+      "save": "Save",
+      "downloadHederTable": "Download heder table",
+      "dowlandData": "Download data",
+      "replaceAll": "Replace all",
+      "importExcel": "Import Excel",
+      "number": "Number",
+      "delete": "Delete",
+      "printWhitDetalis": "Print whit detalis",
+      "prinAllPages": "Prin all pages"
+
+
+
+    },
+
+
+
     "formsAdmin": {
       "formsAdmin": "Forms Admin",
       "search": "Search",
@@ -270,6 +297,9 @@
       "access": "Access",
       "save": "Save",
       "start": "Start",
+      "columnName": "Column Name",
+      "text": "Text",
+      "rowName": "Row Name",
       "upload": "Upload"
 
 
@@ -279,6 +309,22 @@
       "adminPc": "Admin Pc",
       "content": "Content",
       "save": "Save"
+    },
+
+
+    "downloads": {
+      "downloads": "Downloads",
+      "uploadfiles": "Upload Files",
+      "organisation": "Organisation",
+      "files": "Files",
+      "save": "Save"
+    },
+
+    "notifications": {
+      "notifications": "notifications",
+      "allAsRead": "All as read",
+      "yoHaveNoNotificationAtThisTime":"You have no notification at this time"
+
     }
   }
 }

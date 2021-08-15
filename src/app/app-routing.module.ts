@@ -4,15 +4,18 @@ import { MsalGuard } from '@azure/msal-angular';
 import { AdminPcComponent } from './admin-pc/admin-pc.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { CreateReportComponent } from './create-report/create-report.component';
+import { DownloadsComponent } from './downloads/downloads.component';
 import { FormsAddComponent } from './forms-add/forms-add.component';
 import { FormsAdminResultsComponent } from './forms-admin-results/forms-admin-results.component';
 import { FormsAdminComponent } from './forms-admin/forms-admin.component';
 import { FormsCalendarComponent } from './forms-calendar/forms-calendar.component';
+import { FormsCompleteComponent } from './forms-complete/forms-complete.component';
 import { FormsListComponent } from './forms-list/forms-list.component';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HomeComponent } from './home/home.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { PaymentsAdminInvoicesComponent } from './payments-admin-invoices/payments-admin-invoices.component';
 import { PaymentsAdminPricesComponent } from './payments-admin-prices/payments-admin-prices.component';
 import { PaymentsMyInvoicesComponent } from './payments-my-invoices/payments-my-invoices.component';
@@ -115,8 +118,32 @@ const routes: Routes = [
   },
 
   {
+    path:'forms-complete/:id',
+    component:FormsCompleteComponent,
+    canActivate: [MsalGuard],
+
+  },
+
+  {
     path:'admin-pc',
     component:AdminPcComponent,
+    canActivate: [MsalGuard],
+
+  },
+
+  {
+    path:'notifications',
+    component:NotificationsComponent,
+    canActivate: [MsalGuard],
+
+  },
+
+
+
+
+  {
+    path:'downloads',
+    component:DownloadsComponent,
     canActivate: [MsalGuard],
 
   },

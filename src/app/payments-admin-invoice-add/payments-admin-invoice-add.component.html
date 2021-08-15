@@ -1,39 +1,34 @@
 <button color="warn" class="close" mat-icon-button [mat-dialog-close]="true" ><mat-icon>close</mat-icon></button>
 <div class="p-1 p-sm-5" >
-  <h2 mat-dialog-title>{{'ui.createReport.data.AddDataSource' | translate}}</h2>
+  <h2 mat-dialog-title>{{'ui.paymentsAdminInvoices.adminInvoice' | translate}}</h2>
 <mat-dialog-content class="mat-typography d-flex flex-column">
 
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>{{'ui.paymentsAdminInvoices.emissionDate' | translate}}</mat-label>
+    <input matInput type="date" placeholder="" value="">
+  </mat-form-field>
+
   <mat-form-field appearance="outline">
-    <mat-label>{{'ui.createReport.data.DataSourceTipe' | translate}}</mat-label>
-    <mat-select [(ngModel)]="sursaDate" required>
-      <mat-option [value]="1">{{'ui.createReport.data.form' | translate}}</mat-option>
-      <mat-option [value]="2">{{'ui.createReport.data.excel' | translate}}</mat-option>
+    <mat-label>{{'ui.paymentsAdminInvoices.organisation' | translate}}</mat-label>
+    <mat-select  multiple required>
+      <mat-option>scoala 2</mat-option>
+      <mat-option>scoala 4</mat-option>
+      <mat-option>scoala 2</mat-option>
     </mat-select>
   </mat-form-field>
 
 
 
-    <mat-form-field *ngIf="sursaDate == 1" class="example-full-width" appearance="outline">
-      <mat-label>{{'ui.createReport.data.formName' | translate}}</mat-label>
-      <input type="text"
-             matInput
-
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option value="1">Formular 12344</mat-option>
-      <mat-option value="2">Formular 34455</mat-option>
-
-      </mat-autocomplete>
-    </mat-form-field>
 
 
     <input #inp accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" class="d-none">
-    <button (click)="inp.click()" mat-raised-button *ngIf="sursaDate == 2" color="accent" class="w-100" ><mat-icon>file_upload</mat-icon><span>{{'ui.createReport.data.upload' | translate}}</span></button>
+    <button (click)="inp.click()" mat-raised-button color="accent" class="w-100" ><mat-icon>file_upload</mat-icon><span>{{'ui.paymentsAdminInvoices.upload' | translate}}</span></button>
 
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>{{'ui.createReport.data.add' | translate}}</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>{{'ui.paymentsAdminInvoices.execute' | translate}}</button>
 </mat-dialog-actions>
 
 

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payments-admin-invoice-add.component.scss']
 })
 export class PaymentsAdminInvoiceAddComponent implements OnInit {
-  sursaDate = 1
+
 
   constructor() { }
 

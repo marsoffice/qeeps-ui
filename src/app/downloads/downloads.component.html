@@ -1,0 +1,49 @@
+<div class="mat-headline">{{'ui.downloads.downloads' | translate}}</div>
+<hr>
+
+
+
+
+<div >
+  <div class="mat-subheading-1 me-4"><b>{{'ui.downloads.organisation' | translate}}</b></div>
+  <mat-list class="w-100">
+    <mat-list-item class="" >
+     <div class="w-100 d-flex align-items-center justify-content-between" >
+    <div>
+      <p>photoo1111</p>
+    </div>
+      <button color="warn" mat-icon-button ><mat-icon  >clear</mat-icon></button>
+     </div>
+    </mat-list-item>
+    </mat-list>
+</div>
+
+  <br>
+  <br>
+  <div class="mat-headline">{{'ui.downloads.uploadfiles' | translate}}</div>
+  <br>
+
+  <mat-form-field  appearance="outline" class="flex-fill w-100" >
+    <mat-label>{{'ui.downloads.organisation' | translate}}</mat-label>
+    <mat-select  >
+      <mat-option value="1">Option 1</mat-option>
+      <mat-option value="2">Option 2</mat-option>
+      <mat-option value="3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+
+  <div class="w-100 d-flex flex-column justify-content-center align-items-center" >
+  <input #inp multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" class="d-none">
+  <button (click)="inp.click()" mat-raised-button  color=""  ><mat-icon>file_upload</mat-icon><p>{{'ui.downloads.uploadfiles' | translate}}</p></button>
+  </div>
+  <br>
+
+
+
+  <div class="d-flex justify-content-center align-items-center w-100" >
+    <button mat-raised-button color="accent">{{'ui.downloads.save' | translate}}</button>
+  </div>
+

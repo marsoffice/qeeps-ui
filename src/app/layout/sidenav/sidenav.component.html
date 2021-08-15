@@ -82,7 +82,42 @@
         </div>
       </mat-expansion-panel>
 
+
+      <mat-expansion-panel [expanded]="true"  >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.downloads' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/downloads" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>download</mat-icon> {{'ui.header.downloads' | translate}}
+          </button>
+        </div>
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel [expanded]="true"  >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ui.header.notifications' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/notifications" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>notifications</mat-icon> {{'ui.header.notifications' | translate}}
+          </button>
+        </div>
+      </mat-expansion-panel>
+
     </mat-accordion>
+
+
+
+
+
+
+
 
 
 

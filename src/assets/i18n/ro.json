@@ -24,6 +24,8 @@
       "formsAdmin": "Administrare formulare",
       "ownerAdmin": "Admin proprietar",
       "adminPc": "Administrare Pc",
+      "downloads": "Descărcări",
+      "notifications": "Notificări",
       "languages": {
         "en": "English",
         "ro": "Română"
@@ -32,6 +34,7 @@
     "sidenav": {
       "reportHistory": "Istoric Rapoarte",
       "createReport": "Creare Raport",
+      "downloads": "Descărcări",
       "forms": "Formulare"
     },
     "createReport": {
@@ -224,9 +227,32 @@
       "dueDate": "Termen Limită",
       "title": "Titlu",
       "author": "Autor",
-      "refresh": "Reîmprospătare"
+      "refresh": "Reîmprospătare",
+      "complete": "Completare"
 
     },
+
+
+    "formsComplete": {
+      "postedAt": "Postat pe ",
+      "by": "De către",
+      "tags": "Categorie",
+      "content": "Conținut",
+      "save": "Salvare",
+      "downloadHederTable": "Descărcare cap tabel (EXCEL)",
+      "dowlandData": "Descărcare date (EXCEL)",
+      "replaceAll": "Bifați pt. înlocuire conținut existent",
+      "importExcel": "Import Excel",
+      "number": "Numar",
+      "delete": "Ștergere",
+      "printWhitDetalis": "Imprimare detaliată",
+      "prinAllPages": "Imprimare toate paginile"
+
+
+
+    },
+
+
     "formsAdmin": {
       "formsAdmin": "Administrare Formulare",
       "search": "Căutare",
@@ -271,16 +297,41 @@
       "access": "Acces",
       "save": "Salvare",
       "start": "Începe",
+      "columnName": "Numele coloanei",
+      "text": "Text",
+      "rowName": "Numele rândului",
       "upload": "Încarcare fișiere"
 
 
     },
 
+
+
+
+
     "adminPc": {
       "adminPc": "Administrare Pc",
       "content": "Conținut",
       "save": "Salvare"
+    },
+
+    "downloads": {
+      "downloads": "Descărcări",
+      "uploadfiles": "Încărcare fișiere",
+      "organisation": "Organizație",
+      "files": "Fișiere",
+      "save": "Salvare"
+    },
+
+    "notifications": {
+      "notifications": "Notificări",
+      "allAsRead": "Marchează toate ca citite",
+      "yoHaveNoNotificationAtThisTime":"Nu aveți nici o notificare momentan"
+
     }
+
+
+
 
   }
 }

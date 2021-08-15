@@ -21,11 +21,22 @@
       <mat-icon>admin_panel_settings</mat-icon>{{'ui.header.ownerAdmin' | translate}}
     </button>
 
+    <button [matMenuTriggerFor]="downloadsMenu"  mat-button routerLinkActive="mat-accent" color="" class="h-100">
+      <mat-icon>download_for_offline</mat-icon>{{'ui.header.downloads' | translate}}
+    </button>
+
+
+
 
 
 
   </div>
   <span fxFlex></span>
+
+  <button [matMenuTriggerFor]="notificationsMenu"  mat-button routerLinkActive="mat-accent" color="" class="h-100">
+    <mat-icon matBadge="15" matBadgeColor="warn" >notifications</mat-icon>
+  </button>
+
   <img id="avatar" *ngIf="user != null && photo != null" [src]="photo" [matMenuTriggerFor]="userMenu"/>
   <button *ngIf="user == null || photo == null" [matMenuTriggerFor]="userMenu" mat-icon-button>
     <mat-icon *ngIf="user == null">more_vert</mat-icon>
@@ -97,4 +108,20 @@
       </button>
     </div>
     </mat-menu>
+
+    <mat-menu #downloadsMenu="matMenu">
+      <div class="d-flex flex-column align-items-start" >
+        <button routerLink="/downloads" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+          <mat-icon>download</mat-icon> {{'ui.header.downloads' | translate}}
+        </button>
+      </div>
+      </mat-menu>
+
+      <mat-menu #notificationsMenu="matMenu">
+        <div class="d-flex flex-column align-items-start" >
+          <button routerLink="/notifications" mat-button routerLinkActive="mat-accent" color="" class="w-100 text-start" >
+            <mat-icon>notifications</mat-icon> {{'ui.header.notifications' | translate}}
+          </button>
+        </div>
+        </mat-menu>
 

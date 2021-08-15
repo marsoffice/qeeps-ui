@@ -75,7 +75,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
-import { FormsAdminResultsComponent } from './forms-admin-results/forms-admin-results.component'; // a plugin!
+import { FormsAdminResultsComponent } from './forms-admin-results/forms-admin-results.component';
+import { DownloadsComponent } from './downloads/downloads.component'; // a plugin!
+import {MatBadgeModule} from '@angular/material/badge';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { FormsCompleteComponent } from './forms-complete/forms-complete.component';
+
 
 
 
@@ -144,6 +149,9 @@ if (!environment.production) {
     AdminPcComponent,
     ProfileComponent,
     FormsAdminResultsComponent,
+    DownloadsComponent,
+    NotificationsComponent,
+    FormsCompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -174,6 +182,7 @@ if (!environment.production) {
     MatExpansionModule,
     MatCardModule,
     FullCalendarModule,
+    MatBadgeModule,
 
 
     TranslateModule.forRoot({

@@ -44,69 +44,65 @@
 
 <div class="mat-headline">{{'ui.formsAdd.column' | translate}}</div>
 <hr>
-  <div class="d-flex align-items-center justify-content-start" >
+
 <div class="mat-subheading-2 me-4">{{'ui.formsAdd.pressTheArrowToStart' | translate}}</div>
-<button (click)="clickArrow()" mat-raised-button  color=""  ><mat-icon>arrow_forward</mat-icon><p>{{'ui.formsAdd.start' | translate}}</p></button>
-</div>
+<button (click)="clickArrow()" mat-raised-button  color=""  ><mat-icon>arrow_forward</mat-icon></button>
 <div>
   <br>
 
   <div class="w-100" style="overflow: auto;">
-
-  <div style="background: transparent; overflow: visible;" cdkDropList cdkDropListOrientation="horizontal" class="example-list w-100" (cdkDropListDropped)="drop($event)">
-
-    <div style="overflow: visible;" *ngFor="let c of columns" class="example-box" cdkDrag>
-      <mat-card style="position: relative;" class="p-4 w-100" >
-        <mat-icon color="warn" style="position: absolute; right: 4px; top:4px; cursor: pointer; " >clear</mat-icon>
-        <mat-card-content class="d-flex flex-column"  >
-
-          <mat-form-field class="example-full-width" >
-            <mat-label>{{'ui.formsAdd.title' | translate}}</mat-label>
-            <input  required matInput placeholder="" value="">
-          </mat-form-field>
+  <table class="w-100 table table-bordered border-dark">
 
 
-          <mat-form-field  class="flex-fill" >
-            <mat-label>{{'ui.createReport.data.select' | translate}}</mat-label>
-            <mat-select >
-              <mat-option value="1">Option 1</mat-option>
-              <mat-option value="2">Option 2</mat-option>
-              <mat-option value="3">Option 3</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+    <thead >
+      <tr cdkDropListOrientation="horizontal"  cdkDropList (cdkDropListDropped)="drop($event)">
+        <th cdkDrag *ngFor="let c of columns"  >
+
+          <mat-card style="position: relative;" class="p-4 w-100" >
+            <mat-icon color="warn" style="position: absolute; right: 4px; top:4px; cursor: pointer; " >clear</mat-icon>
+            <mat-card-content class="d-flex flex-column"  >
+
+              <mat-form-field class="example-full-width" >
+                <mat-label>{{'ui.formsAdd.columnName' | translate}}</mat-label>
+                <input  required matInput placeholder="" value="">
+              </mat-form-field>
 
 
+              <mat-form-field  class="flex-fill" >
+                <mat-label>{{'ui.formsAdd.text' | translate}}</mat-label>
+                <mat-select >
+                  <mat-option value="1">Option 1</mat-option>
+                  <mat-option value="2">Option 2</mat-option>
+                  <mat-option value="3">Option 3</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        </th>
+      </tr>
+    </thead>
 
 
-
-  <table class="w-100 table table-striped">
     <tbody>
       <tr *ngFor="let r of rows">
         <td *ngFor="let c of columns; let i = index">
-          <div *ngIf="i === 0">
-            <mat-form-field class="example-full-width" >
-              <mat-label>{{'ui.formsAdd.title' | translate}}</mat-label>
+            <mat-card style="position: relative;"  class="p-4" *ngIf="i === 0">
+              <mat-icon color="warn" style="position: absolute; right: 4px; top:4px; cursor: pointer; " >clear</mat-icon>
+            <mat-form-field   class="example-full-width" >
+              <mat-label>{{'ui.formsAdd.rowName' | translate}}</mat-label>
               <input  required matInput placeholder="" value="">
             </mat-form-field>
-          </div>
+          </mat-card>
         </td>
       </tr>
     </tbody>
   </table>
 
 
-
-
-
-
 </div>
 
 
-<button (click)="clickArrow2()" mat-raised-button  color=""  ><mat-icon>arrow_downward</mat-icon><p>{{'ui.formsAdd.start' | translate}}</p></button>
+<button (click)="clickArrow2()" mat-raised-button  color=""  ><mat-icon>arrow_downward</mat-icon></button>
 
 </div>
 
@@ -119,10 +115,10 @@
   <div class="mat-headline">{{'ui.formsAdd.files' | translate}}</div>
 <hr>
   <input #inp multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" class="d-none">
- <div class="d-flex align-items-center justify-content-start" >
+
   <div class="mat-subheading-2 me-4"><span>{{'ui.formsAdd.attachments' | translate}}</span></div>
   <button (click)="inp.click()" mat-raised-button  color=""  ><mat-icon>file_upload</mat-icon><p>{{'ui.formsAdd.upload' | translate}}</p></button>
- </div>
+
   <mat-selection-list  [multiple]="false">
     <mat-list-option  >
      <div class="w-100 d-flex align-items-center justify-content-between" >

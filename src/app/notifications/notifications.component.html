@@ -1,0 +1,31 @@
+
+
+<div class="mat-headline">{{'ui.notifications.notifications' | translate}}</div>
+
+<hr>
+<br>
+
+<div *ngIf="lista == '' || lista == null" class="d-flex justify-content-center w-100" >
+  <button mat-raised-button color="accent"> <mat-icon>notifications</mat-icon> {{'ui.notifications.yoHaveNoNotificationAtThisTime' | translate}}</button>
+</div>
+
+
+
+<div>
+  <div *ngIf="lista != '' && lista != null" class="d-flex justify-content-center w-100" >
+    <button routerLink="/complete/:id" mat-raised-button color=""> <mat-icon>done_all</mat-icon> {{'ui.notifications.allAsRead' | translate}}</button>
+  </div>
+  <br>
+  <br>
+
+
+  <mat-card *ngFor="let l of lista" routerLink="/complete/:id" class="d-flex flex-column p-4" >
+   <div class="d-flex justify-content-end "><i>13 aug. 2021, 16:01:15</i></div>
+   <b>Formular Nou</b>
+   <p>Postat de catre VP</p>
+  </mat-card>
+</div>
+
+
+
+
