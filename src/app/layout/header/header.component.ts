@@ -71,11 +71,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onDarkModeChange(event: MatSlideToggleChange) {
-    if (event.checked) {
-      document.body.classList.add('theme-alternate');
-    } else {
-      document.body.classList.remove('theme-alternate');
-    }
     this.userPreferencesService.saveUserPreferences(
       {...this.userPreferences, useDarkTheme: event.checked}
     ).subscribe();

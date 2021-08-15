@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
+import { UserPreferencesService } from './services/user-preferences.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   user: AccountInfo | null = null;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
+    private userPreferencesService: UserPreferencesService,
     private authService: AuthService, translate: TranslateService, private accessService: AccessService) {
     translate.setDefaultLang('ro');
     const localStorageLanguage = localStorage.getItem('lang');
@@ -39,6 +41,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.user = u;
       })
     );
+    this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
+      if (up.useDarkTheme) {
+        document.body.classList.add('theme-alternate');
+      } else {
+        document.body.classList.remove('theme-alternate');
+      }
+    }));
   }
 
   ngOnDestroy(): void {
