@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { UserPreferencesDto } from '../models/user-preferences.dto';
 
 @Injectable({
@@ -26,10 +25,7 @@ export class UserPreferencesService {
   }
 
   saveUserPreferences(model: UserPreferencesDto) {
-    return this.http.post(`/api/access/userPreferences`, model).pipe(
-      tap(() => {
-        this.userPreferencesSubject.next(model);
-      })
-    );
+    this.userPreferencesSubject.next(model);
+    return this.http.post(`/api/access/userPreferences`, model);
   }
 }

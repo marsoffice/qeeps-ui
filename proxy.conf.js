@@ -12,5 +12,9 @@ module.exports = {
   "/api/forms": {
     target: "http://localhost:7002",
     secure: false
+  },
+  "/api/notifications": {
+    target: "http://localhost:7003",
+    secure: false
   }
 };
