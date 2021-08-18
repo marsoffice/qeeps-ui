@@ -20,7 +20,7 @@ import { UserPreferencesService } from './services/user-preferences.service';
 export class AppComponent implements OnInit, OnDestroy {
   isIframe = false;
   loginDisplay = false;
-  isMobile = false;
+  isMobile = true;
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
 
