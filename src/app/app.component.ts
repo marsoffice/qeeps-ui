@@ -36,10 +36,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.updates.isEnabled) {
-      this.updates.checkForUpdate().then(() => { });
-      this.updates.available.subscribe(() => {
-        this.updates.activateUpdate().then(() => {
-          location.reload();
+      this.updates.checkForUpdate().then(() => {
+        this.updates.available.subscribe(() => {
+          this.updates.activateUpdate().then(() => {
+            location.reload();
+          });
         });
       });
     }
