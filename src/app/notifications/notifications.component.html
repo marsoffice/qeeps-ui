@@ -5,7 +5,7 @@
 
 <mat-menu #notifMenu="matMenu" class="notifications-panel">
   <div id="notifications-wrapper" fxLayout="column" fxLayoutGap="0.5rem">
-    <button color="accent" (click)="markAllAsRead()" mat-button class="w-100">
+    <button *ngIf="unread > 0" color="accent" (click)="markAllAsRead()" mat-button class="w-100">
       <mat-icon>done_all</mat-icon>
       <span>{{'ui.notifications.markAllAsRead' | translate}}</span>
     </button>
