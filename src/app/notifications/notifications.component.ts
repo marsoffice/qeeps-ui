@@ -27,6 +27,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     this.load();
     this.realTimeNotifObs = this.hubService.subscribe('notificationReceived');
     this.realTimeNotifObs.observable.subscribe(notif => {
+      console.log(notif);
       this.notifications = [notif, ...this.notifications];
       this.total++;
       this.unread++;

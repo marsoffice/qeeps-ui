@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  HubConnection, HubConnectionBuilder, IRetryPolicy, JsonHubProtocol, LogLevel, RetryContext
+  HubConnection, HubConnectionBuilder, IRetryPolicy, JsonHubProtocol, LogLevel, MessageHeaders, RetryContext
 } from '@microsoft/signalr';
 import { from, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -32,30 +32,41 @@ export class SignalrObservableWrapper<T> {
   providedIn: 'root'
 })
 export class HubService {
-  private connection: HubConnection;
+  private connection: HubConnection | null = null;
 
   constructor(private authService: AuthService) {
-    this.connection = new HubConnectionBuilder()
+    this.authService.user.pipe(
+      filter(x => x != null)
+    ).subscribe(u => {
+      let msgHeaders: MessageHeaders = {};
+
+      if  (!environment.production) {
+        msgHeaders['x-ms-client-principal-id'] = u!.id;
+      }
+
+      this.connection = new HubConnectionBuilder()
       .withUrl('/api/access/signalr', {
         accessTokenFactory: () => {
           return this.authService.getAccessToken().toPromise();
-        }
+        },
+        headers: msgHeaders
       })
       .withAutomaticReconnect(new CustomRetryPolicy())
       .withHubProtocol(new JsonHubProtocol())
       .configureLogging(environment.production ? LogLevel.None : LogLevel.Debug)
       .build();
+    });
   }
 
   start() {
     return from(
-      this.connection.start()
+      this.connection!.start()
     );
   }
 
   stop() {
     return from(
-      this.connection.stop()
+      this.connection!.stop()
     );
   }
 
@@ -63,17 +74,26 @@ export class HubService {
     const subject = new Subject<T>();
     const obs = subject.asObservable();
     const fctRef = (p: any) => {
-      subject.next(p);
+      subject.next(this.toCamelCase(p));
     };
-    this.connection.on(event, fctRef);
-    return new SignalrObservableWrapper(obs, event, fctRef, this.connection);
+    this.connection!.on(event, fctRef);
+    return new SignalrObservableWrapper(obs, event, fctRef, this.connection!);
   }
 
   publish<T>(methodName: string, model: T) {
-    return from(this.connection.send(methodName, model));
+    return from(this.connection!.send(methodName, model));
   }
 
   rpc<T, TR>(methodName: string, model: T) {
-    return from(this.connection.invoke(methodName, model)).pipe(map(x => x as TR));
+    return from(this.connection!.invoke(methodName, model)).pipe(map(x => x as TR));
+  }
+
+  private toCamelCase(p: any): any {
+    const keys = Object.keys(p);
+    const newObj: any = {};
+    for (const key of keys) {
+      newObj[key.charAt(0).toLowerCase() + key.substring(1)] = p[key];
+    }
+    return newObj;
   }
 }

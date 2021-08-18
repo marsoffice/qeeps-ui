@@ -53,3 +53,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     cursor: pointer;
   }
 }
+
+.toast-info {
+  background: lightblue;
+}
+
+.toast-success {
+  background: lightgreen;
+}
+
+.toast-warn {
+  background: lightsalmon;
+}
+
+.toast-error {
+  background: lightred;
+}
