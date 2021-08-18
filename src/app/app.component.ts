@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
+import { HubService } from './services/hub.service';
 import { UserPreferencesService } from './services/user-preferences.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
-    private authService: AuthService, private translate: TranslateService, private accessService: AccessService) {
+    private authService: AuthService, private translate: TranslateService, private accessService: AccessService,
+    private hubService: HubService
+    ) {
 
   }
 
@@ -37,6 +40,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
+        if (this.user != null) {
+          this.hubService.start().subscribe();
+        } else {
+          this.hubService.stop().subscribe();
+        }
       })
     );
 

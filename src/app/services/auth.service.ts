@@ -5,6 +5,7 @@ import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfigur
 import { AccountInfo, InteractionStatus } from '@azure/msal-browser';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 
 @Injectable({
@@ -88,6 +89,13 @@ export class AuthService {
     );
   }
 
+  getAccessToken() {
+    return this.authService.acquireTokenSilent({
+      scopes: [environment.adclientid + '/.default']
+    }).pipe(
+      map(x => x.accessToken)
+    );
+  }
 
   destroy() {
     this._destroying$.next(undefined);
