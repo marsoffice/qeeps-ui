@@ -13,8 +13,8 @@ module.exports = {
       to: 'http://localhost:7002/api/forms/$1'
     },
     {
-      from: '/api/notifications/(.*)',
-      to: 'http://localhost:7003/api/notifications/$1'
+      from: '/api/notifications(.*)',
+      to: 'http://localhost:7003/api/notifications$1'
     }
   ],
   directory: 'dist/qeeps-ui',

@@ -58,6 +58,7 @@ jobs:
     env:
       adclientid: '${{ secrets.adclientid }}'
       adtenantid: '${{ secrets.adtenantid }}'
+      publicvapidkey: '${{ secrets.publicvapidkey }}'
     name: deploy stg
     steps:
       - name: download artifact
@@ -90,6 +91,7 @@ jobs:
     env:
       adclientid: '${{ secrets.adclientid }}'
       adtenantid: '${{ secrets.adtenantid }}'
+      publicvapidkey: '${{ secrets.publicvapidkey }}'
     name: deploy prod
     steps:
       - name: Download a Build Artifact

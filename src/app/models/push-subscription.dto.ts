@@ -1,5 +1,5 @@
 export interface PushSubscriptionDto {
-  id: string;
-  userId: string;
+  id?: string;
+  userId?: string;
   subscriptionJson: string;
 }

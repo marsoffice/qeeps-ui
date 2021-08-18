@@ -4,6 +4,7 @@ import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
@@ -35,11 +36,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.updates.isEnabled) {
-      this.updates.checkForUpdate().then(() => {
-        this.updates.available.subscribe(() => {
-          this.updates.activateUpdate().then(() => {
-            location.reload();
-          });
+      this.updates.checkForUpdate().then(() => { });
+      this.updates.available.subscribe(() => {
+        this.updates.activateUpdate().then(() => {
+          location.reload();
         });
       });
     }
@@ -87,7 +87,17 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
     this.swPush.subscription.subscribe(currentSub => {
-      console.log(currentSub);
-    }, err => console.log(err));
+      if (currentSub == null) {
+        this.swPush.requestSubscription({
+          serverPublicKey: environment.publicvapidkey
+        }).then(ps => {
+          this.pushSubscriptionsService.addPushSubscription({
+            userId: this.user?.id,
+            subscriptionJson: JSON.stringify(ps.toJSON())
+          }).subscribe();
+        });
+        return;
+      }
+    });
   }
 }
