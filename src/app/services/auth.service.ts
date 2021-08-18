@@ -91,7 +91,7 @@ export class AuthService {
 
   getAccessToken() {
     return this.authService.acquireTokenSilent({
-      scopes: [environment.adclientid + '/.default']
+      scopes: [environment.adclientid + '/.default'],
     }).pipe(
       map(x => x.accessToken)
     );
