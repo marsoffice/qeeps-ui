@@ -3,6 +3,10 @@
     <mat-icon>menu</mat-icon>
   </button>
   <img id="logo" routerLink="/" src="/assets/images/logo.svg" [style]="{width: isMobile ? '54px' : null}" />
+  <button routerLink="/" routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact: true}" mat-button class="h-100">
+    <mat-icon>home</mat-icon>
+    <span>{{'ui.header.home' | translate}}</span>
+  </button>
   <span fxFlex></span>
   <img id="avatar" *ngIf="user != null && photo != null" [src]="photo" [matMenuTriggerFor]="userMenu"/>
   <button *ngIf="user == null || photo == null" [matMenuTriggerFor]="userMenu" mat-icon-button>

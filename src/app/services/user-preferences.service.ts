@@ -7,16 +7,25 @@ import { UserPreferencesDto } from '../models/user-preferences.dto';
   providedIn: 'root'
 })
 export class UserPreferencesService {
-  private userPreferencesSubject = new BehaviorSubject<UserPreferencesDto>({
-    preferredLanguage: 'ro',
-    useDarkTheme: false
-  });
+  private userPreferencesSubject: BehaviorSubject<UserPreferencesDto>;
   constructor(private http: HttpClient) {
+    let upObj: UserPreferencesDto = {
+      preferredLanguage: 'ro',
+      useDarkTheme: false
+    };
+    const upLs = localStorage.getItem('user_preferences');
+    if (upLs != null) {
+      upObj = JSON.parse(upLs) as UserPreferencesDto;
+    }
+    this.userPreferencesSubject = new BehaviorSubject<UserPreferencesDto>(upObj);
     this.http.get<UserPreferencesDto>(`/api/access/userPreferences`).subscribe(x => {
       if (x == null) {
         return;
       }
-      this.userPreferencesSubject.next(x);
+      const old = this.userPreferencesSubject.value;
+      if (x?.preferredLanguage !== old?.preferredLanguage || x?.useDarkTheme !== old?.useDarkTheme) {
+        this.userPreferencesSubject.next(x);
+      }
     });
   }
 
@@ -26,6 +35,7 @@ export class UserPreferencesService {
 
   saveUserPreferences(model: UserPreferencesDto) {
     this.userPreferencesSubject.next(model);
+    localStorage.setItem('user_preferences', JSON.stringify(model));
     return this.http.post(`/api/access/userPreferences`, model);
   }
 }

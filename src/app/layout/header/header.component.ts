@@ -67,7 +67,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   changeLanguage(lang: string): void {
     this.translateService.use(lang);
-    localStorage.setItem('lang', lang);
     this.userPreferencesService.saveUserPreferences(
       {...this.userPreferences, preferredLanguage: lang}
     ).subscribe();

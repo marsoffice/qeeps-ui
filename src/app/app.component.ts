@@ -39,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.user = u;
       })
     );
+
     this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
       if (up.useDarkTheme) {
         document.body.classList.add('theme-alternate');
@@ -46,14 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
         document.body.classList.remove('theme-alternate');
       }
 
-      let lang = localStorage.getItem('lang');
-      if (lang == null) {
-        lang = up.preferredLanguage as (string | null);
-      }
-      this.translate.use(lang == null ? this.translate.getBrowserLang() : lang);
-    }, () => {
-      const localStorageLanguage = localStorage.getItem('lang');
-      this.translate.use(localStorageLanguage == null ? this.translate.getBrowserLang() : localStorageLanguage);
+      this.translate.use(up.preferredLanguage == null ? this.translate.getBrowserLang() : up.preferredLanguage);
     }));
   }
 
