@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SwPush } from '@angular/service-worker';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 import { NotificationDto } from '../models/notification.dto';
@@ -22,9 +24,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   private currentPage = 1;
   private realTimeNotifObs: SignalrObservableWrapper<NotificationDto> | null = null;
   severities = Severity;
+  private _destroy: Subscription[] = [];
 
   constructor(private notificationsService: NotificationsService, private hubService: HubService,
-    private toastService: ToastService, private router: Router) { }
+    private toastService: ToastService, private router: Router, private swPush: SwPush) { }
 
   ngOnInit(): void {
     this.load();
@@ -54,12 +57,22 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.markAsRead(notif);
       });
     });
+
+
+    if (this.swPush.isEnabled) {
+      this._destroy.push(
+        this.swPush.notificationClicks.subscribe((n: any) => {
+          this.notificationsService.markAsRead(n.data.id).subscribe();
+        })
+      );
+    }
   }
 
   ngOnDestroy(): void {
     if (this.realTimeNotifObs != null) {
       this.realTimeNotifObs.kill();
     }
+    this._destroy.forEach(s => s.unsubscribe());
   }
 
   notificationClicked(notif: NotificationDto, event: MouseEvent) {
