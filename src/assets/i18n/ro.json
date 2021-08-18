@@ -1,5 +1,12 @@
 {
   "ui": {
+    "toast": {
+      "open": "Deschidere"
+    },
+    "notifications": {
+      "markAllAsRead": "Marcați toate ca citite",
+      "loadMore": "Încărcați mai multe"
+    },
     "auth": {
       "errorOccurred": "A apărut o eroare la autentificare",
       "tryAgain": "Încercați din nou",

@@ -1,5 +1,12 @@
 {
   "ui": {
+    "toast": {
+      "open": "Open"
+    },
+    "notifications": {
+      "markAllAsRead": "Mark all as read",
+      "loadMore": "Load more"
+    },
     "auth": {
       "errorOccurred": "An authentication error has occurred",
       "tryAgain": "Try again",

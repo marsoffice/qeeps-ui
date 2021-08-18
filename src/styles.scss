@@ -45,3 +45,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .transparent {
   background: transparent !important;
 }
+
+#notifications-wrapper {
+  max-height: 50vh;
+  padding: 0.5rem;
+  mat-card {
+    cursor: pointer;
+  }
+}
+
+.notifications-panel {
+
+}

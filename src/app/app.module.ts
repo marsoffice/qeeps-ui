@@ -32,8 +32,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatTreeModule} from '@angular/material/tree';
+import { MatTreeModule } from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
@@ -43,6 +44,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -85,6 +87,7 @@ if (!environment.production) {
     AuthErrorComponent,
     HealthcheckComponent,
     ProfileComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +104,7 @@ if (!environment.production) {
     MatSlideToggleModule,
     MatSidenavModule,
     MatCardModule,
+    MatSnackBarModule,
     MatExpansionModule,
     MatBadgeModule,
 

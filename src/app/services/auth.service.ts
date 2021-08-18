@@ -23,7 +23,7 @@ export class AuthService {
     private msalBroadcastService: MsalBroadcastService,
     private httpClient: HttpClient,
     private sanitizer: DomSanitizer) {
-      this.userSubject = new BehaviorSubject<AccountInfo | null>(authService.instance.getActiveAccount());
+      this.userSubject = new BehaviorSubject<AccountInfo | null>(null);
     }
 
   updateLoggedInStatus() {

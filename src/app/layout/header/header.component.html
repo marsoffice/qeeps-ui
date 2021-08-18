@@ -8,9 +8,7 @@
     <span>{{'ui.header.home' | translate}}</span>
   </button>
   <span fxFlex></span>
-  <button *ngIf="user != null" mat-icon-button>
-    <mat-icon [matBadge]="3" matBadgePosition="below before" [matBadgeOverlap]="true" matBadgeSize="small" matBadgeColor="accent">notifications</mat-icon>
-  </button>
+  <app-notifications [user]="user" *ngIf="user != null"></app-notifications>
   <img id="avatar" *ngIf="user != null && photo != null" [src]="photo" [matMenuTriggerFor]="userMenu"/>
   <button *ngIf="user == null || photo == null" [matMenuTriggerFor]="userMenu" mat-icon-button>
     <mat-icon *ngIf="user == null">more_vert</mat-icon>
