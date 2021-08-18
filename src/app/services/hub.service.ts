@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   HubConnection, HubConnectionBuilder, IRetryPolicy, JsonHubProtocol, LogLevel, MessageHeaders, RetryContext
 } from '@microsoft/signalr';
-import { from, Observable, Subject } from 'rxjs';
+import { from, Observable, of, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
@@ -59,12 +59,18 @@ export class HubService {
   }
 
   start() {
+    if (this.connection == null) {
+      return of<void>();
+    }
     return from(
       this.connection!.start()
     );
   }
 
   stop() {
+    if (this.connection == null) {
+      return of<void>();
+    }
     return from(
       this.connection!.stop()
     );

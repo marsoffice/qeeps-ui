@@ -10,7 +10,7 @@
       <span>{{'ui.notifications.markAllAsRead' | translate}}</span>
     </button>
     <div fxLayout="column" fxLayoutGap="0.5rem">
-      <mat-card *ngFor="let n of notifications" (click)="notificationClicked(n, $event)">
+      <mat-card *ngFor="let n of notifications" (click)="notificationClicked(n, $event)" class="severity-{{severities[n.severity]?.toLowerCase() || 'info'}}">
         <mat-card-header>
           <mat-card-title [class.mat-card-subtitle]="n.isRead">{{n.title}}</mat-card-title>
           <mat-card-subtitle>{{n.createdDate | date:'medium'}}</mat-card-subtitle>

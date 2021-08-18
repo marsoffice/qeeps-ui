@@ -23,10 +23,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
-    private authService: AuthService, private translate: TranslateService, private accessService: AccessService,
+    private authService: AuthService, private translateService: TranslateService, private accessService: AccessService,
     private hubService: HubService
-    ) {
-
+  ) {
   }
 
   ngOnInit(): void {
@@ -54,8 +53,8 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         document.body.classList.remove('theme-alternate');
       }
-
-      this.translate.use(up.preferredLanguage == null ? this.translate.getBrowserLang() : up.preferredLanguage);
+      const newLang = up.preferredLanguage == null ? this.translateService.getBrowserLang() : up.preferredLanguage;
+      this.translateService.use(newLang);
     }));
   }
 

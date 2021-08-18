@@ -1,8 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 import { NotificationDto } from '../models/notification.dto';
+import { Severity } from '../models/severity';
 import { HubService, SignalrObservableWrapper } from '../services/hub.service';
 import { NotificationsService } from '../services/notifications.service';
 import { ToastService } from '../services/toast.service';
@@ -19,6 +21,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   unread = 0;
   private currentPage = 1;
   private realTimeNotifObs: SignalrObservableWrapper<NotificationDto> | null = null;
+  severities = Severity;
 
   constructor(private notificationsService: NotificationsService, private hubService: HubService,
     private toastService: ToastService, private router: Router) { }
@@ -31,8 +34,23 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       this.notifications = [notif, ...this.notifications];
       this.total++;
       this.unread++;
-      const snack = this.toastService.showInfo(`${notif.title} > ${notif.message}`);
-      snack.onAction().subscribe(() => {
+      let snackBar: MatSnackBarRef<TextOnlySnackBar> | undefined;
+      switch (notif.severity) {
+        default:
+        case Severity.Info:
+          snackBar = this.toastService.showInfo(`${notif.title} > ${notif.message}`);
+          break;
+        case Severity.Success:
+          snackBar = this.toastService.showSuccess(`${notif.title} > ${notif.message}`);
+          break;
+        case Severity.Warn:
+          snackBar = this.toastService.showWarn(`${notif.title} > ${notif.message}`);
+          break;
+        case Severity.Error:
+          snackBar = this.toastService.showError(`${notif.title} > ${notif.message}`);
+          break;
+      }
+      snackBar.onAction().subscribe(() => {
         this.markAsRead(notif);
       });
     });

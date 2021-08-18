@@ -54,18 +54,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
-.toast-info {
-  background: lightblue;
+.severity-info {
+  background: rgba(7, 150, 175, 0.5) !important;
 }
 
-.toast-success {
-  background: lightgreen;
+.severity-success {
+  background: rgba(21, 175, 7, 0.5) !important;
 }
 
-.toast-warn {
-  background: lightsalmon;
+.severity-warn {
+  background: rgba(175, 122, 7, 0.5) !important;
 }
 
-.toast-error {
-  background: lightred;
+.severity-error {
+  background: rgba(175, 7, 7, 0.5) !important;
 }

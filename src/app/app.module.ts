@@ -113,7 +113,8 @@ if (!environment.production) {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
-      }
+      },
+      defaultLanguage: 'ro'
     }),
 
     MsalModule.forRoot(

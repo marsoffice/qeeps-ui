@@ -11,19 +11,19 @@ export class ToastService {
   constructor(private snackBar: MatSnackBar) { }
 
   showError(message: string) {
-    return this.show(message, 'toast-error');
+    return this.show(message, 'severity-error');
   }
 
   showInfo(message: string) {
-    return this.show(message, 'toast-info');
+    return this.show(message, 'severity-info');
   }
 
   showWarn(message: string) {
-    return this.show(message, 'toast-warn');
+    return this.show(message, 'severity-warn');
   }
 
   showSuccess(message: string) {
-    return this.show(message, 'toast-success');
+    return this.show(message, 'severity-success');
   }
 
   private show(message: string, className: string) {

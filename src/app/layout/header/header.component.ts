@@ -26,7 +26,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPreferences: UserPreferencesDto | null = null;
 
   constructor(private authService: AuthService, private router: Router, public translateService: TranslateService,
-    private userPreferencesService: UserPreferencesService) { }
+    private userPreferencesService: UserPreferencesService) {
+
+    }
 
   ngOnInit(): void {
     this._destroy.push(
@@ -66,7 +68,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   changeLanguage(lang: string): void {
-    this.translateService.use(lang);
     this.userPreferencesService.saveUserPreferences(
       {...this.userPreferences, preferredLanguage: lang}
     ).subscribe();
