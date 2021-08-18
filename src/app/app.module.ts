@@ -45,6 +45,7 @@ import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -158,6 +159,12 @@ if (!environment.production) {
         ),
       }
     ),
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: environment.production,
+        // Register the ServiceWorker as soon as the app is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000'
+      }),
   ],
   providers: [
     {

@@ -51,12 +51,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/staticwebapp.config.json"
+              "src/staticwebapp.config.json",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -95,7 +98,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "hmr": true,
-            "proxyConfig": "proxy.conf.js"
+            "proxyConfig": "proxy.conf.js",
+            "ssl": true,
+            "sslCert": "ssl/cert.crt",
+            "sslKey": "ssl/cert.key"
           },
           "configurations": {
             "production": {
@@ -123,7 +129,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"

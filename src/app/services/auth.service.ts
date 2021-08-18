@@ -26,7 +26,7 @@ export class AuthService {
       this.userSubject = new BehaviorSubject<AccountInfo | null>(null);
     }
 
-  updateLoggedInStatus() {
+  updateLoggedInStatus(cb: () => void) {
     this.msalBroadcastService.inProgress$
       .pipe(
         filter((status: InteractionStatus) => status === InteractionStatus.None),
@@ -35,6 +35,7 @@ export class AuthService {
       .subscribe(() => {
         this.setLoggedIn();
         this.checkAndSetActiveAccount();
+        cb();
       });
   }
 
