@@ -44,10 +44,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   }
 
   notificationClicked(notif: NotificationDto, event: MouseEvent) {
-  //  if (notif.absoluteRouteUrl == null) {
+    if (notif.absoluteRouteUrl == null) {
       event.stopPropagation();
       event.preventDefault();
-  //  }
+    }
     this.markAsRead(notif);
   }
 
