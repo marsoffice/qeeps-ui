@@ -12,7 +12,7 @@ export class UpdateService {
       updates.checkForUpdate().then(() => {
 
       });
-      interval(10000).subscribe(() => updates.checkForUpdate()
+      interval(30 * 60 * 1000).subscribe(() => updates.checkForUpdate()
         .then(() => console.log('checking for updates')));
     }
   }

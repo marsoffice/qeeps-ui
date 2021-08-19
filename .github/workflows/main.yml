@@ -11,8 +11,14 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  build_stg:
+    if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
+    environment: stg
+    env:
+      adclientid: '${{ secrets.adclientid }}'
+      adtenantid: '${{ secrets.adtenantid }}'
+      publicvapidkey: '${{ secrets.publicvapidkey }}'
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -38,6 +44,11 @@ jobs:
       - name: npm install
         run: npm ci
 
+      - name: replace secrets
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["./src/index.html"]'
+
       - name: npm build
         run: npm run build
 
@@ -48,15 +59,62 @@ jobs:
           name: dist
           path: ./dist/qeeps-ui
 
-  deploy_stg:
-    if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
+
+  build_prod:
+    if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
-    needs: [build]
-    environment: stg
+    environment: prod
     env:
       adclientid: '${{ secrets.adclientid }}'
       adtenantid: '${{ secrets.adtenantid }}'
       publicvapidkey: '${{ secrets.publicvapidkey }}'
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: setup nodejs
+        uses: actions/setup-node@v2.3.0
+        with:
+          node-version: '16.x'
+
+      - name: cache node_modules
+        uses: actions/cache@v2
+        id: cache-nodemodules
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ github.workflow }}-${{ secrets.CACHE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ github.workflow }}-${{ secrets.CACHE_VERSION }}-
+
+      - name: npm install
+        run: npm ci
+
+      - name: replace secrets
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["./src/index.html"]'
+
+      - name: npm build
+        run: npm run build
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v2.2.4
+        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
+        with:
+          name: dist
+          path: ./dist/qeeps-ui
+
+
+
+  deploy_stg:
+    if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    needs: [build_stg]
+    environment: stg
     name: deploy stg
     steps:
       - name: download artifact
@@ -64,11 +122,6 @@ jobs:
         with:
           name: 'dist'
           path: ./dist
-
-      - name: replace secrets
-        uses: cschleiden/replace-tokens@v1
-        with:
-          files: '["./dist/index.html"]'
 
       - name: deploy westeurope
         uses: Azure/static-web-apps-deploy@v1
@@ -84,12 +137,8 @@ jobs:
   deploy_prod:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [build_prod]
     environment: prod
-    env:
-      adclientid: '${{ secrets.adclientid }}'
-      adtenantid: '${{ secrets.adtenantid }}'
-      publicvapidkey: '${{ secrets.publicvapidkey }}'
     name: deploy prod
     steps:
       - name: Download a Build Artifact
@@ -97,12 +146,6 @@ jobs:
         with:
           name: 'dist'
           path: ./dist
-
-
-      - name: replace secrets
-        uses: cschleiden/replace-tokens@v1
-        with:
-          files: '["./dist/index.html"]'
 
       - name: deploy westeurope
         uses: Azure/static-web-apps-deploy@v1
