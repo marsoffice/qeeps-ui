@@ -9,9 +9,6 @@ export class UpdateService {
 
   constructor(public updates: SwUpdate) {
     if (updates.isEnabled) {
-      updates.checkForUpdate().then(() => {
-
-      });
       interval(30 * 60 * 1000).subscribe(() => updates.checkForUpdate()
         .then(() => console.log('checking for updates')));
     }
