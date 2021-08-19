@@ -10,7 +10,7 @@ export class NotificationsService {
   constructor(private http: HttpClient) { }
 
   get(page: number, elementsPerPage: number) {
-    return this.http.get<NotificationsDto>(`/api/notifications?page=${page}&elementsPerPage=${elementsPerPage}`);
+    return this.http.get<NotificationsDto>(`/api/notifications/all?page=${page}&elementsPerPage=${elementsPerPage}`);
   }
 
   markAsRead(notificationId: string) {
