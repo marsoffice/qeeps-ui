@@ -10,6 +10,7 @@ import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
+import { UpdateService } from './services/update.service';
 import { UserPreferencesService } from './services/user-preferences.service';
 
 @Component({
@@ -29,12 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
     private authService: AuthService, private translateService: TranslateService, private accessService: AccessService,
     private hubService: HubService,
     private pushSubscriptionsService: PushSubscriptionsService,
-    private swPush: SwPush
+    private swPush: SwPush,
+    private updateService: UpdateService
   ) {
+    this.updateService.checkForUpdates();
   }
 
   ngOnInit(): void {
-
     this.isIframe = window !== window.parent && !window.opener;
     this.authService.updateLoggedInStatus(() => {
       this._destroy.push(
