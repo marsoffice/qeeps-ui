@@ -34,12 +34,11 @@
         "/api/**",
         "https://login.microsoftonline.com/**",
         "https://*.service.signalr.net/**",
-        "https://graph.microsoft.com/v1/**"
+        "https://graph.microsoft.com/**"
       ],
       "cacheConfig": {
-        "maxSize": 5,
-        "maxAge": "1h",
-        "timeout": "15s",
+        "maxSize": 0,
+        "maxAge": "0u",
         "strategy": "freshness"
       }
     }
