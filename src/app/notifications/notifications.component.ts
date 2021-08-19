@@ -33,7 +33,6 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     this.load();
     this.realTimeNotifObs = this.hubService.subscribe('notificationReceived');
     this.realTimeNotifObs.observable.subscribe(notif => {
-      console.log(notif);
       this.notifications = [notif, ...this.notifications];
       this.total++;
       this.unread++;
@@ -62,6 +61,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     if (this.swPush.isEnabled) {
       this._destroy.push(
         this.swPush.notificationClicks.subscribe((n: any) => {
+          console.log(n);
           this.notificationsService.markAsRead(n.data.id).subscribe();
         })
       );

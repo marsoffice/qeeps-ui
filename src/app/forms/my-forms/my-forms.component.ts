@@ -12,7 +12,7 @@ export class MyFormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.formsService.test().subscribe(x => {
-      console.log(x);
+
     });
   }
 
