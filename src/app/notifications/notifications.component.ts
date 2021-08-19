@@ -1,15 +1,14 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 import { NotificationDto } from '../models/notification.dto';
 import { Severity } from '../models/severity';
 import { HubService, SignalrObservableWrapper } from '../services/hub.service';
 import { NotificationsService } from '../services/notifications.service';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../shared/toast/toast.service';
 
 @Component({
   selector: 'app-notifications',
@@ -36,23 +35,23 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       this.notifications = [notif, ...this.notifications];
       this.total++;
       this.unread++;
-      let snackBar: MatSnackBarRef<TextOnlySnackBar> | undefined;
+      let snackBar: Observable<void>;
       switch (notif.severity) {
         default:
         case Severity.Info:
-          snackBar = this.toastService.showInfo(`${notif.title} > ${notif.message}`);
+          snackBar = this.toastService.showInfo(notif.message, notif.title);
           break;
         case Severity.Success:
-          snackBar = this.toastService.showSuccess(`${notif.title} > ${notif.message}`);
+          snackBar = this.toastService.showSuccess(notif.message, notif.title);
           break;
         case Severity.Warn:
-          snackBar = this.toastService.showWarn(`${notif.title} > ${notif.message}`);
+          snackBar = this.toastService.showWarn(notif.message, notif.title);
           break;
         case Severity.Error:
-          snackBar = this.toastService.showError(`${notif.title} > ${notif.message}`);
+          snackBar = this.toastService.showError(notif.message, notif.title);
           break;
       }
-      snackBar.onAction().subscribe(() => {
+      snackBar.subscribe(() => {
         this.markAsRead(notif);
       });
     });
