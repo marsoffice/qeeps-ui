@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SwPush } from '@angular/service-worker';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
@@ -26,7 +25,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
 
   constructor(private notificationsService: NotificationsService, private hubService: HubService,
-    private toastService: ToastService, private router: Router, private swPush: SwPush) { }
+    private toastService: ToastService, private router: Router) { }
 
   ngOnInit(): void {
     this.load();
@@ -55,23 +54,6 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.markAsRead(notif);
       });
     });
-
-
-    if (this.swPush.isEnabled) {
-      this._destroy.push(
-        this.swPush.notificationClicks.subscribe((n: any) => {
-          const foundNotif = this.notifications.find(x => x.id === n.notification.data.id);
-          if (foundNotif != null) {
-            foundNotif.isRead = true;
-            this.unread--;
-            if (this.unread < 0) {
-              this.unread = 0;
-            }
-          }
-          this.notificationsService.markAsRead(n.notification.data.id).subscribe();
-        })
-      );
-    }
   }
 
   ngOnDestroy(): void {

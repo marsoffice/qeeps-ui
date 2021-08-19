@@ -6,6 +6,7 @@ import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HomeComponent } from './home/home.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [MsalGuard],
+  },
+  {
+    path: 'from-notification',
+    component: FromNotificationComponent,
     canActivate: [MsalGuard],
   },
   {

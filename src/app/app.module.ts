@@ -47,6 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SharedModule } from './shared/shared.module';
+import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -90,6 +91,7 @@ if (!environment.production) {
     HealthcheckComponent,
     ProfileComponent,
     NotificationsComponent,
+    FromNotificationComponent,
   ],
   imports: [
     SharedModule,
