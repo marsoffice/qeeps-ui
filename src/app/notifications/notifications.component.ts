@@ -61,8 +61,15 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     if (this.swPush.isEnabled) {
       this._destroy.push(
         this.swPush.notificationClicks.subscribe((n: any) => {
-          console.log(n);
-          this.notificationsService.markAsRead(n.data.id).subscribe();
+          const foundNotif = this.notifications.find(x => x.id === n.notification.data.id);
+          if (foundNotif != null) {
+            foundNotif.isRead = true;
+            this.unread--;
+            if (this.unread < 0) {
+              this.unread = 0;
+            }
+          }
+          this.notificationsService.markAsRead(n.notification.data.id).subscribe();
         })
       );
     }
