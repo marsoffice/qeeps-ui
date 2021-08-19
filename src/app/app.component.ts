@@ -3,15 +3,15 @@ import { MediaObserver } from '@angular/flex-layout';
 import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
-import { UpdateService } from './services/update.service';
 import { UserPreferencesService } from './services/user-preferences.service';
+import { ToastService } from './shared/toast/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isMobile = true;
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
+  private checkUpdateInterval: Observable<number>;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
@@ -31,9 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private hubService: HubService,
     private pushSubscriptionsService: PushSubscriptionsService,
     private swPush: SwPush,
-    private updateService: UpdateService
+    private swUpdate: SwUpdate,
+    private toastService: ToastService
   ) {
-    this.updateService.checkForUpdates();
+    this.checkUpdateInterval = interval(15 * 60 * 1000);
   }
 
   ngOnInit(): void {
@@ -50,18 +52,40 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         })
       );
-
-      this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
-        if (up.useDarkTheme) {
-          document.body.classList.add('theme-alternate');
-        } else {
-          document.body.classList.remove('theme-alternate');
-        }
-        const newLang = up.preferredLanguage == null ? this.translateService.getBrowserLang() : up.preferredLanguage;
-        this.translateService.use(newLang);
-      }));
     });
 
+    this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
+      if (up.useDarkTheme) {
+        document.body.classList.add('theme-alternate');
+      } else {
+        document.body.classList.remove('theme-alternate');
+      }
+      const newLang = up.preferredLanguage == null ? this.translateService.getBrowserLang() : up.preferredLanguage;
+      this.translateService.use(newLang);
+
+      if (this.swUpdate.isEnabled) {
+        this._destroy.push(
+          this.checkUpdateInterval.subscribe(() => {
+            this.swUpdate.checkForUpdate().then(() => {
+              this.toastService.showInfo(this.translateService.instant('ui.update.updateCheck'));
+            });
+          })
+        );
+
+        this._destroy.push(
+          this.swUpdate.available.subscribe(() => {
+            this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
+            window.location.reload();
+          })
+        );
+
+        this._destroy.push(
+          this.swUpdate.activated.subscribe(() => {
+            this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
+          })
+        );
+      }
+    }));
 
     this._destroy.push(
       this.mediaObserver.asObservable().subscribe(() => {

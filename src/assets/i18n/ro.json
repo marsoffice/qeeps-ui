@@ -5,9 +5,8 @@
     },
     "update": {
       "updateCheck": "Se verifică actualizările",
-      "updateIsAvailable": "Actualizare disponibilă",
-      "updating": "Aplicația se actualizează",
-      "updateFinished": "Actualizare terminată, se reîncarcă"
+      "updateIsAvailable": "Actualizare disponibilă, se reîncarcă",
+      "updateFinished": "Actualizare terminată"
     },
     "notifications": {
       "markAllAsRead": "Marcați toate ca citite",

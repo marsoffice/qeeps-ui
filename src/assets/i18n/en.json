@@ -5,9 +5,8 @@
     },
     "update": {
       "updateCheck": "Checking for updates",
-      "updateIsAvailable": "An update is available",
-      "updating": "Application is updating",
-      "updateFinished": "Update finished, reloading"
+      "updateIsAvailable": "An update is available, installing",
+      "updateFinished": "Update finished"
     },
     "notifications": {
       "markAllAsRead": "Mark all as read",
