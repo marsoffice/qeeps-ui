@@ -38,20 +38,28 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.updates.isEnabled) {
+      console.log('Checking for update...');
       this.updates.checkForUpdate().then(() => {
+        console.log('Checking for update finished');
         this.updates.available.subscribe(() => {
+          console.log('Update available');
           this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
           this.updates.activateUpdate().then(() => {
+            console.log('Update activating...');
             this.toastService.showInfo(this.translateService.instant('ui.update.updating'));
             this.updates.activated.subscribe(() => {
+              console.log('Update activated');
               this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
               setTimeout(() => {
+                console.log('Reloading...');
                 location.reload();
               }, 1000);
             });
           });
         });
       });
+    } else {
+      console.log('Updates are not supported');
     }
 
     this.isIframe = window !== window.parent && !window.opener;
