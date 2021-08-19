@@ -3,6 +3,12 @@
     "toast": {
       "open": "Open"
     },
+    "update": {
+      "updateCheck": "Checking for updates",
+      "updateIsAvailable": "An update is available",
+      "updating": "Application is updating",
+      "updateFinished": "Update finished, reloading"
+    },
     "notifications": {
       "markAllAsRead": "Mark all as read",
       "loadMore": "Load more"

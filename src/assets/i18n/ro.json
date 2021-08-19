@@ -3,6 +3,12 @@
     "toast": {
       "open": "Deschidere"
     },
+    "update": {
+      "updateCheck": "Se verifică actualizările",
+      "updateIsAvailable": "Actualizare disponibilă",
+      "updating": "Aplicația se actualizează",
+      "updateFinished": "Actualizare terminată, se reîncarcă"
+    },
     "notifications": {
       "markAllAsRead": "Marcați toate ca citite",
       "loadMore": "Încărcați mai multe"

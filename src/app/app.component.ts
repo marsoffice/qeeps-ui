@@ -10,6 +10,7 @@ import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
+import { ToastService } from './services/toast.service';
 import { UserPreferencesService } from './services/user-preferences.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private hubService: HubService,
     private updates: SwUpdate,
     private pushSubscriptionsService: PushSubscriptionsService,
-    private swPush: SwPush
+    private swPush: SwPush,
+    private toastService: ToastService
   ) {
   }
 
@@ -38,8 +40,15 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.updates.isEnabled) {
       this.updates.checkForUpdate().then(() => {
         this.updates.available.subscribe(() => {
+          this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
           this.updates.activateUpdate().then(() => {
-            location.reload();
+            this.toastService.showInfo(this.translateService.instant('ui.update.updating'));
+            this.updates.activated.subscribe(() => {
+              this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
+              setTimeout(() => {
+                location.reload();
+              }, 1000);
+            });
           });
         });
       });
