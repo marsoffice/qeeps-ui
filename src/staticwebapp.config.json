@@ -6,14 +6,6 @@
     {
       "route": "/.auth/*",
       "statusCode": 404
-    },
-    {
-      "route": "/ngsw.json",
-      "headers": {
-        "cache-control": "no-cache, no-store, must-revalidate",
-        "pragma": "no-cache",
-        "expires": "0"
-      }
     }
   ]
 }
