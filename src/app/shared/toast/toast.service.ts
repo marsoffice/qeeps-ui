@@ -10,23 +10,23 @@ export class ToastService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  showError(message: string, title: string = null) {
+  showError(message: string, title: string | null = null) {
     return this.show(message, title, 'severity-error');
   }
 
-  showInfo(message: string, title: string = null) {
+  showInfo(message: string, title: string | null = null) {
     return this.show(message, title, 'severity-info');
   }
 
-  showWarn(message: string, title: string = null) {
+  showWarn(message: string, title: string | null = null) {
     return this.show(message, title, 'severity-warn');
   }
 
-  showSuccess(message: string, title: string = null) {
+  showSuccess(message: string, title: string | null = null) {
     return this.show(message, title, 'severity-success');
   }
 
-  private show(message: string, title: string, className: string) {
+  private show(message: string, title: string | null, className: string) {
     const sub = new Subject<void>();
     this.snackBar.openFromComponent(ToastComponent, {
       horizontalPosition: 'end',
