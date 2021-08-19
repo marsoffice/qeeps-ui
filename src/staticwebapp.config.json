@@ -2,15 +2,18 @@
   "navigationFallback": {
     "rewrite": "/index.html"
   },
-  "globalHeaders": {
-    "cache-control": "no-cache, no-store, must-revalidate",
-    "pragma": "no-cache",
-    "expires": "0"
-  },
   "routes": [
     {
       "route": "/.auth/*",
       "statusCode": 404
+    },
+    {
+      "route": "/ngsw.json",
+      "headers": {
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "pragma": "no-cache",
+        "expires": "0"
+      }
     }
   ]
 }
