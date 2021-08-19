@@ -54,6 +54,19 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.markAsRead(notif);
       });
     });
+
+    this._destroy.push(
+      this.notificationsService.markAsReadExternal.subscribe(nid => {
+        const foundNotif = this.notifications.find(x => x.id === nid);
+        if (foundNotif != null) {
+          foundNotif.isRead = true;
+          this.unread--;
+          if (this.unread < 0) {
+            this.unread = 0;
+          }
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {

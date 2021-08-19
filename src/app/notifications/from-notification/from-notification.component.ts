@@ -19,7 +19,7 @@ export class FromNotificationComponent implements OnInit {
       filter(x => x != null),
       take(1),
       switchMap(() => this.actRoute.queryParams),
-      switchMap(qp => this.notificationsService.markAsRead(qp['nid']).pipe(
+      switchMap(qp => this.notificationsService.markAsRead(qp['nid'], true).pipe(
         map(() => qp['returnTo'])
       ))
     ).subscribe(returnTo => {
