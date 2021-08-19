@@ -39,20 +39,18 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.updates.isEnabled) {
 
+      this.updates.activated.subscribe(() => {
+        console.log('Update activated');
+        this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
+      });
+
       this.updates.available.subscribe(() => {
         console.log('Update available');
         this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
         this.updates.activateUpdate().then(() => {
           console.log('Update activating...');
           this.toastService.showInfo(this.translateService.instant('ui.update.updating'));
-          this.updates.activated.subscribe(() => {
-            console.log('Update activated');
-            this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
-            setTimeout(() => {
-              console.log('Reloading...');
-              location.reload();
-            }, 1000);
-          });
+          location.reload();
         });
       });
 
