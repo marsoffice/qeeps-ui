@@ -1,6 +1,5 @@
 export interface ToastData {
   message: string;
-  title: string;
-  className: string;
+  title?: string;
   onClick?: () => void;
 }
