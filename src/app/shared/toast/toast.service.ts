@@ -36,7 +36,6 @@ export class ToastService {
       data: {
         message: message,
         title: title,
-        className: className,
         onClick: () => {
           sub.next();
         }
