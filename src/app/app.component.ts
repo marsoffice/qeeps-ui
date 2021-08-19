@@ -4,6 +4,7 @@ import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { interval, Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
       );
     });
 
+
     this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
       if (up.useDarkTheme) {
         document.body.classList.add('theme-alternate');
@@ -62,6 +64,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       const newLang = up.preferredLanguage == null ? this.translateService.getBrowserLang() : up.preferredLanguage;
       this.translateService.use(newLang);
+    }));
+
+    this._destroy.push(this.userPreferencesService.userPreferences.pipe(
+      take(1)
+    ).subscribe(up => {
+
 
       if (this.swUpdate.isEnabled) {
         this._destroy.push(
