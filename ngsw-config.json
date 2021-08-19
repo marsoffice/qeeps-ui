@@ -31,7 +31,7 @@
     {
       "name": "api",
       "urls": [
-        "/api",
+        "/api/**",
         "https://login.microsoftonline.com/**",
         "https://*.service.signalr.net/**"
       ],
