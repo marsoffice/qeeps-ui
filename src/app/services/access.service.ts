@@ -10,6 +10,6 @@ export class AccessService {
   constructor(private http: HttpClient) { }
 
   organisationsTree() {
-    return this.http.get<OrganisationDto>('/api/access/myOrganisationsTree');
+    return this.http.get<OrganisationDto[]>('/api/access/myOrganisationsTree');
   }
 }

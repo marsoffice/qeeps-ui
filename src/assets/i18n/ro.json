@@ -30,7 +30,8 @@
       }
     },
     "profile": {
-      "organisations": "Organizații"
+      "organisations": "Organizații",
+      "noOrganisations": "Fără organizații"
     },
     "roles": {
       "owner": "Proprietar aplicație",

@@ -34,7 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTreeModule } from '@angular/material/tree';
+import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
@@ -105,7 +105,7 @@ if (!environment.production) {
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatTreeModule,
+    MatListModule,
     MatSlideToggleModule,
     MatSidenavModule,
     MatCardModule,

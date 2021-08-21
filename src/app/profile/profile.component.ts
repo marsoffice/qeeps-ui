@@ -17,10 +17,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
   userRoles: string[] | null = null;
-  organisationsTree: OrganisationDto | null = null;
+  organisations: OrganisationDto[] | null = null;
   photo: SafeUrl | null = null;
-  treeControl = new NestedTreeControl<OrganisationDto>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<OrganisationDto>();
 
   constructor(private authService: AuthService, private accessService: AccessService) { }
 
@@ -38,12 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     );
     this._destroy.push(
       this.accessService.organisationsTree().subscribe(o => {
-        this.organisationsTree = o;
-        if (o != null) {
-          this.dataSource.data = [o];
-        } else {
-          this.dataSource.data = [];
-        }
+        this.organisations = o;
       })
     );
   }
@@ -51,7 +44,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._destroy.forEach(x => x.unsubscribe());
   }
-
-  hasChild = (_: number, node: OrganisationDto) => !!node.children && node.children.length > 0;
-
 }

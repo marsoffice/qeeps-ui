@@ -30,7 +30,8 @@
       }
     },
     "profile": {
-      "organisations": "Organisations"
+      "organisations": "Organisations",
+      "noOrganisations": "No organisations"
     },
     "roles": {
       "owner": "Application Owner",
