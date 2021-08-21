@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToastModule } from './toast/toast.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -10,12 +11,14 @@ import { ToastModule } from './toast/toast.module';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    ToastModule
+    ToastModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
     FlexLayoutModule,
-    ToastModule
+    ToastModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }
