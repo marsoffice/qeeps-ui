@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
+import {take, switchMap} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 import { NotificationDto } from '../models/notification.dto';
@@ -23,6 +24,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   private realTimeNotifObs: SignalrObservableWrapper<NotificationDto> | null = null;
   severities = Severity;
   private _destroy: Subscription[] = [];
+  private notificationsLoadedSub = new Subject<void>();
 
   constructor(private notificationsService: NotificationsService, private hubService: HubService,
     private toastService: ToastService, private router: Router) { }
@@ -56,7 +58,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     });
 
     this._destroy.push(
-      this.notificationsService.markAsReadExternal.subscribe(nid => {
+      this.notificationsLoadedSub.asObservable().pipe(
+        take(1),
+        switchMap(() => this.notificationsService.markAsReadExternal)
+      ).subscribe(nid => {
         if (this.notifications == null || this.notifications.length === 0) {
           return;
         }
@@ -68,8 +73,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
             this.unread = 0;
           }
         }
-      })
-    );
+      }));
   }
 
   ngOnDestroy(): void {
@@ -106,6 +110,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       this.total = dto.total;
       this.unread = dto.unread;
       this.notifications = [...this.notifications, ...dto.notifications];
+      this.notificationsLoadedSub.next();
     });
   }
 
