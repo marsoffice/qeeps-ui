@@ -118,8 +118,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     if (notif.absoluteRouteUrl) {
       this.router.navigateByUrl(notif.absoluteRouteUrl);
     }
-    this.unread--;
-    notif.isRead = true;
-    this.notificationsService.markAsRead(notif.id).subscribe();
+    if (!notif.isRead) {
+      this.unread--;
+      notif.isRead = true;
+      this.notificationsService.markAsRead(notif.id).subscribe();
+    }
   }
 }
