@@ -53,5 +53,19 @@
       "recipientUserIdsRequired": "ID-urile utilizatorilor destinatari sunt obligatorii",
       "templateRequired": "Șablonul este obligatoriu"
     }
+  },
+  "forms": {
+    "formDto": {
+      "titleRequired": "Titlul este obligatoriu",
+      "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere",
+      "cronExpressionRequired": "Intervalul de recurență este obligatoriu",
+      "attachmentFilenameRequired": "Numele atașamentului este obligatoriu",
+      "attachmentIdRequired": "ID-ul atașamentului este obligatoriu",
+      "userIdRequired": "ID-ul utilizatorului este obligatoriu",
+      "dropdownOptionsRequired": "Opțiunile selecției sunt obligatorii",
+      "columnNameRequired": "Numele coloanei este obligatoriu",
+      "formAccessesRequired": "Regulile de acces sunt obligatorii",
+      "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu"
+    }
   }
 }

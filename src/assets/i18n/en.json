@@ -49,9 +49,23 @@
   },
   "notifications": {
     "processNotification": {
-      "notificationTypesRequired": "Notification types required",
-      "recipientUserIdsRequired": "Recipient user IDs required",
-      "templateRequired": "Template required"
+      "notificationTypesRequired": "Notification types are required",
+      "recipientUserIdsRequired": "Recipient user IDs are required",
+      "templateRequired": "Template is required"
+    }
+  },
+  "forms": {
+    "formDto": {
+      "titleRequired": "Title is required",
+      "titleTooShort": "Title is too short, min. {{chars}} characters",
+      "cronExpressionRequired": "Recurrence interval is required",
+      "attachmentFilenameRequired": "Attachment filename is required",
+      "attachmentIdRequired": "Attachment ID is required",
+      "userIdRequired": "User ID required",
+      "dropdownOptionsRequired": "Dropdown options are required",
+      "columnNameRequired": "Column name is required",
+      "formAccessesRequired": "Form access rules are required",
+      "accessOrganisationRequired": "Form access rule organisation ID is required"
     }
   }
 }
