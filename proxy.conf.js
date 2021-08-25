@@ -16,5 +16,9 @@ module.exports = {
   "/api/notifications": {
     target: "http://localhost:7003",
     secure: false
+  },
+  "/api/files": {
+    target: "http://localhost:7004",
+    secure: false
   }
 };
