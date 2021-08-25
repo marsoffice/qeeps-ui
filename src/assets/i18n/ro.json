@@ -64,7 +64,6 @@
       "userIdRequired": "ID-ul utilizatorului este obligatoriu",
       "dropdownOptionsRequired": "Opțiunile selecției sunt obligatorii",
       "columnNameRequired": "Numele coloanei este obligatoriu",
-      "formAccessesRequired": "Regulile de acces sunt obligatorii",
       "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu"
     }
   }

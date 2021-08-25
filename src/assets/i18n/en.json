@@ -64,7 +64,6 @@
       "userIdRequired": "User ID required",
       "dropdownOptionsRequired": "Dropdown options are required",
       "columnNameRequired": "Column name is required",
-      "formAccessesRequired": "Form access rules are required",
       "accessOrganisationRequired": "Form access rule organisation ID is required"
     }
   }
