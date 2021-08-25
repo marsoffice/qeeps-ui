@@ -46,5 +46,12 @@
       "myForms": "My Forms",
       "createForm": "Create Form"
     }
+  },
+  "notifications": {
+    "processNotification": {
+      "notificationTypesRequired": "Notification types required",
+      "recipientUserIdsRequired": "Recipient user IDs required",
+      "templateRequired": "Template required"
+    }
   }
 }

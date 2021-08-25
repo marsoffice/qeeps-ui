@@ -46,5 +46,12 @@
       "myForms": "Formularele mele",
       "createForm": "Creare formular"
     }
+  },
+  "notifications": {
+    "processNotification": {
+      "notificationTypesRequired": "Tipurile de notificare sunt obligatorii",
+      "recipientUserIdsRequired": "ID-urile utilizatorilor destinatari sunt obligatorii",
+      "templateRequired": "Șablonul este obligatoriu"
+    }
   }
 }
