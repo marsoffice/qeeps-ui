@@ -24,7 +24,7 @@ export class FunctionProxyInterceptor implements HttpInterceptor {
     let newHeaders = new HttpHeaders();
     for (const key of request.headers.keys()) {
       if (key === 'Authorization') {
-        newHeaders = newHeaders.append('x-authorization', request.headers.get(key)!);
+        newHeaders = newHeaders.append('XAuthorization', request.headers.get(key)!);
         continue;
       }
       newHeaders = newHeaders.append(key, request.headers.get(key)!);
