@@ -20,6 +20,7 @@ jobs:
       adclientid: '${{ secrets.adclientid }}'
       adtenantid: '${{ secrets.adtenantid }}'
       publicvapidkey: '${{ secrets.publicvapidkey }}'
+      usefunctionproxy: 'true'
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -75,6 +76,7 @@ jobs:
       adclientid: '${{ secrets.adclientid }}'
       adtenantid: '${{ secrets.adtenantid }}'
       publicvapidkey: '${{ secrets.publicvapidkey }}'
+      usefunctionproxy: 'false'
     steps:
       - name: checkout repo
         uses: actions/checkout@v2

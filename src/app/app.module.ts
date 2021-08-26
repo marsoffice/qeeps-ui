@@ -48,6 +48,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SharedModule } from './shared/shared.module';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
+import { FunctionProxyInterceptor } from './services/function-proxy.interceptor';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -174,6 +175,11 @@ if (!environment.production) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FunctionProxyInterceptor,
       multi: true,
     },
     ...additionalProviders,

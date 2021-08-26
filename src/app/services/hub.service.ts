@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
+  DefaultHttpClient,
+  HttpRequest,
   HubConnection, HubConnectionBuilder, IRetryPolicy, JsonHubProtocol, LogLevel, MessageHeaders, RetryContext
 } from '@microsoft/signalr';
+import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
 import { from, Observable, of, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -27,6 +30,20 @@ export class SignalrObservableWrapper<T> {
   }
 }
 
+class CustomHttpClient extends DefaultHttpClient {
+  constructor() {
+    super(new ConsoleLogger(environment.production ? LogLevel.None : LogLevel.Information));
+  }
+
+  send(request: HttpRequest) {
+    if (environment.usefunctionproxy !== 'false' && request.headers != null && request.headers['Authorization'] != null && request.url?.includes(window.location.origin)) {
+      request.headers['x-authorization'] = request.headers['Authorization'];
+      delete request.headers['Authorization'];
+    }
+    return super.send(request);
+  }
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -40,21 +57,22 @@ export class HubService {
     ).subscribe(u => {
       let msgHeaders: MessageHeaders = {};
 
-      if  (!environment.production) {
+      if (!environment.production) {
         msgHeaders['x-ms-client-principal-id'] = u!.id;
       }
 
       this.connection = new HubConnectionBuilder()
-      .withUrl('/api/access/signalr', {
-        accessTokenFactory: () => {
-          return this.authService.getAccessToken().toPromise();
-        },
-        headers: msgHeaders
-      })
-      .withAutomaticReconnect(new CustomRetryPolicy())
-      .withHubProtocol(new JsonHubProtocol())
-      .configureLogging(environment.production ? LogLevel.None : LogLevel.Debug)
-      .build();
+        .withUrl('/api/access/signalr', {
+          accessTokenFactory: () => {
+            return this.authService.getAccessToken().toPromise();
+          },
+          httpClient: new CustomHttpClient(),
+          headers: msgHeaders
+        })
+        .withAutomaticReconnect(new CustomRetryPolicy())
+        .withHubProtocol(new JsonHubProtocol())
+        .configureLogging(environment.production ? LogLevel.None : LogLevel.Debug)
+        .build();
     });
   }
 
