@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "access": {
+      "matchCondition": {
+        "route": "/api/access/{*restOfPath}"
+      },
+      "backendUri": "%access_url%/api/access/{restOfPath}",
+      "requestOverrides": {
+        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+      }
+    },
+    "forms": {
+      "matchCondition": {
+        "route": "/api/forms/{*restOfPath}"
+      },
+      "backendUri": "%forms_url%/api/forms/{restOfPath}",
+      "requestOverrides": {
+        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+      }
+    },
+    "files": {
+      "matchCondition": {
+        "route": "/api/files/{*restOfPath}"
+      },
+      "backendUri": "%files_url%/api/files/{restOfPath}",
+      "requestOverrides": {
+        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+      }
+    },
+    "notifications": {
+      "matchCondition": {
+        "route": "/api/notifications/{*restOfPath}"
+      },
+      "backendUri": "%notifications_url%/api/notifications/{restOfPath}",
+      "requestOverrides": {
+        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+      }
+    }
+  }
+}

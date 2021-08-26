@@ -52,13 +52,19 @@ jobs:
       - name: npm build
         run: npm run build
 
-      - name: upload artifact
+      - name: upload ui artifact
         uses: actions/upload-artifact@v2.2.4
         if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
         with:
-          name: dist
+          name: dist_ui
           path: ./dist/qeeps-ui
 
+      - name: upload api artifact
+        uses: actions/upload-artifact@v2.2.4
+        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
+        with:
+          name: dist_api
+          path: ./api
 
   build_prod:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
@@ -101,14 +107,19 @@ jobs:
       - name: npm build
         run: npm run build
 
-      - name: upload artifact
+      - name: upload ui artifact
         uses: actions/upload-artifact@v2.2.4
         if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
         with:
-          name: dist
+          name: dist_ui
           path: ./dist/qeeps-ui
 
-
+      - name: upload api artifact
+        uses: actions/upload-artifact@v2.2.4
+        if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
+        with:
+          name: dist_api
+          path: ./api
 
   deploy_stg:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
@@ -117,11 +128,17 @@ jobs:
     environment: stg
     name: deploy stg
     steps:
-      - name: download artifact
+      - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist'
+          name: 'dist_ui'
           path: ./dist
+
+      - name: download api artifact
+        uses: actions/download-artifact@v2.0.10
+        with:
+          name: 'dist_api'
+          path: ./api
 
       - name: deploy westeurope
         uses: Azure/static-web-apps-deploy@v1
@@ -141,11 +158,17 @@ jobs:
     environment: prod
     name: deploy prod
     steps:
-      - name: Download a Build Artifact
+      - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist'
+          name: 'dist_ui'
           path: ./dist
+
+      - name: download api artifact
+        uses: actions/download-artifact@v2.0.10
+        with:
+          name: 'dist_api'
+          path: ./api
 
       - name: deploy westeurope
         uses: Azure/static-web-apps-deploy@v1
