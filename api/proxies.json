@@ -2,6 +2,7 @@
   "$schema": "http://json.schemastore.org/proxies",
   "proxies": {
     "access": {
+      "debug": true,
       "matchCondition": {
         "route": "/api/access/{*restOfPath}"
       },
@@ -11,6 +12,7 @@
       }
     },
     "forms": {
+      "debug": true,
       "matchCondition": {
         "route": "/api/forms/{*restOfPath}"
       },
@@ -20,6 +22,7 @@
       }
     },
     "files": {
+      "debug": true,
       "matchCondition": {
         "route": "/api/files/{*restOfPath}"
       },
@@ -29,6 +32,7 @@
       }
     },
     "notifications": {
+      "debug": true,
       "matchCondition": {
         "route": "/api/notifications/{*restOfPath}"
       },
