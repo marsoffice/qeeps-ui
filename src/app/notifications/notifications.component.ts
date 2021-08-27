@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription, Subject } from 'rxjs';
-import {take, switchMap} from 'rxjs/operators';
+import { take, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 import { NotificationDto } from '../models/notification.dto';
@@ -62,17 +62,19 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         take(1),
         switchMap(() => this.notificationsService.markAsReadExternal)
       ).subscribe(nid => {
-        if (this.notifications == null || this.notifications.length === 0) {
-          return;
-        }
-        const foundNotif = this.notifications.find(x => x.id === nid);
-        if (foundNotif != null) {
-          foundNotif.isRead = true;
-          this.unread--;
-          if (this.unread < 0) {
-            this.unread = 0;
+        setTimeout(() => {
+          if (this.notifications == null || this.notifications.length === 0) {
+            return;
           }
-        }
+          const foundNotif = this.notifications.find(x => x.id === nid);
+          if (foundNotif != null) {
+            foundNotif.isRead = true;
+            this.unread--;
+            if (this.unread < 0) {
+              this.unread = 0;
+            }
+          }
+        }, 10);
       }));
   }
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { NotificationsDto } from '../models/notifications.dto';
 
 @Injectable({
@@ -16,10 +17,13 @@ export class NotificationsService {
   }
 
   markAsRead(notificationId: string, emit = false) {
-    if (emit) {
-      this.markAsReadSubject.next(notificationId);
-    }
-    return this.http.put(`/api/notifications/${notificationId}/markAsRead`, null);
+    return this.http.put(`/api/notifications/${notificationId}/markAsRead`, null).pipe(
+      tap(() => {
+        if (emit) {
+          this.markAsReadSubject.next(notificationId);
+        }
+      })
+    );
   }
 
   markAllAsRead() {
