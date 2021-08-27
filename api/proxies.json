@@ -8,7 +8,7 @@
       },
       "backendUri": "%access_url%/api/access/{restOfPath}",
       "requestOverrides": {
-        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+        "backend.request.headers.Authorization": "{request.headers.x-authorization}"
       }
     },
     "forms": {
@@ -18,7 +18,7 @@
       },
       "backendUri": "%forms_url%/api/forms/{restOfPath}",
       "requestOverrides": {
-        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+        "backend.request.headers.Authorization": "{request.headers.x-authorization}"
       }
     },
     "files": {
@@ -28,7 +28,7 @@
       },
       "backendUri": "%files_url%/api/files/{restOfPath}",
       "requestOverrides": {
-        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+        "backend.request.headers.Authorization": "{request.headers.x-authorization}"
       }
     },
     "notifications": {
@@ -38,7 +38,7 @@
       },
       "backendUri": "%notifications_url%/api/notifications/{restOfPath}",
       "requestOverrides": {
-        "backend.request.header.Authorization": "{request.headers.x-authorization}"
+        "backend.request.headers.Authorization": "{request.headers.x-authorization}"
       }
     }
   }
