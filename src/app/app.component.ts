@@ -4,7 +4,6 @@ import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { interval, Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { AccessService } from './services/access.service';
@@ -66,34 +65,28 @@ export class AppComponent implements OnInit, OnDestroy {
       this.translateService.use(newLang);
     }));
 
-    this._destroy.push(this.userPreferencesService.userPreferences.pipe(
-      take(1)
-    ).subscribe(up => {
+    if (this.swUpdate.isEnabled) {
+      this._destroy.push(
+        this.checkUpdateInterval.subscribe(() => {
+          this.swUpdate.checkForUpdate().then(() => {
+            this.toastService.showInfo(this.translateService.instant('ui.update.updateCheck'));
+          });
+        })
+      );
 
+      this._destroy.push(
+        this.swUpdate.available.subscribe(() => {
+          this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
+          window.location.reload();
+        })
+      );
 
-      if (this.swUpdate.isEnabled) {
-        this._destroy.push(
-          this.checkUpdateInterval.subscribe(() => {
-            this.swUpdate.checkForUpdate().then(() => {
-              this.toastService.showInfo(this.translateService.instant('ui.update.updateCheck'));
-            });
-          })
-        );
-
-        this._destroy.push(
-          this.swUpdate.available.subscribe(() => {
-            this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
-            window.location.reload();
-          })
-        );
-
-        this._destroy.push(
-          this.swUpdate.activated.subscribe(() => {
-            this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
-          })
-        );
-      }
-    }));
+      this._destroy.push(
+        this.swUpdate.activated.subscribe(() => {
+          this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
+        })
+      );
+    }
 
     this._destroy.push(
       this.mediaObserver.asObservable().subscribe(() => {
