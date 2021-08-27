@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 
 class CustomRetryPolicy implements IRetryPolicy {
   nextRetryDelayInMilliseconds(retryContext: RetryContext): number | null {
-    return Math.random() * 1000;
+    return Math.random() * 1000 + 2000;
   }
 }
 
