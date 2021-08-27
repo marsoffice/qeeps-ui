@@ -22,9 +22,7 @@ export class UserPreferencesService {
       if (x == null) {
         return;
       }
-      if (upLs == null) {
-        localStorage.setItem('user_preferences', JSON.stringify(x));
-      }
+      localStorage.setItem('user_preferences', JSON.stringify(x));
       const old = this.userPreferencesSubject.value;
       if (x?.preferredLanguage !== old?.preferredLanguage || x?.useDarkTheme !== old?.useDarkTheme) {
         this.userPreferencesSubject.next(x);
