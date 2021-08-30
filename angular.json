@@ -109,6 +109,12 @@
             },
             "development": {
               "browserTarget": "qeeps-ui:build:development"
+            },
+            "gitpod": {
+              "browserTarget": "qeeps-ui:build:development",
+              "ssl": false,
+              "disableHostCheck": true,
+              "host": "0.0.0.0"
             }
           },
           "defaultConfiguration": "development"
