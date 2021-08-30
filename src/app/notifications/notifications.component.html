@@ -1,4 +1,4 @@
-<button mat-icon-button [matMenuTriggerFor]="notifMenu">
+<button [disabled]="notifications == null || notifications.length === 0" mat-icon-button [matMenuTriggerFor]="notifMenu">
   <mat-icon [matBadge]="unread" matBadgePosition="below before" [matBadgeOverlap]="true" matBadgeSize="small" matBadgeColor="accent">
     notifications</mat-icon>
 </button>
