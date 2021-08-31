@@ -7,6 +7,7 @@ import { MyFormsComponent } from './my-forms/my-forms.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsService } from './services/forms.service';
 import { CreateEditFormComponent } from './create-edit-form/create-edit-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CreateEditFormComponent } from './create-edit-form/create-edit-form.com
   imports: [
     CommonModule,
     FormsRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
     FormsService
