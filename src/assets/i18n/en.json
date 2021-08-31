@@ -50,7 +50,9 @@
       "createEditForm": {
         "title": "Title",
         "createForm": "Create Form",
-        "editForm": "Edit Form"
+        "editForm": "Edit Form",
+        "titleRequired": "Title is required",
+        "titleTooShort": "Title is too short, minimum {{chars}} characters"
       }
     }
   },

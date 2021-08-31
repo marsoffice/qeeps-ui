@@ -50,7 +50,9 @@
       "createEditForm": {
         "title": "Titlu",
         "createForm": "Creare formular",
-        "editForm": "Editare formular"
+        "editForm": "Editare formular",
+        "titleRequired": "Titlul este obligatoriu",
+        "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere"
       }
     }
   },

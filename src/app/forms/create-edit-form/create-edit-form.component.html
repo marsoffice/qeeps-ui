@@ -1,8 +1,19 @@
 <form fxLayout="column" fxLayoutGap="1rem" [formGroup]="form">
-  <h2 *ngIf="!id">{{'ui.forms.createEditForm.createForm' | translate}}</h2>
-  <h2 *ngIf="id">{{'ui.forms.createEditForm.editForm' | translate}}</h2>
+  <h2 *ngIf="!id">{{ 'ui.forms.createEditForm.createForm' | translate }}</h2>
+  <h2 *ngIf="id">{{ 'ui.forms.createEditForm.editForm' | translate }}</h2>
   <mat-form-field appearance="outline">
-    <mat-label>{{'ui.forms.createEditForm.title' | translate}}</mat-label>
+    <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
     <input type="text" matInput required minlength="6" formControlName="title" />
+    <mat-error *ngIf="form.get('title')!.hasError('required')">
+      {{ 'ui.forms.createEditForm.titleRequired' | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.get('title')!.hasError('minlength')">
+      {{ 'ui.forms.createEditForm.titleTooShort' | translate: {chars: form.get('title')!.getError('minlength').requiredLength} }}
+    </mat-error>
+    <mat-error *ngIf="form.get('title')!.hasError('backend')">
+      <mat-error *ngFor="let err of form.get('title')!.getError('backend')">
+        {{ err.message | translate: err.placeholders }}
+      </mat-error>
+    </mat-error>
   </mat-form-field>
 </form>

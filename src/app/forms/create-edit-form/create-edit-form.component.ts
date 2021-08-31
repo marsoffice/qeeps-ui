@@ -47,8 +47,6 @@ export class CreateEditFormComponent implements OnInit {
     this.actRoute.params.subscribe(params => {
       this.id = params.id;
 
-
     });
   }
-
 }
