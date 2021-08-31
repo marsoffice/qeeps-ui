@@ -1,1 +1,8 @@
-asd
+<form fxLayout="column" fxLayoutGap="1rem" [formGroup]="form">
+  <h2 *ngIf="!id">{{'ui.forms.createEditForm.createForm' | translate}}</h2>
+  <h2 *ngIf="id">{{'ui.forms.createEditForm.editForm' | translate}}</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>{{'ui.forms.createEditForm.title' | translate}}</mat-label>
+    <input type="text" matInput required minlength="6" formControlName="title" />
+  </mat-form-field>
+</form>

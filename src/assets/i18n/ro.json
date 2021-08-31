@@ -45,6 +45,13 @@
       "forms": "Formulare",
       "myForms": "Formularele mele",
       "createForm": "Creare formular"
+    },
+    "forms": {
+      "createEditForm": {
+        "title": "Titlu",
+        "createForm": "Creare formular",
+        "editForm": "Editare formular"
+      }
     }
   },
   "notifications": {

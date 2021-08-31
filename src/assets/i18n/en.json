@@ -45,6 +45,13 @@
       "forms": "Forms",
       "myForms": "My Forms",
       "createForm": "Create Form"
+    },
+    "forms": {
+      "createEditForm": {
+        "title": "Title",
+        "createForm": "Create Form",
+        "editForm": "Edit Form"
+      }
     }
   },
   "notifications": {

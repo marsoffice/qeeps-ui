@@ -23,8 +23,14 @@ export class AuthService {
     private msalBroadcastService: MsalBroadcastService,
     private httpClient: HttpClient,
     private sanitizer: DomSanitizer) {
-      this.userSubject = new BehaviorSubject<AccountInfo | null>(null);
+    let activeAccount = this.authService.instance.getActiveAccount();
+
+    if (!activeAccount && this.authService.instance.getAllAccounts().length > 0) {
+      let accounts = this.authService.instance.getAllAccounts();
+      this.authService.instance.setActiveAccount(accounts[0]);
     }
+    this.userSubject = new BehaviorSubject<AccountInfo | null>(activeAccount);
+  }
 
   updateLoggedInStatus(cb: () => void) {
     this.msalBroadcastService.inProgress$

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -12,7 +13,9 @@ export class CreateEditFormComponent implements OnInit {
   columns: FormArray;
   rows: FormArray;
   formAccesses: FormArray;
-  constructor() {
+  id: string | null = null;
+
+  constructor(private actRoute: ActivatedRoute) {
     this.columns = new FormArray([]);
 
     this.attachments = new FormArray([]);
@@ -41,6 +44,11 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.actRoute.params.subscribe(params => {
+      this.id = params.id;
+
+
+    });
   }
 
 }
