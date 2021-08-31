@@ -52,7 +52,9 @@
         "createForm": "Creare formular",
         "editForm": "Editare formular",
         "titleRequired": "Titlul este obligatoriu",
-        "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere"
+        "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere",
+        "save": "Salvare",
+        "description": "Descriere"
       }
     }
   },

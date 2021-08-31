@@ -52,7 +52,9 @@
         "createForm": "Create Form",
         "editForm": "Edit Form",
         "titleRequired": "Title is required",
-        "titleTooShort": "Title is too short, minimum {{chars}} characters"
+        "titleTooShort": "Title is too short, minimum {{chars}} characters",
+        "save": "Save",
+        "description": "Description"
       }
     }
   },
