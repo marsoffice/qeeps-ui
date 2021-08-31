@@ -54,7 +54,9 @@
         "titleRequired": "Titlul este obligatoriu",
         "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere",
         "save": "Salvare",
-        "description": "Descriere"
+        "description": "Descriere",
+        "general": "General",
+        "attachments": "Atașamente"
       }
     }
   },

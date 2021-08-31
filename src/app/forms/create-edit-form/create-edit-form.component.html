@@ -1,6 +1,8 @@
 <form fxLayout="column" fxLayoutGap="1rem" [formGroup]="form">
   <h2 *ngIf="!id">{{ 'ui.forms.createEditForm.createForm' | translate }}</h2>
   <h2 *ngIf="id">{{ 'ui.forms.createEditForm.editForm' | translate }}</h2>
+
+  <h3>{{'ui.forms.createEditForm.general' | translate}}</h3>
   <mat-form-field appearance="outline">
     <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
     <input type="text" matInput required minlength="6" formControlName="title" />
@@ -19,13 +21,17 @@
 
   <mat-form-field appearance="outline">
     <mat-label>{{ 'ui.forms.createEditForm.description' | translate }}</mat-label>
-    <textarea matInput formControlName="description"></textarea>
+    <textarea rows="8" matInput formControlName="description"></textarea>
     <mat-error *ngIf="form.get('description')!.hasError('backend')">
       <mat-error *ngFor="let err of form.get('description')!.getError('backend')">
         {{ err.message | translate: err.placeholders }}
       </mat-error>
     </mat-error>
   </mat-form-field>
+
+  <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
+
+
 
   <div fxLayout="row" fxLayoutAlign="center">
     <button [disabled]="form.invalid" mat-raised-button color="accent">{{'ui.forms.createEditForm.save' | translate}}</button>
