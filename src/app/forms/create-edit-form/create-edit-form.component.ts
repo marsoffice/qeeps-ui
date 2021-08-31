@@ -9,25 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateEditFormComponent implements OnInit {
   form: FormGroup;
-  attachments: FormArray;
   columns: FormArray;
   rows: FormArray;
-  formAccesses: FormArray;
   id: string | null = null;
 
   constructor(private actRoute: ActivatedRoute) {
     this.columns = new FormArray([]);
-
-    this.attachments = new FormArray([]);
-
     this.rows = new FormArray([]);
-
-    this.formAccesses = new FormArray([]);
 
     this.form = new FormGroup({
       title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       description: new FormControl(),
-      attachments: this.attachments,
+      attachments: new FormControl([]),
       isLocked: new FormControl(false),
       lockedUntilDate: new FormControl(),
       rowAppendDisabled: new FormControl(false),
@@ -38,9 +31,8 @@ export class CreateEditFormComponent implements OnInit {
       tags: new FormControl([]),
       columns: this.columns,
       rows: this.rows,
-      formAccesses: this.formAccesses
+      formAccesses: new FormControl([])
     });
-
   }
 
   ngOnInit(): void {

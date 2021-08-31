@@ -58,6 +58,10 @@
         "general": "General",
         "attachments": "Atașamente"
       }
+    },
+    "files": {
+      "dragOrClickToUpload": "Trageți fișiere aici sau faceți click pentru încărcare",
+      "clickToUpload": "Faceți click pentru încărcare"
     }
   },
   "notifications": {
