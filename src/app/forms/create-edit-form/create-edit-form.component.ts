@@ -41,4 +41,8 @@ export class CreateEditFormComponent implements OnInit {
 
     });
   }
+
+  save() {
+    console.log(this.form.value);
+  }
 }
