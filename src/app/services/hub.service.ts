@@ -49,7 +49,7 @@ class CustomHttpClient extends DefaultHttpClient {
   providedIn: 'root'
 })
 export class HubService {
-  private connection: HubConnection | null = null;
+  private connection: HubConnection | undefined;
 
   constructor(private authService: AuthService) {
     this.authService.user.pipe(
@@ -81,7 +81,7 @@ export class HubService {
       return of<void>();
     }
     return from(
-      this.connection!.start()
+      this.connection.start()
     );
   }
 
@@ -90,7 +90,7 @@ export class HubService {
       return of<void>();
     }
     return from(
-      this.connection!.stop()
+      this.connection.stop()
     );
   }
 

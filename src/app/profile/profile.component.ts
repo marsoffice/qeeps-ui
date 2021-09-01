@@ -1,6 +1,4 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { Claims } from '../models/claims';

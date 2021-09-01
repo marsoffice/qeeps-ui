@@ -38,10 +38,6 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       this.unread++;
       let snackBar: Observable<void>;
       switch (notif.severity) {
-        default:
-        case Severity.Info:
-          snackBar = this.toastService.showInfo(notif.message, notif.title);
-          break;
         case Severity.Success:
           snackBar = this.toastService.showSuccess(notif.message, notif.title);
           break;
@@ -50,6 +46,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
           break;
         case Severity.Error:
           snackBar = this.toastService.showError(notif.message, notif.title);
+          break;
+        default:
+        case Severity.Info:
+          snackBar = this.toastService.showInfo(notif.message, notif.title);
           break;
       }
       snackBar.subscribe(() => {
