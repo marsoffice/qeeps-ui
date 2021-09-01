@@ -24,7 +24,7 @@ import { FilesService } from '../services/files.service';
 export class FileUploadComponent implements OnInit, ControlValueAccessor, Validator {
   @Input() multiple = false;
   @Input() accept: string | undefined;
-  @ViewChild('upload', { static: true, read: ElementRef }) inputFileRef: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('upload', { static: true, read: ElementRef }) inputFileRef!: ElementRef<HTMLInputElement>;
   files: FileDto[] = [];
   disabled = false;
   touched = false;
@@ -36,27 +36,27 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
   }
 
   showUploadDialog() {
-    this.inputFileRef!.nativeElement.value = "";
-    this.inputFileRef!.nativeElement.files = null;
+    this.inputFileRef.nativeElement.value = "";
+    this.inputFileRef.nativeElement.files = null;
     setTimeout(() => {
-      this.inputFileRef!.nativeElement.click();
+      this.inputFileRef.nativeElement.click();
     });
   }
 
   onFilesSelected() {
     this.markAsTouched();
     const newFiles: FileDto[] = [];
-    for (let i = 0; i < this.inputFileRef!.nativeElement.files!.length; i++) {
+    for (let i = 0; i < this.inputFileRef.nativeElement.files!.length; i++) {
 
-      const f = this.inputFileRef!.nativeElement.files!.item(i);
+      const f = this.inputFileRef.nativeElement.files?.item(i);
 
       if (this.files.some(x => x.filename === f?.name)) {
         continue;
       }
 
       let dto = {
-        filename: f!.name,
-        sizeInBytes: f!.size,
+        filename: f?.name,
+        sizeInBytes: f?.size,
         fileRef: f
       } as FileDto;
       newFiles.push(dto);
