@@ -7,7 +7,7 @@
       <span>{{ f.filename }}</span>
       <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
       <div fxFlex="1 1 100%" *ngIf="!f.isUploading"></div>
-      <button [disabled]="disabled" *ngIf="f.id != null" (click)="removeFile(i)" mat-icon-button color="warn">
+      <button [disabled]="disabled" (click)="removeFile(i)" mat-icon-button color="warn">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-list-item>
