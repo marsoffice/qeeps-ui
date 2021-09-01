@@ -26,9 +26,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.user = u;
         if (this.user != null) {
           this.userRoles = this.user.roles;
-          //this.authService.getProfilePhoto(240).subscribe(s => {
-            //this.photo = s;
-          //});
+          this.authService.getProfilePhoto(240).subscribe(s => {
+            this.photo = s;
+          });
         }
       })
     );

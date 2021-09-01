@@ -43,9 +43,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (this.user == null) {
           return;
         }
-        // this.authService.getProfilePhoto().subscribe(p => {
-          // this.photo = p;
-        // });
+        this.authService.getProfilePhoto().subscribe(p => {
+          this.photo = p;
+        });
       })
     );
   }
