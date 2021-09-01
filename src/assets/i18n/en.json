@@ -58,11 +58,6 @@
         "general": "General",
         "attachments": "Attachments"
       }
-    },
-    "files": {
-      "dragOrClickToUpload": "Drag file or click here to upload",
-      "clickToUpload": "Click to upload",
-      "remove": "Remove"
     }
   },
   "notifications": {

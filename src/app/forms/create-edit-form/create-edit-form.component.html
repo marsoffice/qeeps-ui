@@ -30,23 +30,7 @@
   </mat-form-field>
 
   <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
-  <file-upload formControlName="attachments">
-    <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-      <file-upload-drop-zone>
-        <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
-          {{'ui.files.dragOrClickToUpload' | translate}}
-        </ng-container>
-        <ng-template #isNotDragDropAvailable>
-          {{'ui.files.clickToUpload' | translate}}
-        </ng-template>
-      </file-upload-drop-zone>
-    </ng-template>
-    <ng-template let-i="index" let-file="file" let-control="control" #item>
-      <file-upload-list-item [index]="i" [file]="file" [control]="control">
-        {{'ui.files.remove' | translate}}
-      </file-upload-list-item>
-    </ng-template>
-  </file-upload>
+
 
 
   <div fxLayout="row" fxLayoutAlign="center">
