@@ -217,8 +217,8 @@ $theme: (
   background: $mat-light-theme-background,
 );
 $altTheme: (
-  primary: $theme-accent,
-  accent: $theme-primary,
+  primary: $theme-primary,
+  accent: $theme-accent,
   warn: $theme-warn,
   is-dark: true,
   foreground: $mat-dark-theme-foreground,
