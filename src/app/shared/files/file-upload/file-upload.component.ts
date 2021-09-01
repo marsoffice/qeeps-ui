@@ -57,7 +57,8 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
       let dto = {
         filename: f?.name,
         sizeInBytes: f?.size,
-        fileRef: f
+        fileRef: f,
+        isUploading: true
       } as FileDto;
       newFiles.push(dto);
     }
@@ -68,12 +69,14 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
         if (foundFile != null) {
           foundFile.id = uf.id;
           foundFile.userId = uf.userId;
+          foundFile.isUploading = false;
         }
       }
       this.onChange(this.files);
     }, (e: HttpErrorResponse) => {
       for (const f of newFiles) {
-        f.error = e.message;
+        f.error = e.error;
+        f.isUploading = false;
       }
       this.onChange(this.files);
     });
@@ -116,7 +119,7 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
     if (files == null || files.length === 0) {
       return null;
     }
-    if (files.some(x => x.id == null)) {
+    if (files.some(x => x.id == null && x.isUploading)) {
       return {
         incomplete: true
       };
@@ -124,7 +127,7 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
     const errors = files.filter(x => x.error != null).map(x => x.error);
     if (errors.length > 0) {
       return {
-        backend: errors
+        upload: errors
       };
     }
     return null;

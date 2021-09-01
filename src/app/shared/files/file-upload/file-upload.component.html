@@ -5,8 +5,8 @@
     <mat-list-item *ngFor="let f of files; let i = index" fxLayout="row" fxLayoutGap="5px">
       <mat-icon mat-list-icon>{{f.id == null ? 'upload' : 'done'}}</mat-icon>
       <span>{{ f.filename }}</span>
-      <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.id == null"></mat-progress-bar>
-      <div fxFlex="1 1 100%" *ngIf="f.id != null"></div>
+      <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
+      <div fxFlex="1 1 100%" *ngIf="!f.isUploading"></div>
       <button [disabled]="disabled" *ngIf="f.id != null" (click)="removeFile(i)" mat-icon-button color="warn">
         <mat-icon>delete</mat-icon>
       </button>

@@ -5,4 +5,5 @@ export interface FileDto {
   sizeInBytes: number;
   fileRef?: File;
   error?: string;
+  isUploading?: boolean;
 }
