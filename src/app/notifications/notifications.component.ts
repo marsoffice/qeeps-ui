@@ -47,8 +47,8 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         case Severity.Error:
           snackBar = this.toastService.showError(notif.message, notif.title);
           break;
-        default:
         case Severity.Info:
+        default:
           snackBar = this.toastService.showInfo(notif.message, notif.title);
           break;
       }
