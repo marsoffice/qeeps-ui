@@ -4,7 +4,7 @@
 
   <mat-error *ngIf="form.hasError('backend')">
     <mat-error *ngFor="let err of form.getError('backend')">
-      {{ err | translate }}
+      {{ err.message | translate:err.placeholderValues }}
     </mat-error>
   </mat-error>
 
@@ -20,7 +20,7 @@
     </mat-error>
     <mat-error *ngIf="form.get('title')!.hasError('backend')">
       <mat-error *ngFor="let err of form.get('title')!.getError('backend')">
-        {{ err | translate }}
+        {{ err.message | translate:err.placeholderValues }}
       </mat-error>
     </mat-error>
   </mat-form-field>
@@ -30,7 +30,7 @@
     <textarea rows="8" matInput formControlName="description"></textarea>
     <mat-error *ngIf="form.get('description')!.hasError('backend')">
       <mat-error *ngFor="let err of form.get('description')!.getError('backend')">
-        {{ err | translate }}
+        {{ err.message | translate:err.placeholderValues }}
       </mat-error>
     </mat-error>
   </mat-form-field>
@@ -40,7 +40,7 @@
     <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
     <mat-error *ngIf="form.get('attachments')!.hasError('upload')">
       <mat-error *ngFor="let err of form.get('attachments')!.getError('upload')">
-        {{ err | translate }}
+        {{ err.message | translate:err.placeholderValues }}
       </mat-error>
     </mat-error>
   </div>

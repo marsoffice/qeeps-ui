@@ -3,6 +3,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { FileDto } from '../models/file.dto';
 import { FilesService } from '../services/files.service';
+import {ErrorsDto} from '../../../models/errors.dto';
+import { ErrorDto } from 'src/app/models/error.dto';
 
 @Component({
   selector: 'app-file-upload',
@@ -47,13 +49,10 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
     this.markAsTouched();
     const newFiles: FileDto[] = [];
     for (let i = 0; i < this.inputFileRef.nativeElement.files!.length; i++) {
-
       const f = this.inputFileRef.nativeElement.files?.item(i);
-
       if (this.files.some(x => x.filename === f?.name)) {
         continue;
       }
-
       let dto = {
         filename: f?.name,
         sizeInBytes: f?.size,
@@ -62,7 +61,6 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
       } as FileDto;
       newFiles.push(dto);
     }
-
     this.filesService.upload(newFiles.map(x => x.fileRef!)).subscribe(uploadedFiles => {
       for (const uf of uploadedFiles) {
         const foundFile = newFiles.find(x => x.filename === uf.filename);
@@ -74,13 +72,19 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
       }
       this.onChange(this.files);
     }, (e: HttpErrorResponse) => {
+      const dto: ErrorsDto = e.error;
+      let err: ErrorDto[] = [{
+        message: e.error
+      }];
+      if (dto != null && dto[''] != null) {
+        err = dto[''];
+      }
       for (const f of newFiles) {
-        f.error = e.error;
+        f.errors = err;
         f.isUploading = false;
       }
       this.onChange(this.files);
     });
-
     this.files = [...this.files, ...newFiles];
     this.onChange(this.files);
   }
@@ -124,10 +128,10 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
         incomplete: true
       };
     }
-    const errors = files.filter(x => x.error != null).map(x => x.error);
+    const errors = files.filter(x => x.errors != null).map(x => x.errors);
     if (errors.length > 0) {
       return {
-        upload: errors
+        upload: errors[0]
       };
     }
     return null;

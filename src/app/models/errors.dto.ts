@@ -1,3 +1,5 @@
+import { ErrorDto } from './error.dto';
+
 export type ErrorsDto = {
-  [key: string]: ErrorsDto[];
+  [key: string]: ErrorDto[];
 }
