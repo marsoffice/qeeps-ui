@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
@@ -114,7 +114,6 @@ export class AppComponent implements OnInit, OnDestroy {
             subscriptionJson: JSON.stringify(ps.toJSON())
           }).subscribe();
         });
-        return;
       }
     });
   }

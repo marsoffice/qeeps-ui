@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FileDto } from 'src/app/shared/files/models/file.dto';
 import { environment } from 'src/environments/environment';
 
 @Component({
