@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
 
 
+env:
+  GH_USER: ${{ secrets.GH_USER }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
 defaults:
   run:
     shell: bash
