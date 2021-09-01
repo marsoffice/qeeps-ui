@@ -58,6 +58,10 @@
         "general": "General",
         "attachments": "Attachments"
       }
+    },
+    "files": {
+      "upload": "Upload",
+      "noFiles": "No files"
     }
   },
   "notifications": {

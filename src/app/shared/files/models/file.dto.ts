@@ -3,4 +3,5 @@ export interface FileDto {
   userId?: string;
   filename: string;
   sizeInBytes: number;
+  fileRef?: File;
 }

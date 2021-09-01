@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { FileDto } from 'src/app/shared/files/models/file.dto';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -12,6 +14,8 @@ export class CreateEditFormComponent implements OnInit {
   columns: FormArray;
   rows: FormArray;
   id: string | null = null;
+
+  acceptedFileExtensions = environment.acceptedFileExtensions.join();
 
   constructor(private actRoute: ActivatedRoute) {
     this.columns = new FormArray([]);
@@ -44,5 +48,9 @@ export class CreateEditFormComponent implements OnInit {
 
   save() {
     console.log(this.form.value);
+  }
+
+  attachmentsChanged(files: FileDto[]) {
+    this.form.get('attachments')!.setValue(files);
   }
 }
