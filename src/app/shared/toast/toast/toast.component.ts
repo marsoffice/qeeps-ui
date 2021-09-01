@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { ToastData } from './toast-data';
+import { ToastData } from '../models/toast-data';
 
 @Component({
   selector: 'app-toast',

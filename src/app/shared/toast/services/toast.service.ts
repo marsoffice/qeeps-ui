@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ToastData } from './toast/toast-data';
-import { ToastComponent } from './toast/toast.component';
+import { ToastData } from '../models/toast-data';
+import { ToastComponent } from '../toast/toast.component';
 
 @Injectable()
 export class ToastService {

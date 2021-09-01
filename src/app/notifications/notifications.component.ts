@@ -8,7 +8,7 @@ import { NotificationDto } from '../models/notification.dto';
 import { Severity } from '../models/severity';
 import { HubService, SignalrObservableWrapper } from '../services/hub.service';
 import { NotificationsService } from '../services/notifications.service';
-import { ToastService } from '../shared/toast/toast.service';
+import { ToastService } from '../shared/toast/services/toast.service';
 
 @Component({
   selector: 'app-notifications',

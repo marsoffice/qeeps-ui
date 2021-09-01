@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
 import { UserPreferencesService } from './services/user-preferences.service';
-import { ToastService } from './shared/toast/toast.service';
+import { ToastService } from './shared/toast/services/toast.service';
 
 @Component({
   selector: 'app-root',

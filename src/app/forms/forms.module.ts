@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { FilesModule } from '../shared/files/files.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
+    FilesModule
   ],
   providers: [
     FormsService
