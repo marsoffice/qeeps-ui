@@ -56,7 +56,8 @@
         "save": "Salvare",
         "description": "Descriere",
         "general": "General",
-        "attachments": "Atașamente"
+        "attachments": "Atașamente",
+        "invalidAttachments": "Atașamente invalide"
       }
     },
     "files": {

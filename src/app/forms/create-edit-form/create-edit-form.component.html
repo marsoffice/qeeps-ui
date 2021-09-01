@@ -2,6 +2,12 @@
   <h2 *ngIf="!id">{{ 'ui.forms.createEditForm.createForm' | translate }}</h2>
   <h2 *ngIf="id">{{ 'ui.forms.createEditForm.editForm' | translate }}</h2>
 
+  <mat-error *ngIf="form.hasError('backend')">
+    <mat-error *ngFor="let err of form.getError('backend')">
+      {{ err.message | translate: err.placeholders }}
+    </mat-error>
+  </mat-error>
+
   <h3>{{'ui.forms.createEditForm.general' | translate}}</h3>
   <mat-form-field appearance="outline">
     <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
@@ -30,9 +36,14 @@
   </mat-form-field>
 
   <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
-  <app-file-upload [multiple]="true" [accept]="acceptedFileExtensions"
-    (filesChanged)="attachmentsChanged($event)"
-    [files]="form.get('attachments')!.value"></app-file-upload>
+  <div fxLayout="column">
+    <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
+    <mat-error *ngIf="form.get('attachments')!.hasError('backend')">
+      <mat-error *ngFor="let err of form.get('attachments')!.getError('backend')">
+        {{ err.message | translate: err.placeholders }}
+      </mat-error>
+    </mat-error>
+  </div>
 
 
   <div fxLayout="row" fxLayoutAlign="center">

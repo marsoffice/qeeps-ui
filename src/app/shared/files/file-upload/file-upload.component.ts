@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FileDto } from '../models/file.dto';
 import { FilesService } from '../services/files.service';
@@ -6,17 +8,29 @@ import { FilesService } from '../services/files.service';
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  styleUrls: ['./file-upload.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi:true,
+      useExisting: FileUploadComponent
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: FileUploadComponent
+    }
+  ]
 })
-export class FileUploadComponent implements OnInit {
-  @Input() label: string | undefined;
+export class FileUploadComponent implements OnInit, ControlValueAccessor, Validator {
   @Input() multiple = false;
   @Input() accept: string | undefined;
   @ViewChild('upload', { static: true, read: ElementRef }) inputFileRef: ElementRef<HTMLInputElement> | undefined;
-  @Input() files: FileDto[] = [];
-
-  @Output() filesChanged = new EventEmitter<FileDto[]>();
-
+  files: FileDto[] = [];
+  disabled = false;
+  touched = false;
+  onChange = (v: any) => {};
+  onTouched = () => {};
   constructor(private filesService: FilesService) { }
 
   ngOnInit(): void {
@@ -31,6 +45,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   onFilesSelected() {
+    this.markAsTouched();
     const newFiles: FileDto[] = [];
     for (let i = 0; i < this.inputFileRef!.nativeElement.files!.length; i++) {
 
@@ -48,8 +63,6 @@ export class FileUploadComponent implements OnInit {
       newFiles.push(dto);
     }
 
-    this.files = [...this.files, ...newFiles];
-
     this.filesService.upload(newFiles.map(x => x.fileRef!)).subscribe(uploadedFiles => {
       for (const uf of uploadedFiles) {
         const foundFile = newFiles.find(x => x.filename === uf.filename);
@@ -58,12 +71,63 @@ export class FileUploadComponent implements OnInit {
           foundFile.userId = uf.userId;
         }
       }
-      this.filesChanged.emit(this.files);
+      this.onChange(this.files);
+    }, (e: HttpErrorResponse) => {
+      for (const f of newFiles) {
+        f.error = e.message;
+      }
+      this.onChange(this.files);
     });
+
+    this.files = [...this.files, ...newFiles];
+    this.onChange(this.files);
   }
 
   removeFile(i: number) {
+    this.markAsTouched();
     this.files.splice(i, 1);
-    this.filesChanged.emit(this.files);
+    this.onChange(this.files);
+  }
+
+  writeValue(files: FileDto[]) {
+    this.files = files;
+  }
+
+  registerOnChange(onChange: any) {
+    this.onChange = onChange;
+  }
+
+  registerOnTouched(onTouched: any) {
+    this.onTouched = onTouched;
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
+  }
+
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    const files: FileDto[] = control.value;
+    if (files == null || files.length === 0) {
+      return null;
+    }
+    if (files.some(x => x.id == null)) {
+      return {
+        incomplete: true
+      };
+    }
+    const errors = files.filter(x => x.error != null).map(x => x.error);
+    if (errors.length > 0) {
+      return {
+        backend: errors
+      };
+    }
+    return null;
   }
 }
