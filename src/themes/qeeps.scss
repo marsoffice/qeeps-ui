@@ -235,23 +235,35 @@ $altTheme: (
 
 
 .text-warn {
-  color: mat.get-color-from-palette($theme-warn, main);
+  color: mat.get-color-from-palette($theme-warn, main) !important;
 }
 .text-accent {
-  color: mat.get-color-from-palette($theme-accent, main);
+  color: mat.get-color-from-palette($theme-accent, main) !important;
+}
+.text-accent-darker {
+  color: mat.get-color-from-palette($theme-accent, darker) !important;
+}
+.text-accent-lighter {
+  color: mat.get-color-from-palette($theme-accent, lighter) !important;
 }
 .text-primary {
-  color: mat.get-color-from-palette($theme-primary, main);
+  color: mat.get-color-from-palette($theme-primary, main) !important;
+}
+.text-primary-darker {
+  color: mat.get-color-from-palette($theme-primary, darker) !important;
+}
+.text-primary-lighter {
+  color: mat.get-color-from-palette($theme-primary, lighter) !important;
 }
 
 .bg-warn {
-  background-color: mat.get-color-from-palette($theme-warn, main);
+  background-color: mat.get-color-from-palette($theme-warn, main) !important;
 }
 .bg-accent {
-  background-color: mat.get-color-from-palette($theme-accent, main);
+  background-color: mat.get-color-from-palette($theme-accent, main) !important;
 }
 .bg-primary {
-  background-color: mat.get-color-from-palette($theme-primary, main);
+  background-color: mat.get-color-from-palette($theme-primary, main) !important;
 }
 
 

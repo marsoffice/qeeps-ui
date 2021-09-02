@@ -73,3 +73,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cp {
   cursor: pointer !important;
 }
+
+.active {
+  text-decoration: underline !important;
+}
+
+.brd-0 {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 !important;
+}
