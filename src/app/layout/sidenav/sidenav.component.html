@@ -7,7 +7,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
-        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms" routerLinkActive="mat-accent"
+        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms" routerLinkActive="bg-primary text-accent"
           [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>list</mat-icon>
@@ -15,7 +15,7 @@
           </div>
         </button>
         <button *ngIf="user!.roles!.indexOf('Admin') > -1 || user!.roles!.indexOf('Owner') > -1"
-        (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/create" routerLinkActive="mat-accent"
+        (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/create" routerLinkActive="bg-primary text-accent"
           [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>add</mat-icon>
@@ -32,7 +32,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
-        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/profile" routerLinkActive="mat-accent"
+        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/profile" routerLinkActive="bg-primary text-accent"
           [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>badge</mat-icon>
