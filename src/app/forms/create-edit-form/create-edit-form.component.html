@@ -1,4 +1,4 @@
-<form fxFlex="100%" fxFlex.gt-sm="50%" fxLayout="column" fxLayoutGap="1rem" [formGroup]="form" (submit)="save()">
+<form fxLayout="column" fxLayoutGap="1rem" [formGroup]="form" (submit)="save()">
   <h2 *ngIf="!id">{{ 'ui.forms.createEditForm.createForm' | translate }}</h2>
   <h2 *ngIf="id">{{ 'ui.forms.createEditForm.editForm' | translate }}</h2>
 
