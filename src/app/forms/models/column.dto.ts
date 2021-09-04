@@ -7,4 +7,5 @@ export interface ColumnDto {
   isFrozen: boolean;
   isHidden: boolean;
   dataType: ColumnDataType;
+  allowedExtensions?: string[];
 }

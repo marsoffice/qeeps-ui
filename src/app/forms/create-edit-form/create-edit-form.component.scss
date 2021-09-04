@@ -1,0 +1,23 @@
+:host {
+  mat-chip {
+    font-size: 0.8em;
+  }
+  #columns {
+    overflow-x: auto;
+    max-width: 100%;
+    min-width: 0;
+
+    table {
+      ::ng-deep thead {
+        tr {
+          display: table;
+        }
+      }
+      th {
+        vertical-align: top;
+        min-width: 100px;
+        padding: 5px;
+      }
+    }
+  }
+}

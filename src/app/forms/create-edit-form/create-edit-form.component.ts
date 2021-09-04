@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators, FormControl, FormArray, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { KeyValue } from 'src/app/models/key-value';
 import { environment } from 'src/environments/environment';
+import { ColumnDataType } from '../models/column-data-type';
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -13,10 +17,20 @@ export class CreateEditFormComponent implements OnInit {
   columns: FormArray;
   rows: FormArray;
   id: string | null = null;
+  readonly separatorKeysCodes = [ENTER, COMMA, TAB] as const;
+
+  @ViewChild('columnsWrapper', { static: true, read: ElementRef })
+  private columnsWrapper!: ElementRef<HTMLDivElement>;
 
   acceptedFileExtensions = environment.acceptedFileExtensions.join();
 
+  columnDataTypesList: KeyValue<string, ColumnDataType>[];
+  columnDataTypes = ColumnDataType;
+  allowedExtensions = environment.acceptedFileExtensions;
+
   constructor(private actRoute: ActivatedRoute) {
+    this.columnDataTypesList = this.generateColumnDataTypes();
+
     this.columns = new FormArray([]);
     this.rows = new FormArray([]);
 
@@ -47,5 +61,99 @@ export class CreateEditFormComponent implements OnInit {
 
   save() {
     console.log(this.form.value);
+  }
+
+  get columnsToDisplay() {
+    return this.columns.controls.map((_, i) => i + '');
+  }
+
+  addColumn() {
+    this.columns.push(
+      this.createColumnFormGroup()
+    );
+    setTimeout(() => {
+      this.columnsWrapper.nativeElement.scrollLeft = this.columnsWrapper.nativeElement.scrollWidth;
+    });
+  }
+
+  removeColumn(i: number) {
+    this.columns.removeAt(i);
+  }
+
+  toCamelCase(k: string) {
+    if (k == null || k.length === 0) {
+      return k;
+    }
+    if (k.length === 1) {
+      return k.toLowerCase();
+    }
+    return k[0].toLowerCase() + k.substring(1);
+  }
+
+  removeDropdownOption(j: number, i: number) {
+    const list: string[] = this.columns.controls[i].get('dropdownOptions')!.value;
+    list.splice(j, 1);
+    this.columns.controls[i].get('dropdownOptions')!.setValue(list);
+  }
+
+  addDropdownOption(event: MatChipInputEvent, i: number): void {
+    const value: string = (event.value || '').trim();
+
+    if (value) {
+      const list = this.columns.controls[i].get('dropdownOptions')!.value;
+      list.push(value);
+      this.columns.controls[i].get('dropdownOptions')!.setValue(list);
+    }
+    event.chipInput!.clear();
+  }
+
+  addTag(event: MatChipInputEvent): void {
+    const value: string = (event.value || '').trim();
+
+    if (value) {
+      const list = this.form.get('tags')!.value;
+      list.push(value);
+      this.form.get('tags')!.setValue(list);
+    }
+    event.chipInput!.clear();
+  }
+
+  removeTag(i: number) {
+    const list: string[] = this.form.get('tags')!.value;
+    list.splice(i, 1);
+    this.form.get('tags')!.setValue(list);
+  }
+
+
+  private createColumnFormGroup() {
+    return new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      isRequired: new FormControl(false),
+      dropdownOptions: new FormControl([], [this.dropdownOptionsValidator.bind(this)]),
+      isFrozen: new FormControl(false),
+      isHidden: new FormControl(false),
+      dataType: new FormControl(ColumnDataType.StringSingleLine, [Validators.required]),
+      allowedExtensions: new FormControl([])
+    });
+  }
+
+  private dropdownOptionsValidator(control: AbstractControl) {
+    if (!control.root || !control.parent) {
+      return null;
+    }
+    const ddoFg = control as FormControl;
+    const formParent = control.root.parent;
+    if (formParent?.get('dataType')?.value === ColumnDataType.Dropdown && (ddoFg.value == null || ddoFg.value.length === 0)) {
+      return {
+        required: true
+      };
+    }
+    return null;
+  }
+
+  private generateColumnDataTypes(): KeyValue<string, ColumnDataType>[] {
+    const enumAny = ColumnDataType as any;
+    return Object.keys(enumAny).filter(k => Number.isNaN(Number.parseInt(k)))
+      .map(k => ({ key: k, value: enumAny[k] }));
   }
 }
