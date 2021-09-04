@@ -5,12 +5,13 @@
 
 <mat-menu #notifMenu="matMenu" class="notifications-panel">
   <div id="notifications-wrapper" fxLayout="column" fxLayoutGap="0.5rem">
-    <button *ngIf="unread > 0" color="accent" (click)="markAllAsRead()" mat-button class="w-100">
+    <button *ngIf="unread > 0" color="accent" (click)="markAllAsRead()" mat-raised-button class="w-100">
       <mat-icon>done_all</mat-icon>
       <span>{{'ui.notifications.markAllAsRead' | translate}}</span>
     </button>
     <div fxLayout="column" fxLayoutGap="0.5rem">
-      <mat-card *ngFor="let n of notifications" (click)="notificationClicked(n, $event)" class="severity-{{severities[n.severity]?.toLowerCase() || 'info'}}">
+      <mat-card *ngFor="let n of notifications" (click)="notificationClicked(n, $event)"
+        class="severity-{{severities[n.severity]?.toLowerCase() || 'info'}}">
         <mat-card-header>
           <mat-card-title [class.mat-card-subtitle]="n.isRead">{{n.title}}</mat-card-title>
           <mat-card-subtitle>{{n.createdDate | date:'medium'}}</mat-card-subtitle>
