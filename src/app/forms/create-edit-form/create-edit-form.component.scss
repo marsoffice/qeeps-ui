@@ -17,6 +17,12 @@
         vertical-align: top;
         min-width: 100px;
         padding: 5px;
+        border-bottom: none;
+
+        &:not(:last-of-type) {
+          border-right-width: 1px;
+          border-right-style: solid;
+        }
       }
     }
   }
