@@ -90,7 +90,8 @@
         "required": "Required",
         "validationFailed": {
           "incomplete": "Incomplete",
-          "required": "Required"
+          "required": "Required",
+          "matDatetimePickerParse": "Invalid date or time"
         }
       }
     },

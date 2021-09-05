@@ -90,7 +90,8 @@
         "required": "Obligatoriu",
         "validationFailed": {
           "incomplete": "Incomplet",
-          "required": "Obligatoriu"
+          "required": "Obligatoriu",
+          "matDatetimePickerParse": "Data sau ora sunt invalide"
         }
       }
     },
