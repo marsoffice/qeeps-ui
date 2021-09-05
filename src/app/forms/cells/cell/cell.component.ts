@@ -25,7 +25,7 @@ export class CellComponent implements OnInit, OnDestroy {
   }
 
   getFormControlErrorsMessage() {
-    if (!this.cellFormControl.invalid) {
+    if (!this.cellFormControl.invalid || !this.cellFormControl.touched) {
       return '';
     }
 
