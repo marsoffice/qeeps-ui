@@ -82,7 +82,8 @@
         "dropdownOptions": "Dropdown Options",
         "addDropdownOptions": "Add Dropdown Option",
         "tags": "Tags",
-        "addTags": "Add Tags"
+        "addTags": "Add Tags",
+        "dropdownOptionsRequired": "Dropdown Options are required"
       }
     },
     "files": {

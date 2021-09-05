@@ -82,7 +82,8 @@
         "dropdownOptions": "Opțiuni selecție",
         "addDropdownOptions": "Adăugare opțiune selecție",
         "tags": "Etichete",
-        "addTags": "Adăugare etichete"
+        "addTags": "Adăugare etichete",
+        "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii"
       }
     },
     "files": {

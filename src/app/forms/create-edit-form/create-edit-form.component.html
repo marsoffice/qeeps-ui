@@ -93,7 +93,7 @@
 
               <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown">
                 <mat-label>{{'ui.forms.createEditForm.dropdownOptions' | translate}}</mat-label>
-                <mat-chip-list #chipListOpts>
+                <mat-chip-list [required]="true" #chipListOpts>
                   <mat-chip *ngFor="let opt of columns.controls[i].get('dropdownOptions')?.value; let j = index" [selectable]="false"
                     [removable]="true" (removed)="removeDropdownOption(j, i)">
                     {{opt}}
@@ -103,6 +103,9 @@
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
                     (matChipInputTokenEnd)="addDropdownOption($event, i)">
                 </mat-chip-list>
+                <mat-error *ngIf="columns.controls[i].get('dropdownOptions')?.hasError('required')">
+                  {{'ui.forms.createEditForm.dropdownOptionsRequired' | translate}}
+                </mat-error>
               </mat-form-field>
 
               <div fxFlex="1 1 100%"></div>
