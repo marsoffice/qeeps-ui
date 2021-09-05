@@ -78,6 +78,7 @@
         "dropdown": "Selecție",
         "singleFile": "Fișier",
         "multipleFiles": "Fișiere",
+        "boolean": "Adevărat/fals",
         "allowedExtensions": "Extensii permise",
         "dropdownOptions": "Opțiuni selecție",
         "addDropdownOptions": "Adăugare opțiune selecție",

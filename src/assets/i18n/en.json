@@ -78,6 +78,7 @@
         "dropdown": "Dropdown",
         "singleFile": "Single File",
         "multipleFiles": "Multiple Files",
+        "boolean": "True/False",
         "allowedExtensions": "Allowed Extensions",
         "dropdownOptions": "Dropdown Options",
         "addDropdownOptions": "Add Dropdown Option",
