@@ -1,6 +1,6 @@
 <mat-form-field appearance="outline" class="h-100">
   <input class="h-100" matInput type="text" [formControl]="cellFormControl" *ngIf="column.dataType === columnDataTypes.StringSingleLine"
-    [required]="!editMode && column.isRequired" [fxHide]="!editMode && column.isHidden" />
+    [required]="!editMode && column.isRequired" />
   <textarea class="h-100" matInput [formControl]="cellFormControl" *ngIf="column.dataType === columnDataTypes.StringMultiLine"
-    [required]="!editMode && column.isRequired" [fxHide]="!editMode && column.isHidden"></textarea>
+    [required]="!editMode && column.isRequired"></textarea>
 </mat-form-field>

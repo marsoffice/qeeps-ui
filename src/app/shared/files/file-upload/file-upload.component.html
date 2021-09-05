@@ -1,24 +1,22 @@
-<mat-form-field appearance="outline">
-  <p *ngIf="files == null || files.length === 0">{{'ui.files.noFiles' | translate}}</p>
+<p *ngIf="files == null || files.length === 0">{{'ui.files.noFiles' | translate}}</p>
 
-  <mat-list *ngIf="files != null && files.length > 0">
-    <mat-list-item *ngFor="let f of files; let i = index" fxLayout="row" fxLayoutGap="5px">
-      <mat-icon mat-list-icon>{{f.errors == null ? (f.id == null ? 'upload' : 'done') : 'error'}}</mat-icon>
-      <span>{{ f.filename }}</span>
-      <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
-      <div fxFlex="1 1 100%" *ngIf="!f.isUploading"></div>
-      <button [disabled]="disabled" (click)="removeFile(i)" mat-icon-button color="warn">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
-
-  <div class="button-wrapper" fxLayout="row" fxLayoutAlign="center">
-    <button [disabled]="disabled" mat-raised-button color="accent" type="button" (click)="showUploadDialog()">
-      <mat-icon>upload</mat-icon>
-      <span>{{'ui.files.upload' | translate}}</span>
+<mat-list *ngIf="files != null && files.length > 0">
+  <mat-list-item *ngFor="let f of files; let i = index" fxLayout="row" fxLayoutGap="5px">
+    <mat-icon mat-list-icon>{{f.errors == null ? (f.id == null ? 'upload' : 'done') : 'error'}}</mat-icon>
+    <span>{{ f.filename }}</span>
+    <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
+    <div fxFlex="1 1 100%" *ngIf="!f.isUploading"></div>
+    <button [disabled]="disabled" (click)="removeFile(i)" mat-icon-button color="warn">
+      <mat-icon>delete</mat-icon>
     </button>
-  </div>
-  <input [disabled]="disabled" type="file" (change)="onFilesSelected()" fxHide [accept]="accept" [multiple]="multiple" #upload />
-  <input type="text" fxHide matInput />
-</mat-form-field>
+  </mat-list-item>
+</mat-list>
+
+<div class="button-wrapper" fxLayout="row" fxLayoutAlign="center">
+  <button [disabled]="disabled" mat-raised-button color="accent" type="button" (click)="showUploadDialog()">
+    <mat-icon>upload</mat-icon>
+    <span>{{'ui.files.upload' | translate}}</span>
+  </button>
+</div>
+<input [required]="required || false" [disabled]="disabled" type="file" (change)="onFilesSelected()" fxHide [accept]="accept"
+  [multiple]="multiple" #upload />

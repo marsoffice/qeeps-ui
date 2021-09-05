@@ -4,20 +4,27 @@ import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
 
 @Component({
-  selector: 'app-string-cell',
-  templateUrl: './string-cell.component.html',
-  styleUrls: ['./string-cell.component.scss']
+  selector: 'app-files-cell',
+  templateUrl: './files-cell.component.html',
+  styleUrls: ['./files-cell.component.scss']
 })
-export class StringCellComponent implements OnInit {
+export class FilesCellComponent implements OnInit {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   @Input('isMobile') isMobile: boolean | undefined;
 
   columnDataTypes = ColumnDataType;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
 
+  generateAccept() {
+    if (!this.column.allowedExtensions) {
+      return undefined;
+    }
+    return this.column.allowedExtensions.join();
   }
 }

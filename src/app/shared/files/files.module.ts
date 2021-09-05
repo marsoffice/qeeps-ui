@@ -4,7 +4,6 @@ import { FilesService } from './services/files.service';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -20,7 +19,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule,
     TranslateModule,
     MatInputModule,
     FlexLayoutModule,

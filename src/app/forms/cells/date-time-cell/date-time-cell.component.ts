@@ -4,20 +4,22 @@ import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
 
 @Component({
-  selector: 'app-string-cell',
-  templateUrl: './string-cell.component.html',
-  styleUrls: ['./string-cell.component.scss']
+  selector: 'app-date-time-cell',
+  templateUrl: './date-time-cell.component.html',
+  styleUrls: ['./date-time-cell.component.scss']
 })
-export class StringCellComponent implements OnInit {
+export class DateTimeCellComponent implements OnInit {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   @Input('isMobile') isMobile: boolean | undefined;
-
   columnDataTypes = ColumnDataType;
   constructor() { }
 
   ngOnInit(): void {
+  }
 
+  castToAny(x: any) {
+    return x as any;
   }
 }

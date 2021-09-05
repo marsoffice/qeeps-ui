@@ -3,21 +3,23 @@ import { FormControl } from '@angular/forms';
 import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
 
+
 @Component({
-  selector: 'app-string-cell',
-  templateUrl: './string-cell.component.html',
-  styleUrls: ['./string-cell.component.scss']
+  selector: 'app-boolean-cell',
+  templateUrl: './boolean-cell.component.html',
+  styleUrls: ['./boolean-cell.component.scss']
 })
-export class StringCellComponent implements OnInit {
+export class BooleanCellComponent implements OnInit {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   @Input('isMobile') isMobile: boolean | undefined;
 
   columnDataTypes = ColumnDataType;
+
   constructor() { }
 
   ngOnInit(): void {
-
   }
+
 }

@@ -49,7 +49,11 @@
 
   <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
   <div fxLayout="column">
-    <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
+    <mat-form-field appearance="outline">
+      <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
+      <input type="text" fxHide matInput />
+    </mat-form-field>
+
     <mat-error *ngIf="form.get('attachments')!.hasError('upload')">
       <mat-error *ngFor="let err of form.get('attachments')!.getError('upload')">
         {{ err.message | translate:err.placeholderValues }}
@@ -142,7 +146,8 @@
               </mat-card>
             </th>
             <td mat-cell *matCellDef="let element; let rowIndex = index">
-              <app-cell [editMode]="true" [column]="column.value" [cellFormControl]="getCellFormControl(rowIndex, i)"></app-cell>
+              <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value" [cellFormControl]="getCellFormControl(rowIndex, i)">
+              </app-cell>
             </td>
           </ng-container>
 

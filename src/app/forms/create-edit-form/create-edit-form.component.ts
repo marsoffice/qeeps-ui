@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KeyValue } from 'src/app/models/key-value';
@@ -9,13 +9,15 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatTable } from '@angular/material/table';
 import { ColumnDto } from '../models/column.dto';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { MediaObserver } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-create-edit-form',
   templateUrl: './create-edit-form.component.html',
   styleUrls: ['./create-edit-form.component.scss']
 })
-export class CreateEditFormComponent implements OnInit {
+export class CreateEditFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   columns: FormArray;
   rows: FormArray;
@@ -33,7 +35,11 @@ export class CreateEditFormComponent implements OnInit {
   columnDataTypes = ColumnDataType;
   allowedExtensions = environment.acceptedFileExtensions;
 
-  constructor(private actRoute: ActivatedRoute) {
+  isMobile = false;
+
+  private _destroy: Subscription[] = [];
+
+  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
     this.columns = new FormArray([]);
@@ -58,10 +64,19 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._destroy.push(
+      this.mediaObserver.asObservable().subscribe(() => {
+        this.isMobile = this.mediaObserver.isActive('xs');
+      })
+    );
     this.actRoute.params.subscribe(params => {
       this.id = params.id;
 
     });
+  }
+
+  ngOnDestroy(): void {
+    this._destroy.forEach(x => x.unsubscribe());
   }
 
   save() {

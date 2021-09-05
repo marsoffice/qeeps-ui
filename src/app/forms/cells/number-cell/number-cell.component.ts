@@ -12,6 +12,7 @@ export class NumberCellComponent implements OnInit {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
+  @Input('isMobile') isMobile: boolean | undefined;
 
   columnDataTypes = ColumnDataType;
   constructor() { }

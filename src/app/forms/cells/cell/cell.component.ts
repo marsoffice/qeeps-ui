@@ -13,6 +13,7 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
+  @Input('isMobile') isMobile: boolean | undefined;
   columnDataTypes = ColumnDataType;
   constructor(private translateService: TranslateService) { }
 

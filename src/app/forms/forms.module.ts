@@ -23,6 +23,11 @@ import { CellComponent } from './cells/cell/cell.component';
 import { StringCellComponent } from './cells/string-cell/string-cell.component';
 import { MatCardModule } from '@angular/material/card';
 import { NumberCellComponent } from './cells/number-cell/number-cell.component';
+import { DateTimeCellComponent } from './cells/date-time-cell/date-time-cell.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BooleanCellComponent } from './cells/boolean-cell/boolean-cell.component';
+import { FilesCellComponent } from './cells/files-cell/files-cell.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,10 @@ import { NumberCellComponent } from './cells/number-cell/number-cell.component';
     CreateEditFormComponent,
     CellComponent,
     StringCellComponent,
-    NumberCellComponent
+    NumberCellComponent,
+    DateTimeCellComponent,
+    BooleanCellComponent,
+    FilesCellComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +57,11 @@ import { NumberCellComponent } from './cells/number-cell/number-cell.component';
     MatSlideToggleModule,
     DragDropModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    FilesModule
   ],
   providers: [
     FormsService

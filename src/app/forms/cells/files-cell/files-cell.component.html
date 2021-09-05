@@ -1,0 +1,5 @@
+<mat-form-field appearance="outline" class="h-100">
+  <app-file-upload [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
+    [multiple]="column.dataType === columnDataTypes.MultipleFiles" [accept]="generateAccept()"></app-file-upload>
+  <input type="text" fxHide matInput />
+</mat-form-field>

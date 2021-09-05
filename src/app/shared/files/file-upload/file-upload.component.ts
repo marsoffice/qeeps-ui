@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { FileDto } from '../models/file.dto';
 import { FilesService } from '../services/files.service';
-import {ErrorsDto} from '../../../models/errors.dto';
+import { ErrorsDto } from '../../../models/errors.dto';
 import { ErrorDto } from 'src/app/models/error.dto';
 
 @Component({
@@ -13,7 +13,7 @@ import { ErrorDto } from 'src/app/models/error.dto';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi:true,
+      multi: true,
       useExisting: FileUploadComponent
     },
     {
@@ -26,12 +26,13 @@ import { ErrorDto } from 'src/app/models/error.dto';
 export class FileUploadComponent implements OnInit, ControlValueAccessor, Validator {
   @Input() multiple = false;
   @Input() accept: string | undefined;
+  @Input() required: boolean | undefined;
   @ViewChild('upload', { static: true, read: ElementRef }) inputFileRef!: ElementRef<HTMLInputElement>;
   files: FileDto[] = [];
   disabled = false;
   touched = false;
-  onChange = (v: any) => {};
-  onTouched = () => {};
+  onChange = (v: any) => { };
+  onTouched = () => { };
   constructor(private filesService: FilesService) { }
 
   ngOnInit(): void {

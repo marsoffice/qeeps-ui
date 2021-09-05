@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline" class="h-100">
   <input class="h-100" matInput type="number" [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
     [step]="column.dataType === columnDataTypes.Real || column.dataType === columnDataTypes.PositiveReal ? '0.0001' : '1'"
-    [min]="columnDataTypes[column.dataType].toString().startsWith('Positive') ? '0' : ''" [fxHide]="!editMode && column.isHidden" />
+    [min]="columnDataTypes[column.dataType].toString().startsWith('Positive') ? '0' : ''" />
 </mat-form-field>
