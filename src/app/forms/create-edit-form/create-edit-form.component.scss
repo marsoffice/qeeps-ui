@@ -15,6 +15,10 @@
           padding-left: 0;
           padding-right: 0;
           padding: 1px !important;
+
+          .mat-form-field-wrapper {
+            padding-bottom: 0 !important;
+          }
         }
       }
       thead {

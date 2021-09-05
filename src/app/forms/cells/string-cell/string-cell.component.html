@@ -1,1 +1,2 @@
-<input matInput type="text" [formControl]="fc!" [required]="column.isRequired" [fxHide]="column.isHidden" />
+<input matInput type="text" [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
+  [fxHide]="!editMode && column.isHidden" />

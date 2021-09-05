@@ -7,6 +7,7 @@ import { ColumnDataType } from '../models/column-data-type';
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatTable } from '@angular/material/table';
+import { ColumnDto } from '../models/column.dto';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -67,13 +68,24 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   get columnsToDisplay() {
-    return this.columns.controls.map((_, i) => i + '');
+    const cols = this.columns.controls.map((_, i) => i + '');
+    if (this.rows.length > 0) {
+      cols.push('delrow');
+    }
+    return cols;
   }
 
   addColumn() {
+    const cfg = this.createColumnFormGroup();
     this.columns.push(
-      this.createColumnFormGroup()
+      cfg
     );
+    if (this.rows.length > 0) {
+      for (let i = 0; i < this.rows.length; i++) {
+        const rowFg = this.rows.at(i) as FormGroup;
+        rowFg.addControl('c' + (this.columns.length - 1), new FormControl());
+      }
+    }
     setTimeout(() => {
       this.columnsWrapper.nativeElement.scrollLeft = this.columnsWrapper.nativeElement.scrollWidth;
     });
@@ -84,9 +96,21 @@ export class CreateEditFormComponent implements OnInit {
     if (this.rows.length === 0) {
       return;
     }
-    for (const row of this.rows.controls) {
-      const fg = row as FormGroup;
-      fg.removeControl(`c${i}`);
+    if (this.columns.length === 0) {
+      this.rows.clear();
+    } else {
+      for (const row of this.rows.controls) {
+        const fg = row as FormGroup;
+        const controlKeys = Object.keys(fg);
+        if (i === controlKeys.length - 1) {
+          fg.removeControl(`c${i}`);
+          return;
+        }
+        for (let j = i; j < controlKeys.length - 1; j++) {
+          fg.setControl(`c${j}`, fg.get(`c${(j + 1)}`)!);
+        }
+        fg.removeControl(`c${(controlKeys.length - 1)}`);
+      }
     }
     this.matTable.renderRows();
   }
@@ -95,6 +119,11 @@ export class CreateEditFormComponent implements OnInit {
     this.rows.push(
       this.createRowFormGroup()
     );
+    this.matTable.renderRows();
+  }
+
+  removeRow(i: number) {
+    this.rows.removeAt(i);
     this.matTable.renderRows();
   }
 
@@ -142,8 +171,18 @@ export class CreateEditFormComponent implements OnInit {
     this.form.get('tags')!.setValue(list);
   }
 
-  getRowFormGroup(colIndex: number) {
-    return this.rows.at(colIndex) as FormGroup;
+  getCellFormControl(rowIndex: number, colIndex: number) {
+    return (this.rows.at(rowIndex) as FormGroup).get('c' + colIndex) as FormControl;
+  }
+
+  columnDataTypeChanged(colIndex: number) {
+    if (this.rows.length === 0) {
+      return;
+    }
+    for (let i = 0; i < this.rows.length; i++) {
+      const rowFg = this.rows.at(i) as FormGroup;
+      rowFg.get('c' + colIndex)?.setValue(null);
+    }
   }
 
 
@@ -160,7 +199,12 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   private createRowFormGroup() {
-    return new FormGroup({});
+    const fcs: { [key: string]: AbstractControl; } = {};
+    const colDtos = this.columns.value as ColumnDto[];
+    for (let i = 0; i < colDtos.length; i++) {
+      fcs['c' + i] = new FormControl();
+    }
+    return new FormGroup(fcs);
   }
 
   private dropdownOptionsValidator(control: AbstractControl) {
