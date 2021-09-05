@@ -187,11 +187,28 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   reorderColumns(event: CdkDragDrop<any>) {
-    // swap columns
     const theFg = this.columns.at(event.previousIndex);
     const swappedFg = this.columns.at(event.currentIndex);
     this.columns.setControl(event.previousIndex, swappedFg);
     this.columns.setControl(event.currentIndex, theFg);
+    if (this.rows.length > 0) {
+      for (let i = 0; i < this.rows.length; i++) {
+        const rowFg = this.rows.at(i) as FormGroup;
+        const theValue = rowFg.get(`c${event.previousIndex}`)?.value;
+        const swappedValue = rowFg.get(`c${event.currentIndex}`)?.value;
+        rowFg.get(`c${event.previousIndex}`)?.setValue(swappedValue);
+        rowFg.get(`c${event.currentIndex}`)?.setValue(theValue);
+      }
+      this.matTable.renderRows();
+    }
+  }
+
+  trackByIndex(index: number, item: AbstractControl) {
+    return index;
+  }
+
+  getColumnFormGroup(control: AbstractControl) {
+    return control as FormGroup;
   }
 
 
