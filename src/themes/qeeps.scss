@@ -224,6 +224,10 @@ $altTheme: (
 
 .theme-alternate {
   @include mat.all-component-themes($altTheme);
+
+  .brd-normal {
+    border-color: rgba(235, 235, 235, 0.12);
+  }
 }
 
 .text-warn {
@@ -266,6 +270,10 @@ $altTheme: (
 }
 .brd-primary {
   border-color: mat.get-color-from-palette($theme-primary, main) !important;
+}
+
+.brd-normal {
+  border-color: rgba(11, 11, 11, 0.12);
 }
 
 .mat-raised-button,

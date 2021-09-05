@@ -1,27 +1,27 @@
 :host {
   mat-chip {
     font-size: 0.8em;
+    height: initial !important;
   }
   #columns {
     overflow-x: auto;
     max-width: 100%;
     min-width: 0;
 
-    table {
-      ::ng-deep thead {
-        tr {
-          display: table;
-        }
-      }
-      th {
-        vertical-align: top;
-        min-width: 100px;
-        padding: 5px;
-        border-bottom: none;
+    ::ng-deep table {
+      height: 100%;
+      thead {
+        height: 100%;
+        th {
+          height: 100%;
+          vertical-align: top;
+          min-width: 100px;
+          padding: 5px;
 
-        &:not(:last-of-type) {
-          border-right-width: 1px;
-          border-right-style: solid;
+          &:not(:last-of-type) {
+            border-right-width: 1px;
+            border-right-style: solid;
+          }
         }
       }
     }
