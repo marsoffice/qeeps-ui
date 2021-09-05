@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
 
@@ -13,13 +14,24 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   columnDataTypes = ColumnDataType;
-  constructor() { }
+  constructor(private translateService: TranslateService) { }
 
   ngOnInit(): void {
 
   }
 
   ngOnDestroy(): void {
+
+  }
+
+  getFormControlErrorsMessage() {
+    if (!this.cellFormControl.invalid) {
+      return '';
+    }
+
+    return Object.keys(this.cellFormControl.errors!)
+      .map(x => this.translateService.instant(`ui.forms.cell.validationFailed.${x}`))
+      .join("\r\n");
 
   }
 }

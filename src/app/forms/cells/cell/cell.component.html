@@ -1,5 +1,5 @@
-<mat-form-field appearance="outline">
+<div [matTooltip]="getFormControlErrorsMessage()" matTooltipClass="bg-warn">
   <app-string-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl"
     *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
   </app-string-cell>
-</mat-form-field>
+</div>

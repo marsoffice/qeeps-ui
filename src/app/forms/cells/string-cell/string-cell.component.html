@@ -1,2 +1,4 @@
-<input matInput type="text" [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
-  [fxHide]="!editMode && column.isHidden" />
+<mat-form-field appearance="outline">
+  <input matInput type="text" [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
+    [fxHide]="!editMode && column.isHidden" />
+</mat-form-field>
