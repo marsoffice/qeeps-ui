@@ -1,4 +1,4 @@
-<div [matTooltip]="getFormControlErrorsMessage()" matTooltipClass="bg-warn">
+<div [matTooltip]="getFormControlErrorsMessage()" matTooltipClass="bg-warn" class="cell h-100 w-100">
   <app-string-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl"
     *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
   </app-string-cell>
