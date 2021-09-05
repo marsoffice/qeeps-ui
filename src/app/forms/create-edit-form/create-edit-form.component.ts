@@ -149,7 +149,9 @@ export class CreateEditFormComponent implements OnInit {
 
     if (value) {
       const list = this.columns.controls[i].get('dropdownOptions')!.value;
-      list.push(value);
+      if (list.indexOf(value) === -1) {
+        list.push(value);
+      }
       this.columns.controls[i].get('dropdownOptions')!.setValue(list);
     }
     event.chipInput!.clear();
@@ -160,7 +162,9 @@ export class CreateEditFormComponent implements OnInit {
 
     if (value) {
       const list = this.form.get('tags')!.value;
-      list.push(value);
+      if (list.indexOf(value) === -1) {
+        list.push(value);
+      }
       this.form.get('tags')!.setValue(list);
     }
     event.chipInput!.clear();
