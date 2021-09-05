@@ -1,21 +1,18 @@
 :host {
-  mat-form-field {
+  ::ng-deep mat-list {
     width: 100%;
 
-    mat-list {
-      width: 100%;
+    mat-list-item {
+      width: 100% !important;
+      height: auto !important;
 
-      mat-list-item {
+      .mat-list-item-content {
         width: 100%;
-
-        ::ng-deep .mat-list-item-content {
-          width: 100%;
-        }
       }
     }
+  }
 
-    .button-wrapper {
-      width: 100%;
-    }
+  .button-wrapper {
+    width: 100%;
   }
 }

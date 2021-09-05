@@ -49,6 +49,9 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
   onFilesSelected() {
     this.markAsTouched();
     const newFiles: FileDto[] = [];
+    if (this.files == null) {
+      this.files = [];
+    }
     for (let i = 0; i < this.inputFileRef.nativeElement.files!.length; i++) {
       const f = this.inputFileRef.nativeElement.files?.item(i);
       if (this.files.some(x => x.filename === f?.name)) {
