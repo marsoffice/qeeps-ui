@@ -61,9 +61,15 @@
   <div fxLayout="column" fxLayoutGap="5px">
     <div fxLayout="row" fxLayoutGap="5px" class="w-100">
       <div id="columns" fxFlex="1 1 100%" #columnsWrapper formArrayName="columns">
-        <table #matTable *ngIf="columns.controls.length > 0" mat-table [dataSource]="rows.controls">
+        <table id="columns-table" cdkDropList (cdkDropListDropped)="reorderColumns($event)" cdkDropListLockAxis="x"
+          cdkDropListOrientation="horizontal" #matTable mat-table [dataSource]="rows.controls">
           <ng-container [matColumnDef]="i + ''" *ngFor="let column of columns.controls; let i = index">
-            <th mat-header-cell *matHeaderCellDef class="brd-normal h-100">
+            <th cdkDrag cdkDragBoundary="#columns-table thead" mat-header-cell *matHeaderCellDef class="brd-normal h-100">
+              <div class="w-100" fxLayout="row" fxLayoutAlign="center center">
+                <button cdkDragHandle class="drag-btn" type="button" mat-icon-button color="accent">
+                  <mat-icon>drag_handle</mat-icon>
+                </button>
+              </div>
               <form class="h-100 w-100" [formGroupName]="i" fxLayout="column" fxLayoutGap="5px">
                 <mat-form-field appearance="outline">
                   <mat-label>{{'ui.forms.createEditForm.columnName' | translate}}</mat-label>

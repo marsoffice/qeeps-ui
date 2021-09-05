@@ -8,6 +8,7 @@ import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatTable } from '@angular/material/table';
 import { ColumnDto } from '../models/column.dto';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -24,7 +25,7 @@ export class CreateEditFormComponent implements OnInit {
   @ViewChild('columnsWrapper', { static: true, read: ElementRef })
   private columnsWrapper!: ElementRef<HTMLDivElement>;
 
-  @ViewChild('matTable', { static: false }) matTable!: MatTable<AbstractControl>;
+  @ViewChild('matTable', { static: true }) matTable!: MatTable<AbstractControl>;
 
   acceptedFileExtensions = environment.acceptedFileExtensions.join();
 
@@ -183,6 +184,14 @@ export class CreateEditFormComponent implements OnInit {
       const rowFg = this.rows.at(i) as FormGroup;
       rowFg.get('c' + colIndex)?.setValue(null);
     }
+  }
+
+  reorderColumns(event: CdkDragDrop<any>) {
+    // swap columns
+    const theFg = this.columns.at(event.previousIndex);
+    const swappedFg = this.columns.at(event.currentIndex);
+    this.columns.setControl(event.previousIndex, swappedFg);
+    this.columns.setControl(event.currentIndex, theFg);
   }
 
 

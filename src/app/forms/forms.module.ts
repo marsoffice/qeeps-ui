@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { FilesModule } from '../shared/files/files.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CellComponent } from './cells/cell/cell.component';
 import { StringCellComponent } from './cells/string-cell/string-cell.component';
 
@@ -41,7 +42,8 @@ import { StringCellComponent } from './cells/string-cell/string-cell.component';
     MatTableModule,
     FilesModule,
     MatChipsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    DragDropModule
   ],
   providers: [
     FormsService
