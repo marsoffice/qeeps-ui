@@ -64,81 +64,82 @@
         <table id="columns-table" cdkDropList (cdkDropListDropped)="reorderColumns($event)" cdkDropListLockAxis="x"
           cdkDropListOrientation="horizontal" #matTable mat-table [dataSource]="rows.controls">
           <ng-container [matColumnDef]="i + ''" *ngFor="let column of columns.controls; let i = index; trackBy: trackByIndex">
-            <th cdkDrag cdkDragBoundary="#columns-table thead" mat-header-cell *matHeaderCellDef class="brd-normal h-100">
-              <div class="w-100" fxLayout="row" fxLayoutAlign="space-between center">
-                <button cdkDragHandle class="drag-btn" type="button" mat-icon-button color="accent">
-                  <mat-icon>drag_handle</mat-icon>
-                </button>
-                <button type="button" (click)="removeColumn(i)" mat-icon-button color="warn">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-              <button *cdkDragPreview class="drag-btn" type="button" mat-icon-button color="accent">
-                <mat-icon>drag_handle</mat-icon>
-              </button>
-              <form class="h-100 w-100" [formGroup]="getColumnFormGroup(column)" fxLayout="column" fxLayoutGap="5px">
-                <mat-form-field appearance="outline">
-                  <mat-label>{{'ui.forms.createEditForm.columnName' | translate}}</mat-label>
-                  <input type="text" required matInput formControlName="name" />
-                  <mat-error *ngIf="columns.controls[i].get('name')?.hasError('required')">
-                    {{'ui.forms.createEditForm.columnNameRequired' | translate}}
-                  </mat-error>
-                </mat-form-field>
+            <th cdkDrag cdkDragBoundary="#columns-table thead" mat-header-cell *matHeaderCellDef class="h-100">
+              <mat-card class="mat-elevation-z8">
+                <mat-card-content>
+                  <div class="w-100" fxLayout="row" fxLayoutAlign="space-between center">
+                    <button cdkDragHandle class="drag-btn" type="button" mat-icon-button color="accent">
+                      <mat-icon>drag_handle</mat-icon>
+                    </button>
+                    <button type="button" (click)="removeColumn(i)" mat-icon-button color="warn">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                  <form class="h-100 w-100" [formGroup]="getColumnFormGroup(column)" fxLayout="column" fxLayoutGap="5px">
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{'ui.forms.createEditForm.columnName' | translate}}</mat-label>
+                      <input type="text" required matInput formControlName="name" />
+                      <mat-error *ngIf="columns.controls[i].get('name')?.hasError('required')">
+                        {{'ui.forms.createEditForm.columnNameRequired' | translate}}
+                      </mat-error>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                  <mat-label>{{'ui.forms.createEditForm.dataType' | translate}}</mat-label>
-                  <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(i)">
-                    <mat-option *ngFor="let cdt of columnDataTypesList" [value]="cdt.value">
-                      {{('ui.forms.createEditForm.' + toCamelCase(cdt.key)) | translate}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{'ui.forms.createEditForm.dataType' | translate}}</mat-label>
+                      <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(i)">
+                        <mat-option *ngFor="let cdt of columnDataTypesList" [value]="cdt.value">
+                          {{('ui.forms.createEditForm.' + toCamelCase(cdt.key)) | translate}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline"
-                  *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.SingleFile || columns.controls[i].get('dataType')?.value === columnDataTypes.MultipleFiles">
-                  <mat-label>{{'ui.forms.createEditForm.allowedExtensions' | translate}}</mat-label>
-                  <mat-select multiple formControlName="allowedExtensions">
-                    <mat-option *ngFor="let ext of allowedExtensions" [value]="ext">
-                      {{ext}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+                    <mat-form-field appearance="outline"
+                      *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.SingleFile || columns.controls[i].get('dataType')?.value === columnDataTypes.MultipleFiles">
+                      <mat-label>{{'ui.forms.createEditForm.allowedExtensions' | translate}}</mat-label>
+                      <mat-select multiple formControlName="allowedExtensions">
+                        <mat-option *ngFor="let ext of allowedExtensions" [value]="ext">
+                          {{ext}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown">
-                  <mat-label>{{'ui.forms.createEditForm.dropdownOptions' | translate}}</mat-label>
-                  <mat-chip-list [required]="true" #chipListOpts>
-                    <mat-chip *ngFor="let opt of columns.controls[i].get('dropdownOptions')?.value; let j = index" [selectable]="false"
-                      [removable]="true" (removed)="removeDropdownOption(j, i)">
-                      {{opt}}
-                      <mat-icon matChipRemove color="warn">cancel</mat-icon>
-                    </mat-chip>
-                    <input [placeholder]="'ui.forms.createEditForm.addDropdownOptions' | translate" [matChipInputFor]="chipListOpts"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-                      (matChipInputTokenEnd)="addDropdownOption($event, i)">
-                  </mat-chip-list>
-                  <mat-error *ngIf="columns.controls[i].get('dropdownOptions')?.hasError('required')">
-                    {{'ui.forms.createEditForm.dropdownOptionsRequired' | translate}}
-                  </mat-error>
-                </mat-form-field>
+                    <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown">
+                      <mat-label>{{'ui.forms.createEditForm.dropdownOptions' | translate}}</mat-label>
+                      <mat-chip-list [required]="true" #chipListOpts>
+                        <mat-chip *ngFor="let opt of columns.controls[i].get('dropdownOptions')?.value; let j = index" [selectable]="false"
+                          [removable]="true" (removed)="removeDropdownOption(j, i)">
+                          {{opt}}
+                          <mat-icon matChipRemove color="warn">cancel</mat-icon>
+                        </mat-chip>
+                        <input [placeholder]="'ui.forms.createEditForm.addDropdownOptions' | translate" [matChipInputFor]="chipListOpts"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                          (matChipInputTokenEnd)="addDropdownOption($event, i)">
+                      </mat-chip-list>
+                      <mat-error *ngIf="columns.controls[i].get('dropdownOptions')?.hasError('required')">
+                        {{'ui.forms.createEditForm.dropdownOptionsRequired' | translate}}
+                      </mat-error>
+                    </mat-form-field>
 
-                <div fxFlex="1 1 100%"></div>
+                    <div fxFlex="1 1 100%"></div>
 
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                  <mat-label>{{'ui.forms.createEditForm.required' | translate}}</mat-label>
-                  <mat-slide-toggle formControlName="isRequired"></mat-slide-toggle>
-                </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                      <mat-label>{{'ui.forms.createEditForm.required' | translate}}</mat-label>
+                      <mat-slide-toggle formControlName="isRequired"></mat-slide-toggle>
+                    </div>
 
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                  <mat-label>{{'ui.forms.createEditForm.isFrozen' | translate}}</mat-label>
-                  <mat-slide-toggle formControlName="isFrozen"></mat-slide-toggle>
-                </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                      <mat-label>{{'ui.forms.createEditForm.isFrozen' | translate}}</mat-label>
+                      <mat-slide-toggle formControlName="isFrozen"></mat-slide-toggle>
+                    </div>
 
-                <div class="mb-1" fxLayout="row" fxLayoutAlign="space-between">
-                  <mat-label>{{'ui.forms.createEditForm.isHidden' | translate}}</mat-label>
-                  <mat-slide-toggle formControlName="isHidden"></mat-slide-toggle>
-                </div>
+                    <div class="mb-1" fxLayout="row" fxLayoutAlign="space-between">
+                      <mat-label>{{'ui.forms.createEditForm.isHidden' | translate}}</mat-label>
+                      <mat-slide-toggle formControlName="isHidden"></mat-slide-toggle>
+                    </div>
 
-              </form>
+                  </form>
+                </mat-card-content>
+              </mat-card>
             </th>
             <td mat-cell *matCellDef="let element; let rowIndex = index">
               <app-cell [editMode]="true" [column]="column.value" [cellFormControl]="getCellFormControl(rowIndex, i)"></app-cell>

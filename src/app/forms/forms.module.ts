@@ -21,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CellComponent } from './cells/cell/cell.component';
 import { StringCellComponent } from './cells/string-cell/string-cell.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { StringCellComponent } from './cells/string-cell/string-cell.component';
     MatChipsModule,
     MatSlideToggleModule,
     DragDropModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
   ],
   providers: [
     FormsService

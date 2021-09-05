@@ -16,8 +16,11 @@
           padding-right: 0;
           padding: 1px !important;
 
-          .mat-form-field-wrapper {
-            padding-bottom: 0 !important;
+          mat-form-field {
+            width: 100%;
+            .mat-form-field-wrapper {
+              padding-bottom: 0 !important;
+            }
           }
         }
       }
@@ -29,10 +32,10 @@
           min-width: 100px;
           padding: 5px;
 
-          &:not(:last-of-type) {
-            border-right-width: 1px;
-            border-right-style: solid;
-          }
+          // &:not(:last-of-type) {
+          //   border-right-width: 1px;
+          //   border-right-style: solid;
+          // }
 
           .drag-btn {
             cursor: move;
