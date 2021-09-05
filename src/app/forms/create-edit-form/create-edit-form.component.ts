@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormArray, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KeyValue } from 'src/app/models/key-value';
 import { environment } from 'src/environments/environment';
 import { ColumnDataType } from '../models/column-data-type';
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -21,6 +22,8 @@ export class CreateEditFormComponent implements OnInit {
 
   @ViewChild('columnsWrapper', { static: true, read: ElementRef })
   private columnsWrapper!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('matTable', { static: false }) matTable!: MatTable<AbstractControl>;
 
   acceptedFileExtensions = environment.acceptedFileExtensions.join();
 
@@ -78,6 +81,21 @@ export class CreateEditFormComponent implements OnInit {
 
   removeColumn(i: number) {
     this.columns.removeAt(i);
+    if (this.rows.length === 0) {
+      return;
+    }
+    for (const row of this.rows.controls) {
+      const fg = row as FormGroup;
+      fg.removeControl(`c${i}`);
+    }
+    this.matTable.renderRows();
+  }
+
+  addRow() {
+    this.rows.push(
+      this.createRowFormGroup()
+    );
+    this.matTable.renderRows();
   }
 
   toCamelCase(k: string) {
@@ -124,6 +142,10 @@ export class CreateEditFormComponent implements OnInit {
     this.form.get('tags')!.setValue(list);
   }
 
+  getRowFormGroup(colIndex: number) {
+    return this.rows.at(colIndex) as FormGroup;
+  }
+
 
   private createColumnFormGroup() {
     return new FormGroup({
@@ -135,6 +157,10 @@ export class CreateEditFormComponent implements OnInit {
       dataType: new FormControl(ColumnDataType.StringSingleLine, [Validators.required]),
       allowedExtensions: new FormControl([])
     });
+  }
+
+  private createRowFormGroup() {
+    return new FormGroup({});
   }
 
   private dropdownOptionsValidator(control: AbstractControl) {

@@ -17,12 +17,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { FilesModule } from '../shared/files/files.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CellComponent } from './cells/cell/cell.component';
+import { StringCellComponent } from './cells/string-cell/string-cell.component';
 
 @NgModule({
   declarations: [
     FormsComponent,
     MyFormsComponent,
-    CreateEditFormComponent
+    CreateEditFormComponent,
+    CellComponent,
+    StringCellComponent
   ],
   imports: [
     CommonModule,

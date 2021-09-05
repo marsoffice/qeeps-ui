@@ -10,6 +10,13 @@
 
     ::ng-deep table {
       height: 100%;
+      tbody {
+        td {
+          padding-left: 0;
+          padding-right: 0;
+          padding: 1px !important;
+        }
+      }
       thead {
         height: 100%;
         th {

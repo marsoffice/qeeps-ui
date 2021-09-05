@@ -84,6 +84,9 @@
         "tags": "Tags",
         "addTags": "Add Tags",
         "dropdownOptionsRequired": "Dropdown Options are required"
+      },
+      "cell": {
+        "required": "Required"
       }
     },
     "files": {
@@ -108,7 +111,8 @@
       "userIdRequired": "User ID required",
       "dropdownOptionsRequired": "Dropdown options are required",
       "columnNameRequired": "Column name is required",
-      "accessOrganisationRequired": "Form access rule organisation ID is required"
+      "accessOrganisationRequired": "Form access rule organisation ID is required",
+      "allRowValuesMustMatchColumnCount": "All row values must match the column count"
     }
   }
 }

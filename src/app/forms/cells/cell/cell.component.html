@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline">
+  <app-string-cell [value]="value" [parentFormGroup]="parentFormGroup" [columnIndex]="columnIndex" [rowIndex]="rowIndex" [column]="column"
+    *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
+  </app-string-cell>
+  <mat-error *ngIf="parentFormGroup.get('c' + columnIndex)?.hasError('required')">
+    {{'ui.forms.cell.required' | translate}}
+  </mat-error>
+  <input matInput fxHide type="text" />
+</mat-form-field>

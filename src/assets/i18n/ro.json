@@ -84,6 +84,9 @@
         "tags": "Etichete",
         "addTags": "Adăugare etichete",
         "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii"
+      },
+      "cell": {
+        "required": "Obligatoriu"
       }
     },
     "files": {
@@ -108,7 +111,8 @@
       "userIdRequired": "ID-ul utilizatorului este obligatoriu",
       "dropdownOptionsRequired": "Opțiunile selecției sunt obligatorii",
       "columnNameRequired": "Numele coloanei este obligatoriu",
-      "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu"
+      "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu",
+      "allRowValuesMustMatchColumnCount": "Numărul valorilor rândurilor trebuie sa coincidă cu numărul de coloane"
     }
   }
 }
