@@ -22,6 +22,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CellComponent } from './cells/cell/cell.component';
 import { StringCellComponent } from './cells/string-cell/string-cell.component';
 import { MatCardModule } from '@angular/material/card';
+import { NumberCellComponent } from './cells/number-cell/number-cell.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatCardModule } from '@angular/material/card';
     MyFormsComponent,
     CreateEditFormComponent,
     CellComponent,
-    StringCellComponent
+    StringCellComponent,
+    NumberCellComponent
   ],
   imports: [
     CommonModule,

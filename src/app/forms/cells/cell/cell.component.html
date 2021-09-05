@@ -2,4 +2,7 @@
   <app-string-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl"
     *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
   </app-string-cell>
+  <app-number-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl"
+    *ngIf="column.dataType === columnDataTypes.Real || column.dataType === columnDataTypes.PositiveReal || column.dataType === columnDataTypes.Integer || column.dataType === columnDataTypes.PositiveInteger || column.dataType === columnDataTypes.Long || column.dataType === columnDataTypes.PositiveLong">
+  </app-number-cell>
 </div>

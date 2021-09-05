@@ -4,11 +4,11 @@ import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
 
 @Component({
-  selector: 'app-string-cell',
-  templateUrl: './string-cell.component.html',
-  styleUrls: ['./string-cell.component.scss']
+  selector: 'app-number-cell',
+  templateUrl: './number-cell.component.html',
+  styleUrls: ['./number-cell.component.scss']
 })
-export class StringCellComponent implements OnInit {
+export class NumberCellComponent implements OnInit {
   @Input('column') column!: ColumnDto;
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
@@ -17,6 +17,6 @@ export class StringCellComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
+
 }

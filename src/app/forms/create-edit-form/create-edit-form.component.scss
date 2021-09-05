@@ -32,13 +32,16 @@
           min-width: 100px;
           padding: 5px;
 
-          // &:not(:last-of-type) {
-          //   border-right-width: 1px;
-          //   border-right-style: solid;
-          // }
-
-          .drag-btn {
-            cursor: move;
+          mat-card {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            mat-card-content {
+              padding: 0.5rem;
+              .drag-btn {
+                cursor: move;
+              }
+            }
           }
         }
       }
