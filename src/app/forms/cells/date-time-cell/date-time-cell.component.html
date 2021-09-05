@@ -2,6 +2,6 @@
   <input class="h-100" matInput [ngxMatDatetimePicker]="picker" [formControl]="cellFormControl">
   <mat-datepicker-toggle matSuffix [for]="castToAny(picker)"></mat-datepicker-toggle>
   <ngx-mat-datetime-picker #picker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true" [touchUi]="isMobile || false"
-    [hideTime]="column.dataType === columnDataTypes.Date">
+    [hideTime]="false">
   </ngx-mat-datetime-picker>
 </mat-form-field>

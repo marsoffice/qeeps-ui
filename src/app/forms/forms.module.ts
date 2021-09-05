@@ -28,6 +28,8 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-mat
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BooleanCellComponent } from './cells/boolean-cell/boolean-cell.component';
 import { FilesCellComponent } from './cells/files-cell/files-cell.component';
+import { DateCellComponent } from './cells/date-cell/date-cell.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { FilesCellComponent } from './cells/files-cell/files-cell.component';
     NumberCellComponent,
     DateTimeCellComponent,
     BooleanCellComponent,
-    FilesCellComponent
+    FilesCellComponent,
+    DateCellComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +64,8 @@ import { FilesCellComponent } from './cells/files-cell/files-cell.component';
     MatDatepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
-    FilesModule
+    FilesModule,
+    MatNativeDateModule
   ],
   providers: [
     FormsService

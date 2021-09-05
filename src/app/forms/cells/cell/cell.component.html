@@ -7,8 +7,11 @@
     *ngIf="column.dataType === columnDataTypes.Real || column.dataType === columnDataTypes.PositiveReal || column.dataType === columnDataTypes.Integer || column.dataType === columnDataTypes.PositiveInteger || column.dataType === columnDataTypes.Long || column.dataType === columnDataTypes.PositiveLong">
   </app-number-cell>
   <app-date-time-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
-    *ngIf="column.dataType === columnDataTypes.Date || column.dataType === columnDataTypes.DateTime">
+    *ngIf="column.dataType === columnDataTypes.DateTime">
   </app-date-time-cell>
+  <app-date-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
+    *ngIf="column.dataType === columnDataTypes.Date">
+  </app-date-cell>
   <app-boolean-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
     *ngIf="column.dataType === columnDataTypes.Boolean">
   </app-boolean-cell>
