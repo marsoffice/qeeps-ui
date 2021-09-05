@@ -87,7 +87,11 @@
         "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii"
       },
       "cell": {
-        "required": "Obligatoriu"
+        "required": "Obligatoriu",
+        "validationFailed": {
+          "incomplete": "Incomplet",
+          "required": "Obligatoriu"
+        }
       }
     },
     "files": {

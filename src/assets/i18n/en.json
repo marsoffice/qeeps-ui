@@ -87,7 +87,11 @@
         "dropdownOptionsRequired": "Dropdown Options are required"
       },
       "cell": {
-        "required": "Required"
+        "required": "Required",
+        "validationFailed": {
+          "incomplete": "Incomplete",
+          "required": "Required"
+        }
       }
     },
     "files": {
