@@ -84,7 +84,8 @@
         "addDropdownOptions": "Adăugare opțiune selecție",
         "tags": "Etichete",
         "addTags": "Adăugare etichete",
-        "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii"
+        "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii",
+        "settings": "Setări"
       },
       "cell": {
         "required": "Obligatoriu",

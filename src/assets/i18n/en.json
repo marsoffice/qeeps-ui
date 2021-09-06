@@ -84,7 +84,8 @@
         "addDropdownOptions": "Add Dropdown Option",
         "tags": "Tags",
         "addTags": "Add Tags",
-        "dropdownOptionsRequired": "Dropdown Options are required"
+        "dropdownOptionsRequired": "Dropdown Options are required",
+        "settings": "Settings"
       },
       "cell": {
         "required": "Required",
