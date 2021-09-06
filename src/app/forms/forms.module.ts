@@ -30,6 +30,7 @@ import { BooleanCellComponent } from './cells/boolean-cell/boolean-cell.componen
 import { FilesCellComponent } from './cells/files-cell/files-cell.component';
 import { DateCellComponent } from './cells/date-cell/date-cell.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     DateTimeCellComponent,
     BooleanCellComponent,
     FilesCellComponent,
-    DateCellComponent
+    DateCellComponent,
+    DropdownCellComponent
   ],
   imports: [
     CommonModule,

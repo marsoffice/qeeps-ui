@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline" class="h-100">
+  <mat-select [required]="!editMode && column.isRequired" [formControl]="cellFormControl">
+    <mat-option [value]="null" *ngIf="editMode || !column.isRequired">-</mat-option>
+    <mat-option *ngFor="let o of column.dropdownOptions" [value]="o">{{o}}</mat-option>
+  </mat-select>
+</mat-form-field>

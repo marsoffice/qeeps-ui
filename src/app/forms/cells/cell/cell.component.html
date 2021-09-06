@@ -18,4 +18,7 @@
   <app-files-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
     *ngIf="column.dataType === columnDataTypes.SingleFile || column.dataType === columnDataTypes.MultipleFiles">
   </app-files-cell>
+  <app-dropdown-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
+    *ngIf="column.dataType === columnDataTypes.Dropdown">
+  </app-dropdown-cell>
 </div>
