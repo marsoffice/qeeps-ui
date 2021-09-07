@@ -85,7 +85,13 @@
         "tags": "Tags",
         "addTags": "Add Tags",
         "dropdownOptionsRequired": "Dropdown Options are required",
-        "settings": "Settings"
+        "settings": "Settings",
+        "isLocked": "Is Locked",
+        "lockedUntil": "Locked Until",
+        "isPinned": "Is Pinned",
+        "pinnedUntil": "Pinned Until",
+        "isRecurrent": "Is Recurrent",
+        "rowAppendDisabled": "Row Appending Disabled"
       },
       "cell": {
         "required": "Required",

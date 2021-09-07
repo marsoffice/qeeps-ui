@@ -67,7 +67,7 @@ import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.compo
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
     FilesModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [
     FormsService

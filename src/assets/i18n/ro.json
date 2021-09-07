@@ -85,7 +85,13 @@
         "tags": "Etichete",
         "addTags": "Adăugare etichete",
         "dropdownOptionsRequired": "Opțiunile de selecție sunt obligatorii",
-        "settings": "Setări"
+        "settings": "Setări",
+        "isLocked": "Completări blocate",
+        "lockedUntil": "Blocat până la",
+        "isPinned": "Este fixat",
+        "pinnedUntil": "Fixat până la",
+        "isRecurrent": "Este recurent",
+        "rowAppendDisabled": "Adăugarea rândurilor dezactivată"
       },
       "cell": {
         "required": "Obligatoriu",

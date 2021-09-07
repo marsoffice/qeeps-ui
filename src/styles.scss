@@ -100,3 +100,10 @@ body {
 .wb-all {
   word-break: break-all !important;
 }
+
+mat-form-field.mff-p0 {
+  padding: 0 !important;
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+  }
+}
