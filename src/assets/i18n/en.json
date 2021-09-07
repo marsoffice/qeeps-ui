@@ -98,7 +98,8 @@
         "validationFailed": {
           "incomplete": "Incomplete",
           "required": "Required",
-          "matDatetimePickerParse": "Invalid date or time"
+          "matDatetimePickerParse": "Invalid date or time",
+          "upload": "Upload error"
         }
       }
     },

@@ -98,7 +98,8 @@
         "validationFailed": {
           "incomplete": "Incomplet",
           "required": "Obligatoriu",
-          "matDatetimePickerParse": "Data sau ora sunt invalide"
+          "matDatetimePickerParse": "Data sau ora sunt invalide",
+          "upload": "Eroare încărcare"
         }
       }
     },

@@ -1,5 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="mat-elevation-z8" *ngIf="user != null" fxFlex="1 1 100%" fxFlex.gt-xs="1 1 80%" fxFlex.gt-md="1 1 50%" fxFlex.gt-lg="1 1 25%">
+  <mat-card class="mat-elevation-z8" *ngIf="user != null" fxFlex="1 1 auto" fxFlex.gt-xs="1 1 80%" fxFlex.gt-md="1 1 50%"
+    fxFlex.gt-lg="1 1 25%">
     <mat-card-header>
       <img *ngIf="photo != null" id="small-photo" mat-card-avatar [src]="photo">
       <mat-card-title>{{user.name}}</mat-card-title>

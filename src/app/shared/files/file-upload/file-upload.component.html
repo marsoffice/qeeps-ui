@@ -4,8 +4,8 @@
   <mat-list-item *ngFor="let f of files; let i = index" fxLayout="row" fxLayoutGap="5px">
     <mat-icon mat-list-icon>{{f.errors == null ? (f.id == null ? 'upload' : 'done') : 'error'}}</mat-icon>
     <div class="wb-all">{{ f.filename }}</div>
-    <mat-progress-bar fxFlex="1 1 100%" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
-    <div fxFlex="1 1 100%" *ngIf="!f.isUploading"></div>
+    <mat-progress-bar fxFlex="1 1 auto" [mode]="'indeterminate'" *ngIf="f.isUploading"></mat-progress-bar>
+    <div fxFlex="1 1 auto" *ngIf="!f.isUploading"></div>
     <button [disabled]="disabled" (click)="removeFile(i)" mat-icon-button color="warn">
       <mat-icon>delete</mat-icon>
     </button>
