@@ -11,7 +11,6 @@ import { ColumnDto } from '../models/column.dto';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
-import { CronOptions } from 'ngx-cron-editor';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -41,27 +40,6 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
 
   now = new Date();
-
-  cronOptions: CronOptions = {
-    cronFlavor: 'quartz',
-    hideAdvancedTab: true,
-    formInputClass: 'mat-input',
-    formSelectClass: 'mat-select',
-    formCheckboxClass: 'mat-checkbox',
-    defaultTime: '0',
-    hideDailyTab: false,
-    hideHourlyTab: true,
-    hideMonthlyTab: false,
-    hideMinutesTab: true,
-    hideSeconds: true,
-    hideSpecificMonthWeekTab: false,
-    hideSpecificWeekDayTab: false,
-    hideWeeklyTab: false,
-    hideYearlyTab: false,
-    use24HourTime: true,
-    formRadioClass: 'mat-radio'
-  };
-
 
 
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver) {

@@ -31,7 +31,6 @@ import { FilesCellComponent } from './cells/files-cell/files-cell.component';
 import { DateCellComponent } from './cells/date-cell/date-cell.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.component';
-import { CronEditorModule } from 'ngx-cron-editor';
 
 @NgModule({
   declarations: [
@@ -68,8 +67,7 @@ import { CronEditorModule } from 'ngx-cron-editor';
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
     FilesModule,
-    MatNativeDateModule,
-    CronEditorModule
+    MatNativeDateModule
   ],
   providers: [
     FormsService
