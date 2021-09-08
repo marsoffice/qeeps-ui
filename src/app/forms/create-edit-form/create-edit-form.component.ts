@@ -49,42 +49,45 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     this.rows = new FormArray([]);
 
     this.form = new FormGroup({
-      title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      description: new FormControl(),
-      attachments: new FormControl([]),
-      isLocked: new FormControl(false),
-      lockedUntilDate: new FormControl(),
-      rowAppendDisabled: new FormControl(false),
-      isRecurrent: new FormControl(false),
-      cronExpression: new FormControl(),
-      isPinned: new FormControl(false),
-      pinnedUntilDate: new FormControl(),
-      tags: new FormControl([]),
-      columns: this.columns,
-      rows: this.rows,
-      formAccesses: new FormControl([])
+      form: new FormGroup({
+        title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+        description: new FormControl(),
+        attachments: new FormControl([]),
+        isLocked: new FormControl(false),
+        lockedUntilDate: new FormControl(),
+        rowAppendDisabled: new FormControl(false),
+        isRecurrent: new FormControl(false),
+        cronExpression: new FormControl(),
+        isPinned: new FormControl(false),
+        pinnedUntilDate: new FormControl(),
+        tags: new FormControl([]),
+        columns: this.columns,
+        rows: this.rows,
+        formAccesses: new FormControl([])
+      }),
+      sendEmailNotifications: new FormControl(false)
     });
 
-    this.form.get('lockedUntilDate')!.disable();
+    this.form.get('form')!.get('lockedUntilDate')!.disable();
 
     this._destroy.push(
-      this.form.get('isLocked')!.valueChanges.subscribe(v => {
+      this.form.get('form')!.get('isLocked')!.valueChanges.subscribe(v => {
         if (v) {
-          this.form.get('lockedUntilDate')!.enable();
+          this.form.get('form')!.get('lockedUntilDate')!.enable();
         } else {
-          this.form.get('lockedUntilDate')!.disable();
+          this.form.get('form')!.get('lockedUntilDate')!.disable();
         }
       })
     );
 
-    this.form.get('pinnedUntilDate')!.disable();
+    this.form.get('form')!.get('pinnedUntilDate')!.disable();
 
     this._destroy.push(
-      this.form.get('isPinned')!.valueChanges.subscribe(v => {
+      this.form.get('form')!.get('isPinned')!.valueChanges.subscribe(v => {
         if (v) {
-          this.form.get('pinnedUntilDate')!.enable();
+          this.form.get('form')!.get('pinnedUntilDate')!.enable();
         } else {
-          this.form.get('pinnedUntilDate')!.disable();
+          this.form.get('form')!.get('pinnedUntilDate')!.disable();
         }
       })
     );
@@ -203,19 +206,19 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const value: string = (event.value || '').trim();
 
     if (value) {
-      const list = this.form.get('tags')!.value;
+      const list = this.form.get('form')!.get('tags')!.value;
       if (list.indexOf(value) === -1) {
         list.push(value);
       }
-      this.form.get('tags')!.setValue(list);
+      this.form.get('form')!.get('tags')!.setValue(list);
     }
     event.chipInput!.clear();
   }
 
   removeTag(i: number) {
-    const list: string[] = this.form.get('tags')!.value;
+    const list: string[] = this.form.get('form')!.get('tags')!.value;
     list.splice(i, 1);
-    this.form.get('tags')!.setValue(list);
+    this.form.get('form')!.get('tags')!.setValue(list);
   }
 
   getCellFormControl(rowIndex: number, colIndex: number) {
@@ -262,7 +265,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   }
 
   getFormControl(a: string) {
-    return this.form.get(a) as FormControl;
+    return this.form.get('form')!.get(a) as FormControl;
   }
 
   private createColumnFormGroup() {

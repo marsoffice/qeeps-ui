@@ -91,7 +91,8 @@
         "isPinned": "Is Pinned",
         "pinnedUntil": "Pinned Until",
         "isRecurrent": "Is Recurrent",
-        "rowAppendDisabled": "Row Appending Disabled"
+        "rowAppendDisabled": "Row Appending Disabled",
+        "sendEmailNotifications": "Send e-mail notifications too"
       },
       "cell": {
         "required": "Required",
@@ -116,7 +117,7 @@
     }
   },
   "forms": {
-    "formDto": {
+    "createFormDto": {
       "titleRequired": "Title is required",
       "titleTooShort": "Title is too short, min. {{chars}} characters",
       "cronExpressionRequired": "Recurrence interval is required",
@@ -126,7 +127,8 @@
       "dropdownOptionsRequired": "Dropdown options are required",
       "columnNameRequired": "Column name is required",
       "accessOrganisationRequired": "Form access rule organisation ID is required",
-      "allRowValuesMustMatchColumnCount": "All row values must match the column count"
+      "allRowValuesMustMatchColumnCount": "All row values must match the column count",
+      "formRequired": "Form is required"
     }
   }
 }

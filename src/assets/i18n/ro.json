@@ -91,7 +91,8 @@
         "isPinned": "Este fixat",
         "pinnedUntil": "Fixat până la",
         "isRecurrent": "Este recurent",
-        "rowAppendDisabled": "Adăugarea rândurilor dezactivată"
+        "rowAppendDisabled": "Adăugarea rândurilor dezactivată",
+        "sendEmailNotifications": "Trimitere notificări și prin e-mail"
       },
       "cell": {
         "required": "Obligatoriu",
@@ -116,7 +117,7 @@
     }
   },
   "forms": {
-    "formDto": {
+    "createFormDto": {
       "titleRequired": "Titlul este obligatoriu",
       "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere",
       "cronExpressionRequired": "Intervalul de recurență este obligatoriu",
@@ -126,7 +127,8 @@
       "dropdownOptionsRequired": "Opțiunile selecției sunt obligatorii",
       "columnNameRequired": "Numele coloanei este obligatoriu",
       "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu",
-      "allRowValuesMustMatchColumnCount": "Numărul valorilor rândurilor trebuie sa coincidă cu numărul de coloane"
+      "allRowValuesMustMatchColumnCount": "Numărul valorilor rândurilor trebuie sa coincidă cu numărul de coloane",
+      "formRequired": "Formularul este obligatoriu"
     }
   }
 }
