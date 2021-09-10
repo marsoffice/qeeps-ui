@@ -66,7 +66,7 @@
     <h3>{{'ui.forms.createEditForm.columns' | translate}}</h3>
     <div fxLayout="column" fxLayoutGap="5px">
       <div fxLayout="row" fxLayoutGap="5px" class="w-100">
-        <div id="columns" fxFlex="1 1 auto" #columnsWrapper formArrayName="columns">
+        <div id="columns" fxFlex="0 1 auto" #columnsWrapper formArrayName="columns">
           <table id="columns-table" cdkDropList (cdkDropListDropped)="reorderColumns($event)" cdkDropListLockAxis="x"
             cdkDropListOrientation="horizontal" #matTable mat-table [dataSource]="rows.controls">
             <ng-container [matColumnDef]="i + ''" *ngFor="let column of columns.controls; let i = index; trackBy: trackByIndex">
