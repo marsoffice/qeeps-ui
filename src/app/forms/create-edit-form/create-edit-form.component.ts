@@ -41,7 +41,6 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   now = new Date();
 
-
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
@@ -67,30 +66,6 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       }),
       sendEmailNotifications: new FormControl(false)
     });
-
-    this.form.get('form')!.get('lockedUntilDate')!.disable();
-
-    this._destroy.push(
-      this.form.get('form')!.get('isLocked')!.valueChanges.subscribe(v => {
-        if (v) {
-          this.form.get('form')!.get('lockedUntilDate')!.enable();
-        } else {
-          this.form.get('form')!.get('lockedUntilDate')!.disable();
-        }
-      })
-    );
-
-    this.form.get('form')!.get('pinnedUntilDate')!.disable();
-
-    this._destroy.push(
-      this.form.get('form')!.get('isPinned')!.valueChanges.subscribe(v => {
-        if (v) {
-          this.form.get('form')!.get('pinnedUntilDate')!.enable();
-        } else {
-          this.form.get('form')!.get('pinnedUntilDate')!.disable();
-        }
-      })
-    );
   }
 
   ngOnInit(): void {
