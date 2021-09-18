@@ -92,7 +92,8 @@
         "pinnedUntil": "Fixat până la",
         "isRecurrent": "Este recurent",
         "rowAppendDisabled": "Adăugarea rândurilor dezactivată",
-        "sendEmailNotifications": "Trimitere notificări și prin e-mail"
+        "sendEmailNotifications": "Trimitere notificări și prin e-mail",
+        "cronExpressionRequired": "Definiția recurenței este obligatorie"
       },
       "cell": {
         "required": "Obligatoriu",

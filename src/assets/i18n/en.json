@@ -92,7 +92,8 @@
         "pinnedUntil": "Pinned Until",
         "isRecurrent": "Is Recurrent",
         "rowAppendDisabled": "Row Appending Disabled",
-        "sendEmailNotifications": "Send e-mail notifications too"
+        "sendEmailNotifications": "Send e-mail notifications too",
+        "cronExpressionRequired": "Recurrence definition required"
       },
       "cell": {
         "required": "Required",

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KeyValue } from 'src/app/models/key-value';
@@ -11,13 +11,16 @@ import { ColumnDto } from '../models/column.dto';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
+import { CronJobsComponent } from 'ngx-cron-jobs/src/app/lib/cron-jobs/cron-jobs.component';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-create-edit-form',
   templateUrl: './create-edit-form.component.html',
   styleUrls: ['./create-edit-form.component.scss']
 })
-export class CreateEditFormComponent implements OnInit, OnDestroy {
+export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit {
   form: FormGroup;
   columns: FormArray;
   rows: FormArray;
@@ -26,6 +29,9 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   @ViewChild('columnsWrapper', { static: true, read: ElementRef })
   private columnsWrapper!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('cron', { static: true })
+  private cronComponent!: CronJobsComponent;
 
   @ViewChild('matTable', { static: true }) matTable!: MatTable<AbstractControl>;
 
@@ -41,7 +47,17 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   now = new Date();
 
-  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver) {
+
+  cronConfig = {
+    quartz: true,
+    bootstrap: false,
+    option: {
+      minute: false,
+      hour: false
+    }
+  };
+
+  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver, private translate: TranslateService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
     this.columns = new FormArray([]);
@@ -56,7 +72,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         lockedUntilDate: new FormControl(),
         rowAppendDisabled: new FormControl(false),
         isRecurrent: new FormControl(false),
-        cronExpression: new FormControl('0 0 1/1 * *'),
+        cronExpression: new FormControl(),
         isPinned: new FormControl(false),
         pinnedUntilDate: new FormControl(),
         tags: new FormControl([]),
@@ -66,6 +82,29 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       }),
       sendEmailNotifications: new FormControl(false)
     });
+
+    this._destroy.push(
+      this.form.get('form')!.get('isRecurrent')!.valueChanges.subscribe(isr => {
+        if (isr) {
+          this.form.get('form')!.get('cronExpression')!.addValidators([Validators.required]);
+        } else {
+          this.form.get('form')!.get('cronExpression')!.removeValidators([Validators.required]);
+          this.form.get('form')!.get('cronExpression')!.setValue(null);
+        }
+      })
+    );
+
+    this._destroy.push(
+      this.form.get('form')!.get('isPinned')!.valueChanges.subscribe(isp => {
+        if (!isp) {
+          this.form.get('form')!.get('pinnedUntilDate')!.setValue(null);
+        }
+      })
+    );
+  }
+
+  ngAfterViewInit() {
+    this.modifyCronComponent();
   }
 
   ngOnInit(): void {
@@ -282,5 +321,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const enumAny = ColumnDataType as any;
     return Object.keys(enumAny).filter(k => Number.isNaN(Number.parseInt(k)))
       .map(k => ({ key: k, value: enumAny[k] }));
+  }
+
+  private modifyCronComponent() {
+
+    this.cronConfig = { ...this.cronConfig };
   }
 }

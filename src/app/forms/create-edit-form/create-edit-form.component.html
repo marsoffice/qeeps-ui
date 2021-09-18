@@ -220,7 +220,14 @@
     <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start">
       <mat-slide-toggle formControlName="isRecurrent">{{'ui.forms.createEditForm.isRecurrent' | translate}}</mat-slide-toggle>
 
+      <div [fxShow]="form.get('form')!.get('isRecurrent')!.value">
+        <cron-jobs #cron [config]="cronConfig" [formControl]="getFormControl('cronExpression')">
+        </cron-jobs>
 
+        <mat-error *ngIf="form.get('form')!.get('cronExpression')!.hasError('required')">
+          {{ 'ui.forms.createEditForm.cronExpressionRequired' | translate }}
+        </mat-error>
+      </div>
     </div>
 
     <mat-slide-toggle formControlName="rowAppendDisabled">{{'ui.forms.createEditForm.rowAppendDisabled' | translate}}</mat-slide-toggle>
