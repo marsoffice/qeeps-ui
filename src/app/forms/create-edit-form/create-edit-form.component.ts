@@ -136,7 +136,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   addColumn() {
-    const cfg = this.createColumnFormGroup();
+    const cfg = this.createColumnFormGroup(`r${this.columns.length}`);
     this.columns.push(
       cfg
     );
@@ -282,7 +282,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     return this.form.get('form')!.get(a) as FormControl;
   }
 
-  private createColumnFormGroup() {
+  private createColumnFormGroup(reference: string) {
     return new FormGroup({
       name: new FormControl(null, [Validators.required]),
       isRequired: new FormControl(false),
@@ -290,7 +290,8 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
       isFrozen: new FormControl(false),
       isHidden: new FormControl(false),
       dataType: new FormControl(ColumnDataType.StringSingleLine, [Validators.required]),
-      allowedExtensions: new FormControl([])
+      allowedExtensions: new FormControl([]),
+      reference: new FormControl(reference, [Validators.required])
     });
   }
 

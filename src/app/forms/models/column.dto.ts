@@ -8,4 +8,5 @@ export interface ColumnDto {
   isHidden: boolean;
   dataType: ColumnDataType;
   allowedExtensions?: string[];
+  reference: string;
 }

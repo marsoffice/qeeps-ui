@@ -61,6 +61,7 @@
         "columns": "Coloane",
         "columnName": "Nume coloană",
         "columnNameRequired": "Numele coloanei este obligatoriu",
+        "columnReferenceRequired": "Referința coloanei este obligatorie",
         "required": "Obligatoriu",
         "isFrozen": "Necompletabil",
         "isHidden": "Ascuns",

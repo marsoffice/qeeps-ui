@@ -61,6 +61,7 @@
         "columns": "Columns",
         "columnName": "Column Name",
         "columnNameRequired": "Column name is required",
+        "columnReferenceRequired": "Column reference is required",
         "required": "Required",
         "isFrozen": "Is Frozen",
         "isHidden": "Is Hidden",
