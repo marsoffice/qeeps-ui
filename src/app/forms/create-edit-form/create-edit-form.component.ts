@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
 import { CronJobsComponent } from 'ngx-cron-jobs/src/app/lib/cron-jobs/cron-jobs.component';
 import { TranslateService } from '@ngx-translate/core';
-
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -136,14 +136,15 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   addColumn() {
-    const cfg = this.createColumnFormGroup(`r${this.columns.length}`);
+    const reference = `c_${uuid().replace(/-/g, '_')}`;
+    const cfg = this.createColumnFormGroup(reference);
     this.columns.push(
       cfg
     );
     if (this.rows.length > 0) {
       for (let i = 0; i < this.rows.length; i++) {
         const rowFg = this.rows.at(i) as FormGroup;
-        rowFg.addControl('c' + (this.columns.length - 1), new FormControl());
+        rowFg.addControl(reference, new FormControl());
       }
     }
     setTimeout(() => {
@@ -152,6 +153,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   removeColumn(i: number) {
+    const reference = this.columns.at(i).value.reference;
     this.columns.removeAt(i);
     if (this.rows.length === 0) {
       return;
@@ -161,15 +163,11 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     } else {
       for (const row of this.rows.controls) {
         const fg = row as FormGroup;
-        const controlKeys = Object.keys(fg);
-        if (i === controlKeys.length - 1) {
-          fg.removeControl(`c${i}`);
-          return;
+        const controlToDelete = fg.get(reference);
+        if (controlToDelete != null) {
+          fg.removeControl(reference);
+          continue;
         }
-        for (let j = i; j < controlKeys.length - 1; j++) {
-          fg.setControl(`c${j}`, fg.get(`c${(j + 1)}`)!);
-        }
-        fg.removeControl(`c${(controlKeys.length - 1)}`);
       }
     }
     this.matTable.renderRows();
@@ -235,17 +233,17 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     this.form.get('form')!.get('tags')!.setValue(list);
   }
 
-  getCellFormControl(rowIndex: number, colIndex: number) {
-    return (this.rows.at(rowIndex) as FormGroup).get('c' + colIndex) as FormControl;
+  getCellFormControl(rowIndex: number, col: ColumnDto) {
+    return (this.rows.at(rowIndex) as FormGroup).get(col.reference) as FormControl;
   }
 
-  columnDataTypeChanged(colIndex: number) {
+  columnDataTypeChanged(col: ColumnDto) {
     if (this.rows.length === 0) {
       return;
     }
     for (let i = 0; i < this.rows.length; i++) {
       const rowFg = this.rows.at(i) as FormGroup;
-      rowFg.get('c' + colIndex)?.setValue(null);
+      rowFg.get(col.reference)?.setValue(null);
     }
   }
 
@@ -255,13 +253,6 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     this.columns.setControl(event.previousIndex, swappedFg);
     this.columns.setControl(event.currentIndex, theFg);
     if (this.rows.length > 0) {
-      for (let i = 0; i < this.rows.length; i++) {
-        const rowFg = this.rows.at(i) as FormGroup;
-        const theValue = rowFg.get(`c${event.previousIndex}`)?.value;
-        const swappedValue = rowFg.get(`c${event.currentIndex}`)?.value;
-        rowFg.get(`c${event.previousIndex}`)?.setValue(swappedValue);
-        rowFg.get(`c${event.currentIndex}`)?.setValue(theValue);
-      }
       this.matTable.renderRows();
     }
   }
@@ -299,7 +290,8 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     const fcs: { [key: string]: AbstractControl; } = {};
     const colDtos = this.columns.value as ColumnDto[];
     for (let i = 0; i < colDtos.length; i++) {
-      fcs['c' + i] = new FormControl();
+      const colDto = colDtos[i];
+      fcs[colDto.reference] = new FormControl();
     }
     return new FormGroup(fcs);
   }

@@ -92,7 +92,7 @@
 
                       <mat-form-field appearance="outline">
                         <mat-label>{{'ui.forms.createEditForm.dataType' | translate}}</mat-label>
-                        <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(i)">
+                        <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(column.value)">
                           <mat-option *ngFor="let cdt of columnDataTypesList" [value]="cdt.value">
                             {{('ui.forms.createEditForm.' + toCamelCase(cdt.key)) | translate}}
                           </mat-option>
@@ -149,7 +149,7 @@
               </th>
               <td mat-cell *matCellDef="let element; let rowIndex = index">
                 <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
-                  [cellFormControl]="getCellFormControl(rowIndex, i)">
+                  [cellFormControl]="getCellFormControl(rowIndex, column.value)">
                 </app-cell>
               </td>
             </ng-container>
