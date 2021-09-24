@@ -177,11 +177,19 @@ export class CreateEditFormComponent implements OnInit, OnDestroy, AfterViewInit
     this.rows.push(
       this.createRowFormGroup()
     );
+    const radFc = this.form.get('form')!.get('rowAppendDisabled')!;
+    if (!radFc.touched) {
+      radFc.setValue(true);
+    }
     this.matTable.renderRows();
   }
 
   removeRow(i: number) {
     this.rows.removeAt(i);
+    const radFc = this.form.get('form')!.get('rowAppendDisabled')!;
+    if (this.rows.length === 0) {
+      radFc.setValue(false);
+    }
     this.matTable.renderRows();
   }
 
