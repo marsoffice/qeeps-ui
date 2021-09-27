@@ -1,1 +1,12 @@
-<p>cron works!</p>
+<div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="flex-start center">
+  <div>{{'ui.cron.every' | translate}}</div>
+  <mat-form-field>
+    <mat-select [(value)]="selectedRecurrenceType">
+      <mat-option [value]="rt.value" *ngFor="let rt of recurrenceTypes">
+        {{('ui.cron.' + rt.key) | translate}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</div>

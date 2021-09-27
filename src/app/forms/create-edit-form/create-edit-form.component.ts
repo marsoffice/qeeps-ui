@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
 import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuid } from 'uuid';
+import { RecurrenceType } from 'src/app/shared/cron/models/recurrence-type';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -42,6 +43,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
 
   now = new Date();
+  disabledRecurrenceTypes: RecurrenceType[] = [
+    RecurrenceType.Second,
+    RecurrenceType.Minute,
+  ];
 
 
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver, private translate: TranslateService) {

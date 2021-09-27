@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CronComponent } from './cron/cron.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   imports: [
     CommonModule,
     TranslateModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSelectModule
   ],
   exports: [
     CronComponent

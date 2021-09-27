@@ -109,6 +109,16 @@
     "files": {
       "upload": "Upload",
       "noFiles": "No files"
+    },
+    "cron": {
+      "every": "Every",
+      "second": "second",
+      "minute": "minute",
+      "hour": "hour",
+      "day": "day",
+      "week": "week",
+      "month": "month",
+      "year": "year"
     }
   },
   "notifications": {

@@ -109,6 +109,16 @@
     "files": {
       "upload": "Încărcare",
       "noFiles": "Niciun fișier"
+    },
+    "cron": {
+      "every": "În fiecare",
+      "second": "secundă",
+      "minute": "minut",
+      "hour": "oră",
+      "day": "zi",
+      "week": "săptămână",
+      "month": "lună",
+      "year": "an"
     }
   },
   "notifications": {
