@@ -13,7 +13,7 @@
 </mat-list>
 
 <div class="button-wrapper" fxLayout="row" fxLayoutAlign="center">
-  <button [disabled]="disabled || (files?.length === 1 && multiple === true)" mat-raised-button color="accent" type="button"
+  <button [disabled]="disabled || (files?.length === 1 && !multiple)" mat-raised-button color="accent" type="button"
     (click)="showUploadDialog()">
     <mat-icon>upload</mat-icon>
     <span>{{'ui.files.upload' | translate}}</span>
