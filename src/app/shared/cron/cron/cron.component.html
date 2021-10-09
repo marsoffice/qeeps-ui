@@ -8,5 +8,40 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>{{'ui.cron.atMonth' | translate}}</mat-label>
+    <mat-select [(value)]="selectedMonth">
+      <mat-option [value]="m" *ngFor="let m of allMonths">
+        {{m}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{'ui.cron.atDay' | translate}}</mat-label>
+    <mat-select [(value)]="selectedDay">
+      <mat-option [value]="d" *ngFor="let d of allDays">
+        {{d}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{'ui.cron.atHour' | translate}}</mat-label>
+    <mat-select [(value)]="selectedHour">
+      <mat-option [value]="h" *ngFor="let h of allHours">
+        {{padValue(h)}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{'ui.cron.atMinute' | translate}}</mat-label>
+    <mat-select [(value)]="selectedMinute">
+      <mat-option [value]="m" *ngFor="let m of allMinutes">
+        {{padValue(m)}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
 </div>

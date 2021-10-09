@@ -118,7 +118,10 @@
       "day": "day",
       "week": "week",
       "month": "month",
-      "year": "year"
+      "year": "year",
+      "atMinute": "At minute",
+      "atHour": "At hour",
+      "atDay": "At day"
     }
   },
   "notifications": {

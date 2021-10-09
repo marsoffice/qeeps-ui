@@ -118,7 +118,10 @@
       "day": "zi",
       "week": "săptămână",
       "month": "lună",
-      "year": "an"
+      "year": "an",
+      "atMinute": "La minutul",
+      "atHour": "La ora",
+      "atDay": "În data"
     }
   },
   "notifications": {
