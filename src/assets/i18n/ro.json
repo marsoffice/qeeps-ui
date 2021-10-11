@@ -121,7 +121,8 @@
       "year": "an",
       "atMinute": "La minutul",
       "atHour": "La ora",
-      "atDay": "În data"
+      "atDay": "În data",
+      "atMonth": "În luna"
     }
   },
   "notifications": {

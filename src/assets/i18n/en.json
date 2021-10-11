@@ -121,7 +121,8 @@
       "year": "year",
       "atMinute": "At minute",
       "atHour": "At hour",
-      "atDay": "At day"
+      "atDay": "At day",
+      "atMonth": "At month"
     }
   },
   "notifications": {
