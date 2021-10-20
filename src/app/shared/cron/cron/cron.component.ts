@@ -98,9 +98,11 @@ export class CronComponent implements OnInit, ControlValueAccessor {
         this.selectedWeekday = splitBySpace[5];
         this.selectedRecurrenceType = RecurrenceType.Week;
       }
+      this._value = v;
     } else {
       this._value = v;
     }
+    this.onChange(this._value);
   }
 
   registerOnChange(onChange: any) {
