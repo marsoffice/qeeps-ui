@@ -100,9 +100,6 @@ export class CronComponent implements OnInit, ControlValueAccessor {
         this.selectedWeekday = splitBySpace[5];
         this.selectedRecurrenceType = RecurrenceType.Week;
       }
-    } else {
-      this.onSelectionChange();
-      return;
     }
     this._value = v;
     this.onChange(this._value);
@@ -141,7 +138,6 @@ export class CronComponent implements OnInit, ControlValueAccessor {
 
   onSelectionChange() {
     let newValue = `${this.selectedSecond ?? '*'} ${this.selectedMinute ?? '*'} ${this.selectedHour ?? '*'} ${this.selectedDay ?? '*'} ${this.selectedMonth ?? '*'} ${this.selectedWeekday ?? '*'}`;
-    console.log(newValue);
     this.writeValue(newValue);
     this.markAsTouched();
   }
