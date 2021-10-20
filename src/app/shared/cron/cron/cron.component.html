@@ -12,7 +12,7 @@
     <mat-label>{{'ui.cron.atMonth' | translate}}</mat-label>
     <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedMonth">
       <mat-option [value]="m" *ngFor="let m of allMonths">
-        {{m}}
+        {{padValue(m)}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -21,7 +21,7 @@
     <mat-label>{{'ui.cron.atDay' | translate}}</mat-label>
     <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedDay">
       <mat-option [value]="d" *ngFor="let d of allDays">
-        {{d}}
+        {{padValue(d)}}
       </mat-option>
     </mat-select>
   </mat-form-field>
