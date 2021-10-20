@@ -64,7 +64,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         lockedUntilDate: new FormControl(),
         rowAppendDisabled: new FormControl(false),
         isRecurrent: new FormControl(false),
-        cronExpression: new FormControl('0 0 5 * * *'),
+        cronExpression: new FormControl(),
         isPinned: new FormControl(false),
         pinnedUntilDate: new FormControl(),
         tags: new FormControl([]),
