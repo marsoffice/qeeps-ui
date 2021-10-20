@@ -154,6 +154,7 @@ export class CronComponent implements OnInit, ControlValueAccessor {
       this.selectedWeekday = null;
     }
     if (this.selectedRecurrenceType === RecurrenceType.Minute) {
+      this.selectedSecond = 0;
       this.selectedMinute = 0;
       this.selectedHour = null;
       this.selectedDay = null;
@@ -162,6 +163,8 @@ export class CronComponent implements OnInit, ControlValueAccessor {
       this.selectedWeekday = null;
     }
     if (this.selectedRecurrenceType === RecurrenceType.Hour) {
+      this.selectedSecond = 0;
+      this.selectedMinute = 0;
       this.selectedHour = 0;
       this.selectedDay = null;
       this.selectedMonth = null;
@@ -169,23 +172,38 @@ export class CronComponent implements OnInit, ControlValueAccessor {
       this.selectedWeekday = null;
     }
     if (this.selectedRecurrenceType === RecurrenceType.Day) {
+      this.selectedSecond = 0;
+      this.selectedMinute = 0;
+      this.selectedHour = 0;
       this.selectedDay = 1;
       this.selectedMonth = null;
       this.selectedYear = null;
       this.selectedWeekday = null;
     }
     if (this.selectedRecurrenceType === RecurrenceType.Week) {
+      this.selectedSecond = 0;
+      this.selectedMinute = 0;
+      this.selectedHour = 0;
       this.selectedDay = null;
       this.selectedMonth = null;
       this.selectedYear = null;
       this.selectedWeekday = 'MON';
     }
     if (this.selectedRecurrenceType === RecurrenceType.Month) {
+      this.selectedSecond = 0;
+      this.selectedMinute = 0;
+      this.selectedHour = 0;
+      this.selectedDay = 1;
       this.selectedMonth = 1;
       this.selectedYear = null;
       this.selectedWeekday = null;
     }
     if (this.selectedRecurrenceType === RecurrenceType.Year) {
+      this.selectedSecond = 0;
+      this.selectedMinute = 0;
+      this.selectedHour = 0;
+      this.selectedDay = 1;
+      this.selectedMonth = 1;
       this.selectedYear = null;
       this.selectedWeekday = null;
     }
