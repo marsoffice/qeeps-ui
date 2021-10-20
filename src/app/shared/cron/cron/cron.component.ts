@@ -144,9 +144,6 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   }
 
   onRecurrenceTypeChange() {
-    if (this._value == null) {
-      return;
-    }
     if (this.selectedRecurrenceType === RecurrenceType.Second) {
       this.selectedSecond = 0;
       this.selectedMinute = null;
