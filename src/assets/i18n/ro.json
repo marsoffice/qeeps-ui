@@ -122,7 +122,15 @@
       "atMinute": "La minutul",
       "atHour": "La ora",
       "atDay": "În data",
-      "atMonth": "În luna"
+      "atMonth": "În luna",
+      "weekday_mon": "luni",
+      "weekday_tue": "marți",
+      "weekday_wed": "miercuri",
+      "weekday_thu": "joi",
+      "weekday_fri": "vineri",
+      "weekday_sat": "sâmbătă",
+      "weekday_sun": "duminică",
+      "atWeekday": "În ziua"
     }
   },
   "notifications": {

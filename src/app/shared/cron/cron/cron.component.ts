@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
 import { RecurrenceType } from '../models/recurrence-type';
 
 @Component({
@@ -18,6 +17,7 @@ import { RecurrenceType } from '../models/recurrence-type';
 export class CronComponent implements OnInit, ControlValueAccessor {
   @Input() disabledRecurrenceTypes: RecurrenceType[] | undefined;
   recurrenceTypes: { key: string, value: RecurrenceType; }[] | undefined;
+  allRecurrenceTypes = RecurrenceType;
   _value: string | undefined;
   disabled = false;
   touched = false;
@@ -25,17 +25,23 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   onTouched = () => { };
 
   selectedRecurrenceType = RecurrenceType.Year;
-  selectedMinute = 0;
+  selectedMinute: number | null = 0;
   allMinutes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59];
 
-  selectedHour = 0;
+  selectedHour: number | null = 0;
   allHours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
-  selectedDay = 1;
+  selectedDay: number | null = 1;
   allDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
   allMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  selectedMonth = 1;
+  selectedMonth: number | null = 1;
+
+  selectedYear: number | null = null;
+
+  selectedWeekday: string | null = null;
+  selectedSecond: number | null = 0;
+  allWeekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   constructor() { }
 
@@ -51,7 +57,50 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(v: string) {
-    this._value = v;
+    if (v != null) {
+      const splitBySpace = v.split(' ');
+      if (splitBySpace.length !== 6) {
+        return;
+      }
+      if (splitBySpace[0] === '*') {
+        this.selectedSecond = null;
+      } else {
+        this.selectedSecond = +splitBySpace[0];
+        this.selectedRecurrenceType = RecurrenceType.Minute;
+      }
+      if (splitBySpace[1] === '*') {
+        this.selectedMinute = null;
+      } else {
+        this.selectedMinute = +splitBySpace[1];
+        this.selectedRecurrenceType = RecurrenceType.Hour;
+      }
+      if (splitBySpace[2] === '*') {
+        this.selectedHour = null;
+      } else {
+        this.selectedHour = +splitBySpace[2];
+        this.selectedRecurrenceType = RecurrenceType.Day;
+      }
+      if (splitBySpace[3] === '*') {
+        this.selectedDay = null;
+      } else {
+        this.selectedDay = +splitBySpace[3];
+        this.selectedRecurrenceType = RecurrenceType.Month;
+      }
+      if (splitBySpace[4] === '*') {
+        this.selectedMonth = null;
+      } else {
+        this.selectedMonth = +splitBySpace[4];
+        this.selectedRecurrenceType = RecurrenceType.Year;
+      }
+      if (splitBySpace[5] === '*') {
+        this.selectedWeekday = null;
+      } else {
+        this.selectedWeekday = splitBySpace[5];
+        this.selectedRecurrenceType = RecurrenceType.Week;
+      }
+    } else {
+      this._value = v;
+    }
   }
 
   registerOnChange(onChange: any) {
@@ -83,5 +132,64 @@ export class CronComponent implements OnInit, ControlValueAccessor {
       return `0${str}`;
     }
     return str;
+  }
+
+  onSelectionChange() {
+    let newValue = `${this.selectedSecond ?? '*'} ${this.selectedMinute ?? '*'} ${this.selectedHour ?? '*'} ${this.selectedDay ?? '*'} ${this.selectedMonth ?? '*'} ${this.selectedWeekday ?? '*'}`;
+    console.log(newValue);
+    this.writeValue(newValue);
+    this.markAsTouched();
+  }
+
+  onRecurrenceTypeChange() {
+    if (this._value == null) {
+      return;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Second) {
+      this.selectedSecond = 0;
+      this.selectedMinute = null;
+      this.selectedHour = null;
+      this.selectedDay = null;
+      this.selectedMonth = null;
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Minute) {
+      this.selectedMinute = 0;
+      this.selectedHour = null;
+      this.selectedDay = null;
+      this.selectedMonth = null;
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Hour) {
+      this.selectedHour = 0;
+      this.selectedDay = null;
+      this.selectedMonth = null;
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Day) {
+      this.selectedDay = 1;
+      this.selectedMonth = null;
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Week) {
+      this.selectedDay = null;
+      this.selectedMonth = null;
+      this.selectedYear = null;
+      this.selectedWeekday = 'MON';
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Month) {
+      this.selectedMonth = 1;
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    if (this.selectedRecurrenceType === RecurrenceType.Year) {
+      this.selectedYear = null;
+      this.selectedWeekday = null;
+    }
+    this.onSelectionChange();
   }
 }
