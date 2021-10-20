@@ -66,42 +66,34 @@ export class CronComponent implements OnInit, ControlValueAccessor {
         this.selectedSecond = null;
       } else {
         this.selectedSecond = +splitBySpace[0];
-        this.selectedRecurrenceType = RecurrenceType.Minute;
       }
       if (splitBySpace[1] === '*') {
         this.selectedMinute = null;
       } else {
         this.selectedMinute = +splitBySpace[1];
-        this.selectedRecurrenceType = RecurrenceType.Hour;
       }
       if (splitBySpace[2] === '*') {
         this.selectedHour = null;
       } else {
         this.selectedHour = +splitBySpace[2];
-        this.selectedRecurrenceType = RecurrenceType.Day;
       }
       if (splitBySpace[3] === '*') {
         this.selectedDay = null;
       } else {
         this.selectedDay = +splitBySpace[3];
-        this.selectedRecurrenceType = RecurrenceType.Month;
       }
       if (splitBySpace[4] === '*') {
         this.selectedMonth = null;
       } else {
         this.selectedMonth = +splitBySpace[4];
-        this.selectedRecurrenceType = RecurrenceType.Year;
       }
       if (splitBySpace[5] === '*') {
         this.selectedWeekday = null;
       } else {
         this.selectedWeekday = splitBySpace[5];
-        this.selectedRecurrenceType = RecurrenceType.Week;
       }
-      this._value = v;
-    } else {
-      this._value = v;
     }
+    this._value = v;
     this.onChange(this._value);
   }
 
