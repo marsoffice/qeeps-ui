@@ -1,7 +1,8 @@
 <div fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="flex-start center">
   <div>{{'ui.cron.every' | translate}}</div>
   <mat-form-field>
-    <mat-select (selectionChange)="onRecurrenceTypeChange()" [disabled]="disabled" [(value)]="selectedRecurrenceType">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onRecurrenceTypeChange()" [disabled]="disabled"
+      [(value)]="selectedRecurrenceType">
       <mat-option [value]="rt.value" *ngFor="let rt of recurrenceTypes">
         {{('ui.cron.' + rt.key) | translate}}
       </mat-option>
@@ -10,7 +11,7 @@
 
   <mat-form-field *ngIf="selectedRecurrenceType > allRecurrenceTypes.Month">
     <mat-label>{{'ui.cron.atMonth' | translate}}</mat-label>
-    <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedMonth">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedMonth">
       <mat-option [value]="m" *ngFor="let m of allMonths">
         {{padValue(m)}}
       </mat-option>
@@ -19,7 +20,7 @@
 
   <mat-form-field *ngIf="selectedRecurrenceType > allRecurrenceTypes.Day && selectedRecurrenceType !== allRecurrenceTypes.Week">
     <mat-label>{{'ui.cron.atDay' | translate}}</mat-label>
-    <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedDay">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedDay">
       <mat-option [value]="d" *ngFor="let d of allDays">
         {{padValue(d)}}
       </mat-option>
@@ -28,7 +29,7 @@
 
   <mat-form-field *ngIf="selectedRecurrenceType === allRecurrenceTypes.Week">
     <mat-label>{{'ui.cron.atWeekday' | translate}}</mat-label>
-    <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedWeekday">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedWeekday">
       <mat-option [value]="d" *ngFor="let d of allWeekdays">
         {{('ui.cron.weekday_' + d.toLowerCase()) | translate}}
       </mat-option>
@@ -37,7 +38,7 @@
 
   <mat-form-field *ngIf="selectedRecurrenceType > allRecurrenceTypes.Hour">
     <mat-label>{{'ui.cron.atHour' | translate}}</mat-label>
-    <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedHour">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedHour">
       <mat-option [value]="h" *ngFor="let h of allHours">
         {{padValue(h)}}
       </mat-option>
@@ -46,7 +47,7 @@
 
   <mat-form-field *ngIf="selectedRecurrenceType > allRecurrenceTypes.Minute">
     <mat-label>{{'ui.cron.atMinute' | translate}}</mat-label>
-    <mat-select (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedMinute">
+    <mat-select (openedChange)="markAsTouched()" (selectionChange)="onSelectionChange()" [disabled]="disabled" [(value)]="selectedMinute">
       <mat-option [value]="m" *ngFor="let m of allMinutes">
         {{padValue(m)}}
       </mat-option>
