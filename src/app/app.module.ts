@@ -128,7 +128,7 @@ if (!environment.production) {
         auth: {
           clientId: environment.adclientid,
           authority: `https://login.microsoftonline.com/${environment.adtenantid}`,
-          redirectUri: window.location.origin,
+          redirectUri: window.location.origin + "/",
           navigateToLoginRequestUrl: true,
           postLogoutRedirectUri: '/logged-out',
         },
@@ -139,8 +139,8 @@ if (!environment.production) {
         system: {
           loggerOptions: {
             loggerCallback: loggerCallback,
-            logLevel: environment.production ? LogLevel.Info : LogLevel.Error,
-            piiLoggingEnabled: true
+            logLevel: !environment.production ? LogLevel.Info : LogLevel.Error,
+            piiLoggingEnabled: !environment.production
           },
         }
       }),
@@ -164,12 +164,12 @@ if (!environment.production) {
         ),
       }
     ),
-      ServiceWorkerModule.register('ngsw-worker.js', {
-        enabled: environment.production,
-        // Register the ServiceWorker as soon as the app is stable
-        // or after 30 seconds (whichever comes first).
-        registrationStrategy: 'registerWhenStable:30000'
-      }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     {
