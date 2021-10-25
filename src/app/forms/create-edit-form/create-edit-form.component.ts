@@ -299,6 +299,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.rows.length; i++) {
       const rowFg = this.rows.at(i) as FormGroup;
       rowFg.get(col.reference)?.setValidators(validators);
+      rowFg.get(col.reference)?.updateValueAndValidity();
     }
   }
 

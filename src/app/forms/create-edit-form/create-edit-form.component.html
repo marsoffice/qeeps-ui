@@ -135,12 +135,14 @@
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
                               <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
+                                [max]="columns.controls[i].get('maxLength')?.value == null ? null : columns.controls[i].get('maxLength')?.value"
                                 formControlName="minLength" />
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.maxLength' | translate}}</mat-label>
-                              <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
-                                formControlName="maxLength" />
+                              <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number"
+                                [min]="columns.controls[i].get('minLength')?.value == null ? '0' : columns.controls[i].get('minLength')?.value"
+                                step="1" matInput formControlName="maxLength" />
                             </mat-form-field>
                           </ng-container>
                           <ng-container
