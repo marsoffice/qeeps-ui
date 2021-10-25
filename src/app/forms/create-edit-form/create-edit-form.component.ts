@@ -279,8 +279,27 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return a as FormControl;
   }
 
-  onLimitsChanged(i: number) {
-
+  onLimitsChanged(i: number, col: ColumnDto) {
+    if (this.rows.length === 0) {
+      return;
+    }
+    const validators: ValidatorFn[] = [];
+    if (col.minLength != null) {
+      validators.push(Validators.minLength(col.minLength));
+    }
+    if (col.maxLength != null) {
+      validators.push(Validators.maxLength(col.maxLength));
+    }
+    if (col.min != null) {
+      validators.push(Validators.min(col.min));
+    }
+    if (col.max != null) {
+      validators.push(Validators.max(col.max));
+    }
+    for (let i = 0; i < this.rows.length; i++) {
+      const rowFg = this.rows.at(i) as FormGroup;
+      rowFg.get(col.reference)?.setValidators(validators);
+    }
   }
 
   private createColumnFormGroup(reference: string) {

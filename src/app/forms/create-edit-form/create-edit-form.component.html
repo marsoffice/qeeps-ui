@@ -134,25 +134,27 @@
                             *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
-                              <input (change)="onLimitsChanged(i)" type="number" min="0" step="1" matInput formControlName="minLength" />
+                              <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
+                                formControlName="minLength" />
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.maxLength' | translate}}</mat-label>
-                              <input (change)="onLimitsChanged(i)" type="number" min="0" step="1" matInput formControlName="maxLength" />
+                              <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
+                                formControlName="maxLength" />
                             </mat-form-field>
                           </ng-container>
                           <ng-container
                             *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime">
                             <div>
-                              <app-cell [placeholder]="'ui.forms.createEditForm.minValue' | translate" (change)="onLimitsChanged(i)"
-                                [isMobile]="isMobile" [editMode]="true" [column]="column.value"
-                                [cellFormControl]="convertToFormControl(columns.controls[i].get('min')!)">
+                              <app-cell [placeholder]="'ui.forms.createEditForm.minValue' | translate"
+                                (change)="onLimitsChanged(i, columns.controls[i].value)" [isMobile]="isMobile" [editMode]="true"
+                                [column]="column.value" [cellFormControl]="convertToFormControl(columns.controls[i].get('min')!)">
                               </app-cell>
                             </div>
                             <div>
-                              <app-cell [placeholder]="'ui.forms.createEditForm.maxValue' | translate" (change)="onLimitsChanged(i)"
-                                [isMobile]="isMobile" [editMode]="true" [column]="column.value"
-                                [cellFormControl]="convertToFormControl(columns.controls[i].get('max')!)">
+                              <app-cell [placeholder]="'ui.forms.createEditForm.maxValue' | translate"
+                                (change)="onLimitsChanged(i, columns.controls[i].value)" [isMobile]="isMobile" [editMode]="true"
+                                [column]="column.value" [cellFormControl]="convertToFormControl(columns.controls[i].get('max')!)">
                               </app-cell>
                             </div>
                           </ng-container>
