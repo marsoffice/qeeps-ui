@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDataType } from '../../models/column-data-type';
@@ -14,6 +14,8 @@ export class CellComponent implements OnInit, OnDestroy {
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   @Input('isMobile') isMobile: boolean | undefined;
+  @Input('placeholder') placeholder: string | undefined;
+  @Output('change') change = new EventEmitter<any>();
   columnDataTypes = ColumnDataType;
   constructor(private translateService: TranslateService) { }
 
@@ -31,7 +33,7 @@ export class CellComponent implements OnInit, OnDestroy {
     }
 
     return Object.keys(this.cellFormControl.errors!)
-      .map(x => this.translateService.instant(`ui.forms.cell.validationFailed.${x}`))
+      .map(x => this.translateService.instant(`ui.forms.cell.validationFailed.${x.toLowerCase()}`))
       .join("\r\n");
 
   }

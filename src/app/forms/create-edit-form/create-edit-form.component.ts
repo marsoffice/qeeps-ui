@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KeyValue } from 'src/app/models/key-value';
 import { environment } from 'src/environments/environment';
@@ -279,6 +279,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return a as FormControl;
   }
 
+  onLimitsChanged(i: number) {
+
+  }
+
   private createColumnFormGroup(reference: string) {
     return new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -301,7 +305,20 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const colDtos = this.columns.value as ColumnDto[];
     for (let i = 0; i < colDtos.length; i++) {
       const colDto = colDtos[i];
-      fcs[colDto.reference] = new FormControl();
+      const validators: ValidatorFn[] = [];
+      if (colDto.minLength != null) {
+        validators.push(Validators.minLength(colDto.minLength));
+      }
+      if (colDto.maxLength != null) {
+        validators.push(Validators.maxLength(colDto.maxLength));
+      }
+      if (colDto.min != null) {
+        validators.push(Validators.min(colDto.min));
+      }
+      if (colDto.max != null) {
+        validators.push(Validators.max(colDto.max));
+      }
+      fcs[colDto.reference] = new FormControl(null, validators);
     }
     return new FormGroup(fcs);
   }

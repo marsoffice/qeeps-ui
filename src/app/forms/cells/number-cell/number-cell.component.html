@@ -1,4 +1,5 @@
 <mat-form-field appearance="outline" class="h-100">
-  <input class="h-100" matInput type="number" [formControl]="cellFormControl" [required]="!editMode && column.isRequired"
-    [step]="column.dataType === columnDataTypes.Real ? '0.0001' : '1'" />
+  <mat-label *ngIf="placeholder != null">{{placeholder}}</mat-label>
+  <input (change)="change.emit($event)" class="h-100" matInput type="number" [formControl]="cellFormControl"
+    [required]="!editMode && column.isRequired" [step]="column.dataType === columnDataTypes.Real ? '0.0001' : '1'" />
 </mat-form-field>

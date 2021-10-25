@@ -134,24 +134,24 @@
                             *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
-                              <input type="number" min="0" step="1" matInput formControlName="minLength" />
+                              <input (change)="onLimitsChanged(i)" type="number" min="0" step="1" matInput formControlName="minLength" />
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.maxLength' | translate}}</mat-label>
-                              <input type="number" min="0" step="1" matInput formControlName="maxLength" />
+                              <input (change)="onLimitsChanged(i)" type="number" min="0" step="1" matInput formControlName="maxLength" />
                             </mat-form-field>
                           </ng-container>
                           <ng-container
                             *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime">
-                            <div appearance="outline">
-                              <mat-label>{{'ui.forms.createEditForm.minValue' | translate}}</mat-label>
-                              <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
+                            <div>
+                              <app-cell [placeholder]="'ui.forms.createEditForm.minValue' | translate" (change)="onLimitsChanged(i)"
+                                [isMobile]="isMobile" [editMode]="true" [column]="column.value"
                                 [cellFormControl]="convertToFormControl(columns.controls[i].get('min')!)">
                               </app-cell>
                             </div>
-                            <div appearance="outline">
-                              <mat-label>{{'ui.forms.createEditForm.maxValue' | translate}}</mat-label>
-                              <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
+                            <div>
+                              <app-cell [placeholder]="'ui.forms.createEditForm.maxValue' | translate" (change)="onLimitsChanged(i)"
+                                [isMobile]="isMobile" [editMode]="true" [column]="column.value"
                                 [cellFormControl]="convertToFormControl(columns.controls[i].get('max')!)">
                               </app-cell>
                             </div>

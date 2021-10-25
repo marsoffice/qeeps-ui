@@ -1,5 +1,6 @@
 <mat-form-field appearance="outline" class="h-100">
-  <input class="h-100" matInput [ngxMatDatetimePicker]="picker" [formControl]="cellFormControl">
+  <mat-label *ngIf="placeholder != null">{{placeholder}}</mat-label>
+  <input class="h-100" matInput [ngxMatDatetimePicker]="picker" [formControl]="cellFormControl" (dateChange)="change.emit($event.value)">
   <mat-datepicker-toggle matSuffix [for]="castToAny(picker)"></mat-datepicker-toggle>
   <ngx-mat-datetime-picker #picker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true" [touchUi]="isMobile || false"
     [hideTime]="false">

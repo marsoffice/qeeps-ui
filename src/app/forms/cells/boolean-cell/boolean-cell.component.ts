@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ColumnDataType } from '../../models/column-data-type';
 import { ColumnDto } from '../../models/column.dto';
@@ -14,6 +14,8 @@ export class BooleanCellComponent implements OnInit {
   @Input('cellFormControl') cellFormControl!: FormControl;
   @Input('editMode') editMode: boolean | undefined;
   @Input('isMobile') isMobile: boolean | undefined;
+  @Input('placeholder') placeholder: string | undefined;
+  @Output('change') change = new EventEmitter<any>();
 
   columnDataTypes = ColumnDataType;
 

@@ -1,6 +1,8 @@
 <mat-form-field appearance="outline" class="h-100">
+  <mat-label *ngIf="placeholder != null">{{placeholder}}</mat-label>
   <input fxHide matInput type="text" />
   <div class="w-100 h-100" fxLayout="row" fxLayoutAlign="center center">
-    <mat-slide-toggle [formControl]="cellFormControl" [required]="!editMode && column.isRequired"></mat-slide-toggle>
+    <mat-slide-toggle (change)="change.emit($event.checked)" [formControl]="cellFormControl" [required]="!editMode && column.isRequired">
+    </mat-slide-toggle>
   </div>
 </mat-form-field>

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { FileDto } from '../models/file.dto';
 import { FilesService } from '../services/files.service';
@@ -27,6 +27,7 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
   @Input() multiple = false;
   @Input() accept: string | undefined;
   @Input() required: boolean | undefined;
+  @Output('change') change = new EventEmitter<FileDto[]>();
   @ViewChild('upload', { static: true, read: ElementRef }) inputFileRef!: ElementRef<HTMLInputElement>;
   files: FileDto[] = [];
   disabled = false;
@@ -75,6 +76,7 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
         }
       }
       this.onChange(this.files);
+      this.change.emit(this.files);
     }, (e: HttpErrorResponse) => {
       const dto: ErrorsDto = e.error;
       let err: ErrorDto[] = [{
