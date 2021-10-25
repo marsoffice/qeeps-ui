@@ -9,8 +9,8 @@ export interface ColumnDto {
   dataType: ColumnDataType;
   allowedExtensions?: string[];
   reference: string;
-  min?: string;
-  max?: string;
+  min?: any;
+  max?: any;
   minLength?: number;
   maxLength?: number;
 }

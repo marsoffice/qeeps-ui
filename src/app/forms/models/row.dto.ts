@@ -1,3 +1,3 @@
 export interface RowDto {
-  values: string[];
+  values: any[];
 }

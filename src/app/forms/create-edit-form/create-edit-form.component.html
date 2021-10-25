@@ -143,18 +143,18 @@
                           </ng-container>
                           <ng-container
                             *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime">
-                            <mat-form-field appearance="outline">
+                            <div appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.minValue' | translate}}</mat-label>
                               <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
                                 [cellFormControl]="convertToFormControl(columns.controls[i].get('min')!)">
                               </app-cell>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline">
+                            </div>
+                            <div appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.maxValue' | translate}}</mat-label>
                               <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
                                 [cellFormControl]="convertToFormControl(columns.controls[i].get('max')!)">
                               </app-cell>
-                            </mat-form-field>
+                            </div>
                           </ng-container>
                         </div>
                       </mat-expansion-panel>
