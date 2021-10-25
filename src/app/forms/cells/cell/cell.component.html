@@ -4,7 +4,7 @@
     *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
   </app-string-cell>
   <app-number-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
-    *ngIf="column.dataType === columnDataTypes.Real || column.dataType === columnDataTypes.PositiveReal || column.dataType === columnDataTypes.Integer || column.dataType === columnDataTypes.PositiveInteger || column.dataType === columnDataTypes.Long || column.dataType === columnDataTypes.PositiveLong">
+    *ngIf="column.dataType === columnDataTypes.Real || column.dataType === columnDataTypes.Integer">
   </app-number-cell>
   <app-date-time-cell [editMode]="editMode" [column]="column" [cellFormControl]="cellFormControl" [isMobile]="isMobile"
     *ngIf="column.dataType === columnDataTypes.DateTime">

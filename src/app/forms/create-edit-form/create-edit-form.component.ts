@@ -278,7 +278,11 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       isHidden: new FormControl(false),
       dataType: new FormControl(ColumnDataType.StringSingleLine, [Validators.required]),
       allowedExtensions: new FormControl([]),
-      reference: new FormControl(reference, [Validators.required])
+      reference: new FormControl(reference, [Validators.required]),
+      min: new FormControl(),
+      max: new FormControl(),
+      minLength: new FormControl(),
+      maxLength: new FormControl()
     });
   }
 
