@@ -233,7 +233,12 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return (this.rows.at(rowIndex) as FormGroup).get(col.reference) as FormControl;
   }
 
-  columnDataTypeChanged(col: ColumnDto) {
+  columnDataTypeChanged(column: FormControl) {
+    const col = column.value;
+    column.get('min')?.setValue(null);
+    column.get('max')?.setValue(null);
+    column.get('minLength')?.setValue(null);
+    column.get('maxLength')?.setValue(null);
     if (this.rows.length === 0) {
       return;
     }
@@ -241,6 +246,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       const rowFg = this.rows.at(i) as FormGroup;
       rowFg.get(col.reference)?.setValue(null);
     }
+
   }
 
   reorderColumns(event: CdkDragDrop<any>) {

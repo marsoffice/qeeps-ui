@@ -92,7 +92,7 @@
 
                       <mat-form-field appearance="outline">
                         <mat-label>{{'ui.forms.createEditForm.dataType' | translate}}</mat-label>
-                        <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(column.value)">
+                        <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(getColumnFormGroup(column))">
                           <mat-option *ngFor="let cdt of columnDataTypesList" [value]="cdt.value">
                             {{('ui.forms.createEditForm.' + toCamelCase(cdt.key)) | translate}}
                           </mat-option>
