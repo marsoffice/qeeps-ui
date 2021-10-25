@@ -233,7 +233,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return (this.rows.at(rowIndex) as FormGroup).get(col.reference) as FormControl;
   }
 
-  columnDataTypeChanged(column: FormControl) {
+  columnDataTypeChanged(column: FormGroup) {
     const col = column.value;
     column.get('min')?.setValue(null);
     column.get('max')?.setValue(null);
