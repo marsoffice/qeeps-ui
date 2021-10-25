@@ -40,19 +40,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
-    this.authService.updateLoggedInStatus(() => {
-      this._destroy.push(
-        this.authService.user.subscribe(u => {
-          this.user = u;
-          if (this.user != null) {
-            this.hubService.start().subscribe();
-            this.initPush();
-          } else {
-            this.hubService.stop().subscribe();
-          }
-        })
-      );
-    });
+    this._destroy.push(
+      this.authService.user.subscribe(u => {
+        this.user = u;
+        if (this.user != null) {
+          this.hubService.start().subscribe();
+          this.initPush();
+        } else {
+          this.hubService.stop().subscribe();
+        }
+      })
+    );
 
 
     this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {

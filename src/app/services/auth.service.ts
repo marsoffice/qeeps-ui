@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
-import { AccountInfo, InteractionStatus } from '@azure/msal-browser';
+import { AccountInfo } from '@azure/msal-browser';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Claims } from '../models/claims';
 
@@ -13,7 +13,6 @@ import { Claims } from '../models/claims';
 })
 export class AuthService {
   public static logStore: string | null = null;
-  loggedIn = false;
   private readonly _destroying$ = new Subject<void>();
   private readonly userSubject: BehaviorSubject<AccountInfo | null>;
 
@@ -29,34 +28,8 @@ export class AuthService {
       let accounts = this.authService.instance.getAllAccounts();
       this.authService.instance.setActiveAccount(accounts[0]);
     }
+    activeAccount = this.authService.instance.getActiveAccount();
     this.userSubject = new BehaviorSubject<AccountInfo | null>(activeAccount);
-  }
-
-  updateLoggedInStatus(cb: () => void) {
-    this.msalBroadcastService.inProgress$
-      .pipe(
-        filter((status: InteractionStatus) => status === InteractionStatus.None),
-        takeUntil(this._destroying$)
-      )
-      .subscribe(() => {
-        this.setLoggedIn();
-        this.checkAndSetActiveAccount();
-        cb();
-      });
-  }
-
-  private checkAndSetActiveAccount() {
-    let activeAccount = this.authService.instance.getActiveAccount();
-
-    if (!activeAccount && this.authService.instance.getAllAccounts().length > 0) {
-      let accounts = this.authService.instance.getAllAccounts();
-      this.authService.instance.setActiveAccount(accounts[0]);
-    }
-    this.userSubject.next(this.authService.instance.getActiveAccount());
-  }
-
-  private setLoggedIn() {
-    this.loggedIn = this.authService.instance.getAllAccounts().length > 0;
   }
 
   get user() {
