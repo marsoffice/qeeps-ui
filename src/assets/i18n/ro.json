@@ -90,7 +90,12 @@
         "isRecurrent": "Este recurent",
         "rowAppendDisabled": "Adăugarea rândurilor dezactivată",
         "sendEmailNotifications": "Trimitere notificări și prin e-mail",
-        "cronExpressionRequired": "Definiția recurenței este obligatorie"
+        "cronExpressionRequired": "Definiția recurenței este obligatorie",
+        "limits": "Limite",
+        "minLength": "Lungime minimă",
+        "maxLength": "Lungime maximă",
+        "minValue": "Valoare minimă",
+        "maxValue": "Valoare maximă"
       },
       "cell": {
         "required": "Obligatoriu",

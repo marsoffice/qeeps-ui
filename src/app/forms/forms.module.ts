@@ -32,6 +32,7 @@ import { DateCellComponent } from './cells/date-cell/date-cell.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.component';
 import { CronModule } from '../shared/cron/cron.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CronModule } from '../shared/cron/cron.module';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatExpansionModule,
     MatIconModule,
     MatButtonModule,
     MatSelectModule,

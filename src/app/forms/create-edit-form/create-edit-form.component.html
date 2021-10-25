@@ -126,6 +126,39 @@
                         </mat-error>
                       </mat-form-field>
 
+                      <mat-expansion-panel
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime || columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
+                        <mat-expansion-panel-header>{{'ui.forms.createEditForm.limits' | translate}}</mat-expansion-panel-header>
+                        <div fxLayout="column">
+                          <ng-container
+                            *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
+                            <mat-form-field appearance="outline">
+                              <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
+                              <input type="number" min="0" step="1" matInput formControlName="minLength" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                              <mat-label>{{'ui.forms.createEditForm.maxLength' | translate}}</mat-label>
+                              <input type="number" min="0" step="1" matInput formControlName="maxLength" />
+                            </mat-form-field>
+                          </ng-container>
+                          <ng-container
+                            *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime">
+                            <mat-form-field appearance="outline">
+                              <mat-label>{{'ui.forms.createEditForm.minValue' | translate}}</mat-label>
+                              <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
+                                [cellFormControl]="convertToFormControl(columns.controls[i].get('min')!)">
+                              </app-cell>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                              <mat-label>{{'ui.forms.createEditForm.maxValue' | translate}}</mat-label>
+                              <app-cell [isMobile]="isMobile" [editMode]="true" [column]="column.value"
+                                [cellFormControl]="convertToFormControl(columns.controls[i].get('max')!)">
+                              </app-cell>
+                            </mat-form-field>
+                          </ng-container>
+                        </div>
+                      </mat-expansion-panel>
+
                       <div fxFlex="1 1 auto"></div>
 
                       <div fxLayout="row" fxLayoutAlign="space-between">

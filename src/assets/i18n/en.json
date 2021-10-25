@@ -90,7 +90,12 @@
         "isRecurrent": "Is Recurrent",
         "rowAppendDisabled": "Row Appending Disabled",
         "sendEmailNotifications": "Send e-mail notifications too",
-        "cronExpressionRequired": "Recurrence definition required"
+        "cronExpressionRequired": "Recurrence definition required",
+        "limits": "Limits",
+        "minLength": "Minimum length",
+        "maxLength": "Maximum length",
+        "minValue": "Minimum value",
+        "maxValue": "Maximum value"
       },
       "cell": {
         "required": "Required",

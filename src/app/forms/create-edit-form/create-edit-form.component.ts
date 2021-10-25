@@ -269,6 +269,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return this.form.get('form')!.get(a) as FormControl;
   }
 
+  convertToFormControl(a: AbstractControl) {
+    return a as FormControl;
+  }
+
   private createColumnFormGroup(reference: string) {
     return new FormGroup({
       name: new FormControl(null, [Validators.required]),
