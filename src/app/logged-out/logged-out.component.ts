@@ -13,13 +13,13 @@ export class LoggedOutComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this._destroy.push(
-      this.authService.user.subscribe(u => {
-        if (u != null) {
-          this.router.navigate(['']);
-        }
-      })
-    );
+    // this._destroy.push(
+    //   this.authService.user.subscribe(u => {
+    //     if (u != null) {
+    //       this.router.navigate(['']);
+    //     }
+    //   })
+    // );
   }
 
   ngOnDestroy() {
