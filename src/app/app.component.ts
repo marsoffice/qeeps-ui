@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this.user != null) {
           this.hubService.start().subscribe();
           this.initPush();
+          this.userPreferencesService.read().subscribe();
         } else {
           this.hubService.stop().subscribe();
         }

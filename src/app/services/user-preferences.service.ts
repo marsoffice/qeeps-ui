@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { UserPreferencesDto } from '../models/user-preferences.dto';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { UserPreferencesDto } from '../models/user-preferences.dto';
 })
 export class UserPreferencesService {
   private userPreferencesSubject: BehaviorSubject<UserPreferencesDto>;
+
   constructor(private http: HttpClient) {
     let upObj: UserPreferencesDto = {
       preferredLanguage: 'ro',
@@ -18,16 +20,21 @@ export class UserPreferencesService {
       upObj = JSON.parse(upLs) as UserPreferencesDto;
     }
     this.userPreferencesSubject = new BehaviorSubject<UserPreferencesDto>(upObj);
-    this.http.get<UserPreferencesDto>(`/api/access/userPreferences`).subscribe(x => {
-      if (x == null) {
-        return;
-      }
-      localStorage.setItem('user_preferences', JSON.stringify(x));
-      const old = this.userPreferencesSubject.value;
-      if (x?.preferredLanguage !== old?.preferredLanguage || x?.useDarkTheme !== old?.useDarkTheme) {
-        this.userPreferencesSubject.next(x);
-      }
-    });
+  }
+
+  read() {
+    return this.http.get<UserPreferencesDto>(`/api/access/userPreferences`).pipe(
+      tap(x => {
+        if (x == null) {
+          return;
+        }
+        localStorage.setItem('user_preferences', JSON.stringify(x));
+        const old = this.userPreferencesSubject.value;
+        if (x?.preferredLanguage !== old?.preferredLanguage || x?.useDarkTheme !== old?.useDarkTheme) {
+          this.userPreferencesSubject.next(x);
+        }
+      })
+    );
   }
 
   get userPreferences() {

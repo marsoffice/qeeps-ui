@@ -1,25 +1,28 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>qeeps</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#98c1d9">
-</head>
-<body class="mat-typography mat-app-background">
-  <app-root></app-root>
-  <app-redirect></app-redirect>
-  <script>
-    window.envConfig = {
-      adclientid: '#{adclientid}#',
-      adtenantid: '#{adtenantid}#',
-      publicvapidkey: '#{publicvapidkey}#',
-      usefunctionproxy: '#{usefunctionproxy}#'
-    };
-  </script>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+
+  <head>
+    <meta charset="utf-8">
+    <title>qeeps</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#98c1d9">
+  </head>
+
+  <body class="mat-typography mat-app-background">
+    <app-root></app-root>
+    <app-redirect></app-redirect>
+    <script>
+      window.envConfig = {
+        adclientid: '#{adclientid}#',
+        adtenantid: '#{adtenantid}#',
+        publicvapidkey: '#{publicvapidkey}#',
+        usefunctionproxy: '#{usefunctionproxy}#'
+      };
+    </script>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  </body>
+
 </html>
