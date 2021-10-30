@@ -18,7 +18,7 @@ export class FunctionProxyInterceptor implements HttpInterceptor {
     if (environment.usefunctionproxy === 'false') {
       return next.handle(request);
     }
-    if (!request.headers.has('Authorization') || !request.url.startsWith(window.location.origin)) {
+    if (!request.headers.has('Authorization') || request.url.includes('graph')) {
       return next.handle(request);
     }
     let newHeaders = new HttpHeaders();
