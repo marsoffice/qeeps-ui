@@ -36,7 +36,7 @@ class CustomHttpClient extends DefaultHttpClient {
   }
 
   send(request: HttpRequest) {
-    if (environment.usefunctionproxy !== 'false' && request.headers != null && request.headers['Authorization'] != null && request.url?.includes(window.location.origin)) {
+    if (environment.production && request.headers != null && request.headers['Authorization'] != null && request.url?.includes(window.location.origin)) {
       request.headers['x-authorization'] = request.headers['Authorization'];
       delete request.headers['Authorization'];
     }

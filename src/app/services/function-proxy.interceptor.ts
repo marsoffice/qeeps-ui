@@ -15,7 +15,7 @@ export class FunctionProxyInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (environment.usefunctionproxy === 'false') {
+    if (!environment.production) {
       return next.handle(request);
     }
     if (!request.headers.has('Authorization') || request.url.includes('graph')) {
