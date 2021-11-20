@@ -1,11 +1,10 @@
 name: qeeps-ui
 on:
   push:
-    branches: [ develop, master ]
+    branches: [develop, master]
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
   workflow_dispatch:
-
 
 env:
   GH_USER: ${{ secrets.GH_USER }}
@@ -20,26 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     environment: stg
     env:
-      adclientid: '${{ secrets.adclientid }}'
-      adtenantid: '${{ secrets.adtenantid }}'
-      publicvapidkey: '${{ secrets.publicvapidkey }}'
-      usefunctionproxy: 'true'
+      adclientid: "${{ secrets.adclientid }}"
+      adtenantid: "${{ secrets.adtenantid }}"
+      publicvapidkey: "${{ secrets.publicvapidkey }}"
+      usefunctionproxy: "true"
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: setup nodejs
         uses: actions/setup-node@v2.3.0
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: cache node_modules
         uses: actions/cache@v2
@@ -82,26 +75,20 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     env:
-      adclientid: '${{ secrets.adclientid }}'
-      adtenantid: '${{ secrets.adtenantid }}'
-      publicvapidkey: '${{ secrets.publicvapidkey }}'
-      usefunctionproxy: 'false'
+      adclientid: "${{ secrets.adclientid }}"
+      adtenantid: "${{ secrets.adtenantid }}"
+      publicvapidkey: "${{ secrets.publicvapidkey }}"
+      usefunctionproxy: "false"
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: setup nodejs
         uses: actions/setup-node@v2.3.0
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: cache node_modules
         uses: actions/cache@v2
@@ -149,13 +136,13 @@ jobs:
       - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist_ui'
+          name: "dist_ui"
           path: ./dist
 
       - name: download api artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist_api'
+          name: "dist_api"
           path: ./api
 
       - name: deploy westeurope
@@ -163,10 +150,10 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.DEPLOYMENT_TOKEN_WESTEUROPE }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: 'upload'
-          app_location: 'dist'
-          api_location: 'api'
-          output_location: ''
+          action: "upload"
+          app_location: "dist"
+          api_location: "api"
+          output_location: ""
           skip_app_build: true
 
   deploy_prod:
@@ -179,13 +166,13 @@ jobs:
       - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist_ui'
+          name: "dist_ui"
           path: ./dist
 
       - name: download api artifact
         uses: actions/download-artifact@v2.0.10
         with:
-          name: 'dist_api'
+          name: "dist_api"
           path: ./api
 
       - name: deploy westeurope
@@ -193,8 +180,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.DEPLOYMENT_TOKEN_WESTEUROPE }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: 'upload'
-          app_location: 'dist'
-          api_location: 'api'
-          output_location: ''
+          action: "upload"
+          app_location: "dist"
+          api_location: "api"
+          output_location: ""
           skip_app_build: true
