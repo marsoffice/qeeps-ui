@@ -62,7 +62,7 @@ jobs:
   deploy_stg:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
-    needs: [build_stg]
+    needs: [build]
     environment: stg
     env:
       adclientid: "${{ secrets.adclientid }}"
@@ -101,7 +101,7 @@ jobs:
   deploy_prod:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
-    needs: [build_prod]
+    needs: [build]
     environment: prod
     env:
       adclientid: "${{ secrets.adclientid }}"
