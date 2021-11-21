@@ -70,8 +70,10 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
       for (const uf of uploadedFiles) {
         const foundFile = newFiles.find(x => x.filename === uf.filename);
         if (foundFile != null) {
-          foundFile.id = uf.id;
+          foundFile.fileId = uf.fileId;
           foundFile.userId = uf.userId;
+          foundFile.uploadSessionId = uf.uploadSessionId;
+          foundFile.location = uf.location;
           foundFile.isUploading = false;
         }
       }
@@ -129,7 +131,7 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor, Valida
     if (files == null || files.length === 0) {
       return null;
     }
-    if (files.some(x => x.id == null && x.isUploading)) {
+    if (files.some(x => x.fileId == null && x.isUploading)) {
       return {
         incomplete: true
       };
