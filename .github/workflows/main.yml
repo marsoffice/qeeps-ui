@@ -68,7 +68,7 @@ jobs:
       adclientid: "${{ secrets.adclientid }}"
       adtenantid: "${{ secrets.adtenantid }}"
       publicvapidkey: "${{ secrets.publicvapidkey }}"
-    name: deploy stg
+    name: deploy stg westeurope
     steps:
       - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
@@ -107,7 +107,7 @@ jobs:
       adclientid: "${{ secrets.adclientid }}"
       adtenantid: "${{ secrets.adtenantid }}"
       publicvapidkey: "${{ secrets.publicvapidkey }}"
-    name: deploy stg
+    name: deploy stg westus2
     steps:
       - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
@@ -146,7 +146,7 @@ jobs:
       adclientid: "${{ secrets.adclientid }}"
       adtenantid: "${{ secrets.adtenantid }}"
       publicvapidkey: "${{ secrets.publicvapidkey }}"
-    name: deploy prod
+    name: deploy prod westeurope
     steps:
       - name: download ui artifact
         uses: actions/download-artifact@v2.0.10
