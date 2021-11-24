@@ -1,5 +1,10 @@
 {
   "ui": {
+    "legal": {
+      "text": "Folosim cookie-uri pentru a îmbunătăți experiența utilizatorului și pentru a analiza traficul pe site. Făcând clic pe Accept, sunteți de acord cu utilizarea cookie-urilor de către site-ul nostru, așa cum este descris în Politica noastră privind cookie-urile.",
+      "accept": "Accept",
+      "reject": "Refuz"
+    },
     "toast": {
       "open": "Deschidere"
     },
