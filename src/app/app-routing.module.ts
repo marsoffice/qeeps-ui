@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
+import { ContractComponent } from './contract/contract.component';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HomeComponent } from './home/home.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthRoleGuard } from './services/auth-role.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +20,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [MsalGuard],
+  },
+  {
+    path: 'contract',
+    component: ContractComponent,
     canActivate: [MsalGuard],
   },
   {
@@ -37,7 +44,19 @@ const routes: Routes = [
     path: 'healthcheck',
     component: HealthcheckComponent,
   },
-  { path: 'forms', loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule), canActivate: [MsalGuard], },
+  {
+    path: 'forms',
+    loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
+    canActivate: [MsalGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [MsalGuard, AuthRoleGuard],
+    data: {
+      roles: ["Owner"]
+    }
+  },
   {
     path: '**',
     pathMatch: 'full',

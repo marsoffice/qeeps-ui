@@ -51,6 +51,7 @@ import { FromNotificationComponent } from './notifications/from-notification/fro
 import { FunctionProxyInterceptor } from './services/function-proxy.interceptor';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
+import { ContractComponent } from './contract/contract.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -96,6 +97,7 @@ if (!environment.production) {
     NotificationsComponent,
     FromNotificationComponent,
     LegalComponent,
+    ContractComponent,
   ],
   imports: [
     SharedModule,
