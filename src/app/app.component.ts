@@ -60,7 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         document.body.classList.remove('theme-alternate');
       }
-      const newLang = up.preferredLanguage == null ? this.translateService.getBrowserLang() : up.preferredLanguage;
+      const newLang = up.preferredLanguage == null ? (this.translateService.getBrowserLang() || environment.defaultLanguage) : up.preferredLanguage;
       this.translateService.use(newLang);
     }));
 

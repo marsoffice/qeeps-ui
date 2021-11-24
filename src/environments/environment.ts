@@ -4,6 +4,7 @@ export const environment = {
   adtenantid: localenv.adtenantid,
   adclientid: localenv.adclientid,
   languages: ['ro', 'en'],
+  defaultLanguage: 'ro',
   publicvapidkey: localenv.publicvapidkey,
   notificationsElementsPerPage: 50,
   toastDuration: 5000,

@@ -5,7 +5,7 @@ import {
   HubConnection, HubConnectionBuilder, IRetryPolicy, JsonHubProtocol, LogLevel, MessageHeaders, RetryContext
 } from '@microsoft/signalr';
 import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
-import { from, Observable, of, Subject } from 'rxjs';
+import { firstValueFrom, from, Observable, of, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
@@ -63,11 +63,11 @@ export class HubService {
 
       this.connection = new HubConnectionBuilder()
         .withUrl('/api/access/signalr', {
-          accessTokenFactory: () => {
-            return this.authService.getAccessToken().toPromise();
-          },
+          headers: msgHeaders,
           httpClient: new CustomHttpClient(),
-          headers: msgHeaders
+          accessTokenFactory: () => {
+            return firstValueFrom(this.authService.getAccessToken());
+          }
         })
         .withAutomaticReconnect(new CustomRetryPolicy())
         .withHubProtocol(new JsonHubProtocol())
