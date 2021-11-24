@@ -49,7 +49,9 @@
       "extra": "Extra",
       "forms": "Forms",
       "myForms": "My Forms",
-      "createForm": "Create Form"
+      "createForm": "Create Form",
+      "admin": "Admin",
+      "editContract": "Edit contract"
     },
     "forms": {
       "createEditForm": {

@@ -49,7 +49,9 @@
       "extra": "Extra",
       "forms": "Formulare",
       "myForms": "Formularele mele",
-      "createForm": "Creare formular"
+      "createForm": "Creare formular",
+      "admin": "Admin",
+      "editContract": "Editare contract"
     },
     "forms": {
       "createEditForm": {
