@@ -49,6 +49,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SharedModule } from './shared/shared.module';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { FunctionProxyInterceptor } from './services/function-proxy.interceptor';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { LegalComponent } from './layout/legal/legal.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -93,6 +95,7 @@ if (!environment.production) {
     ProfileComponent,
     NotificationsComponent,
     FromNotificationComponent,
+    LegalComponent,
   ],
   imports: [
     SharedModule,
@@ -113,6 +116,7 @@ if (!environment.production) {
     MatSnackBarModule,
     MatExpansionModule,
     MatBadgeModule,
+    MatBottomSheetModule,
 
     TranslateModule.forRoot({
       loader: {
