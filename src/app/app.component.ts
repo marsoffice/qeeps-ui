@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
+import { UserDto } from './models/user.dto';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { HubService } from './services/hub.service';
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
   private checkUpdateInterval: Observable<number>;
+  userProfile: UserDto | undefined;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
@@ -47,6 +49,9 @@ export class AppComponent implements OnInit, OnDestroy {
           this.hubService.start().subscribe();
           this.initPush();
           this.userPreferencesService.read().subscribe();
+          this.accessService.myProfile().subscribe(x => {
+            this.userProfile = x;
+          });
         } else {
           this.hubService.stop().subscribe();
         }
@@ -74,15 +79,17 @@ export class AppComponent implements OnInit, OnDestroy {
       );
 
       this._destroy.push(
-        this.swUpdate.available.subscribe(() => {
-          this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
-          window.location.reload();
-        })
-      );
-
-      this._destroy.push(
-        this.swUpdate.activated.subscribe(() => {
-          this.toastService.showInfo(this.translateService.instant('ui.update.updateFinished'));
+        this.swUpdate.versionUpdates.subscribe((e) => {
+          if (e.type === 'VERSION_READY') {
+            this.swUpdate.activateUpdate().then(x => {
+              if (x) {
+                this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              }
+            });
+          }
         })
       );
     }
