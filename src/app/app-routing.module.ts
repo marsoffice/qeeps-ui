@@ -10,18 +10,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthRoleGuard } from './services/auth-role.guard';
-import { ContractGuard } from './services/contract.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [MsalGuard, ContractGuard],
+    canActivate: [MsalGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [MsalGuard, ContractGuard],
+    canActivate: [MsalGuard],
   },
   {
     path: 'contract',
@@ -31,7 +30,7 @@ const routes: Routes = [
   {
     path: 'from-notification',
     component: FromNotificationComponent,
-    canActivate: [MsalGuard, ContractGuard],
+    canActivate: [MsalGuard],
   },
   {
     path: 'logged-out',
@@ -48,12 +47,12 @@ const routes: Routes = [
   {
     path: 'forms',
     loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
-    canActivate: [MsalGuard, ContractGuard],
+    canActivate: [MsalGuard],
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [MsalGuard, ContractGuard, AuthRoleGuard],
+    canActivate: [MsalGuard, AuthRoleGuard],
     data: {
       roles: ["Owner"]
     }
