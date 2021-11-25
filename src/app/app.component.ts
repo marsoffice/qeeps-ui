@@ -65,26 +65,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }));
 
     if (this.swUpdate.isEnabled) {
+      this.updatePwa();
       this._destroy.push(
         this.checkUpdateInterval.subscribe(() => {
-          this.swUpdate.checkForUpdate().then(() => {
-            this.toastService.showInfo(this.translateService.instant('ui.update.updateCheck'));
-          });
-        })
-      );
-
-      this._destroy.push(
-        this.swUpdate.versionUpdates.subscribe((e) => {
-          if (e.type === 'VERSION_READY') {
-            this.swUpdate.activateUpdate().then(x => {
-              if (x) {
-                this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
-                setTimeout(() => {
-                  window.location.reload();
-                }, 1000);
-              }
-            });
-          }
+          this.updatePwa();
         })
       );
     }
@@ -94,6 +78,19 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isMobile = this.mediaObserver.isActive('xs');
       })
     );
+  }
+
+  updatePwa() {
+    this.swUpdate.checkForUpdate().then(e => {
+      this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
+      if (e) {
+        this.swUpdate.activateUpdate().then(e2 => {
+          if (e2) {
+            location.reload();
+          }
+        });
+      }
+    });
   }
 
   ngOnDestroy(): void {
