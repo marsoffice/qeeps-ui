@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
+import { DocumentDto } from '../models/document.dto';
 import { OrganisationDto } from '../models/organisation.dto';
 import { UserDto } from '../models/user.dto';
 
@@ -14,6 +15,14 @@ export class AccessService {
 
   organisationsTree() {
     return this.http.get<OrganisationDto[]>('/api/access/myOrganisationsTree');
+  }
+
+  getDocument(id: string) {
+    return this.http.get<DocumentDto>('/api/access/documents/' + id);
+  }
+
+  saveDocument(payload: DocumentDto) {
+    return this.http.post('/api/access/documents', payload);
   }
 
   myProfile() {
