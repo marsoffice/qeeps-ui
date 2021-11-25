@@ -82,11 +82,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   updatePwa() {
     this.swUpdate.checkForUpdate().then(e => {
-      this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
       if (e) {
         this.swUpdate.activateUpdate().then(e2 => {
           if (e2) {
-            location.reload();
+            this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
           }
         });
       }
