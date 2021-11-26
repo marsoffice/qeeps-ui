@@ -19,6 +19,7 @@ import { FilesModule } from '../shared/files/files.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatTreeModule } from '@angular/material/tree';
 import { CellComponent } from './cells/cell/cell.component';
 import { StringCellComponent } from './cells/string-cell/string-cell.component';
 import { MatCardModule } from '@angular/material/card';
@@ -71,7 +72,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     NgxMatNativeDateModule,
     FilesModule,
     MatNativeDateModule,
-    CronModule
+    CronModule,
+    MatTreeModule
   ],
   providers: [
     FormsService
