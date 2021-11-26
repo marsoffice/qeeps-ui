@@ -17,6 +17,10 @@ export class AccessService {
     return this.http.get<OrganisationDto[]>('/api/access/myOrganisationsTree');
   }
 
+  fullOrganisationsTree() {
+    return this.http.get<OrganisationDto[]>('/api/access/myFullOrganisationsTree');
+  }
+
   getDocument(id: string) {
     return this.http.get<DocumentDto>('/api/access/documents/' + id);
   }

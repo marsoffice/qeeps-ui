@@ -14,6 +14,8 @@ import { MediaObserver } from '@angular/flex-layout';
 import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuid } from 'uuid';
 import { RecurrenceType } from 'src/app/shared/cron/models/recurrence-type';
+import { AccessService } from 'src/app/services/access.service';
+import { OrganisationDto } from 'src/app/models/organisation.dto';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -48,8 +50,12 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     RecurrenceType.Minute,
   ];
 
+  orgs: OrganisationDto[] | undefined;
 
-  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver, private translate: TranslateService) {
+
+  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver,
+    private accessService: AccessService,
+    private translate: TranslateService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
     this.columns = new FormArray([]);
@@ -96,6 +102,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.accessService.fullOrganisationsTree().subscribe(orgs => {
+      this.orgs = this.convertToTree(orgs);
+    });
+
     this._destroy.push(
       this.mediaObserver.asObservable().subscribe(() => {
         this.isMobile = this.mediaObserver.isActive('xs');
@@ -361,5 +371,38 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const enumAny = ColumnDataType as any;
     return Object.keys(enumAny).filter(k => Number.isNaN(Number.parseInt(k)))
       .map(k => ({ key: k, value: enumAny[k] }));
+  }
+
+  private convertToTree(org: OrganisationDto[] | undefined) {
+    if (!org) {
+      return [];
+    }
+
+    if (org.length <= 1) {
+      return org;
+    }
+
+    org = org.filter(x => x.fullId != null).sort((a, b) => {
+      return a.fullId!.length - b.fullId!.length;
+    }).reverse();
+
+    org.forEach(x => {
+      x.children = [];
+    });
+
+    for (let i = 0; i < org.length - 1; i++) {
+      const current = org[i];
+
+      for (let j = i + 1; j < org.length; j++) {
+        const compare = org[j];
+        if (current.fullId!.startsWith(compare.fullId!)) {
+          compare.children!.push(current);
+          org.splice(i, 1);
+          i--;
+          break;
+        }
+      }
+    }
+    return org;
   }
 }
