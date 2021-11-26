@@ -1,7 +1,6 @@
 export interface FormAccessDto {
-  id: string;
-  formId: string;
+  id?: string | undefined;
+  formId?: string | undefined;
   organisationId: string;
-  fullOrganisationId: string;
   seenDate?: string;
 }

@@ -102,7 +102,8 @@
         "minLength": "Lungime minimă",
         "maxLength": "Lungime maximă",
         "minValue": "Valoare minimă",
-        "maxValue": "Valoare maximă"
+        "maxValue": "Valoare maximă",
+        "access": "Acces"
       },
       "cell": {
         "required": "Obligatoriu",

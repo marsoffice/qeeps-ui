@@ -34,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.component';
 import { CronModule } from '../shared/cron/cron.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     FilesModule,
     MatNativeDateModule,
     CronModule,
-    MatTreeModule
+    MatTreeModule,
+    MatCheckboxModule
   ],
   providers: [
     FormsService

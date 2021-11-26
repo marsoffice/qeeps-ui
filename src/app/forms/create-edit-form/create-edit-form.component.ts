@@ -11,11 +11,14 @@ import { ColumnDto } from '../models/column.dto';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
-import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuid } from 'uuid';
 import { RecurrenceType } from 'src/app/shared/cron/models/recurrence-type';
 import { AccessService } from 'src/app/services/access.service';
 import { OrganisationDto } from 'src/app/models/organisation.dto';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { SelectionModel } from '@angular/cdk/collections';
+import { FormAccessDto } from '../models/form-access.dto';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -52,10 +55,12 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   orgs: OrganisationDto[] | undefined;
 
+  accessTreeControl = new NestedTreeControl<OrganisationDto>(x => x.children);
+  accessDataSource = new MatTreeNestedDataSource<OrganisationDto>();
+  accessSelection = new SelectionModel<OrganisationDto>(true, []);
 
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver,
-    private accessService: AccessService,
-    private translate: TranslateService) {
+    private accessService: AccessService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
     this.columns = new FormArray([]);
@@ -104,6 +109,19 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.accessService.fullOrganisationsTree().subscribe(orgs => {
       this.orgs = this.convertToTree(orgs);
+      this.accessDataSource.data = this.orgs;
+      this.accessTreeControl.dataNodes = this.orgs;
+      for (const o of this.orgs) {
+        this.accessTreeControl.expand(o);
+      }
+
+      this._destroy.push(
+        this.accessSelection.changed.subscribe(() => {
+          this.form.get('form')!.get('formAccesses')!.setValue(this.accessSelection.selected.map(o => ({
+            organisationId: o.id
+          } as FormAccessDto)));
+        })
+      );
     });
 
     this._destroy.push(
@@ -311,6 +329,10 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       rowFg.get(col.reference)?.setValidators(validators);
       rowFg.get(col.reference)?.updateValueAndValidity();
     }
+  }
+
+  organisationHasChild(_: number, o: OrganisationDto) {
+    return o.children != null && o.children.length > 0;
   }
 
   private createColumnFormGroup(reference: string) {
