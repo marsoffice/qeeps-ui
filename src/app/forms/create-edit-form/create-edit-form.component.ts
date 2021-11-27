@@ -425,6 +425,17 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         }
       }
     }
+
+    return this.sortRec(org);
+  }
+
+  private sortRec(org: OrganisationDto[]) {
+    org = org.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+    for (const o of org) {
+      if (o.children != null && o.children.length > 0) {
+        o.children = this.sortRec(o.children);
+      }
+    }
     return org;
   }
 }
