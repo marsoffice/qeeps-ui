@@ -6,7 +6,7 @@ import {
 } from '@microsoft/signalr';
 import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
 import { firstValueFrom, from, Observable, of, Subject } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -80,8 +80,12 @@ export class HubService {
     if (this.connection == null) {
       return of<void>();
     }
-    return from(
-      this.connection.start()
+    let startObs = of<void>();
+    if (this.connection!.state === 'Connected') {
+      startObs = this.stop();
+    }
+    return startObs.pipe(
+      switchMap(() => from(this.connection!.start()))
     );
   }
 

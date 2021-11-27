@@ -40,6 +40,45 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
+
+    this.initHub();
+
+
+    this.initUserPreferences();
+
+    if (this.swUpdate.isEnabled) {
+      this.updatePwa();
+      this._destroy.push(
+        this.checkUpdateInterval.subscribe(() => {
+          this.updatePwa();
+        })
+      );
+    }
+
+    this.initMediaObserver();
+  }
+
+  private initMediaObserver() {
+    this._destroy.push(
+      this.mediaObserver.asObservable().subscribe(() => {
+        this.isMobile = this.mediaObserver.isActive('xs');
+      })
+    );
+  }
+
+  private initUserPreferences() {
+    this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
+      if (up.useDarkTheme) {
+        document.body.classList.add('theme-alternate');
+      } else {
+        document.body.classList.remove('theme-alternate');
+      }
+      const newLang = up.preferredLanguage == null ? (this.translateService.getBrowserLang() || environment.defaultLanguage) : up.preferredLanguage;
+      this.translateService.use(newLang);
+    }));
+  }
+
+  private initHub() {
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
@@ -52,35 +91,9 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       })
     );
-
-
-    this._destroy.push(this.userPreferencesService.userPreferences.subscribe(up => {
-      if (up.useDarkTheme) {
-        document.body.classList.add('theme-alternate');
-      } else {
-        document.body.classList.remove('theme-alternate');
-      }
-      const newLang = up.preferredLanguage == null ? (this.translateService.getBrowserLang() || environment.defaultLanguage) : up.preferredLanguage;
-      this.translateService.use(newLang);
-    }));
-
-    if (this.swUpdate.isEnabled) {
-      this.updatePwa();
-      this._destroy.push(
-        this.checkUpdateInterval.subscribe(() => {
-          this.updatePwa();
-        })
-      );
-    }
-
-    this._destroy.push(
-      this.mediaObserver.asObservable().subscribe(() => {
-        this.isMobile = this.mediaObserver.isActive('xs');
-      })
-    );
   }
 
-  updatePwa() {
+  private updatePwa() {
     this.swUpdate.checkForUpdate().then(e => {
       if (e) {
         this.swUpdate.activateUpdate().then(e2 => {
