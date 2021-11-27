@@ -1,6 +1,8 @@
 :host {
   ::ng-deep mat-tree {
     background: transparent !important;
+    max-height: 400px;
+    overflow: auto;
     .mat-tree-node {
       min-height: 40px !important;
     }
