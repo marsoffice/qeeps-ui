@@ -44,9 +44,7 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   selectedSecond: number | null = 1;
   allWeekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
     this.recurrenceTypes = Object.keys(RecurrenceType as any).filter((x: any) => Number.isNaN(parseInt(x)))
       .map((x: any) => ({
         key: x.toLowerCase(),
@@ -87,6 +85,10 @@ export class CronComponent implements OnInit, ControlValueAccessor {
         this.selectedMonth = 1;
       }
     }
+  }
+
+  ngOnInit(): void {
+
   }
 
   writeValue(v: string) {
@@ -169,9 +171,11 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   }
 
   onSelectionChange() {
-    let newValue = `${this.selectedSecond ?? '*'} ${this.selectedMinute ?? '*'} ${this.selectedHour ?? '*'} ${this.selectedDay ?? '*'} ${this.selectedMonth ?? '*'} ${this.selectedWeekday ?? '*'}`;
-    this.writeValue(newValue);
-    this.markAsTouched();
+    setTimeout(() => {
+      let newValue = `${this.selectedSecond ?? '*'} ${this.selectedMinute ?? '*'} ${this.selectedHour ?? '*'} ${this.selectedDay ?? '*'} ${this.selectedMonth ?? '*'} ${this.selectedWeekday ?? '*'}`;
+      this.writeValue(newValue);
+      this.markAsTouched();
+    });
   }
 
   onRecurrenceTypeChange() {

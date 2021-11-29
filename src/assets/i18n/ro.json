@@ -163,7 +163,6 @@
       "attachmentUploadSessionIdRequired": "ID-ul sesiunii este obligatoriu",
       "attachmentLocationRequired": "Locația atașamentului este obligatorie",
       "attachmentUserIdRequired": "ID-ul utilizatorului este obligatoriu",
-      "userIdRequired": "ID-ul utilizatorului este obligatoriu",
       "dropdownOptionsRequired": "Opțiunile selecției sunt obligatorii",
       "columnNameRequired": "Numele coloanei este obligatoriu",
       "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu",

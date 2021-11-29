@@ -163,7 +163,6 @@
       "attachmentUploadSessionIdRequired": "Attachment session ID required",
       "attachmentLocationRequired": "Attachment location required",
       "attachmentUserIdRequired": "Attachment user ID required",
-      "userIdRequired": "User ID required",
       "dropdownOptionsRequired": "Dropdown options are required",
       "columnNameRequired": "Column name is required",
       "accessOrganisationRequired": "Form access rule organisation ID is required",
