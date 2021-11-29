@@ -4,7 +4,7 @@
     <h2 *ngIf="id">{{ 'ui.forms.createEditForm.editForm' | translate }}</h2>
 
     <mat-error *ngIf="form.hasError('backend')">
-      <mat-error *ngFor="let err of form.get('form')!.getError('backend')">
+      <mat-error *ngFor="let err of form.getError('backend')">
         {{ err.message | translate:err.placeholderValues }}
       </mat-error>
     </mat-error>
@@ -13,14 +13,14 @@
     <mat-form-field appearance="outline">
       <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
       <input type="text" matInput required minlength="6" formControlName="title" />
-      <mat-error *ngIf="form.get('form')!.get('title')!.hasError('required')">
+      <mat-error *ngIf="form.get('title')!.hasError('required')">
         {{ 'ui.forms.createEditForm.titleRequired' | translate }}
       </mat-error>
-      <mat-error *ngIf="form.get('form')!.get('title')!.hasError('minlength')">
-        {{ 'ui.forms.createEditForm.titleTooShort' | translate: {chars: form.get('form')!.get('title')!.getError('minlength').requiredLength} }}
+      <mat-error *ngIf="form.get('title')!.hasError('minlength')">
+        {{ 'ui.forms.createEditForm.titleTooShort' | translate: {chars: form.get('title')!.getError('minlength').requiredLength} }}
       </mat-error>
-      <mat-error *ngIf="form.get('form')!.get('title')!.hasError('backend')">
-        <mat-error *ngFor="let err of form.get('form')!.get('title')!.getError('backend')">
+      <mat-error *ngIf="form.get('title')!.hasError('backend')">
+        <mat-error *ngFor="let err of form.get('title')!.getError('backend')">
           {{ err.message | translate:err.placeholderValues }}
         </mat-error>
       </mat-error>
@@ -29,8 +29,8 @@
     <mat-form-field appearance="outline">
       <mat-label>{{ 'ui.forms.createEditForm.description' | translate }}</mat-label>
       <textarea rows="8" matInput formControlName="description"></textarea>
-      <mat-error *ngIf="form.get('form')!.get('description')!.hasError('backend')">
-        <mat-error *ngFor="let err of form.get('form')!.get('description')!.getError('backend')">
+      <mat-error *ngIf="form.get('description')!.hasError('backend')">
+        <mat-error *ngFor="let err of form.get('description')!.getError('backend')">
           {{ err.message | translate:err.placeholderValues }}
         </mat-error>
       </mat-error>
@@ -39,7 +39,7 @@
     <mat-form-field appearance="outline">
       <mat-label>{{'ui.forms.createEditForm.tags' | translate}}</mat-label>
       <mat-chip-list #chipListTags>
-        <mat-chip *ngFor="let tag of form.get('form')!.get('tags')?.value; let i = index" [selectable]="false" [removable]="true"
+        <mat-chip *ngFor="let tag of form.get('tags')?.value; let i = index" [selectable]="false" [removable]="true"
           (removed)="removeTag(i)">
           {{tag}}
           <mat-icon matChipRemove color="warn">cancel</mat-icon>
@@ -56,8 +56,8 @@
         <input type="text" fxHide matInput />
       </mat-form-field>
 
-      <mat-error *ngIf="form.get('form')!.get('attachments')!.hasError('upload')">
-        <mat-error *ngFor="let err of form.get('form')!.get('attachments')!.getError('upload')">
+      <mat-error *ngIf="form.get('attachments')!.hasError('upload')">
+        <mat-error *ngFor="let err of form.get('attachments')!.getError('upload')">
           {{ err.message | translate:err.placeholderValues }}
         </mat-error>
       </mat-error>
@@ -223,12 +223,12 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-slide-toggle formControlName="isLocked">{{'ui.forms.createEditForm.isLocked' | translate}}</mat-slide-toggle>
 
-      <mat-form-field *ngIf="form.get('form')!.get('isLocked')!.value" appearance="outline" class="mff-p0">
+      <mat-form-field *ngIf="form.get('isLocked')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.lockedUntil' | translate}}</mat-label>
         <input matInput [ngxMatDatetimePicker]="lockedUntilPicker" formControlName="lockedUntilDate" [min]="now">
         <mat-datepicker-toggle matSuffix [for]="castToAny(lockedUntilPicker)"></mat-datepicker-toggle>
-        <button (click)="form.get('form')!.get('lockedUntilDate')?.reset()" matSuffix
-          *ngIf="form.get('form')!.get('lockedUntilDate')?.value != null" mat-icon-button type="button" color="warn">
+        <button (click)="form.get('lockedUntilDate')?.reset()" matSuffix *ngIf="form.get('lockedUntilDate')?.value != null" mat-icon-button
+          type="button" color="warn">
           <mat-icon>delete</mat-icon>
         </button>
         <ngx-mat-datetime-picker #lockedUntilPicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
@@ -240,12 +240,12 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-slide-toggle formControlName="isPinned">{{'ui.forms.createEditForm.isPinned' | translate}}</mat-slide-toggle>
 
-      <mat-form-field *ngIf="form.get('form')!.get('isPinned')!.value" appearance="outline" class="mff-p0">
+      <mat-form-field *ngIf="form.get('isPinned')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.pinnedUntil' | translate}}</mat-label>
         <input matInput [ngxMatDatetimePicker]="pinnedUntilPicker" formControlName="pinnedUntilDate" [min]="now">
         <mat-datepicker-toggle matSuffix [for]="castToAny(pinnedUntilPicker)"></mat-datepicker-toggle>
-        <button (click)="form.get('form')!.get('pinnedUntilDate')?.reset()" matSuffix
-          *ngIf="form.get('form')!.get('pinnedUntilDate')?.value != null" mat-icon-button type="button" color="warn">
+        <button (click)="form.get('pinnedUntilDate')?.reset()" matSuffix *ngIf="form.get('pinnedUntilDate')?.value != null" mat-icon-button
+          type="button" color="warn">
           <mat-icon>delete</mat-icon>
         </button>
         <ngx-mat-datetime-picker #pinnedUntilPicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
@@ -257,10 +257,10 @@
     <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start">
       <mat-slide-toggle formControlName="isRecurrent">{{'ui.forms.createEditForm.isRecurrent' | translate}}</mat-slide-toggle>
 
-      <div *ngIf="form.get('form')!.get('isRecurrent')!.value">
+      <div *ngIf="form.get('isRecurrent')!.value">
         <app-cron [disabledRecurrenceTypes]="disabledRecurrenceTypes" formControlName="cronExpression"></app-cron>
 
-        <mat-error *ngIf="form.get('form')!.get('cronExpression')!.hasError('required')">
+        <mat-error *ngIf="form.get('cronExpression')!.hasError('required')">
           {{ 'ui.forms.createEditForm.cronExpressionRequired' | translate }}
         </mat-error>
       </div>

@@ -92,20 +92,20 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     });
 
     this._destroy.push(
-      this.form.get('form')!.get('isRecurrent')!.valueChanges.subscribe(isr => {
+      this.form.get('isRecurrent')!.valueChanges.subscribe(isr => {
         if (isr) {
-          this.form.get('form')!.get('cronExpression')!.addValidators([Validators.required]);
+          this.form.get('cronExpression')!.addValidators([Validators.required]);
         } else {
-          this.form.get('form')!.get('cronExpression')!.removeValidators([Validators.required]);
-          this.form.get('form')!.get('cronExpression')!.setValue(null);
+          this.form.get('cronExpression')!.removeValidators([Validators.required]);
+          this.form.get('cronExpression')!.setValue(null);
         }
       })
     );
 
     this._destroy.push(
-      this.form.get('form')!.get('isPinned')!.valueChanges.subscribe(isp => {
+      this.form.get('isPinned')!.valueChanges.subscribe(isp => {
         if (!isp) {
-          this.form.get('form')!.get('pinnedUntilDate')!.setValue(null);
+          this.form.get('pinnedUntilDate')!.setValue(null);
         }
       })
     );
@@ -122,7 +122,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
       this._destroy.push(
         this.accessSelection.changed.subscribe(() => {
-          this.form.get('form')!.get('formAccesses')!.setValue(this.accessSelection.selected.map(o => ({
+          this.form.get('formAccesses')!.setValue(this.accessSelection.selected.map(o => ({
             organisationId: o.id
           } as FormAccessDto)));
         })
@@ -156,7 +156,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
       },
       error: e => {
-        this.validationService.tryAddFormErrorsFromHttpError(e, this.form.get('form')!);
+        this.validationService.tryAddFormErrorsFromHttpError(e, this.form);
       }
     });
   }
@@ -211,7 +211,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     this.rows.push(
       this.createRowFormGroup()
     );
-    const radFc = this.form.get('form')!.get('rowAppendDisabled')!;
+    const radFc = this.form.get('rowAppendDisabled')!;
     if (!radFc.touched) {
       radFc.setValue(true);
     }
@@ -220,7 +220,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   removeRow(i: number) {
     this.rows.removeAt(i);
-    const radFc = this.form.get('form')!.get('rowAppendDisabled')!;
+    const radFc = this.form.get('rowAppendDisabled')!;
     if (this.rows.length === 0) {
       radFc.setValue(false);
     }
@@ -260,19 +260,19 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const value: string = (event.value || '').trim();
 
     if (value) {
-      const list = this.form.get('form')!.get('tags')!.value;
+      const list = this.form.get('tags')!.value;
       if (list.indexOf(value) === -1) {
         list.push(value);
       }
-      this.form.get('form')!.get('tags')!.setValue(list);
+      this.form.get('tags')!.setValue(list);
     }
     event.chipInput!.clear();
   }
 
   removeTag(i: number) {
-    const list: string[] = this.form.get('form')!.get('tags')!.value;
+    const list: string[] = this.form.get('tags')!.value;
     list.splice(i, 1);
-    this.form.get('form')!.get('tags')!.setValue(list);
+    this.form.get('tags')!.setValue(list);
   }
 
   getCellFormControl(rowIndex: number, col: ColumnDto) {
@@ -318,7 +318,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   }
 
   getFormControl(a: string) {
-    return this.form.get('form')!.get(a) as FormControl;
+    return this.form.get(a) as FormControl;
   }
 
   convertToFormControl(a: AbstractControl) {
