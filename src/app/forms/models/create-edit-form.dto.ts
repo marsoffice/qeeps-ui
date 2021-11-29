@@ -1,6 +1,6 @@
 import { FormDto } from './form.dto';
 
-export interface CreateFormDto {
+export interface CreateEditFormDto {
   form: FormDto;
   sendEmailNotifications: boolean;
 }

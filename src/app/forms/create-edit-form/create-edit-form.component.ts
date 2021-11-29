@@ -9,7 +9,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatTable } from '@angular/material/table';
 import { ColumnDto } from '../models/column.dto';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MediaObserver } from '@angular/flex-layout';
 import { v4 as uuid } from 'uuid';
 import { RecurrenceType } from 'src/app/shared/cron/models/recurrence-type';
@@ -19,6 +19,8 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormAccessDto } from '../models/form-access.dto';
+import { FormDto } from '../models/form.dto';
+import { FormsService } from '../services/forms.service';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -60,6 +62,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   accessSelection = new SelectionModel<OrganisationDto>(true, []);
 
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver,
+    private formsService: FormsService,
     private accessService: AccessService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
@@ -131,7 +134,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     );
     this.actRoute.params.subscribe(params => {
       this.id = params.id;
-
+      // TODO
     });
   }
 
@@ -140,7 +143,20 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    console.log(this.form.value);
+    let obs: Observable<FormDto>;
+    if (this.id == null) {
+      obs = this.formsService.create(this.form.value);
+    } else {
+      obs = this.formsService.update(this.id, this.form.value);
+    }
+    obs.subscribe({
+      next: () => {
+
+      },
+      error: e => {
+        console.log(e);
+      }
+    });
   }
 
   get columnsToDisplay() {
