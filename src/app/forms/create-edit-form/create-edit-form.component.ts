@@ -72,22 +72,20 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     this.rows = new FormArray([]);
 
     this.form = new FormGroup({
-      form: new FormGroup({
-        title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-        description: new FormControl(),
-        attachments: new FormControl([]),
-        isLocked: new FormControl(false),
-        lockedUntilDate: new FormControl(),
-        rowAppendDisabled: new FormControl(false),
-        isRecurrent: new FormControl(false),
-        cronExpression: new FormControl(),
-        isPinned: new FormControl(false),
-        pinnedUntilDate: new FormControl(),
-        tags: new FormControl([]),
-        columns: this.columns,
-        rows: this.rows,
-        formAccesses: new FormControl([])
-      }),
+      title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      description: new FormControl(),
+      attachments: new FormControl([]),
+      isLocked: new FormControl(false),
+      lockedUntilDate: new FormControl(),
+      rowAppendDisabled: new FormControl(false),
+      isRecurrent: new FormControl(false),
+      cronExpression: new FormControl(),
+      isPinned: new FormControl(false),
+      pinnedUntilDate: new FormControl(),
+      tags: new FormControl([]),
+      columns: this.columns,
+      rows: this.rows,
+      formAccesses: new FormControl([]),
       sendEmailNotifications: new FormControl(false)
     });
 
