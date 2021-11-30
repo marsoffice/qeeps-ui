@@ -45,50 +45,52 @@ export class CronComponent implements OnInit, ControlValueAccessor {
   allWeekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
   constructor() {
-    this.recurrenceTypes = Object.keys(RecurrenceType as any).filter((x: any) => Number.isNaN(parseInt(x)))
-      .map((x: any) => ({
-        key: x.toLowerCase(),
-        value: (RecurrenceType as any)[x]
-      }));
-    if (this.disabledRecurrenceTypes != null) {
-      this.recurrenceTypes = this.recurrenceTypes!.filter(x => this.disabledRecurrenceTypes!.indexOf(x.value) === -1);
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Second) > -1) {
-        this.selectedSecond = 0;
-      }
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Minute) > -1) {
-        this.selectedSecond = 0;
-        this.selectedMinute = 0;
-      }
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Hour) > -1) {
-        this.selectedSecond = 0;
-        this.selectedMinute = 0;
-        this.selectedHour = 0;
-      }
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Day) > -1) {
-        this.selectedSecond = 0;
-        this.selectedMinute = 0;
-        this.selectedHour = 0;
-        this.selectedDay = 1;
-      }
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Week) > -1) {
-        this.selectedSecond = 0;
-        this.selectedMinute = 0;
-        this.selectedHour = 0;
-        this.selectedDay = 1;
-        this.selectedWeekday = null;
-      }
-      if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Month) > -1) {
-        this.selectedSecond = 0;
-        this.selectedMinute = 0;
-        this.selectedHour = 0;
-        this.selectedDay = 1;
-        this.selectedMonth = 1;
-      }
-    }
+
   }
 
   ngOnInit(): void {
-
+    setTimeout(() => {
+      this.recurrenceTypes = Object.keys(RecurrenceType as any).filter((x: any) => Number.isNaN(parseInt(x)))
+        .map((x: any) => ({
+          key: x.toLowerCase(),
+          value: (RecurrenceType as any)[x]
+        }));
+      if (this.disabledRecurrenceTypes != null) {
+        this.recurrenceTypes = this.recurrenceTypes!.filter(x => this.disabledRecurrenceTypes!.indexOf(x.value) === -1);
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Second) > -1) {
+          this.selectedSecond = 0;
+        }
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Minute) > -1) {
+          this.selectedSecond = 0;
+          this.selectedMinute = 0;
+        }
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Hour) > -1) {
+          this.selectedSecond = 0;
+          this.selectedMinute = 0;
+          this.selectedHour = 0;
+        }
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Day) > -1) {
+          this.selectedSecond = 0;
+          this.selectedMinute = 0;
+          this.selectedHour = 0;
+          this.selectedDay = 1;
+        }
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Week) > -1) {
+          this.selectedSecond = 0;
+          this.selectedMinute = 0;
+          this.selectedHour = 0;
+          this.selectedDay = 1;
+          this.selectedWeekday = null;
+        }
+        if (this.disabledRecurrenceTypes.indexOf(RecurrenceType.Month) > -1) {
+          this.selectedSecond = 0;
+          this.selectedMinute = 0;
+          this.selectedHour = 0;
+          this.selectedDay = 1;
+          this.selectedMonth = 1;
+        }
+      }
+    });
   }
 
   writeValue(v: string) {
