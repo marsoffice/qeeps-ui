@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
@@ -6,8 +6,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
+import { Events } from './models/events';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
+import { EventsService } from './services/events.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
 import { UserPreferencesService } from './services/user-preferences.service';
@@ -19,6 +21,8 @@ import { ToastService } from './shared/toast/services/toast.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('drawerContent', { static: true, read: ElementRef }) private drawerContent!: ElementRef<HTMLElement>;
+
   isIframe = false;
   loginDisplay = false;
   isMobile = true;
@@ -33,7 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private pushSubscriptionsService: PushSubscriptionsService,
     private swPush: SwPush,
     private swUpdate: SwUpdate,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private eventsService: EventsService
   ) {
     this.checkUpdateInterval = interval(15 * 60 * 1000);
   }
@@ -56,6 +61,16 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     this.initMediaObserver();
+
+    this.initEvents();
+  }
+
+  private initEvents() {
+    this._destroy.push(
+      this.eventsService.subscribe(Events.ScrollPageToTop).subscribe(() => {
+        this.drawerContent.nativeElement.parentElement!.scrollTop = 0;
+      })
+    );
   }
 
   private initMediaObserver() {

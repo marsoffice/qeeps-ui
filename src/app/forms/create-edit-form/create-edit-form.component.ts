@@ -22,6 +22,8 @@ import { FormAccessDto } from '../models/form-access.dto';
 import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
 import { ValidationService } from 'src/app/services/validation.service';
+import { EventsService } from 'src/app/services/events.service';
+import { Events } from 'src/app/models/events';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -64,6 +66,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver,
     private validationService: ValidationService,
+    private eventsService: EventsService,
     private formsService: FormsService,
     private accessService: AccessService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
@@ -155,6 +158,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       },
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);
+        this.eventsService.publish(Events.ScrollPageToTop);
       }
     });
   }

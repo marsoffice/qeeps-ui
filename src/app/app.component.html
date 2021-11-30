@@ -5,7 +5,7 @@
       [opened]="!isMobile && user != null">
       <app-sidenav [sidenav]="sidenav" [user]="user" *ngIf="user"></app-sidenav>
     </mat-drawer>
-    <div id="content">
+    <div id="content" #drawerContent>
       <router-outlet *ngIf="!isIframe"></router-outlet>
     </div>
   </mat-drawer-container>
