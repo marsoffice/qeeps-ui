@@ -16,7 +16,7 @@ export class ValidationService {
       form.setErrors({
         backend: [
           {
-            message: errorResponse.toString(),
+            message: error.message,
             placeholderValues: {}
           }
         ]
