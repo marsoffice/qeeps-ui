@@ -15,7 +15,22 @@ export class FormsService {
     return this.http.put<FormDto>('/api/forms/update/' + id, dto);
   }
 
-  getForms() {
-    return this.http.get<FormDto[]>('/api/forms/getForms');
+  getForms(page?: number, elementsPerPage?: number, startDate?: string, endDate?: string) {
+    let url = '/api/forms/getForms';
+    const qp: any = {
+      page,
+      elementsPerPage,
+      startDate,
+      endDate
+    };
+    const queryString = Object.keys(qp)
+      .map(x => `${x}=${encodeURIComponent(qp[x])}`)
+      .join('&');
+
+    if (queryString && queryString.length > 0) {
+      url += '?' + queryString;
+    }
+
+    return this.http.get<FormDto[]>(url);
   }
 }

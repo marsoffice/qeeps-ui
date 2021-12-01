@@ -51,7 +51,8 @@
       "formsList": "Forms List",
       "createForm": "Create Form",
       "admin": "Admin",
-      "editContract": "Edit contract"
+      "editContract": "Edit contract",
+      "calendar": "Calendar"
     },
     "forms": {
       "createEditForm": {

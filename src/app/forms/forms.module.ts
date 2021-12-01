@@ -35,6 +35,7 @@ import { CronModule } from '../shared/cron/cron.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsListComponent } from './forms-list/forms-list.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FormsListComponent } from './forms-list/forms-list.component';
     FilesCellComponent,
     DateCellComponent,
     DropdownCellComponent,
-    FormsListComponent
+    FormsListComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,

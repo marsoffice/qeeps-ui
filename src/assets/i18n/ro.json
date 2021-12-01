@@ -51,7 +51,8 @@
       "formsList": "Lista formulare",
       "createForm": "Creare formular",
       "admin": "Admin",
-      "editContract": "Editare contract"
+      "editContract": "Editare contract",
+      "calendar": "Calendar"
     },
     "forms": {
       "createEditForm": {

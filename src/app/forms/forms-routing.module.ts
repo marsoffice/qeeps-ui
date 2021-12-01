@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthRoleGuard } from '../services/auth-role.guard';
+import { CalendarComponent } from './calendar/calendar.component';
 import { CreateEditFormComponent } from './create-edit-form/create-edit-form.component';
 import { FormsListComponent } from './forms-list/forms-list.component';
 import { FormsComponent } from './forms.component';
@@ -8,7 +9,11 @@ import { FormsComponent } from './forms.component';
 const routes: Routes = [{
   path: '', component: FormsComponent, children: [
     {
-      path: '',
+      path: 'calendar',
+      component: CalendarComponent
+    },
+    {
+      path: 'forms-list',
       component: FormsListComponent
     },
     {

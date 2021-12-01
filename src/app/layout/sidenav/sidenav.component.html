@@ -7,8 +7,15 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
-        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms" routerLinkActive="bg-primary text-accent"
-          [routerLinkActiveOptions]="{exact: true}">
+        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/calendar"
+          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
+          <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
+            <mat-icon>event</mat-icon>
+            <span>{{'ui.sidenav.calendar' | translate}}</span>
+          </div>
+        </button>
+        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/forms-list"
+          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>list</mat-icon>
             <span>{{'ui.sidenav.formsList' | translate}}</span>
