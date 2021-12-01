@@ -73,15 +73,13 @@
         "isFrozen": "Necompletabil",
         "isHidden": "Ascuns",
         "dataType": "Tip de date",
-        "stringSingleLine": "Linie text",
-        "stringMultiLine": "Linii text",
+        "string": "Text",
         "integer": "Nr. întreg",
         "real": "Nr. real",
         "date": "Dată",
         "dateTime": "Dată și oră",
         "dropdown": "Selecție",
-        "singleFile": "Fișier",
-        "multipleFiles": "Fișiere",
+        "file": "Fișier",
         "boolean": "Adevărat/fals",
         "allowedExtensions": "Extensii permise",
         "dropdownOptions": "Opțiuni selecție",
@@ -103,7 +101,8 @@
         "maxLength": "Lungime maximă",
         "minValue": "Valoare minimă",
         "maxValue": "Valoare maximă",
-        "access": "Acces"
+        "access": "Acces",
+        "multipleValues": "Valori multiple"
       },
       "cell": {
         "required": "Obligatoriu",

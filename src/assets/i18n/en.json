@@ -73,15 +73,13 @@
         "isFrozen": "Is Frozen",
         "isHidden": "Is Hidden",
         "dataType": "Data Type",
-        "stringSingleLine": "String Single Line",
-        "stringMultiLine": "String Multi Line",
+        "string": "String",
         "integer": "Integer",
         "real": "Real",
         "date": "Date",
         "dateTime": "Date and Time",
         "dropdown": "Dropdown",
-        "singleFile": "Single File",
-        "multipleFiles": "Multiple Files",
+        "file": "File",
         "boolean": "True/False",
         "allowedExtensions": "Allowed Extensions",
         "dropdownOptions": "Dropdown Options",
@@ -103,7 +101,8 @@
         "maxLength": "Maximum length",
         "minValue": "Minimum value",
         "maxValue": "Maximum value",
-        "access": "Access"
+        "access": "Access",
+        "multipleValues": "Multiple values"
       },
       "cell": {
         "required": "Required",

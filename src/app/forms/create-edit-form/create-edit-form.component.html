@@ -99,8 +99,7 @@
                         </mat-select>
                       </mat-form-field>
 
-                      <mat-form-field appearance="outline"
-                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.SingleFile || columns.controls[i].get('dataType')?.value === columnDataTypes.MultipleFiles">
+                      <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.File">
                         <mat-label>{{'ui.forms.createEditForm.allowedExtensions' | translate}}</mat-label>
                         <mat-select multiple formControlName="allowedExtensions">
                           <mat-option *ngFor="let ext of allowedExtensions" [value]="ext">
@@ -127,11 +126,10 @@
                       </mat-form-field>
 
                       <mat-expansion-panel
-                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime || columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Integer || columns.controls[i].get('dataType')?.value === columnDataTypes.Real || columns.controls[i].get('dataType')?.value === columnDataTypes.Date || columns.controls[i].get('dataType')?.value === columnDataTypes.DateTime || columns.controls[i].get('dataType')?.value === columnDataTypes.String">
                         <mat-expansion-panel-header>{{'ui.forms.createEditForm.limits' | translate}}</mat-expansion-panel-header>
                         <div fxLayout="column">
-                          <ng-container
-                            *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.StringMultiLine || columns.controls[i].get('dataType')?.value === columnDataTypes.StringSingleLine">
+                          <ng-container *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.String">
                             <mat-form-field appearance="outline">
                               <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
                               <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
@@ -164,6 +162,13 @@
                       </mat-expansion-panel>
 
                       <div fxFlex="1 1 auto"></div>
+
+                      <div
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.String || columns.controls[i].get('dataType')?.value === columnDataTypes.File"
+                        fxLayout="row" fxLayoutAlign="space-between">
+                        <mat-label>{{'ui.forms.createEditForm.multipleValues' | translate}}</mat-label>
+                        <mat-slide-toggle formControlName="multipleValues"></mat-slide-toggle>
+                      </div>
 
                       <div fxLayout="row" fxLayoutAlign="space-between">
                         <mat-label>{{'ui.forms.createEditForm.required' | translate}}</mat-label>

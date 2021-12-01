@@ -1,7 +1,7 @@
 <mat-form-field appearance="outline" class="h-100">
   <mat-label *ngIf="placeholder != null">{{placeholder}}</mat-label>
-  <input (change)="change.emit($event)" class="h-100" matInput type="text" [formControl]="cellFormControl"
-    *ngIf="column.dataType === columnDataTypes.StringSingleLine" [required]="!editMode && column.isRequired" />
-  <textarea (change)="change.emit($event)" class="h-100" matInput [formControl]="cellFormControl"
-    *ngIf="column.dataType === columnDataTypes.StringMultiLine" [required]="!editMode && column.isRequired"></textarea>
+  <input (change)="change.emit($event)" class="h-100" matInput type="text" [formControl]="cellFormControl" *ngIf="!column.multipleValues"
+    [required]="!editMode && column.isRequired" />
+  <textarea (change)="change.emit($event)" class="h-100" matInput [formControl]="cellFormControl" *ngIf="column.multipleValues"
+    [required]="!editMode && column.isRequired"></textarea>
 </mat-form-field>

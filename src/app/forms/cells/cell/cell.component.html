@@ -1,8 +1,7 @@
 <div [matTooltip]="getFormControlErrorsMessage()" matTooltipClass="bg-warn" class="cell h-100 w-100"
   [fxHide]="!editMode && column.isHidden">
   <app-string-cell [placeholder]="placeholder" (change)="change.emit($event)" [editMode]="editMode" [column]="column"
-    [cellFormControl]="cellFormControl" [isMobile]="isMobile"
-    *ngIf="column.dataType === columnDataTypes.StringSingleLine || column.dataType === columnDataTypes.StringMultiLine">
+    [cellFormControl]="cellFormControl" [isMobile]="isMobile" *ngIf="column.dataType === columnDataTypes.String">
   </app-string-cell>
   <app-number-cell [placeholder]="placeholder" (change)="change.emit($event)" [editMode]="editMode" [column]="column"
     [cellFormControl]="cellFormControl" [isMobile]="isMobile"
@@ -18,8 +17,7 @@
     [cellFormControl]="cellFormControl" [isMobile]="isMobile" *ngIf="column.dataType === columnDataTypes.Boolean">
   </app-boolean-cell>
   <app-files-cell [placeholder]="placeholder" (change)="change.emit($event)" [editMode]="editMode" [column]="column"
-    [cellFormControl]="cellFormControl" [isMobile]="isMobile"
-    *ngIf="column.dataType === columnDataTypes.SingleFile || column.dataType === columnDataTypes.MultipleFiles">
+    [cellFormControl]="cellFormControl" [isMobile]="isMobile" *ngIf="column.dataType === columnDataTypes.File">
   </app-files-cell>
   <app-dropdown-cell [placeholder]="placeholder" (change)="change.emit($event)" [editMode]="editMode" [column]="column"
     [cellFormControl]="cellFormControl" [isMobile]="isMobile" *ngIf="column.dataType === columnDataTypes.Dropdown">

@@ -2,6 +2,7 @@ import { ColumnDataType } from './column-data-type';
 
 export interface ColumnDto {
   name: string;
+  multipleValues: boolean;
   isRequired: boolean;
   dropdownOptions?: string[];
   isFrozen: boolean;
