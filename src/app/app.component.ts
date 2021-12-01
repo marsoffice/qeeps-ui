@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
-import { SwPush, SwUpdate } from '@angular/service-worker';
+import { SwPush } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { interval, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { Events } from './models/events';
@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isMobile = true;
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
-  private checkUpdateInterval: Observable<number>;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
@@ -36,11 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private hubService: HubService,
     private pushSubscriptionsService: PushSubscriptionsService,
     private swPush: SwPush,
-    private swUpdate: SwUpdate,
     private toastService: ToastService,
     private eventsService: EventsService
   ) {
-    this.checkUpdateInterval = interval(15 * 60 * 1000);
   }
 
   ngOnInit(): void {
@@ -50,15 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
     this.initUserPreferences();
-
-    if (this.swUpdate.isEnabled) {
-      this.updatePwa();
-      this._destroy.push(
-        this.checkUpdateInterval.subscribe(() => {
-          this.updatePwa();
-        })
-      );
-    }
 
     this.initMediaObserver();
 
@@ -106,21 +94,6 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       })
     );
-  }
-
-  private updatePwa() {
-    this.swUpdate.checkForUpdate().then(e => {
-      if (e) {
-        this.swUpdate.activateUpdate().then(e2 => {
-          if (e2) {
-            this.toastService.showInfo(this.translateService.instant('ui.update.updateIsAvailable'));
-            setTimeout(() => {
-              location.reload();
-            }, 1000);
-          }
-        });
-      }
-    });
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { NgModule, Provider } from '@angular/core';
+import { APP_INITIALIZER, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,24 +39,44 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { AuthService } from './services/auth.service';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 import { SharedModule } from './shared/shared.module';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { FunctionProxyInterceptor } from './services/function-proxy.interceptor';
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
 import { ContractComponent } from './contract/contract.component';
+import { ToastService } from './shared/toast/services/toast.service';
 
-// AoT requires an exported function for factories
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+export const appInitializer = (swUpdate: SwUpdate,
+  translateService: TranslateService,
+  toastService: ToastService): (() => Promise<any>) => {
+  return (): Promise<void> =>
+    new Promise((resolve) => {
+      if (swUpdate.isEnabled) {
+        swUpdate.checkForUpdate();
+
+        swUpdate.available.subscribe(() => {
+          toastService.showInfo(translateService.instant('ui.update.updateIsAvailable'));
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        });
+      }
+      resolve();
+    });
+};
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -178,6 +198,12 @@ if (!environment.production) {
     }),
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      deps: [SwUpdate, TranslateService, ToastService],
+      useFactory: appInitializer,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
