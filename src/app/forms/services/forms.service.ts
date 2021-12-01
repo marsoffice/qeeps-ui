@@ -14,4 +14,8 @@ export class FormsService {
   update(id: string, dto: FormDto) {
     return this.http.put<FormDto>('/api/forms/update/' + id, dto);
   }
+
+  getForms() {
+    return this.http.get<FormDto[]>('/api/forms/getForms');
+  }
 }

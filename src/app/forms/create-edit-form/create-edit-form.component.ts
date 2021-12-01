@@ -24,6 +24,8 @@ import { FormsService } from '../services/forms.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { EventsService } from 'src/app/services/events.service';
 import { Events } from 'src/app/models/events';
+import { ToastService } from 'src/app/shared/toast/services/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -64,11 +66,14 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   accessDataSource = new MatTreeNestedDataSource<OrganisationDto>();
   accessSelection = new SelectionModel<OrganisationDto>(true, []);
 
-  constructor(private actRoute: ActivatedRoute, private mediaObserver: MediaObserver,
+  constructor(private actRoute: ActivatedRoute,
+    private mediaObserver: MediaObserver,
     private validationService: ValidationService,
     private eventsService: EventsService,
     private formsService: FormsService,
-    private accessService: AccessService) {
+    private accessService: AccessService,
+    private toastService: ToastService,
+    private translateService: TranslateService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
     this.columns = new FormArray([]);
@@ -153,8 +158,9 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       obs = this.formsService.update(this.id, this.form.value);
     }
     obs.subscribe({
-      next: () => {
-
+      next: f => {
+        this.toastService.showSuccess(this.translateService.instant('ui.forms.createEditForm.formSavedSuccessfully'));
+        this.id = f.id;
       },
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);

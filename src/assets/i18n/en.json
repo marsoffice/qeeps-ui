@@ -48,7 +48,7 @@
       "profile": "Profile",
       "extra": "Extra",
       "forms": "Forms",
-      "myForms": "My Forms",
+      "formsList": "Forms List",
       "createForm": "Create Form",
       "admin": "Admin",
       "editContract": "Edit contract"
@@ -102,7 +102,8 @@
         "minValue": "Minimum value",
         "maxValue": "Maximum value",
         "access": "Access",
-        "multipleValues": "Multiple values"
+        "multipleValues": "Multiple values",
+        "formSavedSuccessfully": "Form saved successfully"
       },
       "cell": {
         "required": "Required",

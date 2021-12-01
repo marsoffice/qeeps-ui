@@ -11,7 +11,7 @@
           [routerLinkActiveOptions]="{exact: true}">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>list</mat-icon>
-            <span>{{'ui.sidenav.myForms' | translate}}</span>
+            <span>{{'ui.sidenav.formsList' | translate}}</span>
           </div>
         </button>
         <button *ngIf="user!.roles!.indexOf('Admin') > -1 || user!.roles!.indexOf('Owner') > -1" (click)="closeSidenavIfMobile()"

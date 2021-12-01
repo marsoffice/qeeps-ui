@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FormsRoutingModule } from './forms-routing.module';
 import { FormsComponent } from './forms.component';
-import { MyFormsComponent } from './my-forms/my-forms.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsService } from './services/forms.service';
 import { CreateEditFormComponent } from './create-edit-form/create-edit-form.component';
@@ -35,11 +34,11 @@ import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.compo
 import { CronModule } from '../shared/cron/cron.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsListComponent } from './forms-list/forms-list.component';
 
 @NgModule({
   declarations: [
     FormsComponent,
-    MyFormsComponent,
     CreateEditFormComponent,
     CellComponent,
     StringCellComponent,
@@ -48,7 +47,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     BooleanCellComponent,
     FilesCellComponent,
     DateCellComponent,
-    DropdownCellComponent
+    DropdownCellComponent,
+    FormsListComponent
   ],
   imports: [
     CommonModule,
