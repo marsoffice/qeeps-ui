@@ -77,7 +77,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     MatNativeDateModule,
     CronModule,
     MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     FormsService
