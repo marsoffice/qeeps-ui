@@ -164,7 +164,7 @@
                       <div fxFlex="1 1 auto"></div>
 
                       <div
-                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.String || columns.controls[i].get('dataType')?.value === columnDataTypes.File"
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.String || columns.controls[i].get('dataType')?.value === columnDataTypes.File || columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown"
                         fxLayout="row" fxLayoutAlign="space-between">
                         <mat-label>{{'ui.forms.createEditForm.multipleValues' | translate}}</mat-label>
                         <mat-slide-toggle formControlName="multipleValues"></mat-slide-toggle>
