@@ -145,6 +145,15 @@
       "no": "No",
       "yes": "Yes",
       "confirm": "Confirmation"
+    },
+    "update": {
+      "updatesNotAvailable": "Automatic updates are not available",
+      "installFailed": "Update install failed",
+      "newVersionDetected": "A new app version was detected, downloading...",
+      "versionDownloadedInstallNow": "New version downloaded, install now?"
+    },
+    "updates": {
+      "unrecoverable": "Update unrecoverable"
     }
   },
   "notifications": {

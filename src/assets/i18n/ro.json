@@ -145,6 +145,14 @@
       "no": "Nu",
       "yes": "Da",
       "confirm": "Confirmare"
+    },
+    "update": {
+      "updatesNotAvailable": "Actualizarile automate nu sunt disponibile",
+      "newVersionDetected": "O nouă versiune a aplicației a fost detectată, se descarcă",
+      "versionDownloadedInstallNow": "Versiune descarcată, instalați acum?"
+    },
+    "updates": {
+      "unrecoverable": "Actualizare irecuperabilă"
     }
   },
   "notifications": {
