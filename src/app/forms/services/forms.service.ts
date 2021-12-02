@@ -24,6 +24,7 @@ export class FormsService {
       endDate
     };
     const queryString = Object.keys(qp)
+      .filter(k => qp[k] != null)
       .map(x => `${x}=${encodeURIComponent(qp[x])}`)
       .join('&');
 
