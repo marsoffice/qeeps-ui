@@ -18,6 +18,12 @@
       "headers": {
         "Cache-Control": "no-cache"
       }
+    },
+    {
+      "route": "/ngsw-worker.js",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
     }
   ]
 }
