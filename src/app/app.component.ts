@@ -11,6 +11,7 @@ import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { EventsService } from './services/events.service';
 import { HubService } from './services/hub.service';
+import { LocaleService } from './services/locale.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
 import { UpdateService } from './services/update.service';
 import { UserPreferencesService } from './services/user-preferences.service';
@@ -36,7 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private pushSubscriptionsService: PushSubscriptionsService,
     private swPush: SwPush,
     private eventsService: EventsService,
-    private updateService: UpdateService
+    private updateService: UpdateService,
+    private localeService: LocaleService
   ) {
   }
 
@@ -51,6 +53,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.initMediaObserver();
 
     this.initEvents();
+
+    this.initLocale();
+  }
+
+  private initLocale() {
+    this.localeService.initLocale('ro', 'ro');
   }
 
   private initEvents() {
@@ -78,6 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       const newLang = up.preferredLanguage == null ? (this.translateService.getBrowserLang() || environment.defaultLanguage) : up.preferredLanguage;
       this.translateService.use(newLang);
+      this.localeService.setDefaultLocale(newLang);
     }));
   }
 

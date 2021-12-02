@@ -53,24 +53,16 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
 import { ContractComponent } from './contract/contract.component';
 import { ConfirmationModule } from './shared/confirmation/confirmation.module';
-import { LOCALE_ID } from '@angular/core';
-import localeEN from '@angular/common/locales/en';
 import localeRO from '@angular/common/locales/ro';
 import { registerLocaleData } from '@angular/common';
+import { LocaleProvider } from './services/locale.provider';
+
+
+
+registerLocaleData(localeRO, 'ro');
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
-}
-
-export function localeFactory(translateService: TranslateService) {
-  switch (translateService.currentLang) {
-    case 'ro':
-    default:
-      return 'ro-RO';
-
-    case 'en':
-      return 'en-US';
-  }
 }
 
 const isIE =
@@ -156,7 +148,7 @@ if (!environment.production) {
         },
         cache: {
           cacheLocation: BrowserCacheLocation.LocalStorage,
-          storeAuthStateInCookie: isIE, // Set to true for Internet Explorer 11
+          storeAuthStateInCookie: isIE,
         },
         system: {
           loggerOptions: {
@@ -188,17 +180,11 @@ if (!environment.production) {
     ),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [
-    {
-      provide: LOCALE_ID,
-      deps: [TranslateService],
-      useFactory: localeFactory
-    },
+    LocaleProvider,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
@@ -215,7 +201,3 @@ if (!environment.production) {
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule { }
-
-
-registerLocaleData(localeEN, 'en-US');
-registerLocaleData(localeRO, 'ro-RO');
