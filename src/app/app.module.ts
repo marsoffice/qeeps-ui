@@ -52,16 +52,13 @@ import { FunctionProxyInterceptor } from './services/function-proxy.interceptor'
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
 import { ContractComponent } from './contract/contract.component';
-import { ToastService } from './shared/toast/services/toast.service';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export const appInitializer = (swUpdate: SwUpdate,
-  translateService: TranslateService,
-  toastService: ToastService): (() => Promise<any>) => {
+export const appInitializer = (swUpdate: SwUpdate): (() => Promise<any>) => {
   return (): Promise<void> =>
     new Promise((resolve) => {
       if (swUpdate.isEnabled) {
@@ -72,7 +69,6 @@ export const appInitializer = (swUpdate: SwUpdate,
         });
 
         swUpdate.available.subscribe(() => {
-          toastService.showInfo(translateService.instant('ui.update.updateIsAvailable'));
           swUpdate.activateUpdate().then(() => {
             setTimeout(() => {
               window.location.reload();
@@ -206,7 +202,7 @@ if (!environment.production) {
   providers: [
     {
       provide: APP_INITIALIZER,
-      deps: [SwUpdate, TranslateService, ToastService],
+      deps: [SwUpdate],
       useFactory: appInitializer,
       multi: true
     },
