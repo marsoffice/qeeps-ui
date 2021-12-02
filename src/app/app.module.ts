@@ -39,7 +39,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { AuthService } from './services/auth.service';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EasyAuthInterceptor } from './services/easy-auth.interceptor';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
@@ -53,10 +53,24 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
 import { ContractComponent } from './contract/contract.component';
 import { ConfirmationModule } from './shared/confirmation/confirmation.module';
+import { LOCALE_ID } from '@angular/core';
+import localeEN from '@angular/common/locales/en';
+import localeRO from '@angular/common/locales/ro';
+import { registerLocaleData } from '@angular/common';
 
-
-export function HttpLoaderFactory(http: HttpClient) {
+export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function localeFactory(translateService: TranslateService) {
+  switch (translateService.currentLang) {
+    case 'ro':
+    default:
+      return 'ro-RO';
+
+    case 'en':
+      return 'en-US';
+  }
 }
 
 const isIE =
@@ -125,7 +139,7 @@ if (!environment.production) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
       defaultLanguage: 'ro'
@@ -181,6 +195,11 @@ if (!environment.production) {
   ],
   providers: [
     {
+      provide: LOCALE_ID,
+      deps: [TranslateService],
+      useFactory: localeFactory
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
       multi: true,
@@ -196,3 +215,7 @@ if (!environment.production) {
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule { }
+
+
+registerLocaleData(localeEN, 'en-US');
+registerLocaleData(localeRO, 'ro-RO');

@@ -2,6 +2,7 @@ import { ApplicationRef, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { concat, first, interval } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ConfirmationService } from '../shared/confirmation/services/confirmation.service';
 import { ToastService } from '../shared/toast/services/toast.service';
 
@@ -13,6 +14,10 @@ export class UpdateService {
   constructor(appRef: ApplicationRef, updates: SwUpdate, confirmationService: ConfirmationService,
     toastService: ToastService,
     translateService: TranslateService) {
+    if (!environment.production) {
+      return;
+    }
+
     if (!updates.isEnabled) {
       toastService.showWarn(translateService.instant('ui.update.updatesNotAvailable'));
       return;
@@ -22,7 +27,7 @@ export class UpdateService {
     const everyOneHourOnceAppIsStable$ = concat(appIsStable$, everyOneHour$);
 
     updates.unrecoverable.subscribe(() => {
-      toastService.showError(translateService.instant('ui.updates.unrecoverable'));
+      toastService.showError(translateService.instant('ui.update.unrecoverable'));
       setTimeout(() => {
         window.location.reload();
       }, 1000);
