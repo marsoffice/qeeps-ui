@@ -33,4 +33,8 @@ export class FormsService {
 
     return this.http.get<FormDto[]>(url);
   }
+
+  getForm(id: string) {
+    return this.http.get<FormDto>(`/api/forms/getForm/${encodeURIComponent(id)}`);
+  }
 }

@@ -8,11 +8,6 @@
     "toast": {
       "open": "Open"
     },
-    "update": {
-      "updateCheck": "Checking for updates",
-      "updateIsAvailable": "An update is available, installing",
-      "updateFinished": "Update finished"
-    },
     "notifications": {
       "markAllAsRead": "Mark all as read",
       "loadMore": "Load more"

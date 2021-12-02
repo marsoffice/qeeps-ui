@@ -12,8 +12,8 @@ import { AuthService } from './services/auth.service';
 import { EventsService } from './services/events.service';
 import { HubService } from './services/hub.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
+import { UpdateService } from './services/update.service';
 import { UserPreferencesService } from './services/user-preferences.service';
-import { ToastService } from './shared/toast/services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -35,8 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private hubService: HubService,
     private pushSubscriptionsService: PushSubscriptionsService,
     private swPush: SwPush,
-    private toastService: ToastService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private updateService: UpdateService
   ) {
   }
 

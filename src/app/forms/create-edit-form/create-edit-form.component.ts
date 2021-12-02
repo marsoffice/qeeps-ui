@@ -142,7 +142,11 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     );
     this.actRoute.params.subscribe(params => {
       this.id = params.id;
-      // TODO
+      if (this.id != null) {
+        this.formsService.getForm(this.id).subscribe(f => {
+          this.form.patchValue(f);
+        });
+      }
     });
   }
 
@@ -161,6 +165,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       next: f => {
         this.toastService.showSuccess(this.translateService.instant('ui.forms.createEditForm.formSavedSuccessfully'));
         this.id = f.id;
+        this.form.patchValue(f);
       },
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);
