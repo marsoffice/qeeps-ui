@@ -140,6 +140,11 @@
       "weekday_sat": "Saturday",
       "weekday_sun": "Sunday",
       "atWeekday": "At weekday"
+    },
+    "confirmation": {
+      "no": "No",
+      "yes": "Yes",
+      "confirm": "Confirmation"
     }
   },
   "notifications": {

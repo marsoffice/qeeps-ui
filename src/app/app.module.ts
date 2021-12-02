@@ -52,6 +52,7 @@ import { FunctionProxyInterceptor } from './services/function-proxy.interceptor'
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
 import { ContractComponent } from './contract/contract.component';
+import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -119,6 +120,7 @@ if (!environment.production) {
     MatExpansionModule,
     MatBadgeModule,
     MatBottomSheetModule,
+    ConfirmationModule,
 
     TranslateModule.forRoot({
       loader: {

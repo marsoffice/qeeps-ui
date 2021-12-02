@@ -140,6 +140,11 @@
       "weekday_sat": "sâmbătă",
       "weekday_sun": "duminică",
       "atWeekday": "În ziua"
+    },
+    "confirmation": {
+      "no": "Nu",
+      "yes": "Da",
+      "confirm": "Confirmare"
     }
   },
   "notifications": {
