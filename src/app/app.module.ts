@@ -57,6 +57,7 @@ import localeRO from '@angular/common/locales/ro';
 import { registerLocaleData } from '@angular/common';
 import { LocaleProvider } from './services/locale.provider';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { UserPreferencesDto } from './models/user-preferences.dto';
 
 
 
@@ -88,6 +89,13 @@ if (!environment.production) {
     useClass: EasyAuthInterceptor,
     multi: true,
   });
+}
+
+let preferredLanguage: string | undefined;
+const upLs = localStorage.getItem('user_preferences');
+if (upLs != null) {
+  const upObj = JSON.parse(upLs) as UserPreferencesDto;
+  preferredLanguage = upObj?.preferredLanguage;
 }
 
 @NgModule({
@@ -135,7 +143,7 @@ if (!environment.production) {
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-      defaultLanguage: 'ro'
+      defaultLanguage: preferredLanguage || environment.defaultLanguage
     }),
 
     MsalModule.forRoot(

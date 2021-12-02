@@ -10,6 +10,7 @@ type ShouldReuseRoute = (future: ActivatedRouteSnapshot, curr: ActivatedRouteSna
 })
 export class LocaleService {
   private initialized = false;
+  private initialDone = false;
 
   get currentLocale(): string {
     return this.translate.currentLang;
@@ -31,6 +32,10 @@ export class LocaleService {
 
   private subscribeToLangChange() {
     this.translate.onLangChange.subscribe(async () => {
+      if (!this.initialDone) {
+        this.initialDone = true;
+        return;
+      }
       const { shouldReuseRoute } = this.router.routeReuseStrategy;
 
       this.setRouteReuse(() => false);
@@ -43,19 +48,8 @@ export class LocaleService {
 
   initLocale(localeId: string, defaultLocaleId = localeId) {
     if (this.initialized) return;
-
-    this.setDefaultLocale(defaultLocaleId);
-    this.setLocale(localeId);
     this.subscribeToLangChange();
-
     this.initialized = true;
   }
 
-  setDefaultLocale(localeId: string) {
-    this.translate.setDefaultLang(localeId);
-  }
-
-  setLocale(localeId: string) {
-    this.translate.use(localeId);
-  }
 }

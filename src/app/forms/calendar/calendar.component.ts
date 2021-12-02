@@ -3,6 +3,7 @@ import { DateAdapter } from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { StateService } from 'src/app/services/state.service';
 import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
 
@@ -18,18 +19,25 @@ export class CalendarComponent implements OnInit, OnDestroy {
   @ViewChild('calendar', { static: true }) calendar!: MatCalendar<any>;
   constructor(private formsService: FormsService,
     private translateService: TranslateService,
+    private stateService: StateService,
     private dateAdapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
     this._destroy.push(
       this.calendar.stateChanges.subscribe(() => {
-        console.log(this.calendar);
+        console.log('=>>>>>>>>>>>>>>>>>>>>', this.calendar);
       })
     );
 
     this._destroy.push(
       this.translateService.onLangChange.subscribe(e => {
         this.dateAdapter.setLocale(e.lang);
+      })
+    );
+
+    this._destroy.push(
+      this.stateService.get<number>("contentHeight").subscribe(ch => {
+        console.log(ch);
       })
     );
   }

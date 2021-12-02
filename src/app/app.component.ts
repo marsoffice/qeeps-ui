@@ -13,6 +13,7 @@ import { EventsService } from './services/events.service';
 import { HubService } from './services/hub.service';
 import { LocaleService } from './services/locale.service';
 import { PushSubscriptionsService } from './services/push-subscriptions.service';
+import { StateService } from './services/state.service';
 import { UpdateService } from './services/update.service';
 import { UserPreferencesService } from './services/user-preferences.service';
 
@@ -38,14 +39,13 @@ export class AppComponent implements OnInit, OnDestroy {
     private swPush: SwPush,
     private eventsService: EventsService,
     private updateService: UpdateService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private stateService: StateService
   ) {
   }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
-
-    this.initLocale();
 
     this.initHub();
 
@@ -55,12 +55,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.initEvents();
 
+    this.initContentSizeWatcher();
   }
 
-  private initLocale() {
-    this.localeService.initLocale(environment.defaultLanguage, environment.defaultLanguage);
+  private initContentSizeWatcher() {
+    this.stateService.set('contentHeight', this.drawerContent.nativeElement.clientHeight);
   }
-
   private initEvents() {
     this._destroy.push(
       this.eventsService.subscribe(Events.ScrollPageToTop).subscribe(() => {
@@ -85,8 +85,10 @@ export class AppComponent implements OnInit, OnDestroy {
         document.body.classList.remove('theme-alternate');
       }
       const newLang = up.preferredLanguage == null ? (this.translateService.getBrowserLang() || environment.defaultLanguage) : up.preferredLanguage;
-      this.translateService.use(newLang);
-      this.localeService.setDefaultLocale(newLang);
+      if (newLang !== this.translateService.currentLang) {
+        this.translateService.use(newLang);
+      }
+      this.localeService.initLocale(newLang, newLang);
     }));
   }
 
