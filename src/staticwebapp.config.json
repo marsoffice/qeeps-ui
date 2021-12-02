@@ -12,6 +12,12 @@
       "headers": {
         "Cache-Control": "no-cache"
       }
+    },
+    {
+      "route": "/ngsw.json",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
     }
   ]
 }
