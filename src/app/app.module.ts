@@ -56,6 +56,7 @@ import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 import localeRO from '@angular/common/locales/ro';
 import { registerLocaleData } from '@angular/common';
 import { LocaleProvider } from './services/locale.provider';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -185,6 +186,10 @@ if (!environment.production) {
   ],
   providers: [
     LocaleProvider,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: environment.defaultLanguage
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,

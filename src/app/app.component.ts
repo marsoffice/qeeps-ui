@@ -45,8 +45,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
 
-    this.initHub();
+    this.initLocale();
 
+    this.initHub();
 
     this.initUserPreferences();
 
@@ -54,11 +55,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.initEvents();
 
-    this.initLocale();
   }
 
   private initLocale() {
-    this.localeService.initLocale('ro', 'ro');
+    this.localeService.initLocale(environment.defaultLanguage, environment.defaultLanguage);
   }
 
   private initEvents() {
