@@ -67,11 +67,17 @@ export const appInitializer = (swUpdate: SwUpdate,
       if (swUpdate.isEnabled) {
         swUpdate.checkForUpdate();
 
+        swUpdate.unrecoverable.subscribe(() => {
+          window.location.reload();
+        });
+
         swUpdate.available.subscribe(() => {
           toastService.showInfo(translateService.instant('ui.update.updateIsAvailable'));
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          swUpdate.activateUpdate().then(() => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          });
         });
       }
       resolve();
