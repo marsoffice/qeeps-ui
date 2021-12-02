@@ -1,15 +1,20 @@
 import { ApplicationRef, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { TranslateService } from '@ngx-translate/core';
 import { concat, first, interval } from 'rxjs';
+import { ConfirmationService } from '../shared/confirmation/services/confirmation.service';
+import { ToastService } from '../shared/toast/services/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UpdateService {
 
-  constructor(appRef: ApplicationRef, updates: SwUpdate) {
+  constructor(appRef: ApplicationRef, updates: SwUpdate, confirmationService: ConfirmationService,
+    toastService: ToastService,
+    translateService: TranslateService) {
     if (!updates.isEnabled) {
-      console.log('PWA SW not available');
+      toastService.showWarn(translateService.instant('ui.update.updatesNotAvailable'));
       return;
     }
     const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
@@ -17,25 +22,33 @@ export class UpdateService {
     const everyOneHourOnceAppIsStable$ = concat(appIsStable$, everyOneHour$);
 
     updates.unrecoverable.subscribe(() => {
-      window.location.reload();
+      toastService.showError(translateService.instant('ui.updates.unrecoverable'));
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     });
 
     updates.versionUpdates.subscribe(vu => {
       if (vu.type === 'VERSION_INSTALLATION_FAILED') {
-        console.error('PWA update error', vu.error);
-        window.location.reload();
+        toastService.showError(translateService.instant('ui.update.installFailed'));
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
         return;
       }
       if (vu.type === 'VERSION_DETECTED') {
-        console.log('New version detected', vu.version);
+        toastService.showInfo(translateService.instant('ui.update.newVersionDetected'));
         return;
       }
       if (vu.type === 'VERSION_READY') {
-        console.log('PWA new version is ready, replacing versions old with new', vu.currentVersion, vu.latestVersion);
-        updates.activateUpdate().then(() => {
-          window.location.reload();
+        confirmationService.confirm(translateService.instant('ui.update.versionDownloadedInstallNow')).subscribe(r => {
+          if (r) {
+            updates.activateUpdate().then(() => {
+              window.location.reload();
+            });
+          }
         });
-        return;
+
       }
     });
 
@@ -43,4 +56,6 @@ export class UpdateService {
 
     updates.checkForUpdate();
   }
+
+
 }
