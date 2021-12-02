@@ -1,0 +1,10 @@
+:host {
+  ::ng-deep mat-calendar {
+    margin-left: auto;
+    margin-right: auto;
+
+    .mat-calendar-header {
+      padding: 0;
+    }
+  }
+}

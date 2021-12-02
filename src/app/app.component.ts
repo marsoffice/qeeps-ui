@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { SwPush } from '@angular/service-worker';
 import { MsalService } from '@azure/msal-angular';
@@ -22,7 +22,7 @@ import { UserPreferencesService } from './services/user-preferences.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('drawerContent', { static: true, read: ElementRef }) private drawerContent!: ElementRef<HTMLElement>;
 
   isIframe = false;
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isMobile = true;
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
+  private windowResizeTimeout: any | undefined;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
     private userPreferencesService: UserPreferencesService,
@@ -54,13 +55,23 @@ export class AppComponent implements OnInit, OnDestroy {
     this.initMediaObserver();
 
     this.initEvents();
-
-    this.initContentSizeWatcher();
   }
 
-  private initContentSizeWatcher() {
-    this.stateService.set('contentHeight', this.drawerContent.nativeElement.clientHeight);
+
+  ngAfterViewInit() {
+    this.stateService.set('contentHeight', Math.floor(this.drawerContent.nativeElement.clientHeight));
+    window.addEventListener('resize', this.onWindowResize);
   }
+
+  private onWindowResize = () => {
+    if (this.windowResizeTimeout != null) {
+      clearTimeout(this.windowResizeTimeout);
+    }
+    this.windowResizeTimeout = setTimeout(() => {
+      this.stateService.set('contentHeight', Math.floor(this.drawerContent.nativeElement.clientHeight));
+    }, 500);
+  };
+
   private initEvents() {
     this._destroy.push(
       this.eventsService.subscribe(Events.ScrollPageToTop).subscribe(() => {
@@ -110,6 +121,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authService.destroy();
     this._destroy.forEach(x => x.unsubscribe());
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   private initPush() {

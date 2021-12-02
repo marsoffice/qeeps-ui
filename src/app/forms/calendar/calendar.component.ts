@@ -15,6 +15,10 @@ import { FormsService } from '../services/forms.service';
 export class CalendarComponent implements OnInit, OnDestroy {
   forms: FormDto[] | undefined;
   private _destroy: Subscription[] = [];
+  contentHeight: number | undefined;
+  private startDate: Date | undefined;
+  private endDate: Date | undefined;
+  isLoading = false;
 
   @ViewChild('calendar', { static: true }) calendar!: MatCalendar<any>;
   constructor(private formsService: FormsService,
@@ -25,7 +29,27 @@ export class CalendarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._destroy.push(
       this.calendar.stateChanges.subscribe(() => {
-        console.log('=>>>>>>>>>>>>>>>>>>>>', this.calendar);
+        this.isLoading = true;
+        this.startDate = new Date(this.calendar.activeDate.getTime());
+        this.startDate.setDate(1);
+        this.startDate.setHours(0);
+        this.startDate.setMinutes(0);
+        this.startDate.setSeconds(0);
+        this.startDate.setMilliseconds(0);
+
+        this.endDate = new Date(this.startDate.getTime());
+        this.endDate.setMonth(this.endDate.getMonth() + 1);
+        this.formsService.getForms(undefined, undefined,
+          this.startDate.toISOString(), this.endDate.toISOString()).subscribe({
+            next: forms => {
+              this.forms = forms;
+              console.log(forms);
+              this.isLoading = false;
+            },
+            error: e => {
+              this.isLoading = false;
+            }
+          });
       })
     );
 
@@ -37,7 +61,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     this._destroy.push(
       this.stateService.get<number>("contentHeight").subscribe(ch => {
-        console.log(ch);
+        this.contentHeight = ch;
       })
     );
   }
