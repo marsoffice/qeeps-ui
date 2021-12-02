@@ -1,7 +1,15 @@
 :host {
-  mat-drawer-container {
-    #content {
-      padding: 1rem;
+  ::ng-deep mat-drawer-container {
+    mat-drawer-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      #content {
+        padding: 1rem;
+        flex: 1 1 100%;
+        min-height: 0;
+        overflow: auto;
+      }
     }
   }
 }
