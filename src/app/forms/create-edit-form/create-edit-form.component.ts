@@ -166,6 +166,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         this.toastService.showSuccess(this.translateService.instant('ui.forms.createEditForm.formSavedSuccessfully'));
         this.id = f.id;
         this.form.patchValue(f);
+        this.eventsService.publish(Events.ScrollPageToTop);
       },
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);

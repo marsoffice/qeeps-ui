@@ -64,7 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private initEvents() {
     this._destroy.push(
       this.eventsService.subscribe(Events.ScrollPageToTop).subscribe(() => {
-        this.drawerContent.nativeElement.parentElement!.scrollTop = 0;
+        this.drawerContent.nativeElement.scrollTop = 0;
       })
     );
   }
