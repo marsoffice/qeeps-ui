@@ -149,9 +149,7 @@
     "update": {
       "updatesNotAvailable": "Actualizarile automate nu sunt disponibile",
       "newVersionDetected": "O nouă versiune a aplicației a fost detectată, se descarcă",
-      "versionDownloadedInstallNow": "Versiune descarcată, instalați acum?"
-    },
-    "updates": {
+      "versionDownloadedInstallNow": "Versiune descarcată, instalați acum?",
       "unrecoverable": "Actualizare irecuperabilă"
     }
   },
