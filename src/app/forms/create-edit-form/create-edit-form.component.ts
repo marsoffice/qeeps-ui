@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidatorFn } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { KeyValue } from 'src/app/models/key-value';
+import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { ColumnDataType } from '../models/column-data-type';
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
@@ -73,6 +74,8 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     private formsService: FormsService,
     private accessService: AccessService,
     private toastService: ToastService,
+    private location: Location,
+    private router: Router,
     private translateService: TranslateService) {
     this.columnDataTypesList = this.generateColumnDataTypes();
 
@@ -156,9 +159,11 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   save() {
     let obs: Observable<FormDto>;
+    let isCreate = true;
     if (this.id == null) {
       obs = this.formsService.create(this.form.value);
     } else {
+      isCreate = false;
       obs = this.formsService.update(this.id, this.form.value);
     }
     obs.subscribe({
@@ -167,6 +172,15 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         this.id = f.id;
         this.form.patchValue(f);
         this.eventsService.publish(Events.ScrollPageToTop);
+        if (isCreate) {
+          const urlTree = this.router.createUrlTree(["/forms/edit/" + this.id], {
+            relativeTo: this.actRoute,
+            queryParams: {},
+            queryParamsHandling: 'merge'
+          });
+
+          this.location.go(urlTree.toString());
+        }
       },
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);
