@@ -281,7 +281,7 @@
   <h3>{{'ui.forms.createEditForm.access' | translate}}</h3>
   <mat-tree [dataSource]="accessDataSource" [treeControl]="accessTreeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      <mat-checkbox [checked]="accessSelection.isSelected(node)" (change)="accessSelection.select(node)">
+      <mat-checkbox [checked]="accessSelection.isSelected(node.id)" (change)="accessSelection.select(node.id)">
         {{node.name}}
       </mat-checkbox>
     </mat-tree-node>
@@ -292,7 +292,7 @@
             {{accessTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
-        <mat-checkbox [checked]="accessSelection.isSelected(node)" (change)="accessSelection.select(node)">
+        <mat-checkbox [checked]="accessSelection.isSelected(node.id)" (change)="accessSelection.select(node.id)">
           {{node.name}}
         </mat-checkbox>
       </div>

@@ -65,7 +65,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   accessTreeControl = new NestedTreeControl<OrganisationDto>(x => x.children);
   accessDataSource = new MatTreeNestedDataSource<OrganisationDto>();
-  accessSelection = new SelectionModel<OrganisationDto>(true, []);
+  accessSelection = new SelectionModel<string>(true, []);
 
   constructor(private actRoute: ActivatedRoute,
     private mediaObserver: MediaObserver,
@@ -131,11 +131,26 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
       this._destroy.push(
         this.accessSelection.changed.subscribe(() => {
-          this.form.get('formAccesses')!.setValue(this.accessSelection.selected.map(o => ({
-            organisationId: o.id
+          this.form.get('formAccesses')!.setValue(this.accessSelection.selected.map(oid => ({
+            organisationId: oid
           } as FormAccessDto)));
         })
       );
+
+      this.actRoute.params.subscribe(params => {
+        this.id = params.id;
+        if (this.id != null) {
+          this.formsService.getForm(this.id).subscribe(f => {
+            this.form.patchValue(f);
+            if (f.formAccesses != null && f.formAccesses.length > 0 && this.orgs != null) {
+              const ids = f.formAccesses!.map(x => x.organisationId);
+              for (const id of ids) {
+                this.accessSelection.select(id!);
+              }
+            }
+          });
+        }
+      });
     });
 
     this._destroy.push(
@@ -143,14 +158,6 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         this.isMobile = this.mediaObserver.isActive('xs');
       })
     );
-    this.actRoute.params.subscribe(params => {
-      this.id = params.id;
-      if (this.id != null) {
-        this.formsService.getForm(this.id).subscribe(f => {
-          this.form.patchValue(f);
-        });
-      }
-    });
   }
 
   ngOnDestroy(): void {
