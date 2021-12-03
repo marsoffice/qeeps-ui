@@ -1,12 +1,13 @@
 import { ColumnDto } from './column.dto';
 import { FormAccessDto } from './form-access.dto';
 import { RowDto } from './row.dto';
-import {FileDto} from '../../shared/files/models/file.dto';
+import { FileDto } from '../../shared/files/models/file.dto';
 
 export interface FormDto {
   id: string;
   userId: string;
   createdDate: string;
+  modifiedDate?: string;
   title: string;
   description?: string;
   attachments?: FileDto[];
