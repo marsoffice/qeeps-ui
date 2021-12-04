@@ -107,7 +107,8 @@
         "maxValue": "Valoare maximă",
         "access": "Acces",
         "multipleValues": "Valori multiple",
-        "formSavedSuccessfully": "Formular salvat cu succes"
+        "formSavedSuccessfully": "Formular salvat cu succes",
+        "deadline": "Termen limită"
       },
       "cell": {
         "required": "Obligatoriu",
@@ -126,7 +127,8 @@
         "noData": "Nu sunt date",
         "title": "Titlu",
         "createdDate": "Dată creare",
-        "tags": "Etichete"
+        "tags": "Etichete",
+        "userName": "Autor"
       }
     },
     "files": {
@@ -178,7 +180,7 @@
     }
   },
   "forms": {
-    "createFormDto": {
+    "createEditForm": {
       "titleRequired": "Titlul este obligatoriu",
       "titleTooShort": "Titlul este prea scurt, minim {{chars}} caractere",
       "cronExpressionRequired": "Intervalul de recurență este obligatoriu",
@@ -191,7 +193,8 @@
       "columnNameRequired": "Numele coloanei este obligatoriu",
       "accessOrganisationRequired": "ID-ul organizației pentru regula de acces este obligatoriu",
       "allRowValuesMustMatchColumnCount": "Numărul valorilor rândurilor trebuie sa coincidă cu numărul de coloane",
-      "formRequired": "Formularul este obligatoriu"
+      "formRequired": "Formularul este obligatoriu",
+      "invalidDeadline": "Termen limită invalid"
     }
   }
 }

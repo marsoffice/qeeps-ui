@@ -225,6 +225,23 @@
     </div>
 
     <h3>{{'ui.forms.createEditForm.settings' | translate}}</h3>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
+      <mat-form-field appearance="outline" class="mff-p0">
+        <mat-label>{{'ui.forms.createEditForm.deadline' | translate}}</mat-label>
+        <input matInput [ngxMatDatetimePicker]="deadlinePicker" formControlName="deadline" [min]="now">
+        <mat-datepicker-toggle matSuffix [for]="castToAny(deadlinePicker)"></mat-datepicker-toggle>
+        <button (click)="form.get('deadline')?.reset()" matSuffix *ngIf="form.get('deadline')?.value != null" mat-icon-button type="button"
+          color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <ngx-mat-datetime-picker #deadlinePicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
+          [touchUi]="isMobile || false" [hideTime]="false">
+        </ngx-mat-datetime-picker>
+      </mat-form-field>
+    </div>
+
+
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-slide-toggle formControlName="isLocked">{{'ui.forms.createEditForm.isLocked' | translate}}</mat-slide-toggle>
 

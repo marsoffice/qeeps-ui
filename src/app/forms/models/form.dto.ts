@@ -6,8 +6,10 @@ import { FileDto } from '../../shared/files/models/file.dto';
 export interface FormDto {
   id: string;
   userId: string;
+  userName: string;
   createdDate: string;
   modifiedDate?: string;
+  deadline?: string;
   title: string;
   description?: string;
   attachments?: FileDto[];

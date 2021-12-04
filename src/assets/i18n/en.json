@@ -107,7 +107,8 @@
         "maxValue": "Maximum value",
         "access": "Access",
         "multipleValues": "Multiple values",
-        "formSavedSuccessfully": "Form saved successfully"
+        "formSavedSuccessfully": "Form saved successfully",
+        "deadline": "Deadline"
       },
       "cell": {
         "required": "Required",
@@ -126,7 +127,8 @@
         "noData": "No data",
         "title": "Title",
         "createdDate": "Created Date",
-        "tags": "Tags"
+        "tags": "Tags",
+        "userName": "Author"
       }
     },
     "files": {
@@ -179,7 +181,7 @@
     }
   },
   "forms": {
-    "createFormDto": {
+    "createEditForm": {
       "titleRequired": "Title is required",
       "titleTooShort": "Title is too short, min. {{chars}} characters",
       "cronExpressionRequired": "Recurrence interval is required",
@@ -192,7 +194,8 @@
       "columnNameRequired": "Column name is required",
       "accessOrganisationRequired": "Form access rule organisation ID is required",
       "allRowValuesMustMatchColumnCount": "All row values must match the column count",
-      "formRequired": "Form is required"
+      "formRequired": "Form is required",
+      "invalidDeadline": "Invalid deadline"
     }
   }
 }
