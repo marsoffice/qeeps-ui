@@ -122,10 +122,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
       return;
     }
     const prevDayDate = date.toISOString();
-    const nextDayDate = new Date(date.getTime()).toISOString();
+    const nextDayDate = new Date(date.getTime());
+    nextDayDate.setDate(nextDayDate.getDate() + 1);
     const filters: FormListFilters = {
       startDate: prevDayDate,
-      endDate: nextDayDate,
+      endDate: nextDayDate.toISOString(),
       page: 0,
       elementsPerPage: 50
     };
