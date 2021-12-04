@@ -176,7 +176,7 @@
   "notifications": {
     "processNotification": {
       "notificationTypesRequired": "Notification types are required",
-      "recipientUserIdsRequired": "Recipient user IDs are required",
+      "recipientsRequired": "Recipients are required",
       "templateRequired": "Template is required"
     }
   },

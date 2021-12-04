@@ -175,7 +175,7 @@
   "notifications": {
     "processNotification": {
       "notificationTypesRequired": "Tipurile de notificare sunt obligatorii",
-      "recipientUserIdsRequired": "ID-urile utilizatorilor destinatari sunt obligatorii",
+      "recipientsRequired": "Utilizatorii destinatari sunt obligatorii",
       "templateRequired": "Șablonul este obligatoriu"
     }
   },
