@@ -19,6 +19,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   private startDate: Date | undefined;
   private endDate: Date | undefined;
   isLoading = false;
+  initialLoaded = false;
 
   @ViewChild('calendar', { static: true }) calendar!: MatCalendar<any>;
 
@@ -30,6 +31,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._destroy.push(
       this.calendar.stateChanges.subscribe(() => {
+        if (!this.initialLoaded) {
+          this.initialLoaded = true;
+        }
         setTimeout(() => {
           if (this.calendar.currentView !== 'month') {
             return;
