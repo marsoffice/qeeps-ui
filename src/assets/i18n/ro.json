@@ -124,7 +124,6 @@
         }
       },
       "formsList": {
-        "noData": "Nu sunt date",
         "title": "Titlu",
         "createdDate": "Dată creare",
         "tags": "Etichete",

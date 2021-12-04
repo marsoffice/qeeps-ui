@@ -124,7 +124,6 @@
         }
       },
       "formsList": {
-        "noData": "No data",
         "title": "Title",
         "createdDate": "Created Date",
         "tags": "Tags",
