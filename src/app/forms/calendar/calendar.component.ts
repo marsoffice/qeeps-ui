@@ -21,6 +21,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   @ViewChild('calendar', { static: true }) calendar!: MatCalendar<any>;
+
   constructor(private formsService: FormsService,
     private translateService: TranslateService,
     private stateService: StateService,
@@ -29,27 +30,36 @@ export class CalendarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._destroy.push(
       this.calendar.stateChanges.subscribe(() => {
-        this.isLoading = true;
-        this.startDate = new Date(this.calendar.activeDate.getTime());
-        this.startDate.setDate(1);
-        this.startDate.setHours(0);
-        this.startDate.setMinutes(0);
-        this.startDate.setSeconds(0);
-        this.startDate.setMilliseconds(0);
+        setTimeout(() => {
+          if (this.calendar.currentView !== 'month') {
+            return;
+          }
+          this.isLoading = true;
+          this.startDate = new Date(this.calendar.activeDate.getTime());
+          this.startDate.setDate(1);
+          this.startDate.setHours(0);
+          this.startDate.setMinutes(0);
+          this.startDate.setSeconds(0);
+          this.startDate.setMilliseconds(0);
 
-        this.endDate = new Date(this.startDate.getTime());
-        this.endDate.setMonth(this.endDate.getMonth() + 1);
-        this.formsService.getForms(undefined, undefined,
-          this.startDate.toISOString(), this.endDate.toISOString()).subscribe({
-            next: forms => {
-              this.forms = forms;
-              console.log(forms);
-              this.isLoading = false;
-            },
-            error: e => {
-              this.isLoading = false;
-            }
-          });
+          this.endDate = new Date(this.startDate.getTime());
+          this.endDate.setMonth(this.endDate.getMonth() + 1);
+          this.formsService.getForms(undefined, undefined,
+            this.startDate.toISOString(), this.endDate.toISOString()).subscribe({
+              next: forms => {
+                this.forms = forms;
+                for (const row of this.calendar.monthView._matCalendarBody.rows) {
+                  for (const cell of row) {
+                    cell.displayValue += 'xxx';
+                  }
+                }
+                this.isLoading = false;
+              },
+              error: e => {
+                this.isLoading = false;
+              }
+            });
+        });
       })
     );
 
