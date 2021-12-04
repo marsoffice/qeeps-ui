@@ -67,7 +67,25 @@ export class CalendarComponent implements OnInit, OnDestroy {
                 this.forms = forms;
                 for (const row of this.calendar.monthView._matCalendarBody.rows) {
                   for (const cell of row) {
-                    cell.displayValue += 'xxx';
+                    cell.ariaLabel = '';
+                    const leftDate = (cell.rawValue as Date);
+                    const rightDate = new Date(leftDate.getFullYear(), leftDate.getMonth(), leftDate.getDate() + 1);
+                    const noOfForms = this.forms.filter(f => {
+                      const formLocalDate = new Date(Date.parse(f.createdDate));
+                      return leftDate <= formLocalDate && rightDate > formLocalDate;
+                    }).length;
+                    cell.displayValue = cell.value.toString();
+                    if (noOfForms > 0) {
+                      cell.displayValue += ` (${noOfForms})`;
+                      const classes: any = {
+                        calcell: true
+                      };
+                      classes[this.getCssClass(noOfForms)] = true;
+                      cell.cssClasses = classes;
+                    } else {
+                      cell.enabled = false;
+                      cell.displayValue = cell.displayValue + '';
+                    }
                   }
                 }
                 setTimeout(() => {
@@ -87,6 +105,16 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._destroy.forEach(x => x.unsubscribe());
+  }
+
+  private getCssClass(no: number) {
+    if (no <= 5) {
+      return 'green';
+    }
+    if (no > 5 && no <= 10) {
+      return 'orange';
+    }
+    return 'red';
   }
 
 }

@@ -6,5 +6,23 @@
     .mat-calendar-header {
       padding: 0;
     }
+
+    .calcell {
+      &.red {
+        .mat-calendar-body-cell-content {
+          border-color: lightcoral;
+        }
+      }
+      &.green {
+        .mat-calendar-body-cell-content {
+          border-color: lightgreen;
+        }
+      }
+      &.orange {
+        .mat-calendar-body-cell-content {
+          border-color: lightyellow;
+        }
+      }
+    }
   }
 }
