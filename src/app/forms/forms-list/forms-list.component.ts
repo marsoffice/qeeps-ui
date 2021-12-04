@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -56,6 +56,15 @@ export class FormsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._destroy.forEach(x => x.unsubscribe());
+  }
+
+  onPaginatorChanged(event: PageEvent) {
+    if (event.pageSize !== this.filters.value.elementsPerPage || event.pageIndex !== this.filters.value.page) {
+      this.filters.patchValue({
+        elementsPerPage: event.pageSize,
+        page: event.pageIndex
+      });
+    }
   }
 
   private updateQueryParams() {
