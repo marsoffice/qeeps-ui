@@ -128,7 +128,10 @@
         "createdDate": "Created Date",
         "tags": "Tags",
         "userName": "Author",
-        "deadline": "Deadline"
+        "deadline": "Deadline",
+        "edit": "Edit",
+        "delete": "Delete",
+        "formDeleted": "Form deleted"
       }
     },
     "files": {
@@ -160,7 +163,8 @@
     "confirmation": {
       "no": "No",
       "yes": "Yes",
-      "confirm": "Confirmation"
+      "confirm": "Confirmation",
+      "areYouSure": "Are you sure?"
     },
     "update": {
       "updatesNotAvailable": "Automatic updates are not available",

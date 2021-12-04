@@ -27,8 +27,26 @@
         <td mat-cell *matCellDef="let row" class="wbba"> {{row.tags.join()}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> {{'ui.forms.formsList.edit' | translate}} </th>
+        <td align="center" mat-cell *matCellDef="let row">
+          <button [routerLink]="'/forms/edit/' + row.id" *ngIf="row.userId === user?.id" mat-icon-button color="accent">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> {{'ui.forms.formsList.delete' | translate}} </th>
+        <td align="center" mat-cell *matCellDef="let row">
+          <button (click)="deleteForm(row)" *ngIf="row.userId === user?.id" mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row [style.background]="row.isPinned === true ? 'lightgreen' : ''" *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row [style.background]="row.isPinned === true ? 'darkgreen' : ''" *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
   </div>

@@ -128,7 +128,10 @@
         "createdDate": "Dată creare",
         "tags": "Etichete",
         "userName": "Autor",
-        "deadline": "Termen limită"
+        "deadline": "Termen limită",
+        "edit": "Editare",
+        "delete": "Ștergere",
+        "formDeleted": "Formular șters"
       }
     },
     "files": {
@@ -160,7 +163,8 @@
     "confirmation": {
       "no": "Nu",
       "yes": "Da",
-      "confirm": "Confirmare"
+      "confirm": "Confirmare",
+      "areYouSure": "Sunteți sigur?"
     },
     "update": {
       "updatesNotAvailable": "Actualizarile automate nu sunt disponibile",

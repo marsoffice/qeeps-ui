@@ -39,4 +39,8 @@ export class FormsService {
   getForm(id: string) {
     return this.http.get<FormDto>(`/api/forms/getForm/${encodeURIComponent(id)}`);
   }
+
+  deleteForm(id: string) {
+    return this.http.delete(`/api/forms/delete/${encodeURIComponent(id)}`);
+  }
 }
