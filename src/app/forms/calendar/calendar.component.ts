@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { StateService } from 'src/app/services/state.service';
 import { ToastService } from 'src/app/shared/toast/services/toast.service';
+import { FormListFilters } from '../models/form-list-filters';
 import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
 
@@ -63,48 +64,50 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
           this.endDate = new Date(this.startDate.getTime());
           this.endDate.setMonth(this.endDate.getMonth() + 1);
-          this.formsService.getForms(undefined, undefined,
-            this.startDate.toISOString(), this.endDate.toISOString()).subscribe({
-              next: forms => {
-                this.forms = forms;
-                for (const row of this.calendar.monthView._matCalendarBody.rows) {
-                  for (const cell of row) {
-                    cell.ariaLabel = '';
-                    const leftDate = (cell.rawValue as Date);
-                    const rightDate = new Date(leftDate.getFullYear(), leftDate.getMonth(), leftDate.getDate() + 1);
-                    const noOfForms = this.forms.filter(f => {
-                      const formLocalDate = new Date(Date.parse(f.createdDate));
-                      return leftDate <= formLocalDate && rightDate > formLocalDate;
-                    }).length;
-                    cell.displayValue = cell.value.toString();
-                    const classes: any = {
-                      calcell: true
-                    };
-                    if (noOfForms > 0) {
-                      cell.displayValue += ` (${noOfForms})`;
-                      classes[this.getCssClass(noOfForms)] = true;
-                    } else {
-                      classes['disabled'] = true;
-                      cell.displayValue = cell.displayValue;
-                    }
-                    cell.cssClasses = classes;
+          this.formsService.getForms({
+            startDate: this.startDate.toISOString(),
+            endDate: this.endDate.toISOString()
+          }).subscribe({
+            next: forms => {
+              this.forms = forms;
+              for (const row of this.calendar.monthView._matCalendarBody.rows) {
+                for (const cell of row) {
+                  cell.ariaLabel = '';
+                  const leftDate = (cell.rawValue as Date);
+                  const rightDate = new Date(leftDate.getFullYear(), leftDate.getMonth(), leftDate.getDate() + 1);
+                  const noOfForms = this.forms.filter(f => {
+                    const formLocalDate = new Date(Date.parse(f.createdDate));
+                    return leftDate <= formLocalDate && rightDate > formLocalDate;
+                  }).length;
+                  cell.displayValue = cell.value.toString();
+                  const classes: any = {
+                    calcell: true
+                  };
+                  if (noOfForms > 0) {
+                    cell.displayValue += ` (${noOfForms})`;
+                    classes[this.getCssClass(noOfForms)] = true;
+                  } else {
+                    classes['disabled'] = true;
+                    cell.displayValue = cell.displayValue;
                   }
+                  cell.cssClasses = classes;
                 }
-                setTimeout(() => {
-                  try {
-                    this.calendar.monthView._matCalendarBody.selectedValueChange.emit({ value: 1, event: new MouseEvent('click') });
-                    this.isLoading = false;
-                  } catch (err) {
-                    // ignored
-                    this.isLoading = false;
-                  }
-                });
-              },
-              error: e => {
-                this.toastService.fromError(e);
-                this.isLoading = false;
               }
-            });
+              setTimeout(() => {
+                try {
+                  this.calendar.monthView._matCalendarBody.selectedValueChange.emit({ value: 1, event: new MouseEvent('click') });
+                  this.isLoading = false;
+                } catch (err) {
+                  // ignored
+                  this.isLoading = false;
+                }
+              });
+            },
+            error: e => {
+              this.toastService.fromError(e);
+              this.isLoading = false;
+            }
+          });
         });
       })
     );
@@ -120,10 +123,15 @@ export class CalendarComponent implements OnInit, OnDestroy {
     }
     const prevDayDate = date.toISOString();
     const nextDayDate = new Date(date.getTime()).toISOString();
+    const filters: FormListFilters = {
+      startDate: prevDayDate,
+      endDate: nextDayDate,
+      page: 0,
+      elementsPerPage: 50
+    };
     this.router.navigate(['/forms/forms-list'], {
       queryParams: {
-        startDate: prevDayDate,
-        endDate: nextDayDate
+        ...filters
       }
     });
   }

@@ -8,22 +8,21 @@
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
         <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/calendar"
-          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
+          routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>event</mat-icon>
             <span>{{'ui.sidenav.calendar' | translate}}</span>
           </div>
         </button>
         <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/forms-list"
-          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
+          [queryParams]="{page: 0, elementsPerPage: 50}" routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>list</mat-icon>
             <span>{{'ui.sidenav.formsList' | translate}}</span>
           </div>
         </button>
         <button *ngIf="user!.roles!.indexOf('Admin') > -1 || user!.roles!.indexOf('Owner') > -1" (click)="closeSidenavIfMobile()"
-          class="w-100" mat-flat-button routerLink="/forms/create" routerLinkActive="bg-primary text-accent"
-          [routerLinkActiveOptions]="{exact: true}">
+          class="w-100" mat-flat-button routerLink="/forms/create" routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>add</mat-icon>
             <span>{{'ui.sidenav.createForm' | translate}}</span>
@@ -40,7 +39,7 @@
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
         <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/admin/edit-contract"
-          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
+          routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>gavel</mat-icon>
             <span>{{'ui.sidenav.editContract' | translate}}</span>
@@ -57,7 +56,7 @@
       </mat-expansion-panel-header>
       <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
         <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/profile"
-          routerLinkActive="bg-primary text-accent" [routerLinkActiveOptions]="{exact: true}">
+          routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>badge</mat-icon>
             <span>{{'ui.sidenav.profile' | translate}}</span>

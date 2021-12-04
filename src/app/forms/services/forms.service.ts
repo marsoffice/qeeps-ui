@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormListFilters } from '../models/form-list-filters';
 import { FormDto } from '../models/form.dto';
 
 @Injectable()
@@ -15,17 +16,12 @@ export class FormsService {
     return this.http.put<FormDto>('/api/forms/update/' + id, dto);
   }
 
-  getForms(page?: number, elementsPerPage?: number, startDate?: string, endDate?: string) {
+  getForms(filtersObject?: FormListFilters) {
     let url = '/api/forms/getForms';
-    const qp: any = {
-      page,
-      elementsPerPage,
-      startDate,
-      endDate
-    };
-    const queryString = Object.keys(qp)
-      .filter(k => qp[k] != null)
-      .map(x => `${x}=${encodeURIComponent(qp[x])}`)
+    const filters: any = filtersObject == null ? {} : filtersObject;
+    const queryString = Object.keys(filters)
+      .filter(k => filters[k] != null)
+      .map(x => `${x}=${encodeURIComponent(filters[x])}`)
       .join('&');
 
     if (queryString && queryString.length > 0) {
