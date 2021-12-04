@@ -113,6 +113,12 @@
           "minlength": "Valoare prea mică",
           "maxlength": "Valoare prea mare"
         }
+      },
+      "formsList": {
+        "noData": "Nu sunt date",
+        "title": "Titlu",
+        "createdDate": "Dată creare",
+        "tags": "Etichete"
       }
     },
     "files": {

@@ -1,8 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 import { FormListFilters } from '../models/form-list-filters';
+import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
 
 @Component({
@@ -19,6 +23,13 @@ export class FormsListComponent implements OnInit, OnDestroy {
   });
 
   private _destroy: Subscription[] = [];
+
+  displayedColumns: string[] = ['title', 'createdDate', 'tags'];
+  dataSource = new MatTableDataSource<FormDto>([]);
+  total = 0;
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   constructor(private formsService: FormsService, private actRoute: ActivatedRoute, private router: Router) { }
 
@@ -37,7 +48,8 @@ export class FormsListComponent implements OnInit, OnDestroy {
       };
       this.filters.setValue(queryValues);
       this.formsService.getForms(this.filters.value).subscribe(x => {
-        console.log(x);
+        this.dataSource.data = x.forms;
+        this.total = x.total;
       });
     });
   }

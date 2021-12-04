@@ -1,4 +1,7 @@
 :host {
+  form {
+    padding: 1rem;
+  }
   ::ng-deep mat-tree {
     background: transparent !important;
     max-height: 400px;

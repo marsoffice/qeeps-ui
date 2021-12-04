@@ -68,8 +68,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
             startDate: this.startDate.toISOString(),
             endDate: this.endDate.toISOString()
           }).subscribe({
-            next: forms => {
-              this.forms = forms;
+            next: x => {
+              this.forms = x.forms;
               for (const row of this.calendar.monthView._matCalendarBody.rows) {
                 for (const cell of row) {
                   cell.ariaLabel = '';

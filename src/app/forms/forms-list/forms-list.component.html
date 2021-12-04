@@ -1,1 +1,28 @@
-<p>forms-list works!</p>
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ui.forms.formsList.title' | translate}} </th>
+    <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ui.forms.formsList.createdDate' | translate}} </th>
+    <td mat-cell *matCellDef="let row"> {{row.createdDate | date:'medium'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tags">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ui.forms.formsList.tags' | translate}} </th>
+    <td mat-cell *matCellDef="let row"> {{row.tags == null ? '-' : row.tags.join()}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="3">{{'ui.forms.formsList.noData' | translate}}</td>
+  </tr>
+</table>
+
+<mat-paginator [length]="total" [pageSize]="filters.value.elementsPerPage" [pageSizeOptions]="[10, 50, 100, 200]"
+  [pageIndex]="filters.value.page">
+</mat-paginator>

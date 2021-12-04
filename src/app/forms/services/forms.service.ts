@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormListFilters } from '../models/form-list-filters';
+import { FormListResultDto } from '../models/form-list-result.dto';
 import { FormDto } from '../models/form.dto';
 
 @Injectable()
@@ -28,7 +29,7 @@ export class FormsService {
       url += '?' + queryString;
     }
 
-    return this.http.get<FormDto[]>(url);
+    return this.http.get<FormListResultDto>(url);
   }
 
   getForm(id: string) {
