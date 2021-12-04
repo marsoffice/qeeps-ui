@@ -32,6 +32,10 @@ export class FormsService {
     return this.http.get<FormListResultDto>(url);
   }
 
+  getPinnedForms() {
+    return this.http.get<FormDto[]>('/api/forms/getPinnedForms');
+  }
+
   getForm(id: string) {
     return this.http.get<FormDto>(`/api/forms/getForm/${encodeURIComponent(id)}`);
   }

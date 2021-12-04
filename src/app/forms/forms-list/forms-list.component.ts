@@ -56,10 +56,27 @@ export class FormsListComponent implements OnInit, OnDestroy {
         endDate: qp["endDate"] || null
       };
       this.filters.setValue(queryValues);
-      this.formsService.getForms(this.filters.value).subscribe(x => {
-        this.dataSource.data = x.forms;
+      this.dataSource.data = [];
+
+      const formFilters: FormListFilters = this.filters.value;
+      this.formsService.getForms(formFilters).subscribe(x => {
+        x.forms.forEach(f => {
+          f.isPinned = false;
+          f.pinnedUntilDate = undefined;
+        });
+        this.dataSource.data = [...this.dataSource.data, ...x.forms];
         this.total = x.total;
       });
+
+      if (formFilters.endDate == null && formFilters.startDate == null && formFilters.page === 0) {
+        this.formsService.getPinnedForms().subscribe(x => {
+          x.forEach(f => {
+            f.isPinned = true;
+          });
+          this.dataSource.data = [...x, ...this.dataSource.data];
+        });
+      }
+
     });
   }
 
