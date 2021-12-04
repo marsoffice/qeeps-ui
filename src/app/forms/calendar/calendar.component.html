@@ -1,5 +1,5 @@
 <div class="w-100">
-  <mat-calendar startView="month" [style.maxWidth]="'calc(' + contentHeight + 'px - 4rem)'"
-    [style.maxHeight]="'calc(' +contentHeight + 'px - 4rem)'" #calendar>
+  <mat-calendar [selected]="null" (selectedChange)="onDaySelect($event)" startView="month"
+    [style.maxWidth]="'calc(' + contentHeight + 'px - 4rem)'" [style.maxHeight]="'calc(' +contentHeight + 'px - 4rem)'" #calendar>
   </mat-calendar>
 </div>

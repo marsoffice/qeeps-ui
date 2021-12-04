@@ -8,6 +8,9 @@
     }
 
     .calcell {
+      &.disabled {
+        pointer-events: none;
+      }
       &.red {
         .mat-calendar-body-cell-content {
           border-color: lightcoral;

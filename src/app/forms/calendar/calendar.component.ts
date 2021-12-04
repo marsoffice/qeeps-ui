@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
-import { MatCalendar } from '@angular/material/datepicker';
+import { MatCalendar, MatCalendarCell } from '@angular/material/datepicker';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { StateService } from 'src/app/services/state.service';
@@ -19,7 +20,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   contentHeight: number | undefined;
   private startDate: Date | undefined;
   private endDate: Date | undefined;
-  isLoading = false;
+  isLoading = true;
   initialLoaded = false;
 
   @ViewChild('calendar', { static: true }) calendar!: MatCalendar<any>;
@@ -28,6 +29,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private stateService: StateService,
     private toastService: ToastService,
+    private router: Router,
     private dateAdapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
@@ -75,23 +77,28 @@ export class CalendarComponent implements OnInit, OnDestroy {
                       return leftDate <= formLocalDate && rightDate > formLocalDate;
                     }).length;
                     cell.displayValue = cell.value.toString();
+                    const classes: any = {
+                      calcell: true
+                    };
                     if (noOfForms > 0) {
                       cell.displayValue += ` (${noOfForms})`;
-                      const classes: any = {
-                        calcell: true
-                      };
                       classes[this.getCssClass(noOfForms)] = true;
-                      cell.cssClasses = classes;
                     } else {
-                      cell.enabled = false;
-                      cell.displayValue = cell.displayValue + '';
+                      classes['disabled'] = true;
+                      cell.displayValue = cell.displayValue;
                     }
+                    cell.cssClasses = classes;
                   }
                 }
                 setTimeout(() => {
-                  this.calendar.monthView._matCalendarBody._cellClicked(this.calendar.monthView._matCalendarBody.rows[0][0], new MouseEvent('click'));
-                }, 1);
-                this.isLoading = false;
+                  try {
+                    this.calendar.monthView._matCalendarBody.selectedValueChange.emit({ value: 1, event: new MouseEvent('click') });
+                    this.isLoading = false;
+                  } catch (err) {
+                    // ignored
+                    this.isLoading = false;
+                  }
+                });
               },
               error: e => {
                 this.toastService.fromError(e);
@@ -105,6 +112,20 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._destroy.forEach(x => x.unsubscribe());
+  }
+
+  onDaySelect(date: Date) {
+    if (this.isLoading) {
+      return;
+    }
+    const prevDayDate = date.toISOString();
+    const nextDayDate = new Date(date.getTime()).toISOString();
+    this.router.navigate(['/forms/forms-list'], {
+      queryParams: {
+        startDate: prevDayDate,
+        endDate: nextDayDate
+      }
+    });
   }
 
   private getCssClass(no: number) {
