@@ -58,7 +58,6 @@ export class MatTableResponsiveDirective
         takeUntil(this.onDestroy$)
       )
       .subscribe((x) => {
-        console.log(x);
         x.rows.forEach(rowCells =>
           rowCells.forEach((cell: any) =>
             this.renderer.setAttribute(
