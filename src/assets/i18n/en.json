@@ -128,7 +128,8 @@
         "title": "Title",
         "createdDate": "Created Date",
         "tags": "Tags",
-        "userName": "Author"
+        "userName": "Author",
+        "deadline": "Deadline"
       }
     },
     "files": {

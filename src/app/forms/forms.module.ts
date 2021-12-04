@@ -38,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsListComponent } from './forms-list/forms-list.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableResponsiveModule } from '../shared/mat-table-responsive/mat-table-responsive.module';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    MatTableResponsiveModule,
     MatSelectModule,
     MatTableModule,
     FilesModule,

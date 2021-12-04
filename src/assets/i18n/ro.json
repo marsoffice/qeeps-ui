@@ -128,7 +128,8 @@
         "title": "Titlu",
         "createdDate": "Dată creare",
         "tags": "Etichete",
-        "userName": "Autor"
+        "userName": "Autor",
+        "deadline": "Termen limită"
       }
     },
     "files": {
