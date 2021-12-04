@@ -147,7 +147,6 @@ export class FormsListComponent implements OnInit, OnDestroy {
       sortBy: event.direction === '' ? null : event.active,
       sortOrder: event.direction == '' ? null : event.direction
     });
-    console.log(this.filters.value);
   }
 
   private updateQueryParams() {
