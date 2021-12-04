@@ -53,6 +53,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
                     cell.displayValue += 'xxx';
                   }
                 }
+                setTimeout(() => {
+                  this.calendar.monthView._matCalendarBody._cellClicked(this.calendar.monthView._matCalendarBody.rows[0][0], new MouseEvent('click'));
+                }, 1);
                 this.isLoading = false;
               },
               error: e => {
