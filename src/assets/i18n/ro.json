@@ -151,6 +151,9 @@
       "newVersionDetected": "O nouă versiune a aplicației a fost detectată, se descarcă",
       "versionDownloadedInstallNow": "Versiune descarcată, instalați acum?",
       "unrecoverable": "Actualizare irecuperabilă"
+    },
+    "error": {
+      "unknownError": "Eroare necunoscută"
     }
   },
   "notifications": {

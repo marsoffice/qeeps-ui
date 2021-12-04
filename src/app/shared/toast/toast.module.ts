@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from './services/toast.service';
 import { ToastComponent } from './toast/toast.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -12,7 +13,8 @@ import { ToastComponent } from './toast/toast.component';
   ],
   imports: [
     CommonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TranslateModule
   ],
   providers: [
     ToastService

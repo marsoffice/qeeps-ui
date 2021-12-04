@@ -152,6 +152,9 @@
       "newVersionDetected": "A new app version was detected, downloading...",
       "versionDownloadedInstallNow": "New version downloaded, install now?",
       "unrecoverable": "Update unrecoverable"
+    },
+    "error": {
+      "unknownError": "Unknown error"
     }
   },
   "notifications": {

@@ -4,6 +4,7 @@ import { MatCalendar } from '@angular/material/datepicker';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { StateService } from 'src/app/services/state.service';
+import { ToastService } from 'src/app/shared/toast/services/toast.service';
 import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
 
@@ -26,18 +27,30 @@ export class CalendarComponent implements OnInit, OnDestroy {
   constructor(private formsService: FormsService,
     private translateService: TranslateService,
     private stateService: StateService,
+    private toastService: ToastService,
     private dateAdapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
+
+    this._destroy.push(
+      this.translateService.onLangChange.subscribe(e => {
+        this.dateAdapter.setLocale(e.lang);
+      })
+    );
+
+    this._destroy.push(
+      this.stateService.get<number>("contentHeight").subscribe(ch => {
+        this.contentHeight = ch;
+      })
+    );
+
     this._destroy.push(
       this.calendar.stateChanges.subscribe(() => {
         if (!this.initialLoaded) {
           this.initialLoaded = true;
+          return;
         }
         setTimeout(() => {
-          if (this.calendar.currentView !== 'month') {
-            return;
-          }
           this.isLoading = true;
           this.startDate = new Date(this.calendar.activeDate.getTime());
           this.startDate.setDate(1);
@@ -63,22 +76,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
                 this.isLoading = false;
               },
               error: e => {
+                this.toastService.fromError(e);
                 this.isLoading = false;
               }
             });
         });
-      })
-    );
-
-    this._destroy.push(
-      this.translateService.onLangChange.subscribe(e => {
-        this.dateAdapter.setLocale(e.lang);
-      })
-    );
-
-    this._destroy.push(
-      this.stateService.get<number>("contentHeight").subscribe(ch => {
-        this.contentHeight = ch;
       })
     );
   }
