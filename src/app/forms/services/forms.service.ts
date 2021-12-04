@@ -22,7 +22,7 @@ export class FormsService {
     const filters: any = filtersObject == null ? {} : filtersObject;
     const queryString = Object.keys(filters)
       .filter(k => filters[k] != null)
-      .map(x => `${x}=${encodeURIComponent(filters[x])}`)
+      .map(x => `${x}=${encodeURIComponent(filters[x].toString())}`)
       .join('&');
 
     if (queryString && queryString.length > 0) {

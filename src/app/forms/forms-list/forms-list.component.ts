@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,6 +26,10 @@ export class FormsListComponent implements OnInit, OnDestroy {
     elementsPerPage: new FormControl(),
     startDate: new FormControl(),
     endDate: new FormControl(),
+    tags: new FormControl(),
+    search: new FormControl(),
+    sortBy: new FormControl(),
+    sortOrder: new FormControl()
   });
 
   private _destroy: Subscription[] = [];
@@ -69,7 +73,11 @@ export class FormsListComponent implements OnInit, OnDestroy {
         page: !qp["page"] ? 0 : +qp["page"],
         elementsPerPage: !qp["elementsPerPage"] ? 50 : +qp["elementsPerPage"],
         startDate: qp["startDate"] || null,
-        endDate: qp["endDate"] || null
+        endDate: qp["endDate"] || null,
+        search: qp["search"] || null,
+        sortBy: qp["sortBy"] || null,
+        sortOrder: qp["sortOrder"] || null,
+        tags: qp["tags"] == null ? null : qp["tags"].split(',')
       };
       this.filters.setValue(queryValues);
       this.dataSource.data = [];
@@ -106,7 +114,8 @@ export class FormsListComponent implements OnInit, OnDestroy {
 
   onPaginatorChanged(event: PageEvent) {
     if (event.pageSize !== this.filters.value.elementsPerPage || event.pageIndex !== this.filters.value.page) {
-      this.filters.patchValue({
+      this.filters.setValue({
+        ...this.filters.value,
         elementsPerPage: event.pageSize,
         page: event.pageIndex
       });
@@ -130,6 +139,15 @@ export class FormsListComponent implements OnInit, OnDestroy {
         }
       });
     });
+  }
+
+  onSortChanged(event: Sort) {
+    this.filters.setValue({
+      ...this.filters.value,
+      sortBy: event.direction === '' ? null : event.active,
+      sortOrder: event.direction == '' ? null : event.direction
+    });
+    console.log(this.filters.value);
   }
 
   private updateQueryParams() {

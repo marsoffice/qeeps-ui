@@ -1,6 +1,7 @@
 <div id="wrapper" fxLayout="column">
   <div fxFlex="1 1 auto" id="table-wrapper">
-    <table matTableResponsive [class.mobile]="isMobile" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table [matSortDirection]="filters.value.sortOrder" [matSortActive]="filters.value.sortBy" (matSortChange)="onSortChanged($event)"
+      matTableResponsive [class.mobile]="isMobile" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ui.forms.formsList.title' | translate}} </th>

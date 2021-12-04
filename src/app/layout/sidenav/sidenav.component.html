@@ -15,7 +15,8 @@
           </div>
         </button>
         <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/forms/forms-list"
-          [queryParams]="{page: 0, elementsPerPage: 50}" routerLinkActive="bg-primary text-accent">
+          [queryParams]="{page: 0, elementsPerPage: 50, sortBy: 'createdDate', sortOrder: 'desc'}"
+          routerLinkActive="bg-primary text-accent">
           <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
             <mat-icon>list</mat-icon>
             <span>{{'ui.sidenav.formsList' | translate}}</span>

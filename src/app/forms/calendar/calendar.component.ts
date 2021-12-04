@@ -128,7 +128,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
       startDate: prevDayDate,
       endDate: nextDayDate.toISOString(),
       page: 0,
-      elementsPerPage: 50
+      elementsPerPage: 50,
+      sortBy: 'createdDate',
+      sortOrder: 'desc'
     };
     this.router.navigate(['/forms/forms-list'], {
       queryParams: {
