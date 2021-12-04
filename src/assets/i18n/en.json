@@ -1,5 +1,13 @@
 {
   "ui": {
+    "paginator": {
+      "itemsPerPageLabel": "Items per page",
+      "nextPageLabel": "Next page",
+      "previousPageLabel": "Previous page",
+      "firstPageLabel": "First page",
+      "lastPageLabel": "Last page",
+      "of": "of"
+    },
     "legal": {
       "text": "We use cookies to improve user experience and analyze website traffic. By clicking Accept, you agree to our website's cookie use as described in our Cookie Policy.",
       "accept": "Accept",

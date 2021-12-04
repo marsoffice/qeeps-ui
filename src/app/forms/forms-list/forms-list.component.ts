@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -30,10 +31,18 @@ export class FormsListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  isMobile = false;
 
-  constructor(private formsService: FormsService, private actRoute: ActivatedRoute, private router: Router) { }
+  constructor(private formsService: FormsService, private actRoute: ActivatedRoute, private router: Router,
+    private mediaObserver: MediaObserver) { }
 
   ngOnInit(): void {
+    this._destroy.push(
+      this.mediaObserver.asObservable().subscribe(() => {
+        this.isMobile = this.mediaObserver.isActive('xs');
+      })
+    );
+
     this._destroy.push(
       this.filters.valueChanges.subscribe(v => {
         this.updateQueryParams();
