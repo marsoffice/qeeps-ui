@@ -168,7 +168,7 @@ export class FormsListComponent implements OnInit, OnDestroy {
 
   removeTag(i: number) {
     this.tags.splice(i, 1);
-    this.filters.setValue({ ...this.filters.value, tags: this.tags.join() });
+    this.filters.setValue({ ...this.filters.value, tags: this.tags == null || this.tags.length === 0 ? null : this.tags.join() });
   }
 
   addTag(event: MatChipInputEvent): void {
@@ -193,8 +193,8 @@ export class FormsListComponent implements OnInit, OnDestroy {
       this.dataSource.data = [...this.dataSource.data, ...x.forms];
       this.total = x.total;
     });
-
-    if (formFilters.endDate == null && formFilters.startDate == null && formFilters.page === 0) {
+    if (formFilters.endDate == null && formFilters.startDate == null && formFilters.page === 0 && formFilters.search == null &&
+      formFilters.tags == null) {
       this.formsService.getPinnedForms().subscribe(x => {
         x.forEach(f => {
           f.isPinned = true;
