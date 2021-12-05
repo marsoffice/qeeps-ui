@@ -6,5 +6,5 @@ export interface FormListFilters {
   sortBy?: string;
   sortOrder?: string;
   search?: string;
-  tags?: string[];
+  tags?: string;
 }

@@ -1,8 +1,8 @@
 <div id="wrapper" fxLayout="column">
-  <div fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-xs="1rem">
+  <div fxLayout="row wrap" fxLayoutAlign="flex-start center">
 
-    <form fxFlex.xs (submit)="onSearchSubmit()" [formGroup]="searchForm" fxLayout="row" fxLayoutAlign="flex-start center">
-      <mat-form-field fxFlex.xs class="mff-p0" appearance="outline">
+    <form fxFlex (submit)="onSearchSubmit()" [formGroup]="searchForm" fxLayout="row" fxLayoutAlign="flex-start center">
+      <mat-form-field fxFlex class="mff-p0" appearance="outline">
         <mat-label>{{'ui.forms.formsList.search' | translate}}</mat-label>
         <input formControlName="text" matInput />
         <mat-icon matSuffix>search</mat-icon>
@@ -13,7 +13,7 @@
     </form>
 
 
-    <mat-form-field fxFlex.xs appearance="outline" class="mff-p0">
+    <mat-form-field fxFlex appearance="outline" class="mff-p0">
       <mat-label>{{'ui.forms.formsList.startDate' | translate}}</mat-label>
       <input [max]="endDate == null ? null : endDate" (dateChange)="onStartDateChanged($event)" [readonly]="true" matInput
         [ngxMatDatetimePicker]="startDatePicker" [value]="startDate">
@@ -27,7 +27,7 @@
       </ngx-mat-datetime-picker>
     </mat-form-field>
 
-    <mat-form-field fxFlex.xs appearance="outline" class="mff-p0">
+    <mat-form-field fxFlex appearance="outline" class="mff-p0">
       <mat-label>{{'ui.forms.formsList.endDate' | translate}}</mat-label>
       <input [min]="startDate == null ? null : startDate" (dateChange)="onEndDateChanged($event)" [readonly]="true" matInput
         [ngxMatDatetimePicker]="endDatePicker" [value]="endDate">
@@ -40,10 +40,20 @@
       </ngx-mat-datetime-picker>
     </mat-form-field>
 
-
-
   </div>
-  <div fxFlex="1 1 auto" id="table-wrapper">
+  <mat-form-field class="mff-p0" appearance="outline">
+    <mat-label>{{'ui.forms.formsList.tags' | translate}}</mat-label>
+    <mat-chip-list #chipListTags>
+      <mat-chip *ngFor="let tag of tags; let i = index" [selectable]="false" [removable]="true" (removed)="removeTag(i)">
+        {{tag}}
+        <mat-icon matChipRemove color="warn">cancel</mat-icon>
+      </mat-chip>
+      <input [placeholder]="'ui.forms.formsList.addTags' | translate" [matChipInputFor]="chipListTags"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div fxFlex="1 1 auto" id="table-wrapper" [class.mobile]="isMobile">
     <table [matSortDirection]="filters.value.sortOrder" [matSortActive]="filters.value.sortBy" (matSortChange)="onSortChanged($event)"
       matTableResponsive [class.mobile]="isMobile" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

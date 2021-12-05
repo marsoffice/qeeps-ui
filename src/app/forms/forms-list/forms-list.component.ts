@@ -6,6 +6,7 @@ import { DateAdapter } from '@angular/material/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
@@ -16,6 +17,7 @@ import { ToastService } from 'src/app/shared/toast/services/toast.service';
 import { FormListFilters } from '../models/form-list-filters';
 import { FormDto } from '../models/form.dto';
 import { FormsService } from '../services/forms.service';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-forms-list',
@@ -34,12 +36,16 @@ export class FormsListComponent implements OnInit, OnDestroy {
     sortOrder: new FormControl()
   });
 
+  readonly separatorKeysCodes = [ENTER, COMMA, TAB] as const;
+
   searchForm = new FormGroup({
     text: new FormControl()
   });
 
   startDate: Date | undefined;
   endDate: Date | undefined;
+
+  tags: string[] = [];
 
   private _destroy: Subscription[] = [];
 
@@ -95,7 +101,7 @@ export class FormsListComponent implements OnInit, OnDestroy {
         search: qp["search"] || null,
         sortBy: qp["sortBy"] || null,
         sortOrder: qp["sortOrder"] || null,
-        tags: qp["tags"] == null ? null : qp["tags"].split(',')
+        tags: qp["tags"] || null
       };
       this.filters.setValue(queryValues);
       this.searchForm.setValue({ text: queryValues.search });
@@ -105,6 +111,10 @@ export class FormsListComponent implements OnInit, OnDestroy {
       }
       if (queryValues.endDate != null) {
         this.endDate = new Date(Date.parse(queryValues.endDate));
+      }
+
+      if (queryValues.tags != null && queryValues.tags.length > 0) {
+        this.tags = queryValues.tags.split(',');
       }
 
       this.executeLoad();
@@ -156,6 +166,22 @@ export class FormsListComponent implements OnInit, OnDestroy {
     this.filters.setValue({ ...this.filters.value, search: null });
   }
 
+  removeTag(i: number) {
+    this.tags.splice(i, 1);
+    this.filters.setValue({ ...this.filters.value, tags: this.tags.join() });
+  }
+
+  addTag(event: MatChipInputEvent): void {
+    const value: string = (event.value || '').trim();
+
+    if (value) {
+      if (this.tags.indexOf(value) === -1) {
+        this.tags.push(value);
+        this.filters.setValue({ ...this.filters.value, tags: this.tags.join() });
+      }
+    }
+    event.chipInput!.clear();
+  }
   private executeLoad() {
     this.dataSource.data = [];
     const formFilters: FormListFilters = this.filters.value;
