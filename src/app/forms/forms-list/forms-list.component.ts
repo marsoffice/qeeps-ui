@@ -1,6 +1,8 @@
+import { MatDatetimePickerInputEvent, NgxMatDateAdapter } from '@angular-material-components/datetime-picker';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -32,6 +34,13 @@ export class FormsListComponent implements OnInit, OnDestroy {
     sortOrder: new FormControl()
   });
 
+  searchForm = new FormGroup({
+    text: new FormControl()
+  });
+
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+
   private _destroy: Subscription[] = [];
 
   displayedColumns: string[] = ['title', 'userName', 'createdDate', 'deadline', 'tags', 'edit', 'delete'];
@@ -46,6 +55,8 @@ export class FormsListComponent implements OnInit, OnDestroy {
   constructor(private formsService: FormsService, private actRoute: ActivatedRoute, private router: Router,
     private authService: AuthService,
     private confirmationService: ConfirmationService,
+    private dateAdapter: DateAdapter<any>,
+    private ngxDateAdapter: NgxMatDateAdapter<any>,
     private translateService: TranslateService,
     private toastService: ToastService,
     private mediaObserver: MediaObserver) { }
@@ -54,6 +65,13 @@ export class FormsListComponent implements OnInit, OnDestroy {
     this._destroy.push(
       this.authService.user.subscribe(u => {
         this.user = u;
+      })
+    );
+
+    this._destroy.push(
+      this.translateService.onLangChange.subscribe(() => {
+        this.dateAdapter.setLocale(this.translateService.currentLang);
+        this.ngxDateAdapter.setLocale(this.translateService.currentLang);
       })
     );
 
@@ -80,14 +98,66 @@ export class FormsListComponent implements OnInit, OnDestroy {
         tags: qp["tags"] == null ? null : qp["tags"].split(',')
       };
       this.filters.setValue(queryValues);
-      this.dataSource.data = [];
+      this.searchForm.setValue({ text: queryValues.search });
+
+      if (queryValues.startDate != null) {
+        this.startDate = new Date(Date.parse(queryValues.startDate));
+      }
+      if (queryValues.endDate != null) {
+        this.endDate = new Date(Date.parse(queryValues.endDate));
+      }
 
       this.executeLoad();
 
     });
   }
 
+  onStartDateChanged(e: MatDatetimePickerInputEvent<Date>) {
+    this.startDate = !e.value ? undefined : e.value!;
+    if (this.startDate) {
+      this.filters.setValue({ ...this.filters.value, startDate: this.startDate.toISOString() });
+    } else {
+      this.filters.setValue({ ...this.filters.value, startDate: null });
+    }
+  }
+
+  onEndDateChanged(e: MatDatetimePickerInputEvent<Date>) {
+    this.endDate = !e.value ? undefined : e.value!;
+    if (this.endDate) {
+      this.filters.setValue({ ...this.filters.value, endDate: this.endDate.toISOString() });
+    } else {
+      this.filters.setValue({ ...this.filters.value, endDate: null });
+    }
+  }
+
+  onStartDateReset() {
+    this.startDate = undefined;
+    this.filters.setValue({ ...this.filters.value, startDate: null });
+  }
+
+  onEndDateReset() {
+    this.endDate = undefined;
+    this.filters.setValue({ ...this.filters.value, endDate: null });
+  }
+
+  onSearchSubmit() {
+    if (this.searchForm.value.text == null || this.searchForm.value.text.length === 0) {
+      return;
+    }
+    this.filters.controls.search.setValue(this.searchForm.value.text);
+  }
+
+  castToAny(x: any) {
+    return x as any;
+  }
+
+  clearSearch() {
+    this.searchForm.setValue({ text: null });
+    this.filters.setValue({ ...this.filters.value, search: null });
+  }
+
   private executeLoad() {
+    this.dataSource.data = [];
     const formFilters: FormListFilters = this.filters.value;
     this.formsService.getForms(formFilters).subscribe(x => {
       x.forms.forEach(f => {

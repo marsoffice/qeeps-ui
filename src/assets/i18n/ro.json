@@ -131,7 +131,10 @@
         "deadline": "Termen limită",
         "edit": "Editare",
         "delete": "Ștergere",
-        "formDeleted": "Formular șters"
+        "formDeleted": "Formular șters",
+        "search": "Căutare",
+        "endDate": "Dată sfârșit",
+        "startDate": "Dată început"
       }
     },
     "files": {
@@ -199,6 +202,9 @@
       "allRowValuesMustMatchColumnCount": "Numărul valorilor rândurilor trebuie sa coincidă cu numărul de coloane",
       "formRequired": "Formularul este obligatoriu",
       "invalidDeadline": "Termen limită invalid"
+    },
+    "getForms": {
+      "invalidSortColumn": "Coloană de sortare invalidă"
     }
   }
 }

@@ -27,6 +27,7 @@ import { EventsService } from 'src/app/services/events.service';
 import { Events } from 'src/app/models/events';
 import { ToastService } from 'src/app/shared/toast/services/toast.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxMatDateAdapter } from '@angular-material-components/datetime-picker';
 
 @Component({
   selector: 'app-create-edit-form',
@@ -71,6 +72,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     private mediaObserver: MediaObserver,
     private validationService: ValidationService,
     private eventsService: EventsService,
+    private ngxDateAdapter: NgxMatDateAdapter<any>,
     private formsService: FormsService,
     private accessService: AccessService,
     private toastService: ToastService,
@@ -100,6 +102,12 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       formAccesses: new FormControl([]),
       sendEmailNotifications: new FormControl(false)
     });
+
+    this._destroy.push(
+      this.translateService.onLangChange.subscribe(() => {
+        this.ngxDateAdapter.setLocale(this.translateService.currentLang);
+      })
+    );
 
     this._destroy.push(
       this.form.get('isRecurrent')!.valueChanges.subscribe(isr => {

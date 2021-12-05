@@ -229,7 +229,7 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-form-field appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.deadline' | translate}}</mat-label>
-        <input matInput [ngxMatDatetimePicker]="deadlinePicker" formControlName="deadline" [min]="now">
+        <input [readonly]="true" matInput [ngxMatDatetimePicker]="deadlinePicker" formControlName="deadline" [min]="now">
         <mat-datepicker-toggle matSuffix [for]="castToAny(deadlinePicker)"></mat-datepicker-toggle>
         <button (click)="form.get('deadline')?.reset()" matSuffix *ngIf="form.get('deadline')?.value != null" mat-icon-button type="button"
           color="warn">
@@ -247,7 +247,7 @@
 
       <mat-form-field *ngIf="form.get('isLocked')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.lockedUntil' | translate}}</mat-label>
-        <input matInput [ngxMatDatetimePicker]="lockedUntilPicker" formControlName="lockedUntilDate" [min]="now">
+        <input [readonly]="true" matInput [ngxMatDatetimePicker]="lockedUntilPicker" formControlName="lockedUntilDate" [min]="now">
         <mat-datepicker-toggle matSuffix [for]="castToAny(lockedUntilPicker)"></mat-datepicker-toggle>
         <button (click)="form.get('lockedUntilDate')?.reset()" matSuffix *ngIf="form.get('lockedUntilDate')?.value != null" mat-icon-button
           type="button" color="warn">
@@ -264,7 +264,7 @@
 
       <mat-form-field *ngIf="form.get('isPinned')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.pinnedUntil' | translate}}</mat-label>
-        <input matInput [ngxMatDatetimePicker]="pinnedUntilPicker" formControlName="pinnedUntilDate" [min]="now">
+        <input [readonly]="true" matInput [ngxMatDatetimePicker]="pinnedUntilPicker" formControlName="pinnedUntilDate" [min]="now">
         <mat-datepicker-toggle matSuffix [for]="castToAny(pinnedUntilPicker)"></mat-datepicker-toggle>
         <button (click)="form.get('pinnedUntilDate')?.reset()" matSuffix *ngIf="form.get('pinnedUntilDate')?.value != null" mat-icon-button
           type="button" color="warn">

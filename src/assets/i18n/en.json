@@ -131,7 +131,10 @@
         "deadline": "Deadline",
         "edit": "Edit",
         "delete": "Delete",
-        "formDeleted": "Form deleted"
+        "formDeleted": "Form deleted",
+        "search": "Search",
+        "endDate": "End Date",
+        "startDate": "Start Date"
       }
     },
     "files": {
@@ -200,6 +203,9 @@
       "allRowValuesMustMatchColumnCount": "All row values must match the column count",
       "formRequired": "Form is required",
       "invalidDeadline": "Invalid deadline"
+    },
+    "getForms": {
+      "invalidSortColumn": "Invalid sorting column"
     }
   }
 }
