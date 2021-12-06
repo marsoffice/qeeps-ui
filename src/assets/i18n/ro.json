@@ -108,7 +108,8 @@
         "access": "Acces",
         "multipleValues": "Valori multiple",
         "formSavedSuccessfully": "Formular salvat cu succes",
-        "deadline": "Termen limită"
+        "deadline": "Termen limită",
+        "keepPreviousDataOnRecurrence": "Păstrează datele anterioare"
       },
       "cell": {
         "required": "Obligatoriu",

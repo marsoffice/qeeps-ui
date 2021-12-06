@@ -10,7 +10,7 @@
     </mat-error>
 
     <h3>{{'ui.forms.createEditForm.general' | translate}}</h3>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="mff-p0">
       <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
       <input type="text" matInput required minlength="6" formControlName="title" />
       <mat-error *ngIf="form.get('title')!.hasError('required')">
@@ -26,7 +26,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="mff-p0">
       <mat-label>{{ 'ui.forms.createEditForm.description' | translate }}</mat-label>
       <textarea rows="8" matInput formControlName="description"></textarea>
       <mat-error *ngIf="form.get('description')!.hasError('backend')">
@@ -36,7 +36,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="mff-p0">
       <mat-label>{{'ui.forms.createEditForm.tags' | translate}}</mat-label>
       <mat-chip-list #chipListTags>
         <mat-chip *ngFor="let tag of form.get('tags')?.value; let i = index" [selectable]="false" [removable]="true"
@@ -51,7 +51,7 @@
 
     <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
     <div fxLayout="column">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="mff-p0">
         <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
         <input type="text" fxHide matInput />
       </mat-form-field>
@@ -82,7 +82,7 @@
                       </button>
                     </div>
                     <form fxFlex="1 1 auto" class="w-100" [formGroup]="getColumnFormGroup(column)" fxLayout="column" fxLayoutGap="5px">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field class="mff-p0" appearance="outline">
                         <mat-label>{{'ui.forms.createEditForm.columnName' | translate}}</mat-label>
                         <input type="text" required matInput formControlName="name" />
                         <mat-error *ngIf="columns.controls[i].get('name')?.hasError('required')">
@@ -90,7 +90,7 @@
                         </mat-error>
                       </mat-form-field>
 
-                      <mat-form-field appearance="outline">
+                      <mat-form-field class="mff-p0" appearance="outline">
                         <mat-label>{{'ui.forms.createEditForm.dataType' | translate}}</mat-label>
                         <mat-select formControlName="dataType" (selectionChange)="columnDataTypeChanged(getColumnFormGroup(column))">
                           <mat-option *ngFor="let cdt of columnDataTypesList" [value]="cdt.value">
@@ -99,7 +99,8 @@
                         </mat-select>
                       </mat-form-field>
 
-                      <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.File">
+                      <mat-form-field appearance="outline" class="mff-p0"
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.File">
                         <mat-label>{{'ui.forms.createEditForm.allowedExtensions' | translate}}</mat-label>
                         <mat-select multiple formControlName="allowedExtensions">
                           <mat-option *ngFor="let ext of allowedExtensions" [value]="ext">
@@ -108,7 +109,8 @@
                         </mat-select>
                       </mat-form-field>
 
-                      <mat-form-field appearance="outline" *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown">
+                      <mat-form-field appearance="outline" class="mff-p0"
+                        *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.Dropdown">
                         <mat-label>{{'ui.forms.createEditForm.dropdownOptions' | translate}}</mat-label>
                         <mat-chip-list [required]="true" #chipListOpts>
                           <mat-chip *ngFor="let opt of columns.controls[i].get('dropdownOptions')?.value; let j = index"
@@ -130,13 +132,13 @@
                         <mat-expansion-panel-header>{{'ui.forms.createEditForm.limits' | translate}}</mat-expansion-panel-header>
                         <div fxLayout="column">
                           <ng-container *ngIf="columns.controls[i].get('dataType')?.value === columnDataTypes.String">
-                            <mat-form-field appearance="outline">
+                            <mat-form-field appearance="outline" class="mff-p0">
                               <mat-label>{{'ui.forms.createEditForm.minLength' | translate}}</mat-label>
                               <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number" min="0" step="1" matInput
                                 [max]="columns.controls[i].get('maxLength')?.value == null ? null : columns.controls[i].get('maxLength')?.value"
                                 formControlName="minLength" />
                             </mat-form-field>
-                            <mat-form-field appearance="outline">
+                            <mat-form-field appearance="outline" class="mff-p0">
                               <mat-label>{{'ui.forms.createEditForm.maxLength' | translate}}</mat-label>
                               <input (change)="onLimitsChanged(i, columns.controls[i].value)" type="number"
                                 [min]="columns.controls[i].get('minLength')?.value == null ? '0' : columns.controls[i].get('minLength')?.value"
@@ -286,6 +288,9 @@
           {{ 'ui.forms.createEditForm.cronExpressionRequired' | translate }}
         </mat-error>
       </div>
+      <mat-slide-toggle *ngIf="form.get('isRecurrent')!.value" formControlName="keepPreviousDataOnRecurrence">
+        {{ 'ui.forms.createEditForm.keepPreviousDataOnRecurrence' | translate }}
+      </mat-slide-toggle>
     </div>
 
     <mat-slide-toggle formControlName="rowAppendDisabled">{{'ui.forms.createEditForm.rowAppendDisabled' | translate}}</mat-slide-toggle>

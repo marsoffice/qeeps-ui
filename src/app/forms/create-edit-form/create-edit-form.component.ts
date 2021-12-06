@@ -94,6 +94,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       rowAppendDisabled: new FormControl(false),
       isRecurrent: new FormControl(false),
       cronExpression: new FormControl(),
+      keepPreviousDataOnRecurrence: new FormControl(false),
       isPinned: new FormControl(false),
       pinnedUntilDate: new FormControl(),
       tags: new FormControl([]),
