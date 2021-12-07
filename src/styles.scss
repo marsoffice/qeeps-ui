@@ -113,6 +113,13 @@ mat-form-field.mff-p0 {
   word-break: break-all !important;
 }
 
+.notification-card {
+  word-break: break-all !important;
+  * {
+    word-break: break-all !important;
+  }
+}
+
 .wbba {
   word-break: break-all;
 }
