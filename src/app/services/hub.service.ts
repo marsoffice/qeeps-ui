@@ -78,11 +78,16 @@ export class HubService {
 
   start() {
     if (this.connection == null) {
-      return of<void>();
+      throw new Error('Connection is null');
     }
-    let startObs = of<void>();
+    let subject = new Subject<void>();
+    let startObs = subject.asObservable();
     if (this.connection!.state === 'Connected') {
       startObs = this.stop();
+    } else {
+      setTimeout(() => {
+        subject.next();
+      });
     }
     return startObs.pipe(
       switchMap(() => from(this.connection!.start()))
@@ -91,7 +96,7 @@ export class HubService {
 
   stop() {
     if (this.connection == null) {
-      return of<void>();
+      throw new Error('Connection is null');
     }
     return from(
       this.connection.stop()
