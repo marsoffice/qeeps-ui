@@ -166,6 +166,13 @@ export class FormsListComponent implements OnInit, OnDestroy {
     this.filters.setValue({ ...this.filters.value, search: null });
   }
 
+  userIsAdminOrOwner() {
+    if (!this.user?.roles) {
+      return false;
+    }
+    return this.user!.roles!.findIndex(r => r === "Admin" || r === "Owner") > -1;
+  }
+
   removeTag(i: number) {
     this.tags.splice(i, 1);
     this.filters.setValue({ ...this.filters.value, tags: this.tags == null || this.tags.length === 0 ? null : this.tags.join() });
