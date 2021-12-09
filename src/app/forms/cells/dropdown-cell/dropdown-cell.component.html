@@ -1,4 +1,4 @@
-<mat-form-field appearance="outline" class="h-100">
+<mat-form-field *ngIf="drawn" appearance="outline" class="h-100">
   <mat-label *ngIf="placeholder != null">{{placeholder}}</mat-label>
   <mat-select [required]="!editMode && column.isRequired" [multiple]="column.multipleValues" [formControl]="cellFormControl"
     (selectionChange)="change.emit($event)">

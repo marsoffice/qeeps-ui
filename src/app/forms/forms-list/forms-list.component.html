@@ -86,7 +86,7 @@
 
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> {{'ui.forms.formsList.edit' | translate}} </th>
-        <td align="center" mat-cell *matCellDef="let row">
+        <td align="left" mat-cell *matCellDef="let row">
           <button [routerLink]="'/forms/edit/' + row.id" *ngIf="row.userId === user?.id && userIsAdminOrOwner()" mat-icon-button
             color="accent">
             <mat-icon>edit</mat-icon>
@@ -96,7 +96,7 @@
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> {{'ui.forms.formsList.delete' | translate}} </th>
-        <td align="center" mat-cell *matCellDef="let row">
+        <td align="left" mat-cell *matCellDef="let row">
           <button (click)="deleteForm(row)" *ngIf="row.userId === user?.id && userIsAdminOrOwner()" mat-icon-button color="warn">
             <mat-icon>delete</mat-icon>
           </button>

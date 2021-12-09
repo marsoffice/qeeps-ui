@@ -151,7 +151,24 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
         this.id = params.id;
         if (this.id != null) {
           this.formsService.getForm(this.id).subscribe(f => {
+
+            if (f.columns != null) {
+              for (let c of f.columns) {
+                const colFg = this.createColumnFormGroup();
+                this.columns.push(colFg);
+              }
+            }
             this.form.patchValue(f);
+            if (f.rows != null) {
+              for (let r of f.rows) {
+                this.rows.push(
+                  this.createRowFormGroup()
+                );
+              }
+            }
+
+            this.form.patchValue(f);
+
             if (f.formAccesses != null && f.formAccesses.length > 0 && this.orgs != null) {
               const ids = f.formAccesses!.map(x => x.organisationId);
               for (const id of ids) {
@@ -337,7 +354,17 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       const rowFg = this.rows.at(i) as FormGroup;
       rowFg.get(col.reference)?.setValue(null);
     }
+  }
 
+  columnMultipleValuesChanged(column: FormGroup) {
+    const col = column.value;
+    if (this.rows.length === 0) {
+      return;
+    }
+    for (let i = 0; i < this.rows.length; i++) {
+      const rowFg = this.rows.at(i) as FormGroup;
+      rowFg.get(col.reference)?.setValue(null);
+    }
   }
 
   reorderColumns(event: CdkDragDrop<any>) {
@@ -398,7 +425,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     return o.children != null && o.children.length > 0;
   }
 
-  private createColumnFormGroup(reference: string) {
+  private createColumnFormGroup(reference: string | undefined = undefined) {
     return new FormGroup({
       name: new FormControl(null, [Validators.required]),
       isRequired: new FormControl(false),
