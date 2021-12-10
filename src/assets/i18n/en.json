@@ -14,7 +14,11 @@
       "reject": "Reject"
     },
     "toast": {
-      "open": "Open"
+      "open": "Open",
+      "severity_success": "Success",
+      "severity_warn": "Warn",
+      "severity_info": "Info",
+      "severity_error": "Error"
     },
     "notifications": {
       "markAllAsRead": "Mark all as read",

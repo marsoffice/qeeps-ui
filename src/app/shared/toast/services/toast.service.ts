@@ -31,6 +31,9 @@ export class ToastService {
 
   private show(message: string, title: string | null, className: string) {
     const sub = new Subject<void>();
+    if (title == null) {
+      title = this.translateService.instant(`ui.toast.${className.replace('-', '_')}`);
+    }
     this.snackBar.openFromComponent(ToastComponent, {
       horizontalPosition: 'end',
       verticalPosition: 'bottom',

@@ -14,7 +14,11 @@
       "reject": "Refuz"
     },
     "toast": {
-      "open": "Deschidere"
+      "open": "Deschidere",
+      "severity_success": "Success",
+      "severity_warn": "Atenție",
+      "severity_info": "Informație",
+      "severity_error": "Eroare"
     },
     "notifications": {
       "markAllAsRead": "Marcați toate ca citite",
