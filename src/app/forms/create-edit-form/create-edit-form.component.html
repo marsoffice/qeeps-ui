@@ -302,10 +302,16 @@
   </mat-slide-toggle>
 
   <h3>{{'ui.forms.createEditForm.access' | translate}}</h3>
-  <mat-form-field class="mff-p0" appearance="outline">
-    <mat-label>{{'ui.forms.createEditForm.search' | translate}}</mat-label>
-    <input (keyup)="onOrganisationsKeyUp($event)" type="text" matInput />
-  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="flex-start center">
+    <mat-form-field fxFlex="1 1 auto" class="mff-p0" appearance="outline">
+      <mat-label>{{'ui.forms.createEditForm.search' | translate}}</mat-label>
+      <input #orgSearchInput (keyup)="onOrganisationsKeyUp($event)" type="text" matInput />
+    </mat-form-field>
+    <button (click)="clearOrgSearch(orgSearchInput)" type="button" *ngIf="orgSearchTerm != null && orgSearchTerm.length > 0" mat-icon-button
+      color="warn">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
   <mat-tree [dataSource]="accessDataSource" [treeControl]="accessTreeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <mat-checkbox [style.color]="isSearchResult(node.name) ? 'red' : null" [checked]="accessSelection.isSelected(node.id)"

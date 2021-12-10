@@ -433,6 +433,13 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     }
     const term = (e.target as HTMLInputElement).value;
     this.orgSearchTerm = term.toLowerCase();
+    this.filterOrganisationsBySearchTerm();
+  }
+
+  private filterOrganisationsBySearchTerm() {
+    if (!this.orgs) {
+      return;
+    }
     this.accessDataSource.data = this.filterOrganisations();
     if (this.orgSearchTerm == null || this.orgSearchTerm.length === 0) {
       for (const o of this.orgs) {
@@ -451,6 +458,12 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       return false;
     }
     return name.toLowerCase().includes(this.orgSearchTerm);
+  }
+
+  clearOrgSearch(input: HTMLInputElement) {
+    this.orgSearchTerm = undefined;
+    input.value = '';
+    this.filterOrganisationsBySearchTerm();
   }
 
   private expandRec(org: OrganisationDto) {
