@@ -446,6 +446,13 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  isSearchResult(name: string) {
+    if (this.orgSearchTerm == null || this.orgSearchTerm.length === 0) {
+      return false;
+    }
+    return name.toLowerCase().includes(this.orgSearchTerm);
+  }
+
   private expandRec(org: OrganisationDto) {
     this.accessTreeControl.expand(org);
     if (org.children != null) {

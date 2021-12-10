@@ -308,7 +308,8 @@
   </mat-form-field>
   <mat-tree [dataSource]="accessDataSource" [treeControl]="accessTreeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      <mat-checkbox [checked]="accessSelection.isSelected(node.id)" (change)="accessSelection.select(node.id)">
+      <mat-checkbox [style.color]="isSearchResult(node.name) ? 'red' : null" [checked]="accessSelection.isSelected(node.id)"
+        (change)="accessSelection.select(node.id)">
         {{node.name}}
       </mat-checkbox>
     </mat-tree-node>
@@ -319,7 +320,8 @@
             {{accessTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
-        <mat-checkbox [checked]="accessSelection.isSelected(node.id)" (change)="accessSelection.select(node.id)">
+        <mat-checkbox [style.color]="isSearchResult(node.name) ? 'red' : null" [checked]="accessSelection.isSelected(node.id)"
+          (change)="accessSelection.select(node.id)">
           {{node.name}}
         </mat-checkbox>
       </div>
