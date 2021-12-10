@@ -109,7 +109,8 @@
         "multipleValues": "Valori multiple",
         "formSavedSuccessfully": "Formular salvat cu succes",
         "deadline": "Termen limită",
-        "keepPreviousDataOnRecurrence": "Păstrează datele anterioare"
+        "keepPreviousDataOnRecurrence": "Păstrează datele anterioare",
+        "search": "Căutare"
       },
       "cell": {
         "required": "Obligatoriu",

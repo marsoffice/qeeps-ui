@@ -109,7 +109,8 @@
         "multipleValues": "Multiple values",
         "formSavedSuccessfully": "Form saved successfully",
         "deadline": "Deadline",
-        "keepPreviousDataOnRecurrence": "Keep previous data"
+        "keepPreviousDataOnRecurrence": "Keep previous data",
+        "search": "Search"
       },
       "cell": {
         "required": "Required",

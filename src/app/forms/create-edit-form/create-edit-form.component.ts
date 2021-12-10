@@ -54,6 +54,8 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
 
   isMobile = false;
 
+  orgSearchTerm: string | undefined;
+
   private _destroy: Subscription[] = [];
 
   now = new Date();
@@ -424,6 +426,60 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   organisationHasChild(_: number, o: OrganisationDto) {
     return o.children != null && o.children.length > 0;
   }
+
+  onOrganisationsKeyUp(e: KeyboardEvent) {
+    if (!this.orgs) {
+      return;
+    }
+    const term = (e.target as HTMLInputElement).value;
+    this.orgSearchTerm = term.toLowerCase();
+    this.accessDataSource.data = this.filterOrganisations();
+  }
+
+  private filterOrganisations() {
+    if (this.orgSearchTerm == null || this.orgSearchTerm.length === 0) {
+      return this.orgs!;
+    }
+    const root: OrganisationDto = {
+      name: '',
+      id: '',
+      children: this.cloneOrganisationsArray(this.orgs!)
+    };
+    this.filterOrganisationsRec(root, this.orgSearchTerm!);
+    return root.children!;
+  }
+
+  private cloneOrganisationsArray(arr: OrganisationDto[]) {
+    const newArr: OrganisationDto[] = [];
+    for (const obj of arr) {
+      const objClone = { ...obj };
+      if (objClone.children) {
+        objClone.children = this.cloneOrganisationsArray(objClone.children);
+      }
+      newArr.push(objClone);
+    }
+    return newArr;
+  }
+
+  private filterOrganisationsRec(org: OrganisationDto, term: string) {
+    let ok = false;
+    if (org.name.toLowerCase().includes(term)) {
+      ok = true;
+    }
+    if (org.children != null) {
+      const filtered: OrganisationDto[] = [];
+      for (const child of org.children) {
+        const childContainsSearch = this.filterOrganisationsRec(child, term);
+        if (childContainsSearch) {
+          ok = true;
+          filtered.push(child);
+        }
+      }
+      org.children = filtered;
+    }
+    return ok;
+  }
+
 
   private createColumnFormGroup(reference: string | undefined = undefined) {
     return new FormGroup({
