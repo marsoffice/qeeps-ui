@@ -434,6 +434,25 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
     const term = (e.target as HTMLInputElement).value;
     this.orgSearchTerm = term.toLowerCase();
     this.accessDataSource.data = this.filterOrganisations();
+    if (this.orgSearchTerm == null || this.orgSearchTerm.length === 0) {
+      for (const o of this.orgs) {
+        this.accessTreeControl.collapseAll();
+        this.accessTreeControl.expand(o);
+      }
+    } else {
+      for (const o of this.accessDataSource.data) {
+        this.expandRec(o);
+      }
+    }
+  }
+
+  private expandRec(org: OrganisationDto) {
+    this.accessTreeControl.expand(org);
+    if (org.children != null) {
+      for (const o of org.children) {
+        this.expandRec(o);
+      }
+    }
   }
 
   private filterOrganisations() {
