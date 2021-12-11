@@ -1,3 +1,3 @@
 export interface AcceptContractDto {
-  signedContractHtml: string;
+  signatureImage: string;
 }

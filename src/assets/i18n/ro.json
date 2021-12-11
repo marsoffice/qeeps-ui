@@ -192,7 +192,8 @@
     },
     "contract": {
       "finish": "Finalizare",
-      "reset": "Resetare"
+      "reset": "Resetare",
+      "contractSigned": "Contract semnat cu succes"
     }
   },
   "notifications": {

@@ -1,5 +1,6 @@
 import { NgSignaturePadOptions, SignaturePadComponent } from '@almothafar/angular-signature-pad';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Claims } from '../models/claims';
 import { AccessService } from '../services/access.service';
@@ -23,7 +24,7 @@ export class ContractComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
 
   constructor(private accessService: AccessService, private toastService: ToastService,
-    private authService: AuthService) { }
+    private authService: AuthService, private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.accessService.getDocument('contract').subscribe({
@@ -55,6 +56,13 @@ export class ContractComponent implements OnInit, OnDestroy {
 
   saveSignedContract() {
     const img = this.signatureComponent!.toDataURL();
-    console.log(img);
+    this.accessService.acceptContract({ signatureImage: img }).subscribe({
+      next: () => {
+        this.toastService.showSuccess(this.translateService.instant('ui.contract.contractSigned'));
+      },
+      error: e => {
+        this.toastService.fromError(e);
+      }
+    });
   }
 }

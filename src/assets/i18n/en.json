@@ -193,7 +193,8 @@
     },
     "contract": {
       "finish": "Finish",
-      "reset": "Reset"
+      "reset": "Reset",
+      "contractSigned": "Contract signed successfully"
     }
   },
   "notifications": {
