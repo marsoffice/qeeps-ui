@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Claims } from './models/claims';
 import { Events } from './models/events';
+import { UserDto } from './models/user.dto';
 import { AccessService } from './services/access.service';
 import { AuthService } from './services/auth.service';
 import { EventsService } from './services/events.service';
@@ -30,6 +31,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   isMobile = true;
   private _destroy: Subscription[] = [];
   user: Claims | null = null;
+  userProfile: UserDto | undefined;
+
   private windowResizeTimeout: any | undefined;
 
   constructor(private msalService: MsalService, private mediaObserver: MediaObserver,
@@ -50,6 +53,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.initHub();
 
+    this.initUserProfileCheck();
+
     this.initUserPreferences();
 
     this.initMediaObserver();
@@ -61,6 +66,21 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.stateService.set('contentHeight', Math.floor(this.drawerContent.nativeElement.clientHeight));
     window.addEventListener('resize', this.onWindowResize);
+  }
+
+  private initUserProfileCheck() {
+    this._destroy.push(
+      this.authService.user.subscribe(u => {
+        if (u == null) {
+          return;
+        }
+        this._destroy.push(
+          this.accessService.myProfile().subscribe(up => {
+            this.userProfile = up;
+          })
+        );
+      })
+    );
   }
 
   private onWindowResize = () => {

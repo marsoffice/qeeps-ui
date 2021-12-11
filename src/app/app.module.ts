@@ -61,6 +61,7 @@ import { UserPreferencesDto } from './models/user-preferences.dto';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18nService } from './services/paginator-i18n.service';
 import { QuillModule } from 'ngx-quill';
+import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 
 
 registerLocaleData(localeRO, 'ro');
@@ -139,6 +140,7 @@ if (upLs != null) {
     MatBottomSheetModule,
     ConfirmationModule,
     QuillModule.forRoot(),
+    AngularSignaturePadModule,
 
     TranslateModule.forRoot({
       loader: {

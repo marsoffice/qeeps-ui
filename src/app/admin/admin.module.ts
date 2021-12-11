@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     SharedModule,
     ReactiveFormsModule,
     QuillModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule
   ]
 })
 export class AdminModule { }

@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@almothafar/angular-signature-pad": "^3.0.0-beta.7",
     "@angular-material-components/datetime-picker": "^7.0.0",
     "@angular/animations": "~13.0.2",
     "@angular/cdk": "~13.0.2",

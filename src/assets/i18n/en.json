@@ -187,7 +187,8 @@
     },
     "admin": {
       "editContract": {
-        "save": "Save"
+        "save": "Save",
+        "contractSavedSuccesfully": "Contract saved succesfully"
       }
     }
   },

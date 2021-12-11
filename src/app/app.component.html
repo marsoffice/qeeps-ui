@@ -3,10 +3,11 @@
   <mat-drawer-container fxFlex="1 1 auto" autosize>
     <mat-drawer [disableClose]="!isMobile" class="p-0 m-0" #sidenav [mode]="isMobile ? 'over' : 'side'"
       [opened]="!isMobile && user != null">
-      <app-sidenav [sidenav]="sidenav" [user]="user" *ngIf="user"></app-sidenav>
+      <app-sidenav [sidenav]="sidenav" [user]="user" *ngIf="user && (userProfile == null || userProfile!.hasSignedContract)"></app-sidenav>
     </mat-drawer>
     <div id="content" #drawerContent>
-      <router-outlet *ngIf="!isIframe"></router-outlet>
+      <router-outlet *ngIf="!isIframe && (userProfile == null || userProfile!.hasSignedContract)"></router-outlet>
+      <app-contract *ngIf="userProfile != null && !userProfile!.hasSignedContract"></app-contract>
     </div>
   </mat-drawer-container>
   <app-footer></app-footer>
