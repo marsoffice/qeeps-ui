@@ -52,4 +52,9 @@ export class ContractComponent implements OnInit, OnDestroy {
     }
     return this.signatureComponent!.isEmpty();
   }
+
+  saveSignedContract() {
+    const img = this.signatureComponent!.toDataURL();
+    console.log(img);
+  }
 }

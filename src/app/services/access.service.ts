@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
+import { AcceptContractDto } from '../models/accept-contract.dto';
 import { DocumentDto } from '../models/document.dto';
 import { OrganisationDto } from '../models/organisation.dto';
 import { UserDto } from '../models/user.dto';
@@ -44,8 +45,8 @@ export class AccessService {
     );
   }
 
-  acceptContract() {
-    return this.http.put('/api/access/acceptContract', null).pipe(
+  acceptContract(dto: AcceptContractDto) {
+    return this.http.put('/api/access/acceptContract', dto).pipe(
       tap(() => {
         if (this.userProfileSubject.value != null) {
           this.userProfileSubject.next({
