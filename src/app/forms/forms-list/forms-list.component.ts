@@ -105,12 +105,15 @@ export class FormsListComponent implements OnInit, OnDestroy {
       };
       this.filters.setValue(queryValues);
       this.searchForm.setValue({ text: queryValues.search });
-
       if (queryValues.startDate != null) {
         this.startDate = new Date(Date.parse(queryValues.startDate));
+      } else {
+        this.startDate = undefined;
       }
       if (queryValues.endDate != null) {
         this.endDate = new Date(Date.parse(queryValues.endDate));
+      } else {
+        this.endDate = undefined;
       }
 
       if (queryValues.tags != null && queryValues.tags.length > 0) {
