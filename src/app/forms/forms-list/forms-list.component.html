@@ -86,13 +86,14 @@
       <ng-container matColumnDef="commands">
         <th mat-header-cell *matHeaderCellDef> {{'ui.forms.formsList.commands' | translate}} </th>
         <td align="left" mat-cell *matCellDef="let row">
-          <button [routerLink]="'/forms/edit/' + row.id" *ngIf="row.userId === user?.id && userIsAdminOrOwner()" mat-icon-button
-            color="accent">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button (click)="deleteForm(row)" *ngIf="row.userId === user?.id && userIsAdminOrOwner()" mat-icon-button color="warn">
-            <mat-icon>delete</mat-icon>
-          </button>
+          <ng-container *ngIf="row.userId === user?.id && userIsAdminOrOwner()">
+            <button [routerLink]="'/forms/edit/' + row.id" mat-icon-button color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteForm(row)" mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </ng-container>
         </td>
       </ng-container>
 
