@@ -184,6 +184,11 @@
     },
     "error": {
       "unknownError": "Unknown error"
+    },
+    "admin": {
+      "editContract": {
+        "save": "Save"
+      }
     }
   },
   "notifications": {
