@@ -15,7 +15,7 @@
     },
     "toast": {
       "open": "Deschidere",
-      "severity_success": "Success",
+      "severity_success": "Succes",
       "severity_warn": "Atenție",
       "severity_info": "Informație",
       "severity_error": "Eroare"
