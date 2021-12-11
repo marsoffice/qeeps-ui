@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuillModule
   ]
 })
 export class AdminModule { }

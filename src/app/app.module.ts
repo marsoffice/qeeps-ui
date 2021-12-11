@@ -60,7 +60,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { UserPreferencesDto } from './models/user-preferences.dto';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18nService } from './services/paginator-i18n.service';
-
+import { QuillModule } from 'ngx-quill';
 
 
 registerLocaleData(localeRO, 'ro');
@@ -138,6 +138,7 @@ if (upLs != null) {
     MatBadgeModule,
     MatBottomSheetModule,
     ConfirmationModule,
+    QuillModule.forRoot(),
 
     TranslateModule.forRoot({
       loader: {
