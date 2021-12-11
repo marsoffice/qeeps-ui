@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   private _destroy: Subscription[] = [];
-  user: Claims | null = null;
+  user: Claims | undefined;
   userRoles: string[] | null = null;
   organisations: OrganisationDto[] | null = null;
   photo: SafeUrl | null = null;

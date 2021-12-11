@@ -190,6 +190,10 @@
         "save": "Save",
         "contractSavedSuccesfully": "Contract saved succesfully"
       }
+    },
+    "contract": {
+      "finish": "Finish",
+      "reset": "Reset"
     }
   },
   "notifications": {

@@ -52,7 +52,7 @@ export class FormsListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['title', 'userName', 'createdDate', 'deadline', 'tags', 'commands'];
   dataSource = new MatTableDataSource<FormDto>([]);
   total = 0;
-  user: Claims | null = null;
+  user: Claims | undefined;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;

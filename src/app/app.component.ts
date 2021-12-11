@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   loginDisplay = false;
   isMobile = true;
   private _destroy: Subscription[] = [];
-  user: Claims | null = null;
+  user: Claims | undefined;
   userProfile: UserDto | undefined;
 
   private windowResizeTimeout: any | undefined;

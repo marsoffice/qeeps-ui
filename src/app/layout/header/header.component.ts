@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
   @Input() sidenav: MatDrawer | undefined;
-  user: Claims | null = null;
+  user: Claims | undefined;
   private _destroy: Subscription[] = [];
   languages = environment.languages;
   photo: SafeUrl | null = null;
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router, public translateService: TranslateService,
     private userPreferencesService: UserPreferencesService) {
 
-    }
+  }
 
   ngOnInit(): void {
     this._destroy.push(
@@ -69,13 +69,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   changeLanguage(lang: string): void {
     this.userPreferencesService.saveUserPreferences(
-      {...this.userPreferences, preferredLanguage: lang}
+      { ...this.userPreferences, preferredLanguage: lang }
     ).subscribe();
   }
 
   onDarkModeChange(event: MatSlideToggleChange) {
     this.userPreferencesService.saveUserPreferences(
-      {...this.userPreferences, useDarkTheme: event.checked}
+      { ...this.userPreferences, useDarkTheme: event.checked }
     ).subscribe();
   }
 }

@@ -1,3 +1,19 @@
-<div [innerHTML]="contractHtml" class="p-1">
+<div fxLayout="column" class="p-1" fxLayoutGap="1rem">
+  <div [innerHTML]="contractHtml"></div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>{{today | date}}</div>
+    <div>{{user?.name}}</div>
+  </div>
+  <div class="signature-wrapper">
+    <signature-pad #sign [options]="signatureOptions"></signature-pad>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+    <button [disabled]="signatureIsEmpty" mat-raised-button color="accent">
+      {{'ui.contract.finish' | translate}}
+    </button>
+    <button (click)="sign.clear()" [disabled]="signatureIsEmpty" color="warn" type="button" mat-raised-button>
+      {{'ui.contract.reset' | translate}}
+    </button>
+  </div>
 
 </div>

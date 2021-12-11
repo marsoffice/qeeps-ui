@@ -36,7 +36,7 @@ export class AuthService {
     return this.userSubject.asObservable().pipe(
       map(x => {
         if (x == null) {
-          return null;
+          return undefined;
         }
         return {
           id: x.localAccountId,

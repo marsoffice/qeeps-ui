@@ -189,6 +189,10 @@
         "save": "Salvare",
         "contractSavedSuccesfully": "Contract salvat cu succes"
       }
+    },
+    "contract": {
+      "finish": "Finalizare",
+      "reset": "Resetare"
     }
   },
   "notifications": {
