@@ -44,10 +44,15 @@ export class AccessService {
     );
   }
 
-  updateMyProfile(payload: UserDto) {
-    return this.http.put('/api/access/myProfile', payload).pipe(
+  acceptContract() {
+    return this.http.put('/api/access/acceptContract', null).pipe(
       tap(() => {
-        this.userProfileSubject.next(payload);
+        if (this.userProfileSubject.value != null) {
+          this.userProfileSubject.next({
+            ...this.userProfileSubject.value!,
+            hasSignedContract: true
+          });
+        }
       })
     );
   }
