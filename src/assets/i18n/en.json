@@ -135,13 +135,12 @@
         "tags": "Tags",
         "userName": "Author",
         "deadline": "Deadline",
-        "edit": "Edit",
-        "delete": "Delete",
         "formDeleted": "Form deleted",
         "search": "Search",
         "endDate": "End Date",
         "startDate": "Start Date",
-        "addTags": "Add Tags"
+        "addTags": "Add Tags",
+        "commands": "Commands"
       }
     },
     "files": {

@@ -49,7 +49,7 @@ export class FormsListComponent implements OnInit, OnDestroy {
 
   private _destroy: Subscription[] = [];
 
-  displayedColumns: string[] = ['title', 'userName', 'createdDate', 'deadline', 'tags', 'edit', 'delete'];
+  displayedColumns: string[] = ['title', 'userName', 'createdDate', 'deadline', 'tags', 'commands'];
   dataSource = new MatTableDataSource<FormDto>([]);
   total = 0;
   user: Claims | null = null;

@@ -135,13 +135,12 @@
         "tags": "Etichete",
         "userName": "Autor",
         "deadline": "Termen limită",
-        "edit": "Editare",
-        "delete": "Ștergere",
         "formDeleted": "Formular șters",
         "search": "Căutare",
         "endDate": "Dată sfârșit",
         "startDate": "Dată început",
-        "addTags": "Adăugare etichete"
+        "addTags": "Adăugare etichete",
+        "commands": "Comenzi"
       }
     },
     "files": {
