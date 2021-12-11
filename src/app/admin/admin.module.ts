@@ -7,6 +7,7 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { QuillModule } from 'ngx-quill';
     AdminRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    QuillModule
+    QuillModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }

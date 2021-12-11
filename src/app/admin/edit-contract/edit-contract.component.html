@@ -1,1 +1,6 @@
-<quill-editor [styles]="{flex: '1 1 auto', minHeight: '0', maxHeight: '100%'}"></quill-editor>
+<div fxLayout="column" class="h-100" fxLayoutAlign="flex-start center">
+  <quill-editor [styles]="{flex: '1 1 auto', minHeight: '0', maxHeight: '100%'}"></quill-editor>
+  <button mat-raised-button color="accent">
+    {{'ui.admin.editContract.save' | translate}}
+  </button>
+</div>
