@@ -29,7 +29,7 @@ export class ContractComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.accessService.getDocument('contract').subscribe({
       next: doc => {
-        this.contractHtml = doc.content;
+        this.contractHtml = doc?.content;
       },
       error: e => {
         this.toastService.fromError(e);
