@@ -3,4 +3,6 @@ export interface UserDto {
   email: string;
   hasSignedContract: boolean;
   name: string;
+  isDisabled?: boolean;
+  roles?: string[];
 }
