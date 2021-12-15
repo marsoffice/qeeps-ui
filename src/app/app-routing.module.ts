@@ -8,7 +8,6 @@ import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FromNotificationComponent } from './notifications/from-notification/from-notification.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthRoleGuard } from './services/auth-role.guard';
 
 const routes: Routes = [
   {
@@ -42,14 +41,6 @@ const routes: Routes = [
     path: 'forms',
     loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
     canActivate: [MsalGuard],
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [MsalGuard, AuthRoleGuard],
-    data: {
-      roles: ["Owner"]
-    }
   },
   {
     path: '**',

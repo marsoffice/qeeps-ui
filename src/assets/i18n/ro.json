@@ -57,8 +57,6 @@
       "forms": "Formulare",
       "formsList": "Lista formulare",
       "createForm": "Creare formular",
-      "admin": "Admin",
-      "editContract": "Editare contract",
       "calendar": "Calendar"
     },
     "forms": {
@@ -183,17 +181,6 @@
     },
     "error": {
       "unknownError": "Eroare necunoscută"
-    },
-    "admin": {
-      "editContract": {
-        "save": "Salvare",
-        "contractSavedSuccesfully": "Contract salvat cu succes"
-      }
-    },
-    "contract": {
-      "finish": "Finalizare",
-      "reset": "Resetare",
-      "contractSigned": "Contract semnat cu succes"
     }
   },
   "notifications": {

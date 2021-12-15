@@ -57,8 +57,6 @@
       "forms": "Forms",
       "formsList": "Forms List",
       "createForm": "Create Form",
-      "admin": "Admin",
-      "editContract": "Edit contract",
       "calendar": "Calendar"
     },
     "forms": {
@@ -184,17 +182,6 @@
     },
     "error": {
       "unknownError": "Unknown error"
-    },
-    "admin": {
-      "editContract": {
-        "save": "Save",
-        "contractSavedSuccesfully": "Contract saved succesfully"
-      }
-    },
-    "contract": {
-      "finish": "Finish",
-      "reset": "Reset",
-      "contractSigned": "Contract signed successfully"
     }
   },
   "notifications": {

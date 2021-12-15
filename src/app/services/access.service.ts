@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
-import { AcceptContractDto } from '../models/accept-contract.dto';
-import { DocumentDto } from '../models/document.dto';
 import { OrganisationDto } from '../models/organisation.dto';
 import { UserDto } from '../models/user.dto';
 
@@ -22,14 +20,6 @@ export class AccessService {
     return this.http.get<OrganisationDto[]>('/api/access/myFullOrganisationsTree');
   }
 
-  getDocument(id: string) {
-    return this.http.get<DocumentDto>('/api/access/documents/' + id);
-  }
-
-  saveDocument(payload: DocumentDto) {
-    return this.http.post('/api/access/documents', payload);
-  }
-
   myProfile() {
     return this.userProfileSubject.asObservable().pipe(
       switchMap(x => {
@@ -41,19 +31,6 @@ export class AccessService {
           );
         }
         return of(x);
-      })
-    );
-  }
-
-  acceptContract(dto: AcceptContractDto) {
-    return this.http.put('/api/access/acceptContract', dto).pipe(
-      tap(() => {
-        if (this.userProfileSubject.value != null) {
-          this.userProfileSubject.next({
-            ...this.userProfileSubject.value!,
-            hasSignedContract: true
-          });
-        }
       })
     );
   }

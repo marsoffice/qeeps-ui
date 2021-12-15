@@ -6,9 +6,6 @@
 @include mat.core();
 
 @import "./themes/qeeps.scss";
-@import "~quill/dist/quill.core.css";
-@import "~quill/dist/quill.bubble.css";
-
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -131,8 +128,3 @@ mat-form-field.mff-p0 {
 }
 
 @import "./app/shared/mat-table-responsive/mat-table-responsive.directive.scss";
-
-.ql-tooltip {
-  max-width: 300px;
-  z-index: 9999;
-}

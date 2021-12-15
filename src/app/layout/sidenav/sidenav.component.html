@@ -32,23 +32,6 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel class="transparent" [expanded]="true" *ngIf="user!.roles!.indexOf('Owner') > -1">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{'ui.sidenav.admin' | translate}}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
-        <button (click)="closeSidenavIfMobile()" class="w-100" mat-flat-button routerLink="/admin/edit-contract"
-          routerLinkActive="bg-primary text-accent">
-          <div fxLayout="row" fxLayoutGap="2px" fxLayoutAlign="start center">
-            <mat-icon>gavel</mat-icon>
-            <span>{{'ui.sidenav.editContract' | translate}}</span>
-          </div>
-        </button>
-      </div>
-    </mat-expansion-panel>
-
     <mat-expansion-panel class="transparent" [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>

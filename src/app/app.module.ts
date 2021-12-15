@@ -51,7 +51,6 @@ import { FromNotificationComponent } from './notifications/from-notification/fro
 import { FunctionProxyInterceptor } from './services/function-proxy.interceptor';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LegalComponent } from './layout/legal/legal.component';
-import { ContractComponent } from './contract/contract.component';
 import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 import localeRO from '@angular/common/locales/ro';
 import { registerLocaleData } from '@angular/common';
@@ -60,8 +59,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { UserPreferencesDto } from './models/user-preferences.dto';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorI18nService } from './services/paginator-i18n.service';
-import { QuillModule } from 'ngx-quill';
-import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 
 
 registerLocaleData(localeRO, 'ro');
@@ -116,7 +113,6 @@ if (upLs != null) {
     NotificationsComponent,
     FromNotificationComponent,
     LegalComponent,
-    ContractComponent,
   ],
   imports: [
     SharedModule,
@@ -139,8 +135,6 @@ if (upLs != null) {
     MatBadgeModule,
     MatBottomSheetModule,
     ConfirmationModule,
-    QuillModule.forRoot(),
-    AngularSignaturePadModule,
 
     TranslateModule.forRoot({
       loader: {
