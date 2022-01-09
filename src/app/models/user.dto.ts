@@ -3,5 +3,4 @@ export interface UserDto {
   email: string;
   name: string;
   isDisabled?: boolean;
-  roles?: string[];
 }
