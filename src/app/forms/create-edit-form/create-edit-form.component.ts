@@ -35,6 +35,7 @@ import { NgxMatDateAdapter } from '@angular-material-components/datetime-picker'
   styleUrls: ['./create-edit-form.component.scss']
 })
 export class CreateEditFormComponent implements OnInit, OnDestroy {
+  isLoading = false;
   form: FormGroup;
   columns: FormArray;
   rows: FormArray;
@@ -194,6 +195,7 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    this.isLoading = true;
     let obs: Observable<FormDto>;
     let isCreate = true;
     if (this.id == null) {
@@ -221,6 +223,9 @@ export class CreateEditFormComponent implements OnInit, OnDestroy {
       error: e => {
         this.validationService.tryAddFormErrorsFromHttpError(e, this.form);
         this.eventsService.publish(Events.ScrollPageToTop);
+      },
+      complete: () => {
+        this.isLoading = false;
       }
     });
   }

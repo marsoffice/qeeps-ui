@@ -338,6 +338,6 @@
   </mat-tree>
 
   <div fxLayout="row" fxLayoutAlign="center">
-    <button [disabled]="form.invalid" type="submit" mat-raised-button color="accent">{{'ui.forms.createEditForm.save' | translate}}</button>
+    <button [disabled]="form.invalid || isLoading" type="submit" mat-raised-button color="accent">{{'ui.forms.createEditForm.save' | translate}}</button>
   </div>
 </form>
