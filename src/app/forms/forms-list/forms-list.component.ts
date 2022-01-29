@@ -195,21 +195,31 @@ export class FormsListComponent implements OnInit, OnDestroy {
   private executeLoad() {
     this.dataSource.data = [];
     const formFilters: FormListFilters = this.filters.value;
-    this.formsService.getForms(formFilters).subscribe(x => {
-      x.forms.forEach(f => {
-        f.isPinned = false;
-        f.pinnedUntilDate = undefined;
-      });
-      this.dataSource.data = [...this.dataSource.data, ...x.forms];
-      this.total = x.total;
+    this.formsService.getForms(formFilters).subscribe({
+      next: x => {
+        x.forms.forEach(f => {
+          f.isPinned = false;
+          f.pinnedUntilDate = undefined;
+        });
+        this.dataSource.data = [...this.dataSource.data, ...x.forms];
+        this.total = x.total;
+      },
+      error: e => {
+        this.toastService.fromError(e);
+      }
     });
     if (formFilters.endDate == null && formFilters.startDate == null && formFilters.page === 0 && formFilters.search == null &&
       formFilters.tags == null) {
-      this.formsService.getPinnedForms().subscribe(x => {
-        x.forEach(f => {
-          f.isPinned = true;
-        });
-        this.dataSource.data = [...x, ...this.dataSource.data];
+      this.formsService.getPinnedForms().subscribe({
+        next: x => {
+          x.forEach(f => {
+            f.isPinned = true;
+          });
+          this.dataSource.data = [...x, ...this.dataSource.data];
+        },
+        error: e => {
+          this.toastService.fromError(e);
+        }
       });
     }
   }
