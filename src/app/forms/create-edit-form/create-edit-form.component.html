@@ -10,57 +10,65 @@
     </mat-error>
 
     <h3>{{'ui.forms.createEditForm.general' | translate}}</h3>
-    <mat-form-field appearance="outline" class="mff-p0">
-      <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
-      <input type="text" matInput required minlength="6" formControlName="title" />
-      <mat-error *ngIf="form.get('title')!.hasError('required')">
-        {{ 'ui.forms.createEditForm.titleRequired' | translate }}
-      </mat-error>
-      <mat-error *ngIf="form.get('title')!.hasError('minlength')">
-        {{ 'ui.forms.createEditForm.titleTooShort' | translate: {chars: form.get('title')!.getError('minlength').requiredLength} }}
-      </mat-error>
-      <mat-error *ngIf="form.get('title')!.hasError('backend')">
-        <mat-error *ngFor="let err of form.get('title')!.getError('backend')">
-          {{ err.message | translate:err.placeholderValues }}
+    <div class="w-100">
+      <mat-form-field appearance="outline" class="mff-p0" fxFlex="100%" fxFlex.gt-xs="75%" fxFlex.gt-md="50%">
+        <mat-label>{{ 'ui.forms.createEditForm.title' | translate }}</mat-label>
+        <input type="text" matInput required minlength="6" formControlName="title" />
+        <mat-error *ngIf="form.get('title')!.hasError('required')">
+          {{ 'ui.forms.createEditForm.titleRequired' | translate }}
         </mat-error>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="mff-p0">
-      <mat-label>{{ 'ui.forms.createEditForm.description' | translate }}</mat-label>
-      <textarea rows="8" matInput formControlName="description"></textarea>
-      <mat-error *ngIf="form.get('description')!.hasError('backend')">
-        <mat-error *ngFor="let err of form.get('description')!.getError('backend')">
-          {{ err.message | translate:err.placeholderValues }}
+        <mat-error *ngIf="form.get('title')!.hasError('minlength')">
+          {{ 'ui.forms.createEditForm.titleTooShort' | translate: {chars: form.get('title')!.getError('minlength').requiredLength} }}
         </mat-error>
-      </mat-error>
-    </mat-form-field>
+        <mat-error *ngIf="form.get('title')!.hasError('backend')">
+          <mat-error *ngFor="let err of form.get('title')!.getError('backend')">
+            {{ err.message | translate:err.placeholderValues }}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline" class="mff-p0">
-      <mat-label>{{'ui.forms.createEditForm.tags' | translate}}</mat-label>
-      <mat-chip-list #chipListTags>
-        <mat-chip *ngFor="let tag of form.get('tags')?.value; let i = index" [selectable]="false" [removable]="true"
-          (removed)="removeTag(i)">
-          {{tag}}
-          <mat-icon matChipRemove color="warn">cancel</mat-icon>
-        </mat-chip>
-        <input [placeholder]="'ui.forms.createEditForm.addTags' | translate" [matChipInputFor]="chipListTags"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
-      </mat-chip-list>
-    </mat-form-field>
+    <div class="w-100">
+      <mat-form-field appearance="outline" class="mff-p0" fxFlex="100%" fxFlex.gt-xs="75%" fxFlex.gt-md="50%">
+        <mat-label>{{ 'ui.forms.createEditForm.description' | translate }}</mat-label>
+        <textarea rows="8" matInput formControlName="description"></textarea>
+        <mat-error *ngIf="form.get('description')!.hasError('backend')">
+          <mat-error *ngFor="let err of form.get('description')!.getError('backend')">
+            {{ err.message | translate:err.placeholderValues }}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="w-100">
+      <mat-form-field appearance="outline" class="mff-p0" fxFlex="100%" fxFlex.gt-xs="75%" fxFlex.gt-md="50%">
+        <mat-label>{{'ui.forms.createEditForm.tags' | translate}}</mat-label>
+        <mat-chip-list #chipListTags>
+          <mat-chip *ngFor="let tag of form.get('tags')?.value; let i = index" [selectable]="false" [removable]="true"
+            (removed)="removeTag(i)">
+            {{tag}}
+            <mat-icon matChipRemove color="warn">cancel</mat-icon>
+          </mat-chip>
+          <input [placeholder]="'ui.forms.createEditForm.addTags' | translate" [matChipInputFor]="chipListTags"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
 
     <h3>{{'ui.forms.createEditForm.attachments' | translate}}</h3>
-    <div fxLayout="column">
-      <mat-form-field appearance="outline" class="mff-p0">
-        <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
-        <input type="text" fxHide matInput />
-      </mat-form-field>
+    <div class="w-100">
+      <div fxLayout="column" fxFlex="100%" fxFlex.gt-xs="75%" fxFlex.gt-md="50%">
+        <mat-form-field appearance="outline" class="mff-p0">
+          <app-file-upload formControlName="attachments" [multiple]="true" [accept]="acceptedFileExtensions"></app-file-upload>
+          <input type="text" fxHide matInput />
+        </mat-form-field>
 
-      <mat-error *ngIf="form.get('attachments')!.hasError('upload')">
-        <mat-error *ngFor="let err of form.get('attachments')!.getError('upload')">
-          {{ err.message | translate:err.placeholderValues }}
+        <mat-error *ngIf="form.get('attachments')!.hasError('upload')">
+          <mat-error *ngFor="let err of form.get('attachments')!.getError('upload')">
+            {{ err.message | translate:err.placeholderValues }}
+          </mat-error>
         </mat-error>
-      </mat-error>
+      </div>
     </div>
 
     <h3>{{'ui.forms.createEditForm.columns' | translate}}</h3>
@@ -303,7 +311,7 @@
 
   <h3>{{'ui.forms.createEditForm.access' | translate}}</h3>
   <div fxLayout="row" fxLayoutAlign="flex-start center">
-    <mat-form-field fxFlex="1 1 auto" class="mff-p0" appearance="outline">
+    <mat-form-field fxFlex="100%" fxFlex.gt-xs="75%" fxFlex.gt-md="50%" class="mff-p0" appearance="outline">
       <mat-label>{{'ui.forms.createEditForm.search' | translate}}</mat-label>
       <input #orgSearchInput (keyup)="onOrganisationsKeyUp($event)" type="text" matInput />
     </mat-form-field>
@@ -338,6 +346,7 @@
   </mat-tree>
 
   <div fxLayout="row" fxLayoutAlign="center">
-    <button [disabled]="form.invalid || isLoading" type="submit" mat-raised-button color="accent">{{'ui.forms.createEditForm.save' | translate}}</button>
+    <button [disabled]="form.invalid || isLoading" type="submit" mat-raised-button
+      color="accent">{{'ui.forms.createEditForm.save' | translate}}</button>
   </div>
 </form>
