@@ -238,10 +238,10 @@
     <h3>{{'ui.forms.createEditForm.settings' | translate}}</h3>
 
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
-      <mat-form-field appearance="outline" class="mff-p0">
+      <mat-form-field (click)="deadlinePickerToggle._open($event)" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.deadline' | translate}}</mat-label>
         <input [readonly]="true" matInput [ngxMatDatetimePicker]="deadlinePicker" formControlName="deadline" [min]="now">
-        <mat-datepicker-toggle matSuffix [for]="castToAny(deadlinePicker)"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix #deadlinePickerToggle [for]="castToAny(deadlinePicker)"></mat-datepicker-toggle>
         <button (click)="form.get('deadline')?.reset()" matSuffix *ngIf="form.get('deadline')?.value != null" mat-icon-button type="button"
           color="warn">
           <mat-icon>delete</mat-icon>
@@ -256,10 +256,10 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-slide-toggle formControlName="isLocked">{{'ui.forms.createEditForm.isLocked' | translate}}</mat-slide-toggle>
 
-      <mat-form-field *ngIf="form.get('isLocked')!.value" appearance="outline" class="mff-p0">
+      <mat-form-field (click)="lockedUntilPickerToggle._open($event)" *ngIf="form.get('isLocked')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.lockedUntil' | translate}}</mat-label>
         <input [readonly]="true" matInput [ngxMatDatetimePicker]="lockedUntilPicker" formControlName="lockedUntilDate" [min]="now">
-        <mat-datepicker-toggle matSuffix [for]="castToAny(lockedUntilPicker)"></mat-datepicker-toggle>
+        <mat-datepicker-toggle #lockedUntilPickerToggle matSuffix [for]="castToAny(lockedUntilPicker)"></mat-datepicker-toggle>
         <button (click)="form.get('lockedUntilDate')?.reset()" matSuffix *ngIf="form.get('lockedUntilDate')?.value != null" mat-icon-button
           type="button" color="warn">
           <mat-icon>delete</mat-icon>
@@ -273,10 +273,10 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutAlign.xs="start">
       <mat-slide-toggle formControlName="isPinned">{{'ui.forms.createEditForm.isPinned' | translate}}</mat-slide-toggle>
 
-      <mat-form-field *ngIf="form.get('isPinned')!.value" appearance="outline" class="mff-p0">
+      <mat-form-field (click)="pinnedUntilPickerToggle._open($event)" *ngIf="form.get('isPinned')!.value" appearance="outline" class="mff-p0">
         <mat-label>{{'ui.forms.createEditForm.pinnedUntil' | translate}}</mat-label>
         <input [readonly]="true" matInput [ngxMatDatetimePicker]="pinnedUntilPicker" formControlName="pinnedUntilDate" [min]="now">
-        <mat-datepicker-toggle matSuffix [for]="castToAny(pinnedUntilPicker)"></mat-datepicker-toggle>
+        <mat-datepicker-toggle #pinnedUntilPickerToggle matSuffix [for]="castToAny(pinnedUntilPicker)"></mat-datepicker-toggle>
         <button (click)="form.get('pinnedUntilDate')?.reset()" matSuffix *ngIf="form.get('pinnedUntilDate')?.value != null" mat-icon-button
           type="button" color="warn">
           <mat-icon>delete</mat-icon>

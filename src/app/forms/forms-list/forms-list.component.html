@@ -19,11 +19,11 @@
       </form>
 
       <div fxFlex="0 1 auto" fxFlex.lt-md="1 1 auto" fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-sm="5px">
-        <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
+        <mat-form-field (click)="startDatePickerToggle._open($event)" fxFlex="1 1 auto" appearance="outline" class="mff-p0">
           <mat-label>{{'ui.forms.formsList.startDate' | translate}}</mat-label>
           <input [max]="endDate == null ? null : endDate" (dateChange)="onStartDateChanged($event)" [readonly]="true" matInput
             [ngxMatDatetimePicker]="startDatePicker" [value]="startDate">
-          <mat-datepicker-toggle matSuffix [for]="castToAny(startDatePicker)"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix #startDatePickerToggle [for]="castToAny(startDatePicker)"></mat-datepicker-toggle>
           <button (click)="onStartDateReset()" matSuffix *ngIf="filters.get('startDate')?.value != null" mat-icon-button type="button"
             color="warn">
             <mat-icon>delete</mat-icon>
@@ -33,11 +33,11 @@
           </ngx-mat-datetime-picker>
         </mat-form-field>
 
-        <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
+        <mat-form-field fxFlex="1 1 auto" (click)="endDatePickerToggle._open($event)" appearance="outline" class="mff-p0">
           <mat-label>{{'ui.forms.formsList.endDate' | translate}}</mat-label>
           <input [min]="startDate == null ? null : startDate" (dateChange)="onEndDateChanged($event)" [readonly]="true" matInput
             [ngxMatDatetimePicker]="endDatePicker" [value]="endDate">
-          <mat-datepicker-toggle matSuffix [for]="castToAny(endDatePicker)"></mat-datepicker-toggle>
+          <mat-datepicker-toggle #endDatePickerToggle matSuffix [for]="castToAny(endDatePicker)"></mat-datepicker-toggle>
           <button (click)="onEndDateReset()" matSuffix *ngIf="filters.get('endDate')?.value != null" mat-icon-button type="button"
             color="warn">
             <mat-icon>delete</mat-icon>
