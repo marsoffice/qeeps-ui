@@ -138,7 +138,8 @@
         "endDate": "Dată sfârșit",
         "startDate": "Dată început",
         "addTags": "Adăugare etichete",
-        "commands": "Comenzi"
+        "commands": "Comenzi",
+        "filters": "Filtre"
       }
     },
     "files": {

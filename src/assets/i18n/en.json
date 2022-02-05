@@ -138,7 +138,8 @@
         "endDate": "End Date",
         "startDate": "Start Date",
         "addTags": "Add Tags",
-        "commands": "Commands"
+        "commands": "Commands",
+        "filters": "Filters"
       }
     },
     "files": {

@@ -1,59 +1,67 @@
-<div id="wrapper" fxLayout="column">
-  <div fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-sm="5px">
+<div id="wrapper" fxLayout="column" fxLayoutGap="1rem">
 
-    <form fxFlex="1 1 auto" (submit)="onSearchSubmit()" [formGroup]="searchForm" fxLayout="row" fxLayoutAlign="flex-start center">
-      <mat-form-field class="mff-p0 w-100" appearance="outline">
-        <mat-label>{{'ui.forms.formsList.search' | translate}}</mat-label>
-        <input formControlName="text" matInput />
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
-      <button (click)="clearSearch()" *ngIf="filters.value.search != null && filters.value.search.length > 0" mat-icon-button color="warn">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </form>
+  <mat-expansion-panel class="transparent" [expanded]="!isMobile">
+    <mat-expansion-panel-header>
+      {{'ui.forms.formsList.filters' | translate}}
+    </mat-expansion-panel-header>
+    <div fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-sm="5px">
 
-    <div fxFlex="0 1 auto" fxFlex.lt-md="1 1 auto" fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-sm="5px">
-      <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
-        <mat-label>{{'ui.forms.formsList.startDate' | translate}}</mat-label>
-        <input [max]="endDate == null ? null : endDate" (dateChange)="onStartDateChanged($event)" [readonly]="true" matInput
-          [ngxMatDatetimePicker]="startDatePicker" [value]="startDate">
-        <mat-datepicker-toggle matSuffix [for]="castToAny(startDatePicker)"></mat-datepicker-toggle>
-        <button (click)="onStartDateReset()" matSuffix *ngIf="filters.get('startDate')?.value != null" mat-icon-button type="button"
+      <form fxFlex="1 1 auto" (submit)="onSearchSubmit()" [formGroup]="searchForm" fxLayout="row" fxLayoutAlign="flex-start center">
+        <mat-form-field class="mff-p0 w-100" appearance="outline">
+          <mat-label>{{'ui.forms.formsList.search' | translate}}</mat-label>
+          <input formControlName="text" matInput />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button (click)="clearSearch()" *ngIf="filters.value.search != null && filters.value.search.length > 0" mat-icon-button
           color="warn">
-          <mat-icon>delete</mat-icon>
+          <mat-icon>clear</mat-icon>
         </button>
-        <ngx-mat-datetime-picker #startDatePicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
-          [touchUi]="isMobile || false" [hideTime]="false">
-        </ngx-mat-datetime-picker>
-      </mat-form-field>
+      </form>
 
-      <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
-        <mat-label>{{'ui.forms.formsList.endDate' | translate}}</mat-label>
-        <input [min]="startDate == null ? null : startDate" (dateChange)="onEndDateChanged($event)" [readonly]="true" matInput
-          [ngxMatDatetimePicker]="endDatePicker" [value]="endDate">
-        <mat-datepicker-toggle matSuffix [for]="castToAny(endDatePicker)"></mat-datepicker-toggle>
-        <button (click)="onEndDateReset()" matSuffix *ngIf="filters.get('endDate')?.value != null" mat-icon-button type="button"
-          color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-        <ngx-mat-datetime-picker #endDatePicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
-          [touchUi]="isMobile || false" [hideTime]="false">
-        </ngx-mat-datetime-picker>
-      </mat-form-field>
+      <div fxFlex="0 1 auto" fxFlex.lt-md="1 1 auto" fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap.gt-sm="5px">
+        <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
+          <mat-label>{{'ui.forms.formsList.startDate' | translate}}</mat-label>
+          <input [max]="endDate == null ? null : endDate" (dateChange)="onStartDateChanged($event)" [readonly]="true" matInput
+            [ngxMatDatetimePicker]="startDatePicker" [value]="startDate">
+          <mat-datepicker-toggle matSuffix [for]="castToAny(startDatePicker)"></mat-datepicker-toggle>
+          <button (click)="onStartDateReset()" matSuffix *ngIf="filters.get('startDate')?.value != null" mat-icon-button type="button"
+            color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <ngx-mat-datetime-picker #startDatePicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
+            [touchUi]="isMobile || false" [hideTime]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="1 1 auto" appearance="outline" class="mff-p0">
+          <mat-label>{{'ui.forms.formsList.endDate' | translate}}</mat-label>
+          <input [min]="startDate == null ? null : startDate" (dateChange)="onEndDateChanged($event)" [readonly]="true" matInput
+            [ngxMatDatetimePicker]="endDatePicker" [value]="endDate">
+          <mat-datepicker-toggle matSuffix [for]="castToAny(endDatePicker)"></mat-datepicker-toggle>
+          <button (click)="onEndDateReset()" matSuffix *ngIf="filters.get('endDate')?.value != null" mat-icon-button type="button"
+            color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <ngx-mat-datetime-picker #endDatePicker [enableMeridian]="false" [showSpinners]="true" [showSeconds]="true"
+            [touchUi]="isMobile || false" [hideTime]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
 
-  <mat-form-field class="mff-p0 w-100" appearance="outline">
-    <mat-label>{{'ui.forms.formsList.tags' | translate}}</mat-label>
-    <mat-chip-list #chipListTags>
-      <mat-chip *ngFor="let tag of tags; let i = index" [selectable]="false" [removable]="true" (removed)="removeTag(i)">
-        {{tag}}
-        <mat-icon matChipRemove color="warn">cancel</mat-icon>
-      </mat-chip>
-      <input [placeholder]="'ui.forms.formsList.addTags' | translate" [matChipInputFor]="chipListTags"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
-    </mat-chip-list>
-  </mat-form-field>
+    <mat-form-field class="mff-p0 w-100" appearance="outline">
+      <mat-label>{{'ui.forms.formsList.tags' | translate}}</mat-label>
+      <mat-chip-list #chipListTags>
+        <mat-chip *ngFor="let tag of tags; let i = index" [selectable]="false" [removable]="true" (removed)="removeTag(i)">
+          {{tag}}
+          <mat-icon matChipRemove color="warn">cancel</mat-icon>
+        </mat-chip>
+        <input [placeholder]="'ui.forms.formsList.addTags' | translate" [matChipInputFor]="chipListTags"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
+    </mat-form-field>
+  </mat-expansion-panel>
+
   <div fxFlex="1 1 auto" id="table-wrapper" [class.mobile]="isMobile">
     <table [matSortDirection]="filters.value.sortOrder" [matSortActive]="filters.value.sortBy" (matSortChange)="onSortChanged($event)"
       matTableResponsive [class.mobile]="isMobile" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
